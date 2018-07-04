@@ -1,0 +1,169 @@
+<view hidden='{{homepage}}'>
+<!--头部-->
+<view class='head'>
+    <view class='user'>
+      <open-data type="userAvatarUrl" class='image'></open-data>
+      <open-data type="userNickName"></open-data>
+      <view>{{hometime}}</view>
+    </view>
+
+    <view class='service' bindtap='kefu'>
+      <view wx:if="{{shant==''}}" class='diantext'>+客服电话</view>
+      <view wx:else><image src='../img/dianhua.jpg' class='dianhua'></image></view>
+    </view>
+    <view class='copy' >复制已有接龙{{Uid}}</view>
+</view>
+<!--接龙主题-->
+<view class='zhuti'>
+<input class='theme' placeholder='接龙主题：' bindinput='Plnr' value='{{setPlnr}}'></input>
+<textarea class='describe'
+ maxlength='-1' 
+ auto-height='true'
+ bindinput='desc'
+ value='{{desc}}'
+  placeholder='说两句，让大家更好的参与接龙'>
+  </textarea>
+  <view class='tupian-pai'>
+   <view class='paizhao' 
+       wx:for="{{pushurl}}"  wx:if='{{item.pic !== "" || item.video !== ""}}' wx:key='k' data-index="{{index}}">
+      <view class='gdel' data-index="{{index}}" bindtap='infodel' >×</view>
+      <image wx:if='{{item.pic !== ""}}'  src="{{item.pic}}"  data-index='{{index}}'  mode='aspectFill' bindtap='tup'></image>
+          <video wx:if='{{item.video !== ""}}'  src="{{item.video}}" id='sps' show-progress='false' direction='0' objectFit='cover' bindtap='ship' data-index='{{index}}'></video>
+      </view>
+      <view class='paizhao' bindtap='box' data-id="{{index}}">
+       +
+      </view>
+  </view>
+</view>
+<!--接龙项目-->
+<view class='biaoti'>接龙项目</view>
+<view class='zhuti' wx:for='{{quantity}}'>
+
+    <view class='btndel' bindtap='delitem' wx:if='{{quantity>1}}'>×</view>
+    <view class='xiongmu onbian' >
+      <text class='xiongmu-jl'>接龙项目<text wx:if='{{quantity>1}}'>{{item+1}}</text></text>
+      <input data-index="{{quantity}}" placeholder='项目名称' bindinput='xiangname' value='{{jieitem.item_name}}'></input>
+    </view>
+    <view class='xiongmu'>
+      <text class='xiongmu-jl'>价格(￥)</text>
+      <input data-index="{{quantity}}" placeholder='0.00' type='number' bindinput='jiag' value='{{mofanjiage}}'></input>
+    </view>
+    <view class='xiongmu'>
+      <text class='xiongmu-jl'>数量</text>
+      <input data-index="{{quantity}}" placeholder='1000' type='number' bindinput='shum' value='{{mofanshuliang}}'></input>
+    </view>
+   
+</view>
+<view class='newxm'>
+<view class='xiongmu'>
+<view class='new-xm' bindtap='newitem' >+新项目</view>
+</view>
+</view>
+ 
+<view class='asdfggg'  wx:for='{{group}}'>
+<!--填写项-->
+<view class='zhuti' >
+    <view class='btndel' bindtap='deltx'  data-index='{{index}}' data-id='{{item.id}}'>×</view>
+    <view class='xiongmu onbian' >
+      <text class='xiongmu-jl'>
+       {{index+1}}.{{item.title}}:
+      </text>
+      <input placeholder='{{item.place}}' bindinput=''></input>
+    </view>
+    <view class='xiongmu' >
+      <picker class='moshi' mode='selector'
+       value='{{iex}}' range='{{gongk}}' data-id='{{index}}' bindchange='bindchangegk'>
+       /{{gongk[item.iex]}}
+       </picker>
+      <picker class='moshi' mode='selector'
+       value='{{item.ieb}}' range='{{bitian}}' data-id='{{index}}' bindchange='bindchangebt'>
+       /{{bitian[item.ieb]}}</picker>
+    </view>
+    </view>
+<view class='newxm'>
+    <view class='xiongmu' wx:if='{{tianxuetj >0}}'>
+        <view class='new-xm' bindtap='newtx' >+新填写项目</view>
+    </view>
+</view>
+
+</view>    
+    <!--选择项目-->
+ <view class='qitxiang' hidden='{{qitxiang}}' >
+    <view class='qitxz' bindtap='newtx' wx:for='{{qitaxiangmuneiy}}' data-id='{{index}}' style='{{item.color}}'>{{item.xiangmu}}</view>
+ </view>
+<view class='other'>
+    <image src='../img/icon_jt.png' class='other-img'></image>
+    <text bindtap='qitmu'>+其他类型接龙项目</text>
+</view>
+
+<!--报名设置-->
+<view class='biaoti'>报名设置</view>
+<view class='zhuti'>
+  <view class='rantianxie'>
+    <text class='ran'>让参与的人填写信息</text>
+    <text class='tian' bindtap='Tosetup'>去设置</text>
+  </view>
+  <view class='rantianxie'>
+    <text class='ran'>活动时间</text>
+    <text class='tian' bindtap='xianshitime' hidden='{{xiantime}}'>去设置即开始，7天后结束</text>
+  </view>
+ <view class='setime' hidden='{{setime}}'>
+    <picker mode='date' value='{{dadate}}' bindchange="bindDateChange"><text>{{dadate}}</text></picker>|
+    <picker mode='time' value='{{datime}}'bindchange="bindTimeChange"><text>{{datime}}</text></picker><view>到</view>
+   <picker mode='date' value='{{houdate}}'bindchange="DateChange"><text>{{houdate}}</text></picker>|
+   <picker mode='time' value='{{houtime}}'bindchange="TimeChange"><text>{{houtime}}</text></picker>
+ </view>
+  <view class='rantianxie'>
+  <image src='../img/icon_map.png'></image>
+  <text class='ranmap'>添加活动地点</text>
+  </view>
+  <view class='ranshez'>更多....</view>
+</view>
+
+<view class='fabu'>
+<text class='yulan'>保存预览</text>|
+<button class='falong' bindtap='fajielong' type='primary'>发布接龙</button> 
+</view>
+</view>
+<!--主题不能为空-->
+<view class='Donot' hidden='{{dored}}'>主题不能为空</view>
+
+<!--客服电话-->
+<view class='iphone' hidden='{{dianhua}}'>
+      <view class='kefu'>
+      <text class='ke'>客服电话</text>
+      <input type='number' class='btn' placeholder='手机号码' maxlength='11' bindinput='phone' value='{{shant}}'></input>
+      </view>
+      <button type='primary'  class='notarize' bindtap='queren'>确认设置</button> 
+</view>
+<!--去设置-->
+<view class='page' hidden='{{qushe}}'>
+  <view class='page01'>以下信息可自定义命名,在接龙中公开显示,也能选择排列顺序</view>
+  <view class='page02'>
+    <input placeholder='别名（可点击命名：如家长姓名，学生姓名，楼层等）' class='inp'></input>
+    <checkbox class='check'></checkbox>
+  </view>
+  <view class='page02'>
+    <input placeholder='别名（可点击命名：如家长姓名，学生姓名，楼层等）' class='inp'></input>
+    <checkbox class='check'></checkbox>
+  </view>
+
+  <view class='page01'>以下信息在接龙中不公开显示</view>
+  <view class='page02'>
+    <view class='inp'>联系人</view>
+    <checkbox class='check'></checkbox>
+  </view>
+  <view class='page02'>
+    <view class='inp'>联系电话</view>
+    <checkbox class='check'></checkbox>
+  </view>
+  <view class='page02'>
+    <view class='inp'>联系地址</view>
+    <checkbox class='check'></checkbox>
+  </view>
+  <view class='page03'>
+    <view class='custom'>+自定义填写项</view>
+    <view class='reset'>重置</view>
+  </view>
+  <button type='primary' bindtap='quetoshe'>确认填写项</button>
+</view>

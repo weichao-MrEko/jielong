@@ -1,0 +1,10 @@
+{
+  "component": true,
+  "usingComponents": {},
+
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTitleText": "发布报名接龙",
+  "navigationBarTextStyle": "black"
+
+}

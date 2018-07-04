@@ -1,0 +1,17 @@
+<view class='head'>
+    <view class='head-01'>圈子有活动 发个<text class='size'>群接龙</text></view>
+    <view class='head-02'>发布接龙、转发/分享、统计管理、三步搞定</view>
+    <view class='head-02'>有12222个接龙  131312人参与  242382人访问</view>
+    <view class='head-03'><text>使用与支持</text><text>回首页</text></view>
+</view>
+
+<view class='contian'>
+    <view class='box' wx:for='{{xiangmu}}' bindtap='baoming' data-index='{{index}}'>
+        <view class='page01' >
+              <text class='page01-bao'>{{item.bao}}</text>
+              <text class='page01-time'>{{item.time}}</text>
+              <text class='page01-wanf'>{{item.wanf}}</text>
+        </view>
+        <view class='page02'>{{item.contion}}</view>
+    </view>
+</view>

@@ -1,0 +1,242 @@
+/**index.wxss**/
+
+.head{
+display: flex;
+font-size: 24rpx;
+align-items: center;
+color: #666;
+}
+.user{
+  flex: 0.3;
+  margin-left: 40rpx;
+}
+.user .image{
+  width: 65rpx;
+  height: 65rpx;
+  float: left;
+  margin-right: 10rpx;
+}
+.user view{
+  color: #333;
+  font-size: 25rpx
+}
+.service{
+  flex: 0.25;
+  border-radius: 5rpx;
+  height: 38rpx;
+  text-align: center;
+  background: #f4f4f4;
+}
+.copy{
+  flex:0.6;
+  text-align: right;
+  margin-right: 38rpx;
+}
+.zhuti{
+  width: 92%;
+  overflow: hidden;
+  margin:30rpx auto;
+  background: #f4f4f4;
+  border-radius: 10rpx;
+}
+.theme{
+  font-size: 35rpx;
+  width: 96%;
+  margin: auto;
+  height: 80rpx;
+  font-weight: bold;
+  color: #7c7c7c;
+  border-bottom: 4rpx solid #ccc;
+}
+.describe{
+  font-size: 28rpx;
+  width: 96%;
+  margin:40rpx auto;
+ 
+}
+.tupian-pai{
+  display: flex;
+  flex-wrap: wrap;
+  
+}
+.paizhao{
+  margin:0 0 30rpx 60rpx;
+  width: 160rpx;
+  height: 160rpx;
+  background: #fff;
+  border: 2rpx solid #999;
+  overflow: hidden;
+  position: relative;
+}
+.gdel{
+  width: 30rpx;
+  height: 30rpx;
+  background: #999;
+  position: absolute;
+  line-height: 30rpx;
+  top:0;
+  right: 0;
+}
+.paizhao image{width: 100%;height: 100%}
+.biaoti{
+  margin-left: 5.5%;
+  font-weight: bolder;
+  color: #333;
+  font-size: 35rpx;
+}
+.xiongmu{
+  display: flex;
+  width: 95%;
+  height: 75rpx;
+  align-items: center;
+  margin:20rpx auto;
+  font-size: 30rpx;
+  border-bottom: 2rpx #7c7c7c solid;
+}
+.xiongmu-jl{
+  flex: 0.4;
+}
+.xiongmu input{flex: 1}
+.new-xm{
+  color: #999;
+  font-size: 35rpx;
+  margin:2% 2.5%;
+}
+.tianconn{
+  width: 400rpx;
+  font-size: 35rpx;
+  text-align: center;
+  margin:50rpx auto
+}
+.Content{
+  width: 100%;
+  height: 120rpx;
+  display: flex;
+  justify-content: center;
+}
+.Content view{
+ width: 100%;
+  text-align: center;
+ line-height: 120rpx;
+}
+.Content view image{width: 100%;height: 100%;background-color: #f4f4f4;}
+.Content view:nth-child(1) image{transform: rotate(180deg);margin-left: 5rpx}
+.Content view:nth-child(2) image{margin-right: 5rpx;}
+.Contentoptions {
+  width: 90%;
+  height: 120rpx;
+  background-color: #f4f4f4;
+
+  display: flex;
+  white-space: nowrap;
+}
+.Contentoptions view+view{ border-left: 1px solid #999 }
+.Contentoptions view{
+  width: 140rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  margin-top: 30rpx;
+  font-size: 28rpx;
+  display: inline-block
+}
+.xuanxiang{ 
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+.box{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 125px;
+  background: #ccc;
+  transform:translateY(180px);
+}
+.boxs{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 170px;
+  background: #ccc;
+  transform:translateY(170px);
+}
+
+
+.ovt.false{position: relative; z-index: 999;}
+
+.xuan{
+  text-align: center;
+  height: 100rpx;
+  line-height: 100rpx;
+  background: #fff;
+  
+}
+.xuan{
+  /* border-bottom:  */
+  margin-bottom: 3rpx;
+}
+.xuan.ku{
+  /* border-bottom:  */
+  margin-top: 15rpx;
+}
+.rantianxie{
+  width: 94%;
+  margin: auto;
+  display: flex;
+  font-size: 30rpx;
+}
+.ran{
+  flex: 0.7;
+  padding: 40rpx 0;
+}
+.tian{
+  flex: 1;
+  text-align: right;
+  font-size: 28rpx;
+  color: #525787;
+  padding: 40rpx 0;
+}
+.fabu{
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  color: #fff;
+  display: flex;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  text-align: center;
+  background: green;
+}
+.yulan{
+ flex: 0.5;
+ font-size: 26rpx;
+}
+.falong{
+  flex: 1;
+  font-size: 35rpx;
+  font-weight: bold;
+}
+.ranshez{
+  text-align: center;
+  font-size: 26rpx;
+  color: #999;
+  height: 180rpx;
+}
+.rantianxie image{
+  width: 40rpx;
+  height: 40rpx;
+  padding: 40rpx 0;
+}
+.ranmap{
+  font-size: 28rpx;
+  color: #525787;
+  padding: 40rpx 0;
+  margin-left: 10rpx;
+}

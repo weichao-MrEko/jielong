@@ -1,0 +1,140 @@
+/**index.wxss**/
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+
+.usermotto {
+  margin-top: 200px;
+}
+.nav{
+  display: flex;
+  width: 100%;
+  margin: 30rpx;
+}
+.nav view{
+  flex: 4;
+  text-align: center;
+  height: 60rpx;
+  line-height: 70rpx;
+  font-size: 28rpx;
+  color: #888888;
+  border-right: 1px solid #e9e9e9;
+}
+.nav view image{
+  width: 40rpx;
+  height: 40rpx;
+  margin:10rpx 20rpx 0 40rpx; 
+  float: left;
+}
+.nav view text{float: left;}
+
+.nav view:nth-child(2) image{width:60rpx;height: 40rpx;}
+.nav view:nth-child(3) image{width: 50rpx;height: 50rpx;}
+.nav view:nth-child(4) image{width: 40rpx;height: 50rpx;}
+.shuju{
+  display: flex;
+  width:100%;
+   margin-top: 120rpx;
+}
+.shuju view{
+  flex: 3;
+  height: 60rpx;
+  text-align: center;
+  font-size: 28rpx;
+}
+.shuju view span{
+  color: #03bb03;
+  font-size: 38rpx;
+  margin:0 10rpx;
+}
+.touxiang{
+  width:92%;
+  margin-top: 20rpx;
+  border-bottom: 1px solid #aaa;
+}
+
+.as-avatar{
+  width:70rpx;
+  height: 70rpx;
+  border-radius: 10rpx;
+}
+.tou{
+  display: flex;
+}
+.tou-pian{
+  flex-grow: 29;
+  
+}
+.as-avatar{float: left;margin-right: 20rpx;}
+.as-nickname{
+  font-size: 28rpx;
+}
+.as-time{
+  font-size: 20rpx;
+}
+.tou-jian{
+  flex-grow: 1;
+  font-size: 80rpx;
+}
+.tou-con{
+  width:88%;
+  float: right;
+  
+}
+.tou-jiaoy{
+  font-size: 28rpx;
+}
+.tou-con-o{
+  font-size: 25rpx;
+  display: flex;
+  margin: 20rpx 0;
+}
+.tou-con-o-left{
+ flex-grow: 3;
+}
+.tou-con-o-right{
+  flex: 1;
+}
+.font{
+  margin: 20rpx 0;
+ font-size: 20rpx;
+}
+.zhuangt{
+  color: green;
+}
+.jiapush{
+  margin: -40rpx 0 0 60rpx;
+  width: 100rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  
+  display: inline-block;
+ 
+  font-size: 80rpx;
+  border-radius: 50% ;
+}
+.tubox{
+  display: flex;
+}
+.tupian{
+  width:160rpx;
+  height: 160rpx;
+  margin: 10rpx;
+}
+.tupian image{
+  width: 100%;
+  height: 100%;
+}

@@ -1,0 +1,39 @@
+<!--头部-->
+<view class='head'>
+  <view class='user'>
+    <image src='http://wx.qlogo.cn/mmopen/vi_32/JibXHYy8J8pWTeQw6KIvGCNuDUGWN2PgfcVhpZV1YqNMGSj6eFgoxWbT3uIj4TibWPWfKyyxqWD44aQ7Vm1GprTg/132' class='u-portrait'></image>
+    <view class='use'>
+    <view class='u-name'>mreko</view>
+    <text class='u-time'>7天前</text>
+    <text class='u-kang'>有3个人看过</text>
+    </view>  
+  </view>
+  <view class='share'>
+    <image class='s-fen' src='../img/icon_map.png'></image>
+    <image class='s-fen' src='../img/icon_map.png'></image>
+  </view>
+</view>
+
+<!--接龙内容-->
+<view class='contenter'>
+  <view class='content'>
+    <view class='c-zhuti'>{{theme.theme_name}}</view>
+    <view class='c-nei' >{{theme.desc_info}}</view> 
+    <view class='c-imm'>
+    <view class='c-img' wx:for="{{itimg}}"><image src='http://192.168.1.112/dragon/public{{item.img_path}}'></image></view>
+    </view>
+    <view class='c-item' wx:for='{{xiangmu}}'>
+          <text>{{item.item_name}}</text>
+          <text>￥{{item.price}}</text>
+          
+    </view>
+    <view class='c-map'>地点</view>
+    <view class='c-list'>
+      <view bindtap='myhome'><image src='../img/zhuye.jpg'></image><view>我的首页</view> </view>
+      <view><image src='../img/faqun.jpg'></image><view>发个群接龙</view></view>
+      <view><view class='renshu'>0</view> <view>我带来的人</view></view>
+      <view><image src='../img/pingzheng.jpg'></image><view>我的凭证</view></view>
+    </view>
+    <button type='primary'>我要接龙</button>
+  </view>
+</view>

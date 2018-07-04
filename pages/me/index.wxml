@@ -1,0 +1,67 @@
+<!--index.wxml-->
+<view class="container">
+  <view  wx-if="{{people_data==''}}"> 正在研发中 </view>
+  <scroll-view scroll-y="true" bindscrolltolower="searchScrollLower" style="height: 650px;" wx-if="{{people_data!=''}}">
+  
+    <swiper  
+  autoplay="{{true}}"  class="banners" interval="5000"   >
+
+      <swiper-item class="banner" >
+        <image src="../../images/dsg.jpg"    class="banner-image" width="100%" height="100%"/>
+      </swiper-item>
+
+      <swiper-item class="banner" > 
+        <image src="../../images/dsg2.jpg"    class="banner-image" width="100%" height="100%"/>
+      </swiper-item>
+    </swiper>
+    <view class='people_data' wx:for="{{people_data}}"   >
+      <view class='up_people_box'>
+        <view class='user_name'>{{item.uname}}</view>
+        <view class='time'>{{item.pub_time}}</view>
+      </view>
+      <view class='say_content' wx:if="{{item.img_path}}">
+<view wx:for="{{item.img_path}}">
+    <image bindload="imageLoad"  src='{{item.url}}' data-index="{{ index }}" 
+style="width:{{ images[index].width }}rpx; height:{{ images[index].height }}rpx;"></image>
+    </view>
+
+      </view>
+      <view class='say_content'>{{item.pub_text}}</view>
+      <view class='do_box'>
+     
+        <view class='commont' bindtap='onPlXs' id="{{item.id}}"> 
+          <image src="../../images/comment.png"    />
+         {{item.pl}}
+        </view>
+          <view class='zan' id="{{item.id}}" bindtap="ondoZan">
+          <image src="../../images/appreciate.png"    />
+          {{item.zan}}
+        </view>
+
+
+      </view>
+       <view class='commont_box' hidden='{{item.id!=cur_id}}'>
+          <textarea bindinput='setPlnr'></textarea>
+          <button type='primary' size='mini' bindtap="ondoPl"  id="{{item.id}}" >提交评论</button>
+        </view>
+
+        <view class='commont_list' wx:for="{{commont_list}}" wx:for-item="pl" hidden='{{item.id!=cur_id}}'>
+             <view class='up_people_box'>
+              <view class='user_name'>{{pl.uname}}</view>
+              <view class='time'>{{pl.add_time}}</view>
+            </view>
+            <view class='say_content'>{{pl.comment_content}}</view>
+            
+        </view>
+    </view>
+  
+    <view style='height: 580rpx;'></view>
+    <view class='pub_text_box' bindtap='goPub'>
+      <image src="../../images/write.png"></image>
+      发布
+    </view>
+
+  </scroll-view>
+
+  <loading hidden="{{!loading}}">正在加载</loading>
+</view>

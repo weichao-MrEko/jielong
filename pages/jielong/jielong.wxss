@@ -1,0 +1,52 @@
+/* pages/jielong/jielong.wxss */
+.head{
+
+  text-align: center;
+  padding: 80rpx;
+}
+.head-01{
+  color: green;
+  font-family: "叶根友毛笔行书2.0版";
+  font-size: 40rpx;
+}
+.size{
+  font-size: 70rpx;
+}
+.head-02{
+  font-size: 25rpx;
+  margin: 10rpx 0;
+}
+.head-03{
+  font-size: 30rpx;
+  float: right;
+}
+.head-03 text{
+  margin: 0 10rpx;
+}
+.box{
+  width: 90%;
+  margin:40rpx auto;
+  font-size: 28rpx;
+  color: #999;
+}
+.page01{
+  margin: 10rpx 0;
+  display: flex;
+   align-items: flex-end;
+}
+.page01-bao{
+  color: green;
+  font-size: 35rpx;
+  flex: 0.9;
+}
+.page01-time{
+  font-size: 18rpx;
+  height: 30rpx;
+  align-items: flex-end;
+  flex: 2;
+  
+}
+.page01-wanf{
+  flex: 0.5;
+  color: blue;
+}
