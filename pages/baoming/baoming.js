@@ -105,9 +105,9 @@ Component({
      houtime:'00:00',
      mofanzhut:'',
      mofanjieshao:'',
-     mofanitem:'',
-     mofanjiage:'',
-     mofanshuliang:''
+     ytianmap:'',
+     Fill:'',
+     kill:''
   },
   /**
    * 组件的方法列表
@@ -122,15 +122,17 @@ Component({
       var F = new Date().getMinutes()
      
       let that=this
+      that.data.jieitem[0].item_name = options.item
+      that.data.jieitem[0].price = options.jiag
+      that.data.jieitem[0].amount = options.renshu
       that.setData({
         dadate:Y+"-"+ (M+1) +"-"+D,
         hometime: (M + 1) + "/" + D,
         datime:H+":"+F,
         setPlnr:options.zhu,
         desc:options.nei,
-        jieitem: options.item,
-        mofanjiage:options.jiag,
-        mofanshuliang:options.renshu
+        jieitem: that.data.jieitem
+       
       })
       wx.getStorage({
         key: 'key',
@@ -141,24 +143,24 @@ Component({
           })
           },
       })
-      console.log(this.data.shant)
+      console.log(that.data.jiage)
       
     },
-    kefu(){
+    onShow: function () {
       this.setData({
-        dianhua:false,
-        homepage:true
+        shant: app.globalData.tel,
+        ytianmap: app.globalData.map,
+        Fill: app.globalData.gongkai,
+        kill: app.globalData.ongk
       })
-    /*  console.log(this.data.shant)
-      wx.getStorage({
-        key: 'key',
-        success: function (res) {
-          console.log(res)
-        },
-      })
+      console.log(app.globalData.gongkai)
+    },
+    kefu(){
+      
+    
       wx.navigateTo({
-        url: '../kefu/kefu?id='+app.globalData.tel,
-      })*/
+        url: '../kefu/kefu',
+      })
     },
     bindGetUserInfo: function (e) {
       console.log(e.detail.userInfo)
@@ -263,6 +265,7 @@ Component({
                 }
                 console.log(that.data.pushurl)
                 for (var i = 0; i < gg.length; i++) {
+                  console.log(gg[i].video)
                   wx.uploadFile({
                     url: app.globalData.urlPrefix + 'signup/uploadImg',
                     filePath: gg[i].video,
@@ -502,7 +505,8 @@ Component({
           user_img: app.globalData.userInfo.avatarUrl,
           user_name: app.globalData.userInfo.nickName,
           servPhone: this.data.shant,//电话
-         
+          address: app.globalData.map,
+          actor_info: app.globalData.gongkai
         },
         
         success:function(res){
@@ -625,10 +629,13 @@ Component({
       
     },
     Tosetup:function(){
-      this.setData({
-        qushe:false,
-        homepage:true
-      })
+    //  this.setData({
+      //  qushe:false,
+        //homepage:true
+     // })
+     wx.navigateTo({
+       url: '../participants/participants',
+     })
     },
     quetoshe:function(){
       this.setData({
@@ -672,6 +679,11 @@ Component({
       this.setData({
         dianhua:true,
         homepage:false
+      })
+    },
+    Addplace:function(){
+      wx.navigateTo({
+        url: '../shedidian/shedidian',
       })
     }
   }

@@ -69,6 +69,10 @@ App({
     tel: null,
     userInfo:null,
     idda: null,
+    gongkai:[],
+    ongk:[],
+    tianjiaprivate:[],
+    map:[],
     urlPrefix : 'http://192.168.1.112/dragon/public/wxapi/'
   }
 })

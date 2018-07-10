@@ -1,0 +1,8 @@
+<!--pages/kefu/kefu.wxml-->
+<view class='kefu'>
+<text class='ke'>客服电话</text>
+<input type='number' placeholder='手机号码' maxlength='11' bindinput='phone' value='{{tel}}'></input>
+</view>
+<button type='primary'  class='notarize' bindtap='queren'>确认设置</button> 
+
+

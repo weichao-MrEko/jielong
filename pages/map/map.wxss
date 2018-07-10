@@ -1,0 +1,44 @@
+/* pages/meyaojl/meyaojl.wxss */
+.sousuo{
+
+  height: 100rpx;
+  background: #f4f4f4;
+  justify-content: center;
+}
+.finish{
+  width:100rpx;
+  height: 65rpx;
+  color: #fff;
+  line-height: 65rpx;
+  background: #1aad19;
+  border: 1px solid #999;
+  text-align: center;
+
+  
+}
+.kui{
+  height: 80rpx;
+  border: 1px solid #999;
+  background-color: #fff;
+}
+.sousuo text{
+  flex: 0.15;
+  height: 80rpx;
+  background: #1aad19;
+  line-height: 80rpx;
+  text-align: center;
+  color: #fff;
+  border: 1px solid #999;
+}
+.ciye{
+  flex: 1;
+ margin-top: 20rpx;
+}
+ .dian{
+  margin-top: 25rpx
+}
+.dzname{
+  display: flex;
+  margin: 10rpx 0;
+  border-bottom: 1rpx solid #eee;
+}

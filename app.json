@@ -1,12 +1,18 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/baoming/baoming",
+    "pages/participants/participants",
+    "pages/tianjiaprivate/tianjiaprivate",
     
+    "pages/map/map",
+    "pages/shedidian/shedidian",
+    "pages/kefu/kefu",
+    "pages/baoming/baoming",
     "pages/huodong/huodong",
     "pages/as/as",
-    "pages/baoming2/baoming2",    
+    "pages/baoming2/baoming2",
     "pages/jielong/jielong"
+   
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -14,5 +20,4 @@
     "navigationBarTitleText": "",
     "navigationBarTextStyle": "black"
   }
-  
 }
