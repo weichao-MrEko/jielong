@@ -4,7 +4,7 @@
     <view class='page02' >
       <input placeholder='{{item.placeholder}}'
        class='inp' bindinput='opename' data-id='{{index}}'
-       value='{{opens}}'>
+       value='{{item.name}}'>
        </input>
       <checkbox class='check' value='{{item.opename}}' checked="{{item.checked}}"></checkbox>
     </view>

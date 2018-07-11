@@ -37,20 +37,20 @@
 </view>
 <!--接龙项目-->
 <view class='biaoti'>接龙项目</view>
-<view class='zhuti' wx:for='{{quantity}}'>
+<view class='zhuti' wx:for='{{jieitem}}'>
 
-    <view class='btndel' bindtap='delitem' wx:if='{{quantity>1}}'>×</view>
+    <view class='btndel' bindtap='delitem' wx:if='{{quantity>1}}' data-id='{{index}}'>×</view>
     <view class='xiongmu onbian' >
-      <text class='xiongmu-jl'>接龙项目<text wx:if='{{quantity>1}}'>{{item+1}}</text></text>
-      <input data-index="{{quantity}}" placeholder='项目名称' bindinput='xiangname' value='{{jieitem[0].item_name}}'></input>
+      <text class='xiongmu-jl'>接龙项目<text wx:if='{{quantity>1}}'>{{index+1}}</text></text>
+      <input data-index="{{quantity}}" placeholder='项目名称' bindinput='xiangname' value='{{item.item_name}}'></input>
     </view>
     <view class='xiongmu'>
       <text class='xiongmu-jl'>价格(￥)</text>
-      <input data-index="{{quantity}}" placeholder='0.00' type='number' bindinput='jiag' value='{{jieitem[0].price}}'></input>
+      <input data-index="{{quantity}}" placeholder='0.00' type='number' bindinput='jiag' value='{{item.price}}'></input>
     </view>
     <view class='xiongmu'>
       <text class='xiongmu-jl'>数量</text>
-      <input data-index="{{quantity}}" placeholder='1000' type='number' bindinput='shum' value='{{jieitem[0].amount}}'></input>
+      <input data-index="{{quantity}}" placeholder='1000' type='number' bindinput='shum' value='{{item.amount}}'></input>
     </view>
    
 </view>

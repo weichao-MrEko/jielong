@@ -286,14 +286,7 @@ Component({
                     },
                     success: function (res) {
                       //var data=res.data
-                      console.log(res)
-                      uppimg.push(JSON.parse(res.data).imgPath)
-
-                      that.setData({
-                        upimg: uppimg,
-
-                      })
-
+                    console.log(res)
                     }
                   })
                 }
@@ -554,12 +547,16 @@ Component({
         quantity: ++this.data.quantity,
         jieitem: jieitem
         })
-       console.log(this.data.quantity)
+      console.log(this.data.jieitem)
     },
-    delitem:function(){
-
+    delitem:function(e){
+     
+      let id = e.currentTarget.dataset.id
+      let jieitem = this.data.jieitem
+      jieitem.splice(id,1)
       this.setData({
-         quantity: --this.data.quantity 
+         quantity: --this.data.quantity ,
+         jieitem: jieitem
          })
     },
     qitmu:function(){
