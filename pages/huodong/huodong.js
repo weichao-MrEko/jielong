@@ -8,7 +8,8 @@ Page({
   data: {
     xiangmu:"",
      itimg:"",
-     theme:''
+     theme:'',
+     act: ''
   },
 
   /**
@@ -29,7 +30,8 @@ Page({
          that.setData({
           xiangmu:res.data.item_result,
           itimg:res.data.theme_img,
-          theme:res.data.theme_result
+          theme:res.data.theme_result,
+          act: res.data.act
         })
        }
      })
@@ -41,7 +43,15 @@ Page({
       url: '../index/index',
     })
   } ,    
+  joinjl: function () {
+    var that = this
+    //console.log(that.data.theme) 
+    //console.log(that.data.xiangmu) 
+    wx.navigateTo({
+      url: '../joinJlong/index?act=' + JSON.stringify(that.data.act)
+    })
 
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

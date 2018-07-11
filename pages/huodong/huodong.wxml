@@ -34,6 +34,6 @@
       <view><view class='renshu'>0</view> <view>我带来的人</view></view>
       <view><image src='../img/pingzheng.jpg'></image><view>我的凭证</view></view>
     </view>
-    <button type='primary'>我要接龙</button>
+    <button type='primary'bindtap='joinjl'>我要接龙</button>
   </view>
 </view>
