@@ -99,10 +99,11 @@ Component({
      setime: true,
      xiantime: false,
      hometime:'',
-     dadate:'',
-     datime:'16:10',
-     houdate:'2018-7-5',
-     houtime:'00:00',
+     startime: {dadate:'', datime:'16:10'},
+     endtime: { houdate: '2018-7-5', houtime: '00:00'},
+     
+     
+     
      mofanzhut:'',
      mofanjieshao:'',
      ytianmap:'',
@@ -114,26 +115,36 @@ Component({
    */
   methods: {
     onLoad: function (options) {
-      
+      console.log(this.data.startime)
       var Y = new Date().getFullYear()
       var M = new Date().getMonth()
       var D = new Date().getDate()
       var H = new Date().getHours()
       var F = new Date().getMinutes()
      
+      D = D > 9 ? D : "0" + D
+      var day3 = new Date();
+      day3.setTime(day3.getTime() + 24 * 60 * 60 * 1000*7);
+      var s3 = day3.getFullYear() + "-" + ("0"+(day3.getMonth() + 1)).slice(-2) + "-" + day3.getDate();
+      console.log(s3)
+
       let that=this
       that.data.jieitem[0].item_name = options.item
       that.data.jieitem[0].price = options.jiag
       that.data.jieitem[0].amount = options.renshu
+      that.data.startime.dadate=Y + "-" +("0"+ (M + 1)).slice(-2) + "-" + D
+      that.data.startime.datime=H + ":" + F
+      that.data.endtime.houdate=s3
       that.setData({
-        dadate:Y+"-"+ (M+1) +"-"+D,
-        hometime: (M + 1) + "/" + D,
-        datime:H+":"+F,
+        startime: that.data.startime,
+        hometime: ("0"+(M + 1)).slice(-2) + "/" + D,
+        endtime: that.data.endtime,
         setPlnr:options.zhu,
         desc:options.nei,
         jieitem: that.data.jieitem
        
       })
+      
       wx.getStorage({
         key: 'key',
         success: function(res) {
@@ -494,6 +505,16 @@ Component({
       console.log(ev)
       console.log(this.data.jieitem)
       var thgt = this;
+      var num = 10;
+      if (thgt.data.setPlnr == "" || thgt.data.setPlnr == undefined) {
+        thgt.setData({ dored: false })
+        timer = setTimeout(function () {
+          num--;
+          thgt.setData({ dored: true })
+        }, 2000)
+
+      }
+      else {
       wx.request({
         url: app.globalData.urlPrefix + 'signup/saveInfo',
         data:{
@@ -506,29 +527,23 @@ Component({
           user_name: app.globalData.userInfo.nickName,
           servPhone: this.data.shant,//电话
           address: app.globalData.map,
-          actor_info: app.globalData.gongkai
+          actor_info: app.globalData.gongkai,
+          start_time: this.data.startime,
+          end_time:this.data.endtime
         },
         
         success:function(res){
           console.log(res.data)
-          var num=10;
-          if (thgt.data.setPlnr == "") {
-            thgt.setData({ dored: false })
-              timer=setTimeout(function(){
-                  num--;
-                  thgt.setData({ dored: true })
-              },2000)
-              
-          }
-          else{
+      
+          
           wx.navigateTo({
             url: '../huodong/huodong?id=' + res.data.theme_id + '&uid=' + app.globalData.idda.uid
           })
         }
-        }
+      
         
       })
-    
+      }
      
     },
     //+新项目
@@ -650,24 +665,29 @@ Component({
       })
     },
     bindDateChange:function(e){
+      
+      this.data.startime.dadate= e.detail.value
       this.setData({
-        dadate: e.detail.value
+        startime: this.data.startime
       })
     },
     bindTimeChange:function(e){
+      this.data.startime.datime = e.detail.value
       this.setData({
-        datime: e.detail.value
+        startime: this.data.startime
       })
     },
     DateChange:function(e){
+      this.data.endtime.houdate = e.detail.value
       this.setData({
-      houdate: e.detail.value
+        endtime: this.data.endtime
       })
     },
 
    TimeChange:function(e){
+     this.data.endtime.houtime = e.detail.value
      this.setData({
-       houtime: e.detail.value
+       endtime: this.data.endtime
      })
    },
     phone: function (e) {

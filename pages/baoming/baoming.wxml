@@ -109,10 +109,10 @@
     <text class='tian' bindtap='xianshitime' hidden='{{xiantime}}'>去设置即开始，7天后结束</text>
   </view>
  <view class='setime' hidden='{{setime}}'>
-    <picker mode='date' value='{{dadate}}' bindchange="bindDateChange"><text>{{dadate}}</text></picker>|
-    <picker mode='time' value='{{datime}}'bindchange="bindTimeChange"><text>{{datime}}</text></picker><view>到</view>
-   <picker mode='date' value='{{houdate}}'bindchange="DateChange"><text>{{houdate}}</text></picker>|
-   <picker mode='time' value='{{houtime}}'bindchange="TimeChange"><text>{{houtime}}</text></picker>
+    <picker mode='date' value='{{startime.dadate}}' bindchange="bindDateChange"><text>{{startime.dadate}}</text></picker>|
+    <picker mode='time' value='{{startime.datime}}'bindchange="bindTimeChange"><text>{{startime.datime}}</text></picker><view>到</view>
+   <picker mode='date' value='{{endtime.houdate}}'bindchange="DateChange"><text>{{endtime.houdate}}</text></picker>|
+   <picker mode='time' value='{{endtime.houtime}}'bindchange="TimeChange"><text>{{endtime.houtime}}</text></picker>
  </view>
   <view class='rantianxie'>
   <text class='ran'>活动地点</text>
