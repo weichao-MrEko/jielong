@@ -9,7 +9,8 @@ Page({
     xiangmu:"",
      itimg:"",
      theme:'',
-     act: ''
+     act: '',
+     map:''
   },
 
   /**
@@ -31,14 +32,16 @@ Page({
           xiangmu:res.data.item_result,
           itimg:res.data.theme_img,
           theme:res.data.theme_result,
-          act: res.data.act
+          act: res.data.act,
+          map: JSON.parse(res.data.theme_result.address)
         })
        }
      })
-        
+     console.log(that.data.theme)
     },
   
   myhome:function(){
+    console.log(this.data.map)
     wx.navigateTo({
       url: '../index/index',
     })

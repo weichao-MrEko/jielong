@@ -108,7 +108,8 @@ Component({
      mofanjieshao:'',
      ytianmap:'',
      Fill:'',
-     kill:''
+     kill:'',
+     gill:''
   },
   /**
    * 组件的方法列表
@@ -140,7 +141,7 @@ Component({
         hometime: ("0"+(M + 1)).slice(-2) + "/" + D,
         endtime: that.data.endtime,
         setPlnr:options.zhu,
-        desc:options.nei,
+        descont:options.nei,
         jieitem: that.data.jieitem
        
       })
@@ -162,9 +163,11 @@ Component({
         shant: app.globalData.tel,
         ytianmap: app.globalData.map,
         Fill: app.globalData.gongkai,
-        kill: app.globalData.ongk
+        kill: app.globalData.ongk,
+        gill: app.globalData.ongks
       })
-      console.log(app.globalData.gongkai)
+      console.log(app.globalData.tianjiaprivate)
+      console.log(app.globalData.ongks)
     },
     kefu(){
       
@@ -495,9 +498,14 @@ Component({
       })
     },
     fajielong(ev){
+
       console.log(ev)
       console.log(this.data.jieitem)
       var thgt = this;
+      thgt.data.heti = { gong: thgt.data.Fill, bugong: thgt.data.kill,bugongs:thgt.data.gill}
+     console.log(thgt.data.heti)
+     
+
       var num = 10;
       if (thgt.data.setPlnr == "" || thgt.data.setPlnr == undefined) {
         thgt.setData({ dored: false })
@@ -520,7 +528,7 @@ Component({
           user_name: app.globalData.userInfo.nickName,
           servPhone: this.data.shant,//电话
           address: app.globalData.map,
-          actor_info: app.globalData.gongkai,
+          actor_info: thgt.data.heti,
           start_time: this.data.startime,
           end_time:this.data.endtime
         },

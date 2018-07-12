@@ -20,7 +20,7 @@
  maxlength='-1' 
  auto-height='true'
  bindinput='desc'
- value='{{desc}}'
+ value='{{descont}}'
   placeholder='说两句，让大家更好的参与接龙'>
   </textarea>
   <view class='tupian-pai'>
@@ -101,8 +101,10 @@
 <view class='zhuti'>
   <view class='rantianxie'>
     <text class='ran'>让参与的人填写信息</text>
-    <text class='tian' bindtap='Tosetup' wx:if="{{Fill==''||Fill==null}}">去设置</text>
-    <text class='tian' bindtap='Tosetup' wx:else>{{Fill}}</text>
+    <text class='tian' bindtap='Tosetup' wx:if="{{Fill==''&&kill==''&& gill==''}}">去设置</text>
+    <text class='tian' bindtap='Tosetup' wx:else>{{Fill}} {{kill}}{{gill}}</text>
+    
+    
   </view>
   <view class='rantianxie'>
     <text class='ran'>活动时间</text>
@@ -130,43 +132,3 @@
 </view>
 <!--主题不能为空-->
 <view class='Donot' hidden='{{dored}}'>主题不能为空</view>
-
-<!--客服电话-->
-<view class='iphone' hidden='{{dianhua}}'>
-      <view class='kefu'>
-      <text class='ke'>客服电话</text>
-      <input type='number' class='btn' placeholder='手机号码' maxlength='11' bindinput='phone' value='{{shant}}'></input>
-      </view>
-      <button type='primary'  class='notarize' bindtap='queren'>确认设置</button> 
-</view>
-<!--去设置-->
-<view class='page' hidden='{{qushe}}'>
-  <view class='page01'>以下信息可自定义命名,在接龙中公开显示,也能选择排列顺序</view>
-  <view class='page02'>
-    <input placeholder='别名（可点击命名：如家长姓名，学生姓名，楼层等）' class='inp'></input>
-    <checkbox class='check'></checkbox>
-  </view>
-  <view class='page02'>
-    <input placeholder='别名（可点击命名：如家长姓名，学生姓名，楼层等）' class='inp'></input>
-    <checkbox class='check'></checkbox>
-  </view>
-
-  <view class='page01'>以下信息在接龙中不公开显示</view>
-  <view class='page02'>
-    <view class='inp'>联系人</view>
-    <checkbox class='check'></checkbox>
-  </view>
-  <view class='page02'>
-    <view class='inp'>联系电话</view>
-    <checkbox class='check'></checkbox>
-  </view>
-  <view class='page02'>
-    <view class='inp'>联系地址</view>
-    <checkbox class='check'></checkbox>
-  </view>
-  <view class='page03'>
-    <view class='custom'>+自定义填写项</view>
-    <view class='reset'>重置</view>
-  </view>
-  <button type='primary' bindtap='quetoshe'>确认填写项</button>
-</view>

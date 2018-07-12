@@ -1,30 +1,40 @@
 <view class='page01'>以下信息可自定义命名,在接龙中公开显示,也能选择排列顺序</view>
-<checkbox-group bindchange="checkboxChange1">
+
   <view   wx:for="{{open}}">
+  <checkbox-group bindchange="checkboxChange1" data-id='{{index}}'>
     <view class='page02' >
       <input placeholder='{{item.placeholder}}'
        class='inp' bindinput='opename' data-id='{{index}}'
        value='{{item.name}}'>
        </input>
-      <checkbox class='check' value='{{item.opename}}' checked="{{item.checked}}"></checkbox>
+      <checkbox class='check'  value='{{item.opename}}' checked="{{item.checked}}" id='{{index}}'></checkbox>
     </view>
- 
+ </checkbox-group>
   </view>
-</checkbox-group>
 
-<checkbox-group bindchange="checkboxChange2">
+
+
   <view class='page01'>以下信息在接龙中不公开显示</view>
-  <view class='page02' wx:for="{{private}}">
-    <view class='inp'>{{item.name}}</view>
-    <checkbox class='check' value='{{item.name}}'></checkbox>
+  <view wx:for="{{private}}">
+  <checkbox-group bindchange="checkboxChange2"  data-id='{{index}}'>
+    <view class='page02' >
+      <view class='inp'>{{item.name}}</view>
+      <checkbox class='check' 
+      value='{{item.name}}'  checked='{{item.checked}}'></checkbox>
+    </view>
+    </checkbox-group>
   </view>
- <view class='page02' wx:for="{{ipp}}">
-    <view class='inp'>{{item}}</view>
-    <checkbox class='check' value='{{item}}'></checkbox>
+  <view wx:for="{{ipp}}">
+  <checkbox-group bindchange="checkboxChange3"  data-id='{{index}}'>
+ <view class='page02' >
+    <view class='inp'>{{item.name}}</view>
+    <checkbox class='check' value='{{item.name}}' checked='{{item.checked}}'></checkbox>
+  </view>
+   </checkbox-group>
   </view>
   <view class='page03'>
       <view class='custom' bindtap='tianjiacustom'>+自定义填写项</view>
       <view class='reset' bindtap='reset'>重置</view>
   </view>
-</checkbox-group>
+
 <button type='primary' bindtap='affirm'>确认填写项</button>

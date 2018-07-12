@@ -18,7 +18,7 @@
 <view class='contenter'>
   <view class='content'>
     <view class='c-zhuti'>{{theme.theme_name}}</view>
-    <view class='c-nei' >{{theme.desc_info}}</view> 
+    <view class='c-nei' wx:if='{{theme.desc_info!==null}}'>{{theme.desc_info}}</view> 
     <view class='c-imm'>
     <view class='c-img' wx:for="{{itimg}}"><image src='http://192.168.1.112/dragon/public{{item.img_path}}'></image></view>
     </view>
@@ -27,7 +27,13 @@
           <text>￥{{item.price}}</text>
           
     </view>
-    <view class='c-map'>地点</view>
+    <view class='c-map' wx:for="{{map}}">
+    <image src='../img/location.png'></image>
+    <view class='vig'>
+     <text class='title'>{{item.title}}</text><text>（活动地点）</text>
+     <view class='address'>{{item.address}}</view>
+     </view>
+    </view>
     <view class='c-list'>
       <view bindtap='myhome'><image src='../img/zhuye.jpg'></image><view>我的首页</view> </view>
       <view><image src='../img/faqun.jpg'></image><view>发个群接龙</view></view>

@@ -14,7 +14,7 @@
   <view bindtap='jielong'><image class='jiapush' src='../img/fabujl.jpg'></image></view>
   </view>
   <view class='nav'>
-    <view><image src='../img/sousuo.jpg'></image><text>搜索</text> </view>
+    <view bindtap='suosou'><image src='../img/sousuo.jpg'></image><text>搜索</text> </view>
    <view><image src='../img/mede.jpg'></image><text>我的</text> </view>
    <view><image src='../img/i.jpg'></image> <text>我</text></view>
    <view><image src='../img/quanzi.jpg'></image><text>圈子</text> </view>

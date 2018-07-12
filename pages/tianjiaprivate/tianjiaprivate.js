@@ -17,12 +17,13 @@ Page({
   },
   item:function(e){
     console.log(e.detail.value)
+    this.data.item = { name: e.detail.value, checked:true}
     this.setData({
-      item: e.detail.value
+      item: this.data.item
     })
   },
   tianjia:function(){
-    app.globalData.tianjiaprivate.push(this.data.item) 
+    app.globalData.tianjiaprivate.push(this.data.item)
     wx.navigateBack({
       delta:1
     })

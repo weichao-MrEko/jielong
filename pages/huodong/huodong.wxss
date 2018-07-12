@@ -55,10 +55,22 @@ page{
   width: 100%
 }
 .c-map{
-  height: 100rpx;
-  line-height: 100rpx;
-  background-color: pink;
+  font-size: 30rpx;
+  margin: 20rpx 0;
+  display: flex;
 }
+.c-map image{
+  flex: 0.1;
+  height: 60rpx
+}
+.c-map .vig{
+  flex: 0.9
+}
+.title{
+  color: #525787;
+  margin-right: 20rpx;
+}
+
 .c-imm{
   display: flex;
   margin-left: 10rpx;

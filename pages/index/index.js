@@ -28,6 +28,11 @@ Page({
    
     })
   },
+  suosou:function(){
+    wx.navigateTo({
+      url: '../suosou/suosou',
+    })
+  },
   jieneiyong:function(e){
     let that=this
     let eid= e.currentTarget.dataset.id  
