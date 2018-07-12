@@ -1,0 +1,24 @@
+.ad2_img{
+  width: 100rpx;height: 100rpx;display:inline-block;line-height: 100rpx;
+}
+
+.ad2 view{
+  display: flex;
+  flex-direction: row;
+  border-bottom:1rpx solid #c4c4c4; 
+}
+.ad2 text{
+  display: inline-block;
+  width:130rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+}
+.ad2 input{
+  display: inline-block;
+  height: 100rpx;
+  min-width: 68%;
+}
+
+.btn{
+  margin-top: 30rpx;
+}
