@@ -1,6 +1,6 @@
 <view class='contain'>
     <view hidden='{{hid}}'>
-        <view  class="onebox bg" bindtap='adr' wx:if='{{adr_panduan==true}}'>
+        <view  class="onebox bg" bindtap='adr' wx:if='{{adr_panduan}}'>
               <image class='one_img' src='../img/bule_map.png'></image>
               <view class='one_v1' wx:if='{{address}}'>
                     <view >收货人：{{address.name}}，{{address.phone}}</view>
