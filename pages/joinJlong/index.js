@@ -49,7 +49,7 @@ Component({
           theme_id:that.data.act.theme_id
         },
         success: function (res) {
-          console.log(res.data.act)
+          console.log(res.data)
           that.setData({
             address_info: res.data.address_info,
             self_info: res.data.self_info,

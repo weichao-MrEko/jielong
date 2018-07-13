@@ -53,7 +53,7 @@ Page({
       success: function(res) {
         console.log(res.data.theme)
        that.setData({
-         zhuti: res.data.theme.reverse(),
+         zhuti: res.data.theme,
          
        })
       },
