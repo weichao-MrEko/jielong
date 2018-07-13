@@ -25,7 +25,11 @@ Component({
    act:'',
    address_info:'',
    self_info:'',
-   item_info:''
+   item_info:'',
+   adr_panduan:'',
+   address:''
+  
+
   },
   /**
    * 组件的方法列表
@@ -49,14 +53,27 @@ Component({
           that.setData({
             address_info: res.data.address_info,
             self_info: res.data.self_info,
-            item_info: res.data.item_info
+            item_info: res.data.item_info,
+            adr_panduan:res.data.adr_panduan
           })
         }
       })
     },
+    onShow:function(){
+      var that=this;
+     wx.request({
+       url: app.globalData.urlPrefix + 'joinJl/xuanAdr',
+       success: function(res) {
+         that.setData({
+           address:res.data
+         })
+       },
+     })
+    },
     binddata:function(e){
       console.log(e)
     },
+
     add:function(){
     var aa=  this.data.num
      this.setData({
@@ -78,15 +95,16 @@ Component({
             num: --aa,
             color:false
           })
-          }
-       
-      
+          }     
     },
     adr:function(){
-    this.setData({
-       hid:true,
-       ad:false
-    })
+      var that=this
+      wx:wx.navigateTo({
+        url: '../adr/index?uid=' + that.data.act.user_id,
+        success: function(res) {},
+        fail: function(res) {},
+        complete: function(res) {},
+      })
     },
     changcolro1:function(){
       this.setData({
@@ -103,10 +121,26 @@ Component({
         tesu: false
       })
     },
-    ad2:function(){
-      this.setData({
-        ad2:false,
-        ad:true
+    add_info:function(){
+      var that=this;
+      wx.request({
+        url: app.globalData.urlPrefix + 'joinJl/add_actor',
+        data: {
+          name: that.data.name,
+          mobile: that.data.mobile,
+          area: that.data.area,
+          address: that.data.address,
+          code:that.data.code
+        },
+        success: function (res) {
+          console.log(res.data.act)
+          that.setData({
+            address_info: res.data.address_info,
+            self_info: res.data.self_info,
+            item_info: res.data.item_info,
+            adr_panduan: res.data.adr_panduan
+          })
+        }
       })
     }
   }

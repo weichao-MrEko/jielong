@@ -19,7 +19,6 @@
    <view><image src='../img/i.jpg'></image> <text>我</text></view>
    <view><image src='../img/quanzi.jpg'></image><text>圈子</text> </view>
   </view>
-
   <view class='touxiang' wx:for='{{zhuti}}' bindtap='jieneiyong' data-id='{{index}}'>
       <view class='tou'>
           <view class='tou-pian'>

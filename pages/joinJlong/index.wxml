@@ -1,12 +1,13 @@
 
 <view class='contain'>
     <view hidden='{{hid}}'>
-        <view  class="onebox bg" bindtap='adr' wx:if='{{address_info.id}}'>
+        <view  class="onebox bg" bindtap='adr' wx:if='{{adr_panduan==true}}'>
               <image class='one_img' src='../img/bule_map.png'></image>
-              <view class='one_v1'>
-                    <view >收货人：{{address_info.name}}，{{address_info.phone}}</view>
-                    <view class='one_v2'>{{address_info.area}}{{address_info.address}}</view>
+              <view class='one_v1' wx:if='{{address}}'>
+                    <view >收货人：{{address.name}}，{{address.phone}}</view>
+                    <view class='one_v2'>{{address.area}}{{address.address}}</view>
               </view>
+              <view class='one_v1' wx:else>请填入收货人信息</view>
               <image class='one_img2' src='../img/icon_jl.png'></image>
         </view>
         <view wx:if='{{self_info.id}}'>
@@ -38,29 +39,6 @@
                     <input class='bg totop'  type='text' placeholder='这里填写你的特殊要求！'></input>
               </view>
         </view>
-    </view>
-     <view>
-          <view hidden='{{ad}}' class='address' bindtap='ad2'>       
-              <view>车陂村</view>
-              <view class='ad_v2'>广东省</view>
-          </view>
-          <view class='ad2' hidden='{{ad2}}'>
-              <view>
-                   <text>收货人</text><input placeholder='姓名'></input>
-              </view>
-              <view>
-                   <text>手机号码</text><input placeholder='11位手机号码'></input>
-              </view>
-              <view>
-                   <text>地区信息</text><input placeholder='地区信息'></input>
-              </view>
-              <view>
-                   <text>详细地址</text><input placeholder='街道门牌信息'></input><image class='ad2_img' src="../img/icon_map.png"></image>
-              </view>
-              <view>
-                   <text>邮政编码</text><input placeholder='邮政编码'></input>
-              </view>
-          </view>
     </view>
 </view>
     <view hidden='{{hid2}}' class='foot'>
