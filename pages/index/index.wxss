@@ -128,6 +128,7 @@
 }
 .tubox{
   display: flex;
+  flex-wrap: wrap;
 }
 .tupian{
   width:160rpx;

@@ -1,6 +1,6 @@
 /* pages/huodong/huodong.wxss */
 page{
-  background: #666;
+  background: #eee;
 }
 /*头部样式*/
 .head{
@@ -9,7 +9,7 @@ page{
   margin:20rpx auto;
   align-items: center;
   font-size: 28rpx;
-  color: #999;
+ 
 }
 .head .user{
   display: flex;
@@ -72,26 +72,28 @@ page{
 }
 
 .c-imm{
-  display: flex;
-  margin-left: 10rpx;
+  
+  overflow: hidden;
+  margin:20rpx 0 10rpx 20rpx;
 }
 .c-img{
-  width: 160rpx;
-  height: 160rpx;
+  width: 187rpx;
+  height: 187rpx;
+  float: left;
   background: #fff;
-  margin-right: 20rpx;
+  margin:20rpx 30rpx 0 0;
   border: 2rpx solid #999;
 }
 .c-img image{
   width: 100%;
   height: 100%;
 }
-.renshu{height: 55rpx; text-align: center;margin:10rpx auto;font-size: 40rpx;}
+.renshu{height: 55rpx;font-size: 40rpx;}
 .c-list{
   display: flex;
   height: 120rpx;
   font-size: 32rpx;
-  margin-top: 20rpx;
+  margin-top: 40rpx;
 }
 .c-list view{
   flex: 1;

@@ -74,6 +74,7 @@ App({
     ongks:[],
     tianjiaprivate:[],
     map:[],
-    urlPrefix : 'http://192.168.1.112/dragon/public/wxapi/'
+    urlPrefix : 'https://www.shequnxz.com/wxapi/',
+    urlfix:'https://www.shequnxz.com/public'
   }
 })

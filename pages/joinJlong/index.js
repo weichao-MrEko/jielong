@@ -27,7 +27,8 @@ Component({
    self_info:'',
    item_info:'',
    adr_panduan:'',
-   address:''
+   address:'',
+   summation:{zongshu:0,jiage:0}
   
 
   },
@@ -73,29 +74,58 @@ Component({
     binddata:function(e){
       console.log(e)
     },
-
-    add:function(){
-    var aa=  this.data.num
-     this.setData({
-     num:++aa,
-     color:false
-     })
+  /**加号 */
+    add:function(e){
+     this.data.summation.zongshu=0  
+     this.data.summation.jiage = ''
+      var id = e.currentTarget.dataset.id
+      var aa = this.data.item_info[id].may_amount
+     
+      if (aa >= this.data.item_info[id].amount){ 
+      }
+      else{
+        this.data.item_info[id].may_amount = aa + 1
+        for (var i = 0; i < this.data.item_info.length;i++){         
+          this.data.summation.zongshu += this.data.item_info[i].may_amount
+          this.data.summation.jiage = this.data.item_info[id].price * this.data.item_info[id].may_amount
+        }
+        this.setData({
+          item_info: this.data.item_info,
+          summation: this.data.summation,
+          color: false
+        })
+        
+      }
+      console.log(this.data.summation)
     },
-    reduce: function () {
+    /**减号 */
+    reduce: function (e) {
+      this.data.summation=0
+      console.log(e.currentTarget.dataset.id)
      var that=this
-     var aa=that.data.num
-     if (aa <=0 ) {
+     var id = e.currentTarget.dataset.id
+     var aa = that.data.item_info[id].may_amount
+     
+     console.log(that.data.item_info)
+     if (that.data.item_info[id].may_amount <=0 ) {
+      that.data.item_info[id].may_amount = 0
          that.setData({
-            num:0,
+           item_info: that.data.item_info,
             color:true
           })
           }
          else{
+          that.data.item_info[id].may_amount = aa-1
+          for (var i = 0; i < this.data.item_info.length; i++) {
+            this.data.summation.zongshu += this.data.item_info[i].may_amount 
+           
+          }
          that.setData({
-            num: --aa,
+           item_info: that.data.item_info,
+           summation: this.data.summation,
             color:false
           })
-          }     
+          }    
     },
     adr:function(){
       var that=this

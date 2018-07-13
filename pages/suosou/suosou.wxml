@@ -1,2 +1,4 @@
 <!--pages/suosou/suosou.wxml-->
-<text>pages/suosou/suosou.wxml</text>
+<view class='box'>  
+<input></input><text>取消</text>
+</view>

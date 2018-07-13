@@ -9,7 +9,7 @@ Page({
     userInfo:{},
     zhuti:'',
     xmu:'',
-   
+    turl: app.globalData.urlfix,
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     idda:{}
@@ -46,6 +46,9 @@ Page({
   onLoad: function () {
     console.log(app.globalData.idda)
     console.log(app.globalData.userInfo)
+    wx.showLoading({
+      title: '加载中',
+    })
     var that=this
     wx.request({
       url: app.globalData.urlPrefix + "User/jl_index",
@@ -53,9 +56,12 @@ Page({
       success: function(res) {
         console.log(res.data.theme)
        that.setData({
-         zhuti: res.data.theme.reverse(),
+         zhuti: res.data.theme,
          
        })
+       setTimeout(function () {
+         wx.hideLoading()
+       }, 2000)
       },
     
     })

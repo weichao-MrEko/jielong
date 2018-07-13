@@ -35,7 +35,7 @@
           <text  style='color:red' wx:if='{{item.btw_price != 0.00}}'>￥{{item.btw_price}}</text>
           <view class='tubox'>
           <view wx:for='{{item.theme_img}}' class='tupian'>
-          <image  src="http://192.168.1.112/dragon/public{{item.img_path}}"   mode='aspectFill'></image>
+          <image  src="{{turl}}{{item.img_path}}"   mode='aspectFill'></image>
        
           </view>
           </view>

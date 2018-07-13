@@ -1,5 +1,5 @@
 .ad2_img{
-  width: 100rpx;height: 100rpx;display:inline-block;line-height: 100rpx;
+  flex: 0.6;height: 100rpx;display:inline-block;line-height: 100rpx;
 }
 
 .ad2 view{
@@ -8,12 +8,14 @@
   border-bottom:1rpx solid #c4c4c4; 
 }
 .ad2 text{
+  flex: 1.3;
   display: inline-block;
   width:130rpx;
   height: 100rpx;
   line-height: 100rpx;
 }
 .ad2 input{
+  flex: 4;
   display: inline-block;
   height: 100rpx;
   min-width: 68%;

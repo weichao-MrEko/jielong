@@ -10,6 +10,7 @@ Page({
      itimg:"",
      theme:'',
      act: '',
+     turl: app.globalData.urlfix,
      map:''
   },
 

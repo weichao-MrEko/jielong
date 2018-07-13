@@ -1,9 +1,9 @@
 <!--头部-->
 <view class='head'>
   <view class='user'>
-    <image src='http://wx.qlogo.cn/mmopen/vi_32/JibXHYy8J8pWTeQw6KIvGCNuDUGWN2PgfcVhpZV1YqNMGSj6eFgoxWbT3uIj4TibWPWfKyyxqWD44aQ7Vm1GprTg/132' class='u-portrait'></image>
+    <image src='{{theme.user_img}}' class='u-portrait'></image>
     <view class='use'>
-    <view class='u-name'>mreko</view>
+    <view class='u-name'>{{theme.user_name}}</view>
     <text class='u-time'>7天前</text>
     <text class='u-kang'>有3个人看过</text>
     </view>  
@@ -20,7 +20,8 @@
     <view class='c-zhuti'>{{theme.theme_name}}</view>
     <view class='c-nei' wx:if='{{theme.desc_info!==null}}'>{{theme.desc_info}}</view> 
     <view class='c-imm'>
-    <view class='c-img' wx:for="{{itimg}}"><image src='http://192.168.1.112/dragon/public{{item.img_path}}'></image></view>
+    <view class='c-img' wx:for="{{itimg}}"><image src='{{turl}}{{item.img_path}}' mode='aspectFill'></image></view>
+    
     </view>
     <view class='c-item' wx:for='{{xiangmu}}'>
           <text>{{item.item_name}}</text>
