@@ -1,4 +1,8 @@
 /**index.wxss**/
+/*page{
+  background: #ff6494;
+  color: #fff;
+}*/
 .userinfo {
   display: flex;
   flex-direction: column;
@@ -13,7 +17,7 @@
 }
 
 .userinfo-nickname {
-  color: #aaa;
+  color: #fff;
 }
 
 .usermotto {

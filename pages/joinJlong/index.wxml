@@ -29,7 +29,7 @@
               
         </view>
 
-        <view class='three'>
+        <view class='three' wx:if='{{summation.zongshu !== 0}}'>
               <view class='three_v1'
               wx:for='{{item_info}}'
               wx:if='{{item.may_amount !==0}}'
@@ -37,15 +37,20 @@
               {{item.item_name}}+{{item.may_amount}}</view>
               <view class='twobox'>
                     <view class='three_v2_v1' >
-                    已选{{summation.zongshu}}件：<span>￥{{summation.jiage}}</span></view>
+                    已选{{summation.zongshu}}件：<span>￥{{summation.zongjiage}}</span></view>
                     <view class='three_v2_v2' bindtap='tesu'><image  src="../img/bi.png"></image>填写备注</view>
               </view>
               <view class='bg three_v3'hidden='{{tesu}}'>
-                    <input class='bg totop'  type='text' placeholder='这里填写你的特殊要求！'></input>
+                    <textarea class='bg totop'  type='text' placeholder='这里填写你的特殊要求！' bindinput='beizhu'></textarea>
               </view>
         </view>
     </view>
 </view>
-    <view hidden='{{hid2}}' class='foot'>
-    <span>马上支付￥</span>
+
+    <view  class='foot' bindtap='zhifu' wx:if="{{summation.zongjiage !== 0}}">
+    <span>马上支付￥{{summation.zongjiage}}</span>
     </view>
+     <view  class='foot' wx:else>
+    <span>确认接龙</span>
+    </view>
+    
