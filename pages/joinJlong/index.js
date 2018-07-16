@@ -30,8 +30,6 @@ Component({
    address:'',
    summation:{zongshu:0,jiage:[],zongjiage:0},
    beizhu:''
-  
-
   },
   /**
    * 组件的方法列表
@@ -196,7 +194,18 @@ Component({
           desc: this.data.beizhu
         },
         success:function(res){
-            console.log(res)
+          console.log(res)
+          wx.requestPayment(
+            {
+              'timeStamp': '',
+              'nonceStr': '',
+              'package': '',
+              'signType': 'MD5',
+              'paySign': '',
+              'success': function (res) { },
+              'fail': function (res) { },
+              'complete': function (res) { }
+            })
         }
       })
     }
