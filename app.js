@@ -76,5 +76,7 @@ App({
     map:[],
     urlPrefix : 'https://www.shequnxz.com/wxapi/',
     urlfix:'https://www.shequnxz.com/public'
+    // urlPrefix : 'http://192.168.1.112/dragon/public/wxapi/',
+    // urlfix:'http://192.168.1.112/dragon/public'
   }
 })

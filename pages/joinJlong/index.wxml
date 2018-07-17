@@ -9,8 +9,8 @@
               <view class='one_v1' wx:else>请填入收货人信息</view>
               <image class='one_img2' src='../img/icon_jl.png'></image>
         </view>
-        <view wx:if='{{self_info.id}}'>
-          <input wx:for='{{self_info}}' wx:key="unique" class='twosty bg' type='text' placeholder='{{self_info.name}}' value='{{self_info.value}}' bindinput='binddata'></input>
+        <view>
+          <input wx:for='{{self_info}}' wx:key="unique" class='twosty bg' type='text' placeholder='{{item.name}}' value='{{item.value}}' bindinput='binddata' data-id='{{index}}'></input>
         </view>
        
         <view class='two_v1' style=""> 

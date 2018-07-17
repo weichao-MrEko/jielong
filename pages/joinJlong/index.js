@@ -25,6 +25,7 @@ Component({
    act:'',
    address_info:'',
    self_info:'',
+   self_data:[],
    item_info:'',
    adr_panduan:'',
    address:'',
@@ -73,6 +74,12 @@ Component({
     },
     binddata:function(e){
       console.log(e)
+      var id = e.currentTarget.dataset.id
+      this.data.self_info[id].value=e.detail.value
+      this.setData({
+        self_info: this.data.self_info
+      })
+      console.log(this.data.self_info)
     },
   /**加号 */
     add:function(e){
@@ -184,27 +191,49 @@ Component({
 
     },
     zhifu:function(){
+      console.log(this.data.self_data)
       wx.request({
         url: app.globalData.urlPrefix+'Joinjl/add_actor',
         data:{
           user_id: app.globalData.idda.uid,
-          item:this.data.item_info,
+          item: this.data.item_info,
+          self_info: this.data.self_info,
+          openid: app.globalData.idda.openid,
           price: this.data.summation.zongjiage,
           amount: this.data.summation.zongshu,
           desc: this.data.beizhu
         },
         success:function(res){
-          console.log(res)
+          var params = JSON.parse(res.data.params)
+          var oid=res.data.oid
+          console.log(params)
           wx.requestPayment(
             {
-              'timeStamp': '',
-              'nonceStr': '',
-              'package': '',
-              'signType': 'MD5',
-              'paySign': '',
-              'success': function (res) { },
-              'fail': function (res) { },
-              'complete': function (res) { }
+              'timeStamp': params.timeStamp,
+              'nonceStr': params.nonceStr,
+              'package': params.package,
+              'signType': params.signType,
+              'paySign': params.paySign,
+              'success': function (res) { 
+                wx:wx.request({
+                  url: app.globalData.urlPrefix + 'Joinjl/sucf',
+                  data:{
+                    oid=oid
+                  },
+                  success: function(res) {},
+
+                })
+              },
+              'fail': function (res) { 
+
+                console.log(res)
+                
+              },
+              'complete': function (res) {
+
+                console.log(res)
+                
+               }
             })
         }
       })
