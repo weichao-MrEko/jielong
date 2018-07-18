@@ -1,0 +1,6 @@
+.board {
+  z-index: 99999;
+  position: fixed;
+  top: 10%;
+  left: 20%;
+}

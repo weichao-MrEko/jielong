@@ -90,7 +90,9 @@ Component({
           this.data.summation.zongshu += this.data.item_info[i].may_amount
           this.data.summation.jiage[i] = this.data.item_info[i].price * this.data.item_info[i].may_amount
           this.data.summation.zongjiage += this.data.summation.jiage[i]
-          console.log(this.data.summation.zongjiage )
+          this.data.summation.zongjiage = Math.round(this.data.summation.zongjiage*100)/100 
+         
+          console.log(this.data.summation.zongjiage.toFixed(2) )
         }
         this.setData({
           item_info: this.data.item_info,
@@ -124,6 +126,7 @@ Component({
             this.data.summation.zongshu += this.data.item_info[i].may_amount 
             this.data.summation.jiage[i] = this.data.item_info[i].price * this.data.item_info[i].may_amount
             this.data.summation.zongjiage += this.data.summation.jiage[i]
+            this.data.summation.zongjiage = Math.round(this.data.summation.zongjiage * 100) / 100 
           }
          that.setData({
            item_info: that.data.item_info,
@@ -185,18 +188,50 @@ Component({
       })
 
     },
-    zhifu:function(){
+    zhifu: function () {
+    
       wx.request({
-        url: app.globalData.urlPrefix+'Joinjl/add_actor',
-        data:{
+        url: app.globalData.urlPrefix + 'Joinjl/add_actor',
+        data: {
           user_id: app.globalData.idda.uid,
-          item:this.data.item_info,
+          item: this.data.item_info,
+          self_info: this.data.self_info,
+          openid: app.globalData.idda.openid,
           price: this.data.summation.zongjiage,
           amount: this.data.summation.zongshu,
           desc: this.data.beizhu
         },
-        success:function(res){
-            console.log(res)
+        success: function (res) {
+          var params = JSON.parse(res.data.params)
+          var oid = res.data.oid
+          console.log(params)
+          wx.requestPayment(
+            {
+              'timeStamp': params.timeStamp,
+              'nonceStr': params.nonceStr,
+              'package': params.package,
+              'signType': params.signType,
+              'paySign': params.paySign,
+              'success': function (res) {
+                console.log(res)
+                wx: wx.request({
+                  url: app.globalData.urlPrefix + 'Joinjl/sucf',
+                  data: {
+                    oid: oid
+                  },
+                  success: function (res) { },
+
+                })
+              },
+              'fail': function (res) {
+
+                console.log(res)
+              },
+              'complete': function (res) {
+
+                console.log(res)
+              }
+            })
         }
       })
     }

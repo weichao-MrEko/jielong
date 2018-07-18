@@ -42,7 +42,7 @@
     <view class='btndel' bindtap='delitem' wx:if='{{quantity>1}}' data-id='{{index}}'>×</view>
     <view class='xiongmu onbian' >
       <text class='xiongmu-jl'>接龙项目<text wx:if='{{quantity>1}}'>{{index+1}}</text></text>
-      <input data-index="{{quantity}}" placeholder='项目名称' bindinput='xiangname' value='{{item.item_name}}'></input>
+      <input data-index="{{index}}" placeholder='项目名称' bindinput='xiangname' value='{{item.item_name}}'></input>
     </view>
     <view class='xiongmu'>
       <text class='xiongmu-jl'>价格(￥)</text>

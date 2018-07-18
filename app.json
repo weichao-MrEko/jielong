@@ -15,6 +15,7 @@
     "pages/joinJlong/index",
     "pages/adr/index",
     "pages/add_adr/index"
+    
    
   ],
   "window": {
@@ -23,4 +24,5 @@
     "navigationBarTitleText": "",
     "navigationBarTextStyle": "black"
   }
+
 }

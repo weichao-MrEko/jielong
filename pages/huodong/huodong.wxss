@@ -114,3 +114,44 @@ page{
 button{
   height: 100rpx
 }
+/*报名人的信息*/
+.Sign_up{
+  display: flex;
+  margin: 0 20rpx;
+}
+.Sign_up_user{
+  flex: 1;
+ display: flex;
+}
+.Sign_up_user view{
+width: 50rpx;
+height: 50rpx;
+}
+.Sign_up_user image{
+ width: 100%;
+ height: 100%;
+}
+.Sign_up_user{
+flex: 1;
+}
+.fenxiang{
+  width:100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top:0;
+  background: rgba(0,0,0,0.4)
+}
+.baocun{
+  width: 400rpx;
+  height: 68rpx;
+  background: #1AAD19;
+  position: absolute;
+  bottom:13%;
+  left: 28%;
+  font-size: 12px;
+  color: #fff;
+  text-align: center;
+  line-height: 68rpx;
+  border: 5px;
+}

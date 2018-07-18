@@ -473,8 +473,8 @@ Component({
    
     xiangname(e){
       let index = e.currentTarget.dataset.index
-
-      this.data.jieitem[index - 1].item_name=e.detail.value
+      console.log(index)
+      this.data.jieitem[index].item_name=e.detail.value
       this.setData({
         jieitem: this.data.jieitem
       })
@@ -482,7 +482,7 @@ Component({
     //价格
     jiag(e) {
       let index = e.currentTarget.dataset.index
-      this.data.jieitem[index - 1].price = e.detail.value
+      this.data.jieitem[index].price = e.detail.value
  
       this.setData({
         jieitem: this.data.jieitem
@@ -492,7 +492,7 @@ Component({
     //数量
     shum(e){
       let index = e.currentTarget.dataset.index
-      this.data.jieitem[index - 1].amount = e.detail.value
+      this.data.jieitem[index].amount = e.detail.value
       this.setData({
         jieitem: this.data.jieitem
       })
