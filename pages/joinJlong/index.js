@@ -214,11 +214,12 @@ Component({
               'package': params.package,
               'signType': params.signType,
               'paySign': params.paySign,
-              'success': function (res) { 
+              'success': function (res) {
+                console.log(res) 
                 wx:wx.request({
                   url: app.globalData.urlPrefix + 'Joinjl/sucf',
                   data:{
-                    oid=oid
+                    oid:oid
                   },
                   success: function(res) {},
 
