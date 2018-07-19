@@ -143,12 +143,12 @@ flex: 1;
   background: rgba(0,0,0,0.4)
 }
 .baocun{
-  width: 400rpx;
+  width: 600rpx;
   height: 68rpx;
   background: #1AAD19;
   position: absolute;
-  bottom:13%;
-  left: 28%;
+  bottom:10%;
+  left: 10%;
   font-size: 12px;
   color: #fff;
   text-align: center;

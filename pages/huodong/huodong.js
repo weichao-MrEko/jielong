@@ -12,7 +12,8 @@ Page({
      act: '',
      turl: app.globalData.urlfix,
      map:'',
-     huabu:true
+     huabu:true,
+     erweima:''
     
   },
 
@@ -24,6 +25,19 @@ Page({
     console.log(scene)
     var that=this
     console.log(options)
+    wx.request({
+      url: app.globalData.urlPrefix + "qrcode/code",
+      data: {
+        path: 'pages/huodong/huodong?id' + options.id + '&uid=' + options.uid
+      },
+      success: function (res) {
+        console.log(res.data)
+        that.setData({
+          erweima: app.globalData.urlfix + res.data.code_img
+        })
+      }
+
+    })
      wx.request({
        url: app.globalData.urlPrefix + 'signup/findDragonItem',
        data: {
@@ -32,17 +46,20 @@ Page({
          
        },
        success:function(res){
-        
+         if (res.data.theme_imag){
+
+           that.data.itimg = res.data.theme_imag
+        }
          that.setData({
           xiangmu:res.data.item_result,
-          itimg:res.data.theme_imag,
+          itimg: that.data.itimg,
           theme:res.data.theme_result,
           act: res.data.act,
           map: JSON.parse(res.data.theme_result.address)
         })
        }
      })
-     console.log(that.data.theme)
+     console.log(that.data.itimg)
     },
   
   myhome:function(){
@@ -114,113 +131,117 @@ Page({
       title: '绘制分享图片中',
       mask: true
     })
+    var vw = [
+     /* {
+        type: 'image',
+        url: 'https://hybrid.xiaoying.tv/miniprogram/viva-ad/1/1531103986231.jpeg',
+        top: 0,
+        left: 0,
+        width: 335,
+        height: 455
+      },*/
+
+      {
+        type: 'image',
+        url: this.data.theme.user_img,
+        top: 20.5,
+        left: 22,
+        width: 25,
+        height: 25
+      },
+      {
+        type: 'text',
+        content: this.data.theme.user_name,
+        fontSize: 12,
+        color: '#402D16',
+        textAlign: 'left',
+        top: 20,
+        left: 50,
+        bolder: true
+      },
+      {
+        type: 'text',
+        content: this.data.theme.theme_name,
+        fontSize: 12,
+        color: '#563D20',
+        textAlign: 'left',
+        top: 65.5,
+        left: 30
+      },
+      
+      {
+        type: 'image',
+        url: this.data.erweima,
+        top: 13,
+        left: 170,
+        width: 40,
+        height: 40
+      },
+      {
+        type: 'text',
+        content: this.data.theme.desc_info,
+        fontSize: 12,
+        lineHeight: 18,
+        color: '#383549',
+        textAlign: 'left',
+        top: 275,
+        left: 36,
+        width: 197,
+        MaxLineNumber: 3,
+        breakWord: true,
+        bolder: true
+      },
+      {
+        type: 'text',
+        content: '￥' + this.data.theme.btw_price,
+        fontSize: 12,
+        color: '#E62004',
+        textAlign: 'left',
+        top: 352,
+        left: 154.5,
+        bolder: true
+      },
+      {
+        type: 'text',
+        content: '原价:￥138.00',
+        fontSize: 0,
+        color: '#7E7E8B',
+        textAlign: 'left',
+        top: 391,
+        left: 110,
+        textDecoration: 'line-through'
+      },
+      {
+        type: 'text',
+        content: '长按识别图中二维码',
+        fontSize: 10,
+        color: '#383549',
+        textAlign: 'left',
+        top: 16,
+        left: 215.5,
+        lineHeight: 18,
+        MaxLineNumber: 2,
+        breakWord: true,
+        width: 40
+      }
+    ]
+    if (this.data.itimg[0]){
+      vw.push({
+        type: 'image',
+        url: app.globalData.urlfix + this.data.itimg[0],
+        top: 86,
+        left: 60.5,
+        width: 160,
+        height: 185
+      })
+    }
     this.setData({
       huabu:false,
       painting: {
-        width: 235,
-        height: 355,
+        width: 285,
+        height: 385,
         clear: true,
-        views: [
-          {
-            type: 'image',
-            url: 'https://hybrid.xiaoying.tv/miniprogram/viva-ad/1/1531103986231.jpeg',
-            top: 0,
-            left: 0,
-            width: 235,
-            height: 355
-          },
-         
-          {
-            type: 'image',
-            url: this.data.theme.user_img,
-            top: 20.5,
-            left: 22,
-            width: 25,
-            height: 25
-          },
-          {
-            type: 'text',
-            content: this.data.theme.user_name,
-            fontSize: 12,
-            color: '#402D16',
-            textAlign: 'left',
-            top: 20,
-            left: 50,
-            bolder: true
-          },
-          {
-            type: 'text',
-            content: this.data.theme.theme_name,
-            fontSize: 12,
-            color: '#563D20',
-            textAlign: 'left',
-            top: 85.5,
-            left: 34
-          },
-          {
-            type: 'image',
-            url: app.globalData.urlfix + this.data.itimg[0],
-            top: 116,
-            left: 50.5,
-            width: 130,
-            height: 150
-          },
-          {
-            type: 'image',
-            url: 'https://hybrid.xiaoying.tv/miniprogram/viva-ad/1/1531385433625.jpeg',
-            top: 13,
-            left: 130,
-            width: 40,
-            height: 40
-          },
-          {
-            type: 'text',
-            content: this.data.theme.desc_info,
-            fontSize: 12,
-            lineHeight: 18,
-            color: '#383549',
-            textAlign: 'left',
-            top: 275,
-            left: 36,
-            width: 147,
-            MaxLineNumber: 2,
-            breakWord: true,
-            bolder: true
-          },
-          {
-            type: 'text',
-            content: '￥' + this.data.theme.btw_price,
-            fontSize: 12,
-            color: '#E62004',
-            textAlign: 'left',
-            top: 322,
-            left: 114.5,
-            bolder: true
-          },
-          {
-            type: 'text',
-            content: '原价:￥138.00',
-            fontSize: 0,
-            color: '#7E7E8B',
-            textAlign: 'left',
-            top: 391,
-            left: 110,
-            textDecoration: 'line-through'
-          },
-          {
-            type: 'text',
-            content: '长按识别图中二维码',
-            fontSize: 10,
-            color: '#383549',
-            textAlign: 'left',
-            top: 16,
-            left: 175.5,
-            lineHeight: 18,
-            MaxLineNumber: 2,
-            breakWord: true,
-            width: 40
-          }
-        ]
+        views: vw
       }
     })
   },
@@ -251,12 +272,12 @@ Page({
     for (var i = 0; i < this.data.itimg.length;i++){
       var bb=[]
       var aa = app.globalData.urlfix + this.data.itimg[i] 
-    
+    }
     wx.previewImage({
       current: app.globalData.urlfix + this.data.itimg[id],
       urls: [app.globalData.urlfix + this.data.itimg[id] ]
     })
-    }
+    
   },
   fenxinghidd:function(){
     this.setData({

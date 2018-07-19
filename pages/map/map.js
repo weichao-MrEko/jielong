@@ -35,6 +35,7 @@ Page({
     
       wx.getLocation({
       type: 'gcj02',
+     
         success: function (res) { 
           that.setData({
             markers: [{
@@ -48,24 +49,25 @@ Page({
           })
         }
       })
+    
         console.log(1)
-    // that.mapCtx = wx.createMapContext("map");
-    // that.mapCtx.getCenterLocation({
-    //       success: function (res) {
-    //         console.log(res)
-    //         that.setData({
-    //           markers: [{
-    //             iconPath: "../img/location.png",
-    //             id: 0,
-    //             latitude: res.latitude,
-    //             longitude: res.longitude,
-    //             width: 50,
-    //             height: 50
-    //           }],
-    //         })
-    //       }
-    //     })
-      
+   /*  that.mapCtx = wx.createMapContext("map");
+     that.mapCtx.getCenterLocation({
+           success: function (res) {
+             console.log(res)
+             that.setData({
+              markers: [{
+                iconPath: "../img/location.png",
+                 id: 0,
+                 latitude: res.latitude,
+                 longitude: res.longitude,
+                 width: 50,
+                 height: 50
+               }],
+             })
+           }
+         })
+      */
   },
 
   /**
@@ -74,11 +76,11 @@ Page({
   onReady: function () {
   
   },
-  getLngLat: function () {
+ getLngLat () {
     var that = this;
     console.log(1)
-    this.mapCtx = wx.createMapContext("map");
-    this.mapCtx.getCenterLocation({
+    that.mapCtx = wx.createMapContext("map");
+    that.mapCtx.getCenterLocation({
       success: function (res) {
         that.setData({
           markers: [{
@@ -92,8 +94,7 @@ Page({
         })
       }
     })
-  }
-  ,
+  },
   regionchange(e) {
   
     if (e.type == 'end') {
@@ -108,13 +109,15 @@ Page({
     qqmapsdk.search({
       keyword: e.detail.value,
       success: function (res) {
-        
+        console.log(res)
         that.setData({
-          map: res.data,
-          
+          map: res.data,  
         })
 
       },
+      complete:function(res){
+        console.log(res)
+      }
     })
   },
   xuanzhe:function(e){
@@ -139,11 +142,10 @@ Page({
   finish:function(){
      let that=this
      console.log(that.data.site)
-     var ditu = app.globalData.map
-
-   ditu.push(that.data.site)
-     
-     
+     if (that.data.site){
+        var ditu = app.globalData.map
+        ditu.push(that.data.site)
+     }
      wx.navigateBack({
        delta:1
      })

@@ -25,13 +25,12 @@ Component({
    act:'',
    address_info:'',
    self_info:'',
+   self_data:[],
    item_info:'',
    adr_panduan:'',
    address:'',
    summation:{zongshu:0,jiage:[],zongjiage:0},
    beizhu:''
-  
-
   },
   /**
    * 组件的方法列表
@@ -75,6 +74,12 @@ Component({
     },
     binddata:function(e){
       console.log(e)
+      var id = e.currentTarget.dataset.id
+      this.data.self_info[id].value=e.detail.value
+      this.setData({
+        self_info: this.data.self_info
+      })
+      console.log(this.data.self_info)
     },
   /**加号 */
     add:function(e){
@@ -187,9 +192,9 @@ Component({
         beizhu: e.detail.value
       })
 
-    },
-    zhifu: function () {
-    
+    }, 
+    zhifu:function(){
+      console.log(this.data.act) 
       wx.request({
         url: app.globalData.urlPrefix + 'Joinjl/add_actor',
         data: {
@@ -199,11 +204,12 @@ Component({
           openid: app.globalData.idda.openid,
           price: this.data.summation.zongjiage,
           amount: this.data.summation.zongshu,
-          desc: this.data.beizhu
-        },
+          desc: this.data.beizhu,
+          act_id:this.data.act.id
+        }, 
         success: function (res) {
           var params = JSON.parse(res.data.params)
-          var oid = res.data.oid
+          var oid = res.data.oid 
           console.log(params)
           wx.requestPayment(
             {
@@ -213,24 +219,28 @@ Component({
               'signType': params.signType,
               'paySign': params.paySign,
               'success': function (res) {
-                console.log(res)
-                wx: wx.request({
+ 
+                console.log(res) 
+                wx:wx.request({
                   url: app.globalData.urlPrefix + 'Joinjl/sucf',
-                  data: {
-                    oid: oid
+                  data:{
+                    oid:oid
                   },
-                  success: function (res) { },
+                  success: function(res) {},
 
                 })
               },
-              'fail': function (res) {
+              'fail': function (res) { 
 
                 console.log(res)
+                 
               },
               'complete': function (res) {
 
                 console.log(res)
-              }
+ 
+                
+               } 
             })
         }
       })

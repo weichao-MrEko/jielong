@@ -534,9 +534,7 @@ Component({
         },
         
         success:function(res){
-          console.log(res.data)
-      
-          
+          console.log(res.data)    
           wx.navigateTo({
             url: '../huodong/huodong?id=' + res.data.theme_id + '&uid=' + app.globalData.idda.uid
           })
@@ -557,8 +555,7 @@ Component({
         })
       console.log(this.data.jieitem)
     },
-    delitem:function(e){
-     
+    delitem:function(e){    
       let id = e.currentTarget.dataset.id
       let jieitem = this.data.jieitem
       jieitem.splice(id,1)

@@ -37,7 +37,7 @@ Page({
     let that=this
     let eid= e.currentTarget.dataset.id  
     wx: wx.navigateTo({
-      url: '../huodong/huodong?id=' + that.data.zhuti[eid].id +'&uid='+ that.data.zhuti[eid].user_id,
+      url: '../huodong/huodong?id=' + that.data.zhuti[eid].id + '&uid=' + app.globalData.idda.uid,
 
     })
     
@@ -48,6 +48,18 @@ Page({
     console.log(app.globalData.userInfo)
     wx.showLoading({
       title: '加载中',
+    })
+
+    
+    wx.request({
+      url: app.globalData.urlPrefix + "qrcode/code",
+      data: {
+        path:'pages/huodong/huodong?id'
+      },
+      success: function (res) {
+        console.log(res.data)
+      }
+
     })
     var that=this
     wx.request({
