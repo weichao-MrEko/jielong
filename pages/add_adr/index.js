@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    actor_id:'',
+    user_id:'',
     name:'',
     mobile:'',
     area:'',
@@ -19,7 +19,7 @@ Page({
    */
   onLoad: function (options) {
     var that=this;
-    that.data.actor_id=options.uid
+    that.data.user_id=options.uid
   },
   nameInput(e) {
     this.setData({
@@ -52,7 +52,7 @@ Page({
     wx.request({
       url: app.globalData.urlPrefix + 'address/saveAdr',
       data: {
-        actor_id:that.data.actor_id,
+        user_id:that.data.user_id,
         name: that.data.name,
         mobile: that.data.mobile,
         area: that.data.area,
@@ -61,9 +61,9 @@ Page({
       },
       success: function (res) {
         // console.log(res.data)
-         wx.navigateTo({
-           url: '../adr/index?uid=' + that.data.actor_id
-         })
+        wx.navigateBack({
+          delta: 1
+        })
       }
     })
   },

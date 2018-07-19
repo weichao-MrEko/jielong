@@ -13,8 +13,9 @@ Page({
      turl: app.globalData.urlfix,
      map:'',
      huabu:true,
-     erweima:''
-    
+     erweima:'',
+     theme_id:'',
+     user_id:''
   },
 
   /**
@@ -38,12 +39,16 @@ Page({
       }
 
     })
+    that.setData({
+      theme_id: options.id,
+      user_id: options.uid
+    }), 
+    console.log(options)  
      wx.request({
        url: app.globalData.urlPrefix + 'signup/findDragonItem',
        data: {
          theme_id: options.id,
-         user_id: options.uid,
-         
+         user_id: options.uid,  
        },
        success:function(res){
          if (res.data.theme_imag){
@@ -54,12 +59,10 @@ Page({
           xiangmu:res.data.item_result,
           itimg: that.data.itimg,
           theme:res.data.theme_result,
-          act: res.data.act,
           map: JSON.parse(res.data.theme_result.address)
         })
        }
      })
-     console.log(that.data.itimg)
     },
   
   myhome:function(){
@@ -73,7 +76,7 @@ Page({
     //console.log(that.data.theme) 
     //console.log(that.data.xiangmu) 
     wx.navigateTo({
-      url: '../joinJlong/index?act=' + JSON.stringify(that.data.act)
+      url: '../joinJlong/index?theme_id=' + that.data.theme_id + '&user_id=' + that.data.user_id
     })
 
   },
