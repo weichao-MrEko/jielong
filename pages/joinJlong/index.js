@@ -38,17 +38,16 @@ Component({
   methods: {
     onLoad: function (options) {
       var that =this;
-     // console.log(options)
       that.setData({
-        act: JSON.parse(options.act)
+        theme_id: options.theme_id,
+        user_id:options.user_id
       })
       console.log(that.data.act)
       wx.request({
         url: app.globalData.urlPrefix + 'joinJl/join_jl',
         data: {
-          act_id: that.data.act.id,
-          user_id: that.data.act.user_id,
-          theme_id:that.data.act.theme_id
+          user_id: that.data.user_id,
+          theme_id:that.data.theme_id
         },
         success: function (res) {
           console.log(res)
@@ -65,6 +64,9 @@ Component({
       var that=this;
      wx.request({
        url: app.globalData.urlPrefix + 'joinJl/xuanAdr',
+       data: {
+         user_id: that.data.user_id
+       },
        success: function(res) {
          that.setData({
            address:res.data
@@ -140,7 +142,7 @@ Component({
     adr:function(){
       var that=this
       wx:wx.navigateTo({
-        url: '../adr/index?uid=' + that.data.act.user_id,
+        url: '../adr/index?uid=' + that.data.user_id,
         success: function(res) {},
         fail: function(res) {},
         complete: function(res) {},
@@ -191,17 +193,19 @@ Component({
 
     },
     zhifu:function(){
-      console.log(this.data.self_data)
+      console.log(this.data.self_info)
+      var that=this;
       wx.request({
         url: app.globalData.urlPrefix+'Joinjl/add_actor',
         data:{
           user_id: app.globalData.idda.uid,
-          item: this.data.item_info,
-          self_info: this.data.self_info,
+          item: that.data.item_info,
+          self_info: that.data.self_info,
           openid: app.globalData.idda.openid,
-          price: this.data.summation.zongjiage,
-          amount: this.data.summation.zongshu,
-          desc: this.data.beizhu
+          price: that.data.summation.zongjiage,
+          amount: that.data.summation.zongshu,
+          desc: that.data.beizhu,
+          act_id: that.data.act.id
         },
         success:function(res){
           var params = JSON.parse(res.data.params)

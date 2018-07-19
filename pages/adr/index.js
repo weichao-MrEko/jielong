@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    actor_id:'',
+    user_id:'',
     adrs:[{
       ad_id:'',
       name:'',
@@ -24,14 +24,14 @@ Page({
     var that=this;
     if (options.uid){
     //  that.setData({})
-       that.data.actor_id = options.uid
+       that.data.user_id = options.uid
        wx.request({
          url: app.globalData.urlPrefix + 'address/searchAdr',
          data: {
-           actor_id: that.data.actor_id,
+           user_id: that.data.user_id,
          },
          success: function (res) {
-            //console.log(res.data)
+          console.log(res.data)
            for(var i=0;i<res.data.length;i++){
              that.data.adrs.push({ad_id:res.data[i].id, name: res.data[i].name, mobile: res.data[i].phone,area:res.data[i].area,address:res.data[i].address,code:res.data[i].code});
              that.setData({
@@ -45,7 +45,7 @@ Page({
   },
   ad2:function () {
     wx: wx.navigateTo({
-      url: '../add_adr/index?uid=' + this.data.actor_id,
+      url: '../add_adr/index?uid=' + this.data.user_id,
       success: function (res) {
 
       },

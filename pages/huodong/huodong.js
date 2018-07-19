@@ -11,7 +11,9 @@ Page({
      theme:'',
      act: '',
      turl: app.globalData.urlfix,
-     map:''
+     map:'',
+     theme_id:'',
+     user_id:''
   },
 
   /**
@@ -19,25 +21,27 @@ Page({
    */
   onLoad: function (options) {
     var that=this
-    console.log(options)
+    that.setData({
+      theme_id: options.id,
+      user_id: options.uid
+    }), 
+    console.log(options)  
      wx.request({
        url: app.globalData.urlPrefix + 'signup/findDragonItem',
        data: {
          theme_id: options.id,
-         user_id: options.uid,
-         
+         user_id: options.uid,  
        },
-       success:function(res){
-        
+       success:function(res){  
          that.setData({
           xiangmu:res.data.item_result,
           itimg:res.data.theme_img,
           theme:res.data.theme_result,
-          act: res.data.act,
           map: JSON.parse(res.data.theme_result.address)
         })
        }
      })
+     
      console.log(that.data.theme)
     },
   
@@ -52,7 +56,7 @@ Page({
     //console.log(that.data.theme) 
     //console.log(that.data.xiangmu) 
     wx.navigateTo({
-      url: '../joinJlong/index?act=' + JSON.stringify(that.data.act)
+      url: '../joinJlong/index?theme_id=' + that.data.theme_id + '&user_id=' + that.data.user_id
     })
 
   },

@@ -37,7 +37,7 @@ Page({
     let that=this
     let eid= e.currentTarget.dataset.id  
     wx: wx.navigateTo({
-      url: '../huodong/huodong?id=' + that.data.zhuti[eid].id +'&uid='+ that.data.zhuti[eid].user_id,
+      url: '../huodong/huodong?id=' + that.data.zhuti[eid].id + '&uid=' + app.globalData.idda.uid,
 
     })
     
