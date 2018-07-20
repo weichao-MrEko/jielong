@@ -61,6 +61,7 @@ Page({
       url: app.globalData.urlPrefix + 'address/xuanAdr',
       data: {
         ad_id: that.data.adrs[eid].ad_id,
+        user_id:that.data.user_id
       },
       success: function (res) {
          if(res.data==1){

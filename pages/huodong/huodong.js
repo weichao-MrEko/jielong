@@ -139,8 +139,35 @@ Page({
         theme_id: that.data.theme_id ,
         user_id: that.data.user_id,
       },
-      success: function (res) {
-        
+      success: function (res) { 
+        var Time = new Date().getTime();
+        for (var i = 0; i < res.data.comment.length; i++) {
+          var sjcha = (Time - res.data.comment[i].time * 1000);
+          //天
+          var tian = Math.floor(sjcha / (24 * 3600 * 1000));
+          //小时
+          var leave1 = sjcha % (24 * 3600 * 1000);
+          var xiaoshi = Math.floor(leave1 / (3600 * 1000));
+          //分钟
+          var leave2 = leave1 % (3600 * 1000);
+          var fenzhong = Math.floor(leave2 / (60 * 1000));
+          //秒
+          var leave3 = leave2 % (60 * 1000);
+          var miao = Math.floor(leave3 / 1000);
+          console.log(tian + xiaoshi + fenzhong + miao)
+          if (tian > 0) {
+            res.data.comment[i].time = tian + '天前'
+          }
+          else if (xiaoshi > 0) {
+            res.data.comment[i].time = xiaoshi + '小时前'
+          }
+          else if (fenzhong > 0) {
+            res.data.comment[i].time = fenzhong + '分钟前'
+          }
+          else {
+            res.data.comment[i].time = miao + '秒前'
+          }
+        }
         that.setData({
            comment:res.data.comment
         })
