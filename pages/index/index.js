@@ -4,6 +4,7 @@
 const app = getApp()
 
 Page({
+  
   data: {
     motto: 'Hello World',
     userInfo:{},
@@ -14,6 +15,10 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     idda:{}
     
+  },
+  onPullDownRefresh: function () {
+    console.log(1)
+    wx.stopPullDownRefresh()
   },
   //事件处理函数
   bindViewTap: function() {
@@ -30,14 +35,14 @@ Page({
   },
   suosou:function(){
     wx.navigateTo({
-      url: '../suosou/suosou',
+      url: '../suosou/suosou?uid=' + app.globalData.idda.uid
     })
   },
   jieneiyong:function(e){
     let that=this
     let eid= e.currentTarget.dataset.id  
     wx: wx.navigateTo({
-      url: '../huodong/huodong?id=' + that.data.zhuti[eid].id + '&uid=' + app.globalData.idda.uid,
+      url: '../huodong/huodong?id=' + that.data.zhuti[eid].id + '&uid=' + app.globalData.idda.uid + '&theme_uid=' + that.data.zhuti[eid].user_id ,
 
     })
     
@@ -73,7 +78,7 @@ Page({
        })
        setTimeout(function () {
          wx.hideLoading()
-       }, 2000)
+       }, 1000)
       },
     
     })

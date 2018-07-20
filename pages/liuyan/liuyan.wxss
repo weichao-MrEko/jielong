@@ -1,0 +1,30 @@
+page{
+  background: #f4f4f4;
+}
+.head{
+  width: 90%;
+  margin:20px auto 10px auto;
+  display: flex;
+  justify-content: space-between;
+}
+.qux{
+font-size: 14px;
+}
+.fasong{
+  width: 100rpx;
+  height: 60rpx;
+  background: #1aad19;
+  color: #fff;
+  border-radius: 5px;
+  text-align: center;
+  line-height: 60rpx;
+  font-size: 14px;
+}
+textarea{
+  background: #fff;
+  width: 90%;
+  margin: auto;
+  border-radius: 5px;
+  font-size: 12px;
+  padding: 10rpx;
+}

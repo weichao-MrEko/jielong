@@ -46,11 +46,11 @@
     </view>
     <view class='xiongmu'>
       <text class='xiongmu-jl'>价格(￥)</text>
-      <input data-index="{{quantity}}" placeholder='0.00' type='number' bindinput='jiag' value='{{item.price}}'></input>
+      <input data-index="{{index}}" placeholder='0.00' type='number' bindinput='jiag' value='{{item.price}}'></input>
     </view>
     <view class='xiongmu'>
       <text class='xiongmu-jl'>数量</text>
-      <input data-index="{{quantity}}" placeholder='1000' type='number' bindinput='shum' value='{{item.amount}}'></input>
+      <input data-index="{{index}}" placeholder='1000' type='number' bindinput='shum' value='{{item.amount}}'></input>
     </view>
    
 </view>

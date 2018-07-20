@@ -5,6 +5,7 @@
     "pages/tianjiaprivate/tianjiaprivate",
     "pages/suosou/suosou",
     "pages/map/map",
+    "pages/liuyan/liuyan",
     "pages/shedidian/shedidian",
     "pages/kefu/kefu",
     "pages/baoming/baoming",
@@ -16,7 +17,6 @@
     "pages/adr/index",
     "pages/add_adr/index"
     
-   
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -24,5 +24,4 @@
     "navigationBarTitleText": "",
     "navigationBarTextStyle": "black"
   }
-
 }

@@ -1,4 +1,5 @@
-// pages/add_adr/index.js
+// pages/liuyan/liuyan.js
+
 const app = getApp();
 Page({
 
@@ -6,68 +7,44 @@ Page({
    * 页面的初始数据
    */
   data: {
-    user_id:'',
-    name:'',
-    mobile:'',
-    area:'',
-    address:'',
-    code:''
+    liuyan:'',
+    theme_id:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that=this;
-    that.data.user_id=options.uid
-  },
-  onShow:function(){
-    
-  },
-  nameInput(e) {
     this.setData({
-      name: e.detail.value
+      theme_id: options.theme_id
+  })
+  },
+  qux:function(){
+    wx.navigateBack({
+      delta:1
     })
   },
-  mobileInput(e) {
-    this.setData({
-      mobile: e.detail.value
-    })
-  },
-  areaInput(e) {
-    this.setData({
-      area: e.detail.value
-    })
-  },
-  addressInput(e) {
-    this.setData({
-      address: e.detail.value
-    })
-  },
-  codeInput(e) {
-    this.setData({
-      code: e.detail.value
-    })
-  },
-  add_adr:function ()
-  {
-    var that=this;
-    wx.request({
-      url: app.globalData.urlPrefix + 'address/saveAdr',
+  fasong: function () {
+    wx:wx.request({
+      url: app.globalData.urlPrefix +'Signup/add_comment',
       data: {
-        user_id:that.data.user_id,
-        name: that.data.name,
-        mobile: that.data.mobile,
-        area: that.data.area,
-        address: that.data.address,
-        code: that.data.code
+        theme_id: this.data.theme_id,
+        user_id: app.globalData.idda.uid,
+        comment:this.data.liuyan,
       },
-      success: function (res) {
-        // console.log(res.data)
+      success:function(res){
+     
         wx.navigateBack({
           delta: 1
         })
       }
+    })
+    
+  },
+  liuyan:function(e){
+    console.log(e)
+    this.setData({
+      liuyan: e.detail.value
     })
   },
   /**

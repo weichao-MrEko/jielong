@@ -10,7 +10,7 @@
   </view>
   <view class='share'>
     <image class='s-fen' src='../img/fenxiang.png' bind:tap="eventDraw"></image>
-    <image class='s-fen' src='../img/icon_map.png'></image>
+    <image class='s-fen' src='../img/icon_map.png' bindtap='zhuangfa'></image>
   </view>
 </view>
 
@@ -53,9 +53,26 @@
     <view class='Sign_up_item '>00000adfafs+1</view>
   </view>
 </view>
+<!--评论-->
+<view class='pinglun' bindtap='liuyan'>
+<text>已经有0条留言，快来说说您的想法吧！</text>
+</view>
+<view style='margin:20px 0;' wx:for="{{2}}">
+<view class='liuyan'>
+  <view class='liuyan_touxiang'>
+    <image src='{{theme.user_img}}'></image>
+  </view>
+  <view class='liuyan_name'>
+      <text>用户名</text>
+      <text>时间</text>
+      
+  </view>
+  <view class='liuyan_zan'><image src='../img/kongjian.jpg'></image></view>
+</view>
+<view class='yanlun'>评论dfdfkjdfh带来开发经理房间辣副经理奥尔基金发了房间浪里个浪福利费</view>
+</view>
 
-
-<view class='fenxiang' hidden='{{huabu}}' bindtap='fenxinghidd'>
+<view class='fenxiang' hidden='{{huabu}}' catchtap='fenxinghidd'>
   <canvasdrawer painting="{{painting}}" class="canvasdrawer" bind:getImage="eventGetImage"/>
 <view bind:tap="eventSave" class='baocun'>保存到本地</view>
   </view>

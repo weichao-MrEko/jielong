@@ -1,4 +1,4 @@
 <!--pages/suosou/suosou.wxml-->
 <view class='box'>  
-<input></input><text>取消</text>
+<input type='text' confirm-type='search' bindconfirm='search'></input><text>取消</text>
 </view>

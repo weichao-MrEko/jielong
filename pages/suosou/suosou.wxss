@@ -9,11 +9,13 @@ page{
 }
 .box input{
   flex: 0.9;
+  height: 60rpx;
   border-radius: 20rpx;
   background: #fff;
 }
 .box text{
   color: #1AAD19;
   margin-left: 20rpx;
+  line-height: 60rpx;
   font-size: 35rpx;
 }

@@ -22,14 +22,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var scene = decodeURIComponent(options.scene)
-    console.log(scene)
+  //  var scene = decodeURIComponent(options.scene)
+   // console.log(scene)
     var that=this
+    that.setData({
+      theme_id: options.id,
+      user_id: options.uid
+    }), 
     console.log(options)
     wx.request({
       url: app.globalData.urlPrefix + "qrcode/code",
       data: {
-        path: 'pages/huodong/huodong?id' + options.id + '&uid=' + options.uid
+        path: 'pages/huodong/huodong?id' + that.data.theme_id + '&uid=' + that.data.user_id
       },
       success: function (res) {
         console.log(res.data)
@@ -39,10 +43,7 @@ Page({
       }
 
     })
-    that.setData({
-      theme_id: options.id,
-      user_id: options.uid
-    }), 
+
     console.log(options)  
      wx.request({
        url: app.globalData.urlPrefix + 'signup/findDragonItem',
@@ -64,7 +65,20 @@ Page({
        }
      })
     },
-  
+  zhuangfa:function(){
+    wx.showShareMenu({
+      withShareTicket: true,
+      success: function (res) {
+        // 分享成功
+        console.log('shareMenu share success')
+        console.log('分享' + res)
+      },
+      fail: function (res) {
+        // 分享失败
+        console.log(res)
+      }
+    })
+  },
   myhome:function(){
     console.log(this.data.map)
     wx.navigateTo({
@@ -80,6 +94,12 @@ Page({
     })
 
   },
+  liuyan:function(){
+    wx.navigateTo({
+      url: '../liuyan/liuyan?theme_id=' + this.data.theme_id,
+    })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -91,7 +111,23 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    var that=this
+    wx.request({
+      url: app.globalData.urlPrefix + 'signup/findDragonItem',
+      data: {
+        theme_id: that.data.theme_id ,
+        user_id: that.data.user_id,
+      },
+      success: function (res) {
+        if (res.data.theme_imag) {
+
+          that.data.itimg = res.data.theme_imag
+        }
+        that.setData({
+      
+        })
+      }
+    })
   },
 
   /**

@@ -481,9 +481,9 @@ Component({
     },
     //价格
     jiag(e) {
+      console.log(e)
       let index = e.currentTarget.dataset.index
       this.data.jieitem[index].price = e.detail.value
- 
       this.setData({
         jieitem: this.data.jieitem
       })
