@@ -38,10 +38,25 @@ Page({
         })
       }
 
-    })
+    }),
+      wx.request({
+        url: app.globalData.urlPrefix + "carryUser/index",
+        data: {
+          theme_id: options.id,
+          user_id: options.uid,
+          theme_uid: options.theme_uid
+        },
+        success: function (res) {
+          console.log(res.data)
+          that.setData({
+          })
+        }
+
+      }),
     that.setData({
       theme_id: options.id,
-      user_id: options.uid
+      user_id: options.uid,
+      theme_uid:options.theme_uid
     }), 
     console.log(options)  
      wx.request({
