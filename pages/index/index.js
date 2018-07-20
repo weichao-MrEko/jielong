@@ -13,7 +13,8 @@ Page({
     turl: app.globalData.urlfix,
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    idda:{}
+    idda:{},
+    time:''
     
   },
   onPullDownRefresh: function () {
@@ -42,7 +43,9 @@ Page({
     let that=this
     let eid= e.currentTarget.dataset.id  
     wx: wx.navigateTo({
-      url: '../huodong/huodong?id=' + that.data.zhuti[eid].id + '&uid=' + app.globalData.idda.uid + '&theme_uid=' + that.data.zhuti[eid].user_id ,
+
+      url: '../huodong/huodong?id=' + that.data.zhuti[eid].id + '&uid=' + app.globalData.idda.uid + '&theme_uid=' + that.data.zhuti[eid].user_id,
+
 
     })
     
@@ -51,6 +54,8 @@ Page({
   onLoad: function () {
     console.log(app.globalData.idda)
     console.log(app.globalData.userInfo)
+    var Time = new Date().getTime()
+    console.log(Time)
     wx.showLoading({
       title: '加载中',
     })
@@ -71,10 +76,37 @@ Page({
       url: app.globalData.urlPrefix + "User/jl_index",
       data: '',
       success: function(res) {
-        console.log(res.data.theme)
+        for (var i = 0; i < res.data.theme.length;i++){
+          var sjcha = (Time - res.data.theme[i].add_time * 1000);
+          //天
+          var tian = Math.floor(sjcha /(24*3600*1000)) ;
+          //小时
+          var leave1=sjcha%(24*3600*1000);
+          var xiaoshi=Math.floor(leave1/(3600*1000));
+          //分钟
+          var leave2=leave1%(3600*1000);
+          var fenzhong=Math.floor(leave2/(60*1000));
+          //秒
+          var leave3=leave2%(60*1000);
+          var miao=Math.floor(leave3/1000);
+          console.log(tian+xiaoshi+fenzhong+miao)
+          if(tian >0){
+            res.data.theme[i].add_time=tian+'天前'
+          }
+          else if(xiaoshi>0){
+            res.data.theme[i].add_time = xiaoshi+'小时前'
+          }
+          else if(fenzhong>0){
+            res.data.theme[i].add_time = fenzhong+'分钟前'
+          }
+          else {
+            res.data.theme[i].add_time = miao+'秒前'
+          }
+      }
+        console.log(res.data.theme[16].add_time)
        that.setData({
          zhuti: res.data.theme,
-         
+         time:Time
        })
        setTimeout(function () {
          wx.hideLoading()

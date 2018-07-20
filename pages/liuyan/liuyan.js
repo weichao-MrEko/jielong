@@ -42,7 +42,7 @@ Page({
     
   },
   liuyan:function(e){
-    console.log(e)
+  
     this.setData({
       liuyan: e.detail.value
     })

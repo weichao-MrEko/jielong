@@ -57,7 +57,7 @@
 <view class='pinglun' bindtap='liuyan'>
 <text>已经有0条留言，快来说说您的想法吧！</text>
 </view>
-<view style='margin:20px 0;' wx:for="{{2}}">
+<view style='margin:20px 0;' wx:for="{{comment}}">
 <view class='liuyan'>
   <view class='liuyan_touxiang'>
     <image src='{{theme.user_img}}'></image>
@@ -69,7 +69,7 @@
   </view>
   <view class='liuyan_zan'><image src='../img/kongjian.jpg'></image></view>
 </view>
-<view class='yanlun'>评论dfdfkjdfh带来开发经理房间辣副经理奥尔基金发了房间浪里个浪福利费</view>
+<view class='yanlun'>{{item.content}}</view>
 </view>
 
 <view class='fenxiang' hidden='{{huabu}}' catchtap='fenxinghidd'>

@@ -15,7 +15,8 @@ Page({
      huabu:true,
      erweima:'',
      theme_id:'',
-     user_id:''
+     user_id:'',
+     comment:''
   },
 
   /**
@@ -42,7 +43,27 @@ Page({
         })
       }
 
-    })
+
+    }),
+      wx.request({
+      url: app.globalData.urlPrefix + "Carryuser/Carryuser",
+        data: {
+          theme_id: options.id,
+          user_id: options.uid,
+          theme_uid: options.theme_uid
+        },
+        success: function (res) {
+          console.log(res.data)
+          that.setData({
+          })
+        }
+
+      }),
+    that.setData({
+      theme_id: options.id,
+      user_id: options.uid,
+      theme_uid:options.theme_uid
+    }), 
 
     console.log(options)  
      wx.request({
@@ -119,12 +140,9 @@ Page({
         user_id: that.data.user_id,
       },
       success: function (res) {
-        if (res.data.theme_imag) {
-
-          that.data.itimg = res.data.theme_imag
-        }
+        
         that.setData({
-      
+           comment:res.data.comment
         })
       }
     })
