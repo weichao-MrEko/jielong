@@ -468,11 +468,9 @@ Component({
    
    //主题
     Plnr(e){
-     
       this.setData({
         setPlnr:e.detail.value
-      })
-      
+      }) 
     },
     //内容
     desc(e){
@@ -531,10 +529,10 @@ Component({
         url: app.globalData.urlPrefix + 'signup/saveInfo',
         data:{
           user_id:app.globalData.idda.uid,
-          dragonTheme: this.data.setPlnr,
+          dragonTheme: this.zhuti.data.setPlnr,
           item:this.data.jieitem,
-          img_path: this.data.upimg,
-          descInfo: this.data.descont,
+          img_path: this.zhuti.data.upimg,
+          descInfo: this.zhuti.data.descont,
           user_img: app.globalData.userInfo.avatarUrl,
           user_name: app.globalData.userInfo.nickName,
           servPhone: this.data.shant,//电话

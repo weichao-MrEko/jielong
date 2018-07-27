@@ -14,7 +14,7 @@
     <view class='copy' >复制已有接龙{{Uid}}</view>
 </view>
 <!--接龙主题-->
-<zhuti id="zhuti" name='接龙' pushurl='{{pushurl}}'></zhuti>
+<zhuti id="zhuti" name='接龙'></zhuti>
 
 <view class='zhuti'>
 <input class='theme' placeholder='接龙主题：' bindinput='Plnr' value='{{setPlnr}}'></input>

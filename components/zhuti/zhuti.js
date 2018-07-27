@@ -17,6 +17,9 @@ Component({
    */
   data: {
     pushurl: [],
+    setPlnr:'',
+    descont:'',
+    upimg:''
   },
 
   /**
@@ -192,6 +195,72 @@ Component({
             })
           }
         }
+      })
+    },
+    ship: function (e) {
+      e.vioos = wx.createVideoContext('sps')
+      let ind = e.currentTarget.dataset.index
+      var that = this
+      console.log(ind)
+      wx.showActionSheet({
+        itemList: ['播放', '替换视频', '替换成图片', '删除'],
+        success: function (res) {
+          if (res.tapIndex == 0) {
+            e.vioos.play({})
+            e.vioos.requestFullScreen({})
+          }
+          else if (res.tapIndex === 1) {
+            wx.chooseVideo({
+              sourceType: ['album', 'camera'],
+              maxDuration: 60,
+              camera: 'back',
+              success: function (res) {
+                console.log(res.tempFilePath)
+                var tempFilePaths = res.tempFilePath.split()
+                var vsrc = that.data.pushurl
+                vsrc.splice(ind, 1, { pic: '', video: tempFilePaths })
+
+
+                that.setData({
+                  pushurl: vsrc
+                })
+                console.log(that.data.src.length)
+              }
+            })
+          }
+          else if (res.tapIndex == 2) {
+            wx.chooseImage({
+              sourceType: ['album', 'camera'],
+              count: '1',
+              success: function (res) {
+                console.log(ind)
+                var tempFilePaths = res.tempFilePaths
+                var aa = that.data.pushurl
+                aa.splice(ind, 1, { pic: tempFilePaths, video: '' })
+                that.setData({
+                  pushurl: aa
+                })
+              }
+            })
+          }
+          else if (res.tapIndex == 3) {
+            let vos = that.data.pushurl;
+            vos.splice(ind, 1)
+            that.setData({ pushurl: vos })
+          }
+        }
+      })
+    },
+    //主题
+    Plnr(e) {
+      this.setData({
+        setPlnr: e.detail.value
+      })
+    },
+    //内容
+    desc(e) {
+      this.setData({
+        descont: e.detail.value
       })
     },
   }

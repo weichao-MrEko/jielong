@@ -1,9 +1,9 @@
 {
   "pages": [
-    
+    "pages/baoming3/baoming3",
     "pages/jielong/jielong",
     "components/zhuti/zhuti",
-    "pages/baoming3/baoming3",
+    "pages/baoming1/baoming1",
     "pages/baoming0/baoming0",
    "pages/index/index",
     "pages/pingzheng/pingzheng",
