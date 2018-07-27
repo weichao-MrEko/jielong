@@ -14,8 +14,7 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     idda:{},
-    time:''
-    
+    time:''    
   },
   onPullDownRefresh: function () {
     console.log(1)
@@ -27,23 +26,25 @@ Page({
       url: '../logs/logs'
     })
   },
-  jielong:function(){
-    
+  jielong:function(){  
     wx:wx.navigateTo({
       url: '../jielong/jielong',
-   
     })
   },
+
+  //主页搜索主题
   suosou:function(){
     wx.navigateTo({
       url: '../suosou/suosou?uid=' + app.globalData.idda.uid
     })
   },
+
   pingzheng:function(){
       wx.navigateTo({
         url: '../pingzheng/pingzheng',
       })
   },
+
   jieneiyong:function(e){
     let that=this
     let eid= e.currentTarget.dataset.id  
@@ -57,7 +58,7 @@ Page({
   },
   
   onLoad: function () {
-    console.log(app.globalData.idda)
+
     console.log(app.globalData.userInfo)
     var Time = new Date().getTime()
     console.log(Time)
@@ -76,6 +77,7 @@ Page({
       }
 
     })
+
     var that=this
     wx.request({
       url: app.globalData.urlPrefix + "User/jl_index",
@@ -150,7 +152,7 @@ Page({
     }
   },
   getUserInfo: function(e) {
-    
+
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,

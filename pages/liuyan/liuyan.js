@@ -15,6 +15,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+//    console.log(app.globalData.idda)  
     this.setData({
       theme_id: options.theme_id
   })
@@ -25,15 +26,17 @@ Page({
     })
   },
   fasong: function () {
+
     wx:wx.request({
       url: app.globalData.urlPrefix +'Signup/add_comment',
       data: {
         theme_id: this.data.theme_id,
         user_id: app.globalData.idda.uid,
-        comment:this.data.liuyan,
+        user_name: app.globalData.idda.user_name,
+        user_image: app.globalData.idda.uimg,
+        comment:this.data.liuyan
       },
-      success:function(res){
-     
+      success:function(res){     
         wx.navigateBack({
           delta: 1
         })

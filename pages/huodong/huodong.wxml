@@ -60,11 +60,11 @@
 <view style='margin:20px 0;' wx:for="{{comment}}">
 <view class='liuyan'>
   <view class='liuyan_touxiang'>
-    <image src='{{theme.user_img}}'></image>
+    <image src='{{item.user_image}}'></image>
   </view>
   <view class='liuyan_name'>
-      <text>用户名</text>
-      <text>时间</text>
+      <text>{{item.user_name}}</text>
+      <text>{{item.time}}</text>
       
   </view>
   <view class='liuyan_zan'><image src='../img/kongjian.jpg'></image></view>
