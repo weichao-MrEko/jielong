@@ -1,0 +1,12 @@
+<view class='head'>
+   <view wx:for='{{head}}' 
+   class='{{index==curindex ?"cur":""}}'
+    data-id='{{index}}' bindtap='head'>{{item}}</view>
+</view>
+<!--已参与-->
+<view class='canyu_box' hidden='{{curindex!==0}}'>
+   <view class='cnayu_name'>主题名</view>
+   <view>接龙序号0</view>
+   <view>项目</view>
+   <view>(活动地点)</view>
+</view>

@@ -5,7 +5,7 @@
   padding: 80rpx;
 }
 .head-01{
-  color: green;
+  color: #f34534;
   font-family: "叶根友毛笔行书2.0版";
   font-size: 40rpx;
 }
@@ -35,7 +35,7 @@
    align-items: flex-end;
 }
 .page01-bao{
-  color: green;
+  color: #f34534;
   font-size: 35rpx;
   flex: 0.9;
 }

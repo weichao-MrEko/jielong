@@ -14,6 +14,6 @@
         <view style='font-size:30rpx; color:#999'>{{item.address}}</view>
       </view>
       
-      <radio value='{{index}}' class='dian' bindchange='xuanzhe' data-index='{{index}}' ></radio>
+      <radio value='{{index}}' class='dian' bindchange='xuanzhe' data-index='{{index}}' checked='{{item.checked}}'></radio>
 </view>
       </radio-group>

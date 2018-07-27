@@ -58,23 +58,26 @@ Component({
    */
   methods: {
     baoming: function (e) {
+      
       let i = e.currentTarget.dataset.index
+    if(i==i){
       wx.showActionSheet({
         itemList: ["使用空模板", "使用模板并填入示范内容"],
         success: function (res) {
+          console.log(i)
           if (res.tapIndex == 0) {
               wx: wx.navigateTo({
-                  url: '../baoming/baoming',
+                  url: '../baoming'+i+'/baoming'+i+'?zhu='+'&nei=&item=&jiag=&renshu=',
                })
           }
           else if (res.tapIndex==1){
             wx: wx.navigateTo({
-              url: '../baoming/baoming?zhu='+'同学聚会&nei=大家好久没有聚在一起了，一起出来叙叙旧。&item=聚餐&jiag=100&renshu=50',
+              url: '../baoming'+i+'/baoming'+i+'?zhu='+'同学聚会&nei=大家好久没有聚在一起了，一起出来叙叙旧。&item=聚餐&jiag=100&renshu=50',
             })
           }
         }
       })
-   
+    }
     },
   }
 })

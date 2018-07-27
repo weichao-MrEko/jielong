@@ -1,0 +1,23 @@
+page{
+  background: #f4f4f4;
+}
+.head{
+  display: flex;
+  background: #fff;
+}
+.head view{
+  flex: 1;
+  text-align: center;
+}
+.head .cur{
+  border-bottom: 4rpx solid #31c27c
+}
+.canyu_box{
+  width: 92%;
+  margin: 20px auto;
+  padding: 20rpx;
+  background: #fff;
+}
+.cnayu_name{
+  border-bottom: 1px solid #eee;
+}

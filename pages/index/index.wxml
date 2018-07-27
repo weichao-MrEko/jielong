@@ -11,13 +11,13 @@
 <view class='shuju'>
   <view><span>0</span>人看过</view>
   <view>余额￥<span>0</span></view>
-  <view bindtap='jielong'><image class='jiapush' src='../img/fabujl.jpg'></image></view>
+  <view bindtap='jielong'><image class='jiapush' src='../img/tianjia.png'></image></view>
   </view>
   <view class='nav'>
-    <view bindtap='suosou'><image src='../img/sousuo.jpg'></image><text>搜索</text> </view>
-   <view><image src='../img/mede.jpg'></image><text>我的</text> </view>
-   <view><image src='../img/i.jpg'></image> <text>我</text></view>
-   <view><image src='../img/quanzi.jpg'></image><text>圈子</text> </view>
+    <view bindtap='suosou'><image src='../img/sousuo.png'></image><text>搜索</text> </view>
+   <view bindtap='pingzheng'><image src='../img/pingzheng.png'></image><text>我的</text> </view>
+   <view><image src='../img/xiaoxi.png'></image> <text>我</text></view>
+   <view><image src='../img/quanzi.png'></image><text>圈子</text> </view>
   </view>
   <view class='touxiang' wx:for='{{zhuti}}' bindtap='jieneiyong' data-id='{{index}}'>
       <view class='tou'>

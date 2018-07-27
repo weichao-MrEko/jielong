@@ -1,6 +1,8 @@
 {
   "component": true,
-  "usingComponents": {},
+  "usingComponents": {
+    "zhuti": "/components/zhuti/zhuti"
+  },
 
   "backgroundTextStyle": "light",
   "navigationBarBackgroundColor": "#fff",

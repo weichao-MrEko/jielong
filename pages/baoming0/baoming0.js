@@ -1,6 +1,6 @@
 // pages/sousuo/sousuo.js
-var timer
-
+var timer;
+var x, y, x1, y1, x2, y2, index, currindex, n, yy;//拖拽
 const app = getApp();
 Component({
   /**
@@ -14,13 +14,16 @@ Component({
    * 组件的初始数据
    */
   data: {
+     move:{x:0,y:0},
+     mainx:-1,
+    height:122,
      uname:'',
      uimg:'',
      quantity:1,
      tianxuetj:0,
      upimg:[],
      pushurl: [],
-     jieitem:[{item_name:'',price:'',amount:''}],
+     jieitem: [{ item_name: '', price: '', amount: '',id:0}],
      group:[],
      groups: [
        
@@ -115,8 +118,12 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    onReady:function(){
+      this.zhuti = this.selectComponent("#zhuti")
+       console.log(this.zhuti)
+    },
     onLoad: function (options) {
-      console.log(this.data.startime)
+      console.log(this.selectComponent)
       var Y = new Date().getFullYear()
       var M = new Date().getMonth()
       var D = new Date().getDate()
@@ -219,7 +226,9 @@ Component({
              
                 
                 }
-                     
+                wx.showLoading({
+                  title: '上传中',
+                })   
             
                 for (var i = 0; i < gg.length; i++) {
                   console.log(gg[i].pic)
@@ -239,7 +248,9 @@ Component({
                         upimg: uppimg,
                       
                       })
-
+                      setTimeout(function () {
+                        wx.hideLoading()
+                      }, 800)
                     }
                   })
                 }
@@ -548,10 +559,11 @@ Component({
     //+新项目
     newitem:function(){
       let jieitem = this.data.jieitem
-      jieitem.push({ item_name: '', price: '',amount:'' })
+      jieitem.push({ item_name: '', price: '', amount: '', id: this.data.jieitem.length})
       this.setData({ 
         quantity: ++this.data.quantity,
-        jieitem: jieitem
+        jieitem: jieitem,
+        height: this.data.height+139
         })
       console.log(this.data.jieitem)
     },
@@ -561,7 +573,8 @@ Component({
       jieitem.splice(id,1)
       this.setData({
          quantity: --this.data.quantity ,
-         jieitem: jieitem
+         jieitem: jieitem,
+        height: this.data.height - 139
          })
     },
     qitmu:function(){
@@ -707,7 +720,64 @@ Component({
       wx.navigateTo({
         url: '../shedidian/shedidian',
       })
+    },
+    
+    movestart:function(e){
+      console.log(e)
+      currindex = e.currentTarget.dataset.index
+      x = e.touches[0].clientX;
+      y = e.touches[0].clientY;
+      x1 = e.currentTarget.offsetLeft;
+      y1 = e.currentTarget.offsetTop;
+    },
+    move:function(e){
+      console.log(e)
+      yy = e.currentTarget.offsetTop;
+      x2 = e.touches[0].clientX - x +x1;
+      y2 = e.touches[0].clientY - y +y1;
+      console.log(x2,y2)
+      this.setData({
+        mainx: currindex,
+  
+        move: { x: x2, y: y2 }
+      })
+    },
+    moveend:function(e){
+      console.log(3)
+      if (y2 != 0) {
+        var arr = [];
+        for (var i = 0; i < this.data.jieitem.length; i++) {
+          arr.push(this.data.jieitem[i]);
+        }
+        var nx = this.data.jieitem.length;
+        n = 1;
+        for (var k = 2; k < nx; k++) {
+          if (y2 > (139 * (k - 1) + k * 2 - 69.5)) {
+            n = k;
+          }
+        }
+        if (y2 > (139 * (nx - 1) + nx * 2 - 69.5)) {
+          n = nx;
+        }
+        console.log(arr);
+     
+        arr.splice((currindex - 1), 1);
+        arr.splice((n - 1), 0, this.data.jieitem[currindex - 1]);
+        this.data.jieitem = [];
+        for (var m = 0; m < this.data.jieitem.length; m++) {
+          console.log(arr[m]);
+          arr[m].id = m + 1;
+          this.data.jieitem.push(arr[m]);
+        }
+        console.log(this.data.jieitem);
+        this.setData({
+          mainx: "",
+          jieitem: arr,
+          opacity: 1
+        })
+      }
     }
+    
   }
 })
 

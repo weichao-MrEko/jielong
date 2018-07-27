@@ -1,10 +1,10 @@
 {
   "component": true,
   "usingComponents": {},
-"window": {
+
   "backgroundTextStyle": "light",
   "navigationBarBackgroundColor": "#fff",
-  "navigationBarTitleText": "aaa",
+  "navigationBarTitleText": "发布拼团接龙",
   "navigationBarTextStyle": "black"
-}
+
 }

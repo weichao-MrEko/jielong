@@ -39,6 +39,11 @@ Page({
       url: '../suosou/suosou?uid=' + app.globalData.idda.uid
     })
   },
+  pingzheng:function(){
+      wx.navigateTo({
+        url: '../pingzheng/pingzheng',
+      })
+  },
   jieneiyong:function(e){
     let that=this
     let eid= e.currentTarget.dataset.id  

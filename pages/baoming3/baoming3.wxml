@@ -15,7 +15,7 @@
 </view>
 <!--接龙主题-->
 <view class='zhuti'>
-<input class='theme' placeholder='接龙主题：' bindinput='Plnr' value='{{setPlnr}}'></input>
+<input class='theme' placeholder='拼团主题：' bindinput='Plnr' value='{{setPlnr}}'></input>
 <textarea class='describe'
  maxlength='-1' 
  auto-height='true'
@@ -30,34 +30,46 @@
       <image wx:if='{{item.pic !== ""}}'  src="{{item.pic}}"  data-index='{{index}}'  mode='aspectFill' bindtap='tup'></image>
           <video wx:if='{{item.video !== ""}}'  src="{{item.video}}" id='sps' show-progress='false' direction='0' objectFit='cover' bindtap='ship' data-index='{{index}}'></video>
       </view>
-      <view class='paizhao meibian' bindtap='box' data-id="{{index}}">
-       +
+      <view class='paizhao' bindtap='box' data-id="{{index}}">
+       <image src='../img/paizhao.png'></image>
       </view>
   </view>
 </view>
-<!--接龙项目-->
-<view class='biaoti'>接龙项目</view>
-<view class='zhuti' wx:for='{{jieitem}}'>
 
+
+<!--接龙项目-->
+<view class='biaoti'>拼团商品</view>
+<view class='box' style='height: {{height}}px;'>
+<view class="longlong  " 
+ wx:for='{{jieitem}}'>
+    <view class='tuozhuai_tu'>
+          <image src='../img/tuozhuai.png'></image>
+    </view>
     <view class='btndel' bindtap='delitem' wx:if='{{quantity>1}}' data-id='{{index}}'>×</view>
     <view class='xiongmu onbian' >
-      <text class='xiongmu-jl'>接龙项目<text wx:if='{{quantity>1}}'>{{index+1}}</text></text>
-      <input data-index="{{index}}" placeholder='项目名称' bindinput='xiangname' value='{{item.item_name}}'></input>
+      <text class='xiongmu-jl'>商品名字<text wx:if='{{quantity>1}}'>{{index+1}}</text></text>
+      <input data-index="{{index}}" placeholder='商品名称（必填）' bindinput='xiangname' value='{{item.item_name}}'></input>
+    </view>
+     <view class='xiongmu'>
+      <text class='xiongmu-jl'>规格</text>
+      <input data-index="{{index}}" placeholder='尺寸、颜色等' type='number' bindinput='jiag' value='{{item.item_name}}'></input>
     </view>
     <view class='xiongmu'>
       <text class='xiongmu-jl'>价格(￥)</text>
       <input data-index="{{index}}" placeholder='0.00' type='number' bindinput='jiag' value='{{item.price}}'></input>
     </view>
     <view class='xiongmu'>
-      <text class='xiongmu-jl'>数量</text>
+      <text class='xiongmu-jl'>存库</text>
       <input data-index="{{index}}" placeholder='1000' type='number' bindinput='shum' value='{{item.amount}}'></input>
     </view>
-   
 </view>
-<view class='newxm'>
-<view class='xiongmu'>
-<view class='new-xm' bindtap='newitem' >+新项目</view>
+
+ 
 </view>
+   <view class='newxm '>
+  <view class='xiongmu'>
+      <view class='new-xm' bindtap='newitem' >+新商品</view>
+  </view>
 </view>
  
 <view class='asdfggg'  wx:for='{{group}}'>
@@ -87,7 +99,7 @@
 </view>
 
 </view>    
-    <!--选择项目-->
+    <!--选择项目--><!--
  <view class='qitxiang' hidden='{{qitxiang}}' >
     <view class='qitxz' bindtap='newtx' wx:for='{{qitaxiangmuneiy}}' data-id='{{index}}' style='{{item.color}}'>{{item.xiangmu}}</view>
  </view>
@@ -96,15 +108,19 @@
     <text bindtap='qitmu'>+其他类型接龙项目</text>
 </view>
 
+
 <!--报名设置-->
-<view class='biaoti'>报名设置</view>
+<view class='biaoti'>拼团设置</view>
 <view class='zhuti'>
   <view class='rantianxie'>
-    <text class='ran'>让参与的人填写信息</text>
+    <text class='ran'>拼团方式</text>
     <text class='tian' bindtap='Tosetup' wx:if="{{Fill==''&&kill==''&& gill==''}}">去设置</text>
     <text class='tian' bindtap='Tosetup' wx:else>{{Fill}} {{kill}}{{gill}}</text>
-    
-    
+  </view>
+   <view class='rantianxie'>
+    <text class='ran'>物流方式</text>
+    <text class='tian' bindtap='Tosetup' wx:if="{{Fill==''&&kill==''&& gill==''}}">去设置</text>
+    <text class='tian' bindtap='Tosetup' wx:else>{{Fill}} {{kill}}{{gill}}</text>
   </view>
   <view class='rantianxie'>
     <text class='ran'>活动时间</text>
@@ -127,7 +143,7 @@
 
 <view class='fabu'>
 <text class='yulan'>保存预览</text>|
-<button class='falong' bindtap='fajielong' type='primary'>发布接龙</button> 
+<text class='falong' bindtap='fajielong' >发布接龙</text> 
 </view>
 </view>
 <!--主题不能为空-->

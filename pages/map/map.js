@@ -109,9 +109,22 @@ Page({
     qqmapsdk.search({
       keyword: e.detail.value,
       success: function (res) {
-        console.log(res)
+        res.data[0].checked= true
+        that.data.map=res.data
+        that.data.site = {
+          title: that.data.map[0].title, address: that.data.map[0].address
+        }
         that.setData({
-          map: res.data,  
+          map: that.data.map, 
+          markers: [{
+            iconPath: "../img/location.png",
+            id: 0,
+            latitude: that.data.map[0].location.lat,
+            longitude: that.data.map[0].location.lng,
+            width: 50,
+            height: 50
+          }] ,
+          site: that.data.site
         })
 
       },
@@ -122,6 +135,7 @@ Page({
   },
   xuanzhe:function(e){
     console.log(e)
+    
     let id = e.detail.value
    let that=this
    that.data.site = {

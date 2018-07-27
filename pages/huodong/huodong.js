@@ -73,8 +73,35 @@ Page({
          user_id: options.uid,  
        },
        success:function(res){
+         
+           var Time=new Date().getTime()
+           var sjcha = (Time - res.data.theme_result.add_time * 1000);
+           //天
+           var tian = Math.floor(sjcha / (24 * 3600 * 1000));
+           //小时
+           var leave1 = sjcha % (24 * 3600 * 1000);
+           var xiaoshi = Math.floor(leave1 / (3600 * 1000));
+           //分钟
+           var leave2 = leave1 % (3600 * 1000);
+           var fenzhong = Math.floor(leave2 / (60 * 1000));
+           //秒
+           var leave3 = leave2 % (60 * 1000);
+           var miao = Math.floor(leave3 / 1000);
+           console.log(tian + xiaoshi + fenzhong + miao)
+           if (tian > 0) {
+             res.data.theme_result.add_time = tian + '天前'
+           }
+           else if (xiaoshi > 0) {
+             res.data.theme_result.add_time = xiaoshi + '小时前'
+           }
+           else if (fenzhong > 0) {
+             res.data.theme_result.add_time = fenzhong + '分钟前'
+           }
+           else {
+             res.data.theme_result.add_time = miao + '秒前'
+           }
+         
          if (res.data.theme_imag){
-
            that.data.itimg = res.data.theme_imag
         }
          that.setData({

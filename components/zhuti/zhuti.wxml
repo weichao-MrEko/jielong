@@ -1,0 +1,21 @@
+<view class='zhuti'>
+<input class='theme' placeholder='{{name}}主题：' bindinput='Plnr' value='{{setPlnr}}'></input>
+<textarea class='describe'
+ maxlength='-1' 
+ auto-height='true'
+ bindinput='desc'
+ value='{{descont}}'
+  placeholder='说两句，让大家更好的参与接龙'>
+  </textarea>
+  <view class='tupian-pai'>
+   <view class='paizhao' 
+       wx:for="{{pushurl}}"  wx:if='{{item.pic !== "" || item.video !== ""}}' wx:key='k' data-index="{{index}}">
+      <view class='gdel' data-index="{{index}}" bindtap='infodel' >×</view>
+      <image wx:if='{{item.pic !== ""}}'  src="{{item.pic}}"  data-index='{{index}}'  mode='aspectFill' bindtap='tup'></image>
+          <video wx:if='{{item.video !== ""}}'  src="{{item.video}}" id='sps' show-progress='false' direction='0' objectFit='cover' bindtap='ship' data-index='{{index}}'></video>
+      </view>
+      <view class='paizhao' bindtap='box' data-id="{{index}}">
+       <image src='../../pages/img/paizhao.png'></image>
+      </view>
+  </view>
+</view>

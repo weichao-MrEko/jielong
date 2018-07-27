@@ -199,5 +199,9 @@ flex: 1;
   width: 91%;
   font-size: 12px;
   margin-bottom: 20rpx;
- float: right;
+  float: right;
+}
+.woyao{
+  background: #f34534;
+  color: #fff;
 }

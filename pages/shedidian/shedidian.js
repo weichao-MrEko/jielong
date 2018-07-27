@@ -17,7 +17,11 @@ Page({
     console.log(app.globalData.map)
     var that=this
     var sites = that.data.site
- 
+    if (app.globalData.map==''){
+      wx.navigateTo({
+        url: '../map/map',
+      })
+    }
     that.setData({
       site: app.globalData.map
     })

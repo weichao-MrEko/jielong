@@ -1,6 +1,12 @@
 {
   "pages": [
-    "pages/index/index",
+    
+    "pages/jielong/jielong",
+    "components/zhuti/zhuti",
+    "pages/baoming3/baoming3",
+    "pages/baoming0/baoming0",
+   "pages/index/index",
+    "pages/pingzheng/pingzheng",
     "pages/participants/participants",
     "pages/tianjiaprivate/tianjiaprivate",
     "pages/suosou/suosou",
@@ -8,11 +14,12 @@
     "pages/liuyan/liuyan",
     "pages/shedidian/shedidian",
     "pages/kefu/kefu",
-    "pages/baoming/baoming",
+   
+    
     "pages/huodong/huodong",
     "pages/as/as",
-    "pages/baoming2/baoming2",
-    "pages/jielong/jielong",
+    
+    
     "pages/joinJlong/index",
     "pages/adr/index",
     "pages/add_adr/index"

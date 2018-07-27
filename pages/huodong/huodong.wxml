@@ -4,7 +4,7 @@
     <image src='{{theme.user_img}}' class='u-portrait'></image>
     <view class='use'>
     <view class='u-name'>{{theme.user_name}}</view>
-    <text class='u-time'>7天前</text>
+    <text class='u-time'>{{theme.add_time}}</text>
     <text class='u-kang'>有3个人看过</text>
     </view>  
   </view>
@@ -41,7 +41,7 @@
       <view><view class='renshu'>0</view> <view>我带来的人</view></view>
       <view><image src='../img/pingzheng.jpg'></image><view>我的凭证</view></view>
     </view>
-    <button type='primary'bindtap='joinjl'>我要接龙</button>
+    <button class='woyao' bindtap='joinjl'>我要接龙</button>
   </view>
   <!--报名人的信息-->
   <view class='Sign_up'>
@@ -54,8 +54,8 @@
   </view>
 </view>
 <!--评论-->
-<view class='pinglun' bindtap='liuyan'>
-<text>已经有0条留言，快来说说您的想法吧！</text>
+<view class='pinglun' bindtap='liuyan' >
+<text>已经有{{comment.length}}条留言，快来说说您的想法吧！</text>
 </view>
 <view style='margin:20px 0;' wx:for="{{comment}}">
 <view class='liuyan'>
