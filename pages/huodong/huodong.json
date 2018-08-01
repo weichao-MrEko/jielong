@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "接龙主页",
-  "usingComponents":{
-    "canvasdrawer":"/components/canvasdrawer/canvasdrawer"
-  }
-}
-

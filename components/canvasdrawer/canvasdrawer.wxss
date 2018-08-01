@@ -1,4 +1,0 @@
-.board {
-  z-index: 99999;
- margin:10% auto;
-}
