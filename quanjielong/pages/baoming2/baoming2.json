@@ -1,9 +1,0 @@
- {
-    "usingComponents": {
-    "zhuti": "/components/zhuti/zhuti"
-  },
-  "backgroundTextStyle": "light",
-  "navigationBarBackgroundColor": "#fff",
-  "navigationBarTitleText": "发布报个到",
-  "navigationBarTextStyle": "black"
-}
