@@ -1,0 +1,29 @@
+page{background-color: #eee;} 
+/*1rpx = 0.42px  */
+.people_data{background-color: #fff;margin-top:20rpx;padding: 20rpx;width:95%;
+}
+.banners {height:160px}
+.up_people_box{margin-bottom: 10rpx;height:auto;
+overflow:hidden;
+}
+.up_people_box .user_name{float: left}
+.up_people_box .time{float: right;color:#ccc}
+.people_data image{width: 100%}
+.say_content{clear: both;margin: 30rpx 0;line-height:28px}
+.pub_text_box{position: fixed;right: 20rpx;bottom: 20rpx;background-color: #00645d;color:#fff;width: 120rpx;height: 120rpx;border-radius:50%;text-align: center;font-size: 14px}
+.pub_text_box image{width:40%;
+height:40%;
+display:block;
+margin:0 auto;
+padding-top:10rpx;
+}
+.do_box,.do_box .zan,.do_box .commont ,.do_box image{height: 60rpx}
+.do_box image{width: 60rpx;vertical-align:middle;
+}
+.do_box .zan,.do_box .commont{width: 20%;float: right;margin-right: 20rpx;color:#ccc}
+
+.commont_box{height: 110px}
+.commont_box textarea{margin-top: 10px;height: 68px; border: 1px solid #eee;width: 100%}
+.commont_list{padding-top: 10px}
+.commont_list .user_name{color: #ccc}
+.commont_box button{float: right;margin-top: 10px}

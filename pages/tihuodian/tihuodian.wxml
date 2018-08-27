@@ -1,0 +1,19 @@
+<view class='box'>
+    <view class='tihdian' wx:for='{{text}}'>
+        <view>{{item.name}}</view>
+        <input placeholder='{{item.title}}' data-id='{{index}}' bindinput='tihuo'></input>
+    </view>
+</view>
+<view class='box'>
+    <view class='tihdian' wx:for='{{tex}}'  >
+        <view>{{item.name}}</view>
+        <input placeholder='{{item.title}}' data-id='{{index}}'  bindinput='lianxi'></input>
+    </view>
+     <view class='tihdian' bindtap='map'>
+      <image src='../img/location.png'></image>
+         <text wx:if='{{!tihuodian.map}}'>地址</text>
+        <text wx:else>{{tihuodian.map.address}}</text>
+    </view>
+</view>
+<button size='default' bindtap='queren'>确定</button>
+<view class='Donot' hidden='{{dored}}'>提货点不能为空</view>

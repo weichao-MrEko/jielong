@@ -1,0 +1,129 @@
+<view hidden='{{homepage}}'>
+<!--头部-->
+<view class='head'>
+    <view class='user'>
+      <open-data type="userAvatarUrl" class='image'></open-data>
+      <open-data type="userNickName"></open-data>
+      <view>{{hometime}}</view>
+    </view>
+
+    <view class='service' bindtap='kefu'>
+      <view wx:if="{{ shant == '' ||shant == null  }}" class='diantext'>+客服电话</view>
+      <view wx:else><image src='../img/dianhua.jpg' class='dianhua'></image></view>
+    </view>
+    <view class='copy' ></view>
+</view>
+<!--接龙主题-->
+<zhuti id="zhuti" name='报个到' descont='{{descont}}' setPlnr='{{setPlnr}}'></zhuti>
+
+<view class='asdfggg'  wx:for='{{group}}'>
+<!--填写项-->
+<view class='zhuti' >
+    <view class='btndel' bindtap='deltx'  data-index='{{index}}' data-id='{{item.id}}'>×</view>
+    <view class='xiongmu onbian' >
+      <text class='xiongmu-jl'>
+       {{index+1}}.{{item.title}}:
+      </text>
+      <input placeholder='{{item.place}}' bindinput=''></input>
+    </view>
+    <view class='xiongmu' >
+      <picker class='moshi' mode='selector'
+       value='{{iex}}' range='{{gongk}}' data-id='{{index}}' bindchange='bindchangegk'>
+       /{{gongk[item.iex]}}
+       </picker>
+      <picker class='moshi' mode='selector'
+       value='{{item.ieb}}' range='{{bitian}}' data-id='{{index}}' bindchange='bindchangebt'>
+       /{{bitian[item.ieb]}}</picker>
+    </view>
+    </view>
+<view class='newxm'>
+    <view class='xiongmu' wx:if='{{tianxuetj >0}}'>
+        <view class='new-xm' bindtap='newtx' >+新填写项目</view>
+    </view>
+</view>
+
+</view>    
+    <!--选择项目--><!--
+ <view class='qitxiang' hidden='{{qitxiang}}' >
+    <view class='qitxz' bindtap='newtx' wx:for='{{qitaxiangmuneiy}}' data-id='{{index}}' style='{{item.color}}'>{{item.xiangmu}}</view>
+ </view>
+<view class='other'>
+    <image src='../img/icon_jt.png' class='other-img'></image>
+    <text bindtap='qitmu'>+其他类型接龙项目</text>
+</view>
+-->
+
+<!--报名设置-->
+<view class='biaoti'>报个到设置</view>
+<view class='zhuti'>
+  <view class='rantianxie'>
+    <text class='ran'>让参与的人填写信息</text>
+    <text class='tian' bindtap='Tosetup' wx:if="{{Fill==''&&kill==''&& gill==''}}">去设置</text>
+    <text class='tian' bindtap='Tosetup' wx:else>{{Fill}} {{kill}}{{gill}}</text>
+    
+    
+  </view>
+
+<view class='rantianxie'>
+    <text class='ran'>项目时间</text>
+    <text class='tian' bindtap='xianshitime' hidden='{{xiantime}}'>设置时间</text>
+  </view>
+ <view class='setime' hidden='{{setime}}'>
+    <picker mode='date' value='{{startime.dadate}}' bindchange="bindDateChange"><text>{{startime.dadate}}</text></picker>|
+    <picker mode='time' value='{{startime.datime}}'bindchange="bindTimeChange"><text>{{startime.datime}}</text></picker><view>到</view>
+   <picker mode='date' value='{{endtime.houdate}}'bindchange="DateChange"><text>{{endtime.houdate}}</text></picker>|
+   <picker mode='time' value='{{endtime.houtime}}'bindchange="TimeChange"><text>{{endtime.houtime}}</text></picker>
+ </view>
+  <view class='rantianxie'>
+  <text class='ran'>报个到地点</text>
+  <text class='tian' bindtap='Addplace' wx:if="{{ytianmap==''||ytianmap==null}}">添加报个到地点</text>
+  <text class='tian' wx:else bindtap='Addplace'>已添加{{ytianmap.length}}个报个到地点</text>
+  <image src='../img/icon_map.png'></image>
+  </view>
+
+</view>
+
+
+<!--接龙项目-->
+
+<view class='box' >
+<view class="longlong 
+ wx:for='{{jieitem}}'   style='top:{{move.y}}px;'>
+  
+    <view class='btndel' bindtap='delitem' wx:if='{{quantity>1}}' data-id='{{index}}'>×</view>
+    <view class='xiongmu onbian' >
+      <text class='xiongmu-jl'>报个到项目<text wx:if='{{quantity>1}}'>{{index+1}}</text></text>
+      <input data-index="{{index}}" placeholder='报个到名称' bindinput='xiangname' value='{{item.item_name}}'></input>
+    </view>
+   <view class='xiongmu'>
+      <text class='xiongmu-jl'>开始时间</text>
+     
+      <picker  mode='time' class='katime' data-id='{{index}}' bindchange='stime'>
+          {{item.start}}
+      </picker>
+    </view>
+    <view class='xiongmu' >
+      <text class='xiongmu-jl'>结束时间</text>
+   
+    <picker  mode='time' class='katime' data-id='{{index}}' bindchange='etime' >
+        {{item.end}}
+    </picker>
+    </view>
+    <view class='xiongmu'>
+    <text>不设置报个到时间</text>
+      <checkbox-group bindchange='notime' data-id='{{index}}'>
+        <checkbox color='#f34534' checked='{{checked}}'></checkbox>
+      </checkbox-group>
+    </view>
+</view>
+
+ 
+</view>
+   
+
+<view class='fabu'>
+<text class='falong' bindtap='fajielong' >发布接龙</text> 
+</view>
+</view>
+<!--主题不能为空-->
+<view class='Donot' hidden='{{dored}}'>主题不能为空</view>

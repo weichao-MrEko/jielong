@@ -1,0 +1,10 @@
+{
+    "component": true,
+    "usingComponents": {
+      "zhuti": "/components/zhuti/zhuti"
+    },
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "发布聚会报名",
+    "navigationBarTextStyle": "black"
+}

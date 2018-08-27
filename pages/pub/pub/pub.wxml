@@ -1,0 +1,19 @@
+<view> 
+<form>
+  <view>
+  	 <view class="dhmj">大话面试经验</view>
+     <input class="uname" bindinput='setUname' placeholder='你的江湖称号'></input>
+    <button type='success' bindtap="bindChooiceProduct">上传图片</button>
+    <view wx:if="{{productInfo}}">
+    <view wx:for="{{productInfo.bannerInfo}}">
+    <image  src='{{item.url}}'></image>
+    </view>
+    </view>
+    
+    <textarea bindinput='setText' placeholder='你要分享的面试经验'></textarea>
+  </view>
+  <view>
+    <button type='primary' bindtap="pub">发布</button>
+  </view>
+</form>
+</view>

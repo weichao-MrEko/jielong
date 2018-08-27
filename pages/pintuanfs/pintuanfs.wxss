@@ -1,0 +1,88 @@
+/* pages/pintuanfs/pintuanfs.wxss */
+.box{
+  width: 94%;
+  margin: auto;
+}
+.picker{
+  overflow: hidden;
+}
+.box_pintuan{
+  color: #f34534;
+  font-weight: bold;
+  float:left;
+  font-size: 35rpx;
+}
+.box_tu{width: 30rpx;height: 30rpx;float: right}
+.box_tu image{width: 100%;height: 100%}
+.text{
+  margin: 20rpx 0;
+  font-size: 28rpx;
+}
+.jieti{
+  width: 94%;
+  margin: auto;
+  background: #f4f4f4;
+  position: relative
+}
+.jieti_ku{
+  display: flex;
+  font-size: 30rpx;
+  width: 94%;
+  margin: auto;
+  height: 100rpx;
+  
+}
+.name{
+ flex: 1.2;
+ line-height: 100rpx;
+}
+.names{
+  flex: 1.2;
+  padding-top: 20rpx;
+}
+.jieti_ku input{
+  flex: 1;
+  padding-top: 20rpx;
+  text-align: right;
+}
+.jieti_add{
+  height: 100rpx;
+  line-height: 100rpx;
+  width: 94%;
+  background: #f4f4f4;
+  margin: auto;
+  color: #666;
+  font-size: 35rpx;
+}
+.tishi{
+  width: 94%;
+  color: red;
+  margin:60rpx auto;
+  text-align: center;
+  font-size: 28rpx
+}
+.queding{
+  width: 100%;
+  height: 100rpx;
+  background:#f34534;
+  position: fixed;
+  left:0;
+  bottom: 0;
+  color: #fff;
+  line-height: 100rpx;
+  text-align: center;
+  z-index: 9999
+}
+.deljieti{
+  width:40rpx;
+  height: 40rpx;
+  background: rgba(0, 0, 0, 0.4);
+  color:#fff;
+  border-radius: 100%;
+  text-align: center;
+  line-height: 37rpx;
+  font-size: 40rpx;
+  position: absolute;
+  top:-8px;
+  right: -7px;
+}

@@ -1,0 +1,35 @@
+<view class='box'>
+   <picker mode='multiSelector' 
+   range='{{content}}' class='picker' 
+   bindchange='bindchange'>
+      <view class='box_pintuan'>{{content[0][index]}}{{content[1][id]}}</view>
+      <view class='box_tu'><image src='../img/jiantou.png'></image></view>
+   </picker>
+   <view class='text'>设定{{text[0][index]}}成团的{{text[1][id]}}最低标准；并划分不同的价格阶梯。活动结束后，对未成团的所有{{text[2][index]}}参与人，由发起人触发退款</view>
+</view>
+
+<view class='jieti' style='margin-top:40rpx' wx:for='{{array}}' wx:for-index='idx'>
+<view class='deljieti' bindtap='deljieti' data-id='{{index}}'>x</view>
+  <view class='jieti_ku' style='border-bottom: 2rpx solid {{color[index]}}'>
+        <text class='name'>成团总数（阶梯{{index+1}}）</text>
+        <input type='number' placeholder='0' bindfocus='juji' bindblur='shiqu' data-id='{{idx}}' bindinput='clustersnum'></input>
+  </view>
+  <view class='jieti_ku' style='border-bottom:2rpx solid  {{colors[index]}}'           wx:for='{{item}}'>
+      <view class='names' >
+          <view>{{item.name}}</view>
+          <view style='color:#999'>原价{{item.original}}</view>
+      </view>
+      <input type='number' placeholder='拼团价格0.00' bindfocus='jujis'                     bindblur='shiqus' bindinput='pintjia'
+      data-idx='{{idx}}'  data-id='{{index}}'
+        value='{{item.pintjia}}'></input>
+    </view>
+</view>
+<view class='jieti'>
+ <view class='jieti_add' bindtap='newjieti'>+拼团阶梯</view>
+</view>
+
+
+<view class='tishi'>
+接龙一旦发布，拼团方式无法更改；接龙一旦有人参与，拼团阶梯违反更改。
+</view>
+<view class='queding' bindtap='queding'>确定</view>

@@ -1,0 +1,10 @@
+.box{
+  width: 100%;
+  background: #eee;
+  padding: 5px 0;
+}
+.box input{
+  margin: auto;
+  width: 90%;
+  background-color: #fff
+}

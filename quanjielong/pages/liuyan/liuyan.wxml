@@ -1,0 +1,7 @@
+<view class='head'>
+  <view class='qux' bindtap='qux'>取消</view>
+  <view class='fasong' bindtap='fasong'>发送</view>
+</view>
+<textarea placeholder='快来说说您想法吧！' bindinput='liuyan'></textarea>
+
+<view hidden='{{dored}}' class='dored'>说几句吧！</view>

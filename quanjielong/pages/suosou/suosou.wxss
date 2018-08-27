@@ -1,0 +1,21 @@
+/* pages/suosou/suosou.wxss */
+page{
+  background: #f4f4f4;
+}
+.box{
+  display: flex;
+  justify-content: center;
+  margin: 20rpx auto;
+}
+.box input{
+  flex: 0.9;
+  height: 60rpx;
+  border-radius: 20rpx;
+  background: #fff;
+}
+.box text{
+  color: #1AAD19;
+  margin-left: 20rpx;
+  line-height: 60rpx;
+  font-size: 35rpx;
+}
