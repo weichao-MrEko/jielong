@@ -25,8 +25,8 @@
     <view class='c-zhuti'>{{theme.theme_name}}</view>
     <view class='c-nei' wx:if='{{theme.desc_info!==null}}'>{{theme.desc_info}}</view>
     <view class='c-imm'>
-      <view class='c-img' wx:for="{{itimg}}" bindtap='yulan' data-id='{{index}}'>
-        <image src='{{turl}}{{item}}' mode='aspectFill'></image>
+      <view class='c-img' wx:for="{{itimg}}" wx:if="{{itimg[0].img_path}}" bindtap='yulan' data-id='{{index}}'>
+        <image   src='{{turl}}{{item}}' mode='aspectFill'></image>
       </view>
 
     </view>
@@ -108,7 +108,11 @@
         <view>我的凭证</view>
       </view>
     </view>
-    <button class='{{btn}}' bindtap='joinjl'>{{apply}}</button>
+
+     
+    <button wx:if="{{theme.status == 1}}" class='{{btn}}' bindtap='joinjl'>{{apply}}</button>
+    <button wx:if="{{theme.status == 2 && !guanli}}" class='buwoyao' bindtap='edit'>未发布，返回修改</button>
+    <button wx:if="{{theme.status == 2 && guanli}}" class='buwoyao'>未发布</button>
   </view>
   <!--报名人的信息-->
   <view class='Sign_up' wx:for='{{baomingren}}'>

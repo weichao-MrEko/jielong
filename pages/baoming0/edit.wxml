@@ -152,10 +152,16 @@
     </view>
 </view>
 </view>
-<view class='fabu'>
 
-  <text class='falong' bindtap='fajielong' >发布接龙</text> 
-  </view>
+<view class='fabu'>
+  <view  class='yulan' bindtap='save'>保存预览</view>
+<form name='pushMsgFm' style='width:50%;margin:0 auto;' report-submit="true" bindsubmit='fajielong'>
+  
+    <button form-type="submit" class='falong' >发布接龙</button>
+</form>
+
+<!-- <text class='falong' bindtap='fajielong' >发布接龙</text>  -->
+</view>
   </view>
   <!--主题不能为空-->
   <view class='Donot' hidden='{{dored}}'>主题不能为空</view>

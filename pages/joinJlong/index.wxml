@@ -47,6 +47,9 @@
     </view>
 </view>
 
+    <view  class='foot' bindtap='zhifu' hidden='{{!hzhifu}}'>
+    <span>请先选择数量</span>
+    </view>
     <view  class='foot' bindtap='zhifu' hidden='{{hzhifu}}'>
     <span>马上支付￥{{summation.zongjiage}}</span>
     </view>
