@@ -112,8 +112,22 @@ Component({
                })
           }
           else if (res.tapIndex==1){
+            let url  = ""
+            if (i == 0){
+              url = '../baoming' + i + '/baoming' + i + '?zhu=' + '聚会报名&nei=大家好久没有聚在一起了，一起出来叙叙旧。&item=聚餐&jiag=100&renshu=50'
+            } else if (i == 1) {
+              url = '../baoming' + i + '/baoming' + i + '?zhu=' + '鲜花&nei=产自云南香味芬芳，团购更优惠&item=玫瑰花&jiag=100&renshu=50'
+            } else if (i == 2) {
+              url = '../baoming' + i + '/baoming' + i + '?zhu=' + '作业打卡&nei=小明同学按时交作业哦&item=语文&jiag=100&renshu=50'
+            } else if (i == 3) {
+              url = '../baoming' + i + '/baoming' + i + '?zhu=' + '鲜花&nei=产自云南香味芬芳，拼团更优惠&item=玫瑰花&jiag=100&renshu=50'
+            } else if (i ==4) {
+              url = '../baoming' + i + '/baoming' + i + '?zhu=' + '同学聚会&nei=大家好久没有聚在一起了，一起出来叙叙旧。&item=聚餐&jiag=100&renshu=50'
+            } else if (i == 5) {
+              url = '../baoming' + i + '/baoming' + i + '?zhu=' + '周末英语&nei=英语加国语，学习一定行&item=English&jiag=100&renshu=50'
+            }
             wx: wx.navigateTo({
-              url: '../baoming'+i+'/baoming'+i+'?zhu='+'同学聚会&nei=大家好久没有聚在一起了，一起出来叙叙旧。&item=聚餐&jiag=100&renshu=50',
+              url: url,
             })
           }
         }
