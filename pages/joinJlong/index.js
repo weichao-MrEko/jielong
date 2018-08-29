@@ -102,7 +102,12 @@ Component({
       var id = e.currentTarget.dataset.id
       var aa = this.data.item_info[id].may_amount
 
-      if (aa >= this.data.item_info[id].amount) {} else {
+      if (aa >= this.data.item_info[id].amount) {
+        wx.showToast({
+          title: '库存不足！',
+          icon:'none'
+        })
+      } else {
         this.data.item_info[id].may_amount = aa + 1
         for (var i = 0; i < this.data.item_info.length; i++) {
           this.data.summation.zongshu += this.data.item_info[i].may_amount

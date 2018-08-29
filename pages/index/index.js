@@ -111,12 +111,12 @@ Page({
     
         this.jlcon()
 
-      }else{
+      } 
         this.setData({
           userInfo: res.userInfo,
         })
           
-      } 
+     
         
        
     }
