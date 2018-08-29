@@ -91,7 +91,15 @@ Page({
     // wx.showLoading({
     //   title: '加载中',
     // })
+    if (app.globalData.idda) {
+      this.setData({
+        idda: app.globalData.idda,
+        hasUserInfo: true
+      })
 
+      this.jlcon()
+
+    }
     app.userInfoReadyCallback = res => {
       console.log(res)
       
@@ -210,7 +218,7 @@ Page({
           } else if (fenzhong > 0) {
             res.data.theme[i].add_time = fenzhong + '分钟前'
           } else if (miao < 0) {
-          //  res.data.comment[i].time = 1 + '秒前'
+            res.data.theme[i].time = 1 + '秒前'
 
           } else {
             res.data.theme[i].add_time = miao + '秒前'

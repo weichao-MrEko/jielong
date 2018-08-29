@@ -54,8 +54,10 @@
       <view class='tou-jiaoy'>{{item.theme_name}}
         <text style='color:red' wx:if='{{item.btw_price != 0.00}}'>￥{{item.btw_price}}</text>
         <view class='tubox'>
-          <view wx:for='{{item.theme_img}}' class='tupian'>
-            <image src="{{turl}}{{item.img_path}}" mode='aspectFill'></image>
+
+          <view wx:for='{{item.theme_img}}'  wx:if="{{item.img_path}}"  class='tupian'>
+          
+            <image  src="{{turl}}{{item.img_path}}" mode='aspectFill'></image>
           </view>
         </view>
         <view class='tubox'>
@@ -72,7 +74,10 @@
 
       <view class='tou-con-o'>
         <view class='tou-con-o-left'>{{item.kangou}}</view>
-        <view class='tou-con-o-right zhuangt'>{{item.zhuangtai}}</view>
+        <view class='tou-con-o-right zhuangt'>
+        
+        <text wx:if="{{item.status == 2}}">未发布</text>
+        {{item.zhuangtai}}</view>
       </view>
 
     </view>

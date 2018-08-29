@@ -2,6 +2,8 @@
   "pages": [
   
     "pages/index/index",
+    "pages/joinJlong/index",
+   
     "pages/baoming1/baoming1",
     "pages/comments/comments",
     "pages/huodong/huodong",
@@ -24,7 +26,7 @@
     "pages/shedidian/shedidian",
     "pages/kefu/kefu",
     "pages/as/as",
-    "pages/joinJlong/index",
+   
     "pages/adr/index",
     "pages/add_adr/index",
     "pages/tihuodian/tihuodian",  
