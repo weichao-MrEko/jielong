@@ -340,10 +340,10 @@ Page({
     var that = this
 
     that.findDrag(function(res){
-      var Y = new Date().getFullYear()
-      var M = new Date().getMonth() + 1
-      var D = new Date().getDate()
-      var Time = new Date().getTime()
+    var Y = new Date().getFullYear()
+    var M = new Date().getMonth() + 1
+    var D = new Date().getDate()
+    var Time = new Date().getTime() 
       if (res.data.theme_result.jl_type == 2) {
         Stime = new Date(Y + '-' + M + '-' + D + ' ' + that.data.xiangmu[0].start).getTime();
         Etime = new Date(Y + '-' + M + '-' + D + ' ' + that.data.xiangmu[0].end).getTime();

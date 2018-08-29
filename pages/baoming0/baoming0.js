@@ -309,8 +309,7 @@ Component({
           })
           wx.navigateTo({
 
-            url: '../huodong/huodong?id=' + res.data.theme_id + '&theme_uid=' + app.globalData.idda.uid+ '&uid=' + app.globalData.idda.uid
-
+            url: '../huodong/huodong?id=' + res.data.theme_id + '&theme_uid=' + app.globalData.idda.uid+ '&uid=' + app.globalData.idda.uid 
           })
         }
       
