@@ -28,17 +28,12 @@
       </view>
 
     </view>
-
-<<<<<<< HEAD
-    <view>
-
-=======
+ 
     <view  class='foot' bindtap='zhifu' hidden='{{!hzhifu}}'>
     <span>请先选择数量</span>
     </view>
     <view  class='foot' bindtap='zhifu' hidden='{{hzhifu}}'>
-    <span>马上支付￥{{summation.zongjiage}}</span>
->>>>>>> 8e464bf33229be1dbfb8b3a0ec6ad07d66594335
+    <span>马上支付￥{{summation.zongjiage}}</span> 
     </view>
 
     <view class='three' wx:if='{{summation.zongshu !== 0}}'>
