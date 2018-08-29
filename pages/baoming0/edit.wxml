@@ -36,7 +36,7 @@
     </view>
      <view class='xiongmu'>
       <text class='xiongmu-jl'>规格</text>
-      <input data-index="{{index}}" placeholder='尺寸、颜色等' type='number' bindinput='size' value='{{item.size_or_color}}'></input>
+      <input data-index="{{index}}" placeholder='尺寸、颜色等' type='text' bindinput='size' value='{{item.size_or_color}}'></input>
     </view>
     
     <view class='xiongmu'>

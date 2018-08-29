@@ -15,6 +15,7 @@
 </view>
 <!--接龙主题-->
 <zhuti id="zhuti" name='拼团' descont='{{descont}}' setPlnr='{{setPlnr}}'></zhuti>
+
 <!--接龙项目-->
 <view class='biaoti'>拼团商品</view>
 <view class='box'>
@@ -35,7 +36,7 @@
     </view>
      <view class='xiongmu'>
       <text class='xiongmu-jl'>规格</text>
-      <input data-index="{{index}}" placeholder='尺寸、颜色等' type='number' bindinput='size' value='{{item.size}}'></input>
+      <input data-index="{{index}}" placeholder='尺寸、颜色等' type='text' bindinput='size' value='{{item.size}}'></input>
     </view>
     
     <view class='xiongmu'>

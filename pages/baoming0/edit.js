@@ -234,7 +234,8 @@ Component({
     size: function (e) {
       let index = e.currentTarget.dataset.index
       console.log(index)
-      this.data.jieitem[index].size = e.detail.value
+      console.log(this.data.jieitem)
+      this.data.jieitem[index].size_or_color = e.detail.value
       this.setData({
         jieitem: this.data.jieitem
       })

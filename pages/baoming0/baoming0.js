@@ -304,10 +304,6 @@ Component({
           app.globalData.socket.send({
             data: app.globalData.idda.user_name + '发布了一个报名接龙'
           })
-
-
-
-
           wx.navigateTo({
             url: '../huodong/huodong?id=' + res.data.theme_id + '&uid=' + app.globalData.idda.uid
           })

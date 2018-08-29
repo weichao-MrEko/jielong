@@ -1,57 +1,87 @@
 <view class='contain'>
-    <view hidden='{{hid}}'>
-        <view  class="onebox bg" bindtap='adr' wx:if='{{adr_panduan}}'>
-              <image class='one_img' src='../img/bule_map.png'></image>
-              <view class='one_v1' wx:if='{{address}}'>
-                    <view >收货人：{{address.name}}，{{address.phone}}</view>
-                    <view class='one_v2'>{{address.area}}{{address.address}}</view>
-              </view>
-              <view class='one_v1' wx:else>请填入收货人信息</view>
-              <image class='one_img2' src='../img/icon_jl.png'></image>
-        </view>
-        <view>
-          <input wx:for='{{self_info}}' wx:key="unique" class='twosty bg' type='text' placeholder='{{item.name}}' value='{{item.value}}' bindinput='binddata' data-id='{{index}}'></input>
-        </view>
-       
-        <view class='two_v1' style=""> 
-              <view class='two_v1_v1'>请选择您的接龙</view>
-              <view class='two_v1_v2' wx:for='{{item_info}}'>
-                    <view class='two_v1_v2_v1'>{{item.item_name}}</view>
-                    <view class='twobox'>
-                          <view class='tb_v1'>￥{{item.price}}</view>
-                          <view class='tb_v2'>
-                          <view class="{{color == true ? 'tb_v3' : 'tb_v5'}}" bindtap='reduce' data-id='{{index}}'>-</view>
-                          <view class='tb_v4'>{{item.may_amount}}</view>
-                          <view bindtap='add' class='tb_v5' data-id='{{index}}'>+</view>
-                          </view>
-                    </view>
-              </view>
-              
-        </view>
-
-        <view class='three' wx:if='{{summation.zongshu !== 0}}'>
-              <view class='three_v1'
-              wx:for='{{item_info}}'
-              wx:if='{{item.may_amount !==0}}'
-               bindtop="{{num<=0?'changcolor1':'changcolor2'}}">
-              {{item.item_name}}+{{item.may_amount}}</view>
-              <view class='twobox'>
-                    <view class='three_v2_v1' >
-                    已选{{summation.zongshu}}件：<span>￥{{summation.zongjiage}}</span></view>
-                    <view class='three_v2_v2' bindtap='tesu'><image  src="../img/bi.png"></image>填写备注</view>
-              </view>
-              <view class='bg three_v3'hidden='{{tesu}}'>
-                    <textarea class='bg totop'  type='text' placeholder='这里填写你的特殊要求！' bindinput='beizhu'></textarea>
-              </view>
-        </view>
+  <view hidden='{{hid}}'>
+    <view class="onebox bg" bindtap='adr' wx:if='{{adr_panduan}}'>
+      <image class='one_img' src='../img/bule_map.png'></image>
+      <view class='one_v1' wx:if='{{address}}'>
+        <view>收货人：{{address.name}}，{{address.phone}}</view>
+        <view class='one_v2'>{{address.area}}{{address.address}}</view>
+      </view>
+      <view class='one_v1' wx:else>请填入收货人信息</view>
+      <image class='one_img2' src='../img/icon_jl.png'></image>
     </view>
+    <view>
+      <input wx:for='{{self_info}}' wx:key="unique" class='twosty bg' type='text' placeholder='{{item.name}}' value='{{item.value}}' bindinput='binddata' data-id='{{index}}'></input>
+    </view>
+
+    <view class='two_v1' style="">
+      <view class='two_v1_v1'>请选择您的接龙</view>
+      <view class='two_v1_v2' wx:for='{{item_info}}'>
+        <view class='two_v1_v2_v1'>{{item.item_name}}</view>
+        <view class='twobox'>
+          <view class='tb_v1'>￥{{item.price}}</view>
+          <view class='tb_v2'>
+            <view class="{{color == true ? 'tb_v3' : 'tb_v5'}}" bindtap='reduce' data-id='{{index}}'>-</view>
+            <view class='tb_v4'>{{item.may_amount}}</view>
+            <view bindtap='add' class='tb_v5' data-id='{{index}}'>+</view>
+          </view>
+        </view>
+      </view>
+
+    </view>
+
+    <view>
+
+    </view>
+
+    <view class='three' wx:if='{{summation.zongshu !== 0}}'>
+      <view class='three_v1' wx:for='{{item_info}}' wx:if='{{item.may_amount !==0}}' bindtop="{{num<=0?'changcolor1':'changcolor2'}}">
+        {{item.item_name}}+{{item.may_amount}}</view>
+      <view class='twobox'>
+        <view class='three_v2_v1'>
+          已选{{summation.zongshu}}件：
+          <span>￥{{summation.zongjiage}}</span>
+        </view>
+        <view class='three_v2_v2' bindtap='tesu'>
+          <image src="../img/bi.png"></image>填写备注</view>
+      </view>
+      <view class='bg three_v3' hidden='{{tesu}}'>
+        <textarea class='bg totop' type='text' placeholder='这里填写你的特殊要求！' bindinput='beizhu'></textarea>
+      </view>
+    </view>
+  </view>
+  <!--上传图片-->
+  <view hidden='{{true}}'>
+    <view class='tupian-pai'>
+      <view class='paizhao' wx:for="{{pushurl}}" wx:if='{{item.pic !== "" || item.video !== ""}}' wx:key='k' data-index="{{index}}">
+        <view class='gdel' data-index="{{index}}" bindtap='infodel'>×</view>
+        <image wx:if='{{item.pic !== ""}}' src="{{item.pic}}" data-index='{{index}}' mode='aspectFill' bindtap='tup'></image>
+        <video wx:if='{{item.video !== ""}}' src="{{item.video}}" id='sps' show-progress='false' direction='0' objectFit='cover' bindtap='ship' data-index='{{index}}'>
+          <cover-image></cover-image>
+        </video>
+      </view>
+      <view class='paizhao' bindtap='box' data-id="{{index}}">
+        <image src='../../pages/img/paizhao.png'></image>
+      </view>
+    </view>
+  </view>
+  <!--语音-->
+  <view class='yuyin' bindtap='luyin' hidden='{{luyin}}'>
+    <view class='yuyin_logo'>
+      <image src='../img/yuyin.png'></image>
+    </view>
+    <view>点击录制</view>
+  </view>
+  <view class='luyin_zhong' hidden='{{luzhi}}'>
+    <view bindtap='luyinDel'>x</view>
+    <view bindtap='luyinstart'><image src='../img/luzhi.png'></image></view>
+    <view bindtap='luyinend'><image src='../img/zanting.png'></image></view>
+    <view bindtap='luyinbofang'><image src='../img/bofang.png'></image></view>
+  </view>
 </view>
 
-    <view  class='foot' bindtap='zhifu' hidden='{{hzhifu}}'>
-    <span>马上支付￥{{summation.zongjiage}}</span>
-    </view>
-     <view  class='foot' hidden='{{hqueren}}' bindtap='queren'>
-       <span>确认接龙</span>
-    </view>
-    
-    
+<view class='foot' bindtap='zhifu' hidden='{{hzhifu}}'>
+  <span>马上支付￥{{summation.zongjiage}}</span>
+</view>
+<view class='foot' hidden='{{hqueren}}' bindtap='queren'>
+  <span>确认接龙</span>
+</view>
