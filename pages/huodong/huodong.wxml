@@ -108,8 +108,46 @@
         <view>我的凭证</view>
       </view>
     </view>
-
-     
+    <!--上传图片-->
+  <view hidden='{{hidtuyin}}'>
+    <view class='tupian-pai'>
+      <view class='paizhao' bindtap='box' data-id="{{index}}">
+        <image src='../../pages/img/xpaizhao.png'></image>
+      </view>
+       <!--语音-->
+  <view class='paizhao' bindtap='luyin' hidden='{{luyin}}'>
+    <view class='yuyin_logo'>
+      <image src='../img/yuyin.png'></image>
+    </view>
+    
+  </view>
+  <view class='luyin_zhong' hidden='{{luzhi}}'>
+    <view bindtap='luyinDel'>x</view>
+    <view>{{timekeeping}}”</view>
+    <view bindtap='luyinstart' hidden='{{lustart}}'><image src='../img/luzhi.png'></image></view>
+    <view bindtap='luyinzantin' hidden='{{luzantin}}'><image src='../img/zanting.png'></image></view>
+    <view bindtap='luyinend'><view class='luyinend'>完成</view></view>
+    <view bindtap='luyinbofang' hidden='{{true}}'><image src='../img/bofang.png'></image></view>
+  </view>
+  <!-- 录音完成之后 -->
+   <view class='luyin_zhong' hidden='{{luzhiwan}}'>
+       <view bindtap='luyinDel'>x</view>
+       <view>{{Daotimekeeping}}”</view>
+        <view bindtap='luyinbofang' hidden='{{hibo}}'><image src='../img/bofang.png'></image></view>
+        <view bindtap='zanyin' hidden='{{hizan}}'><image src='../img/zanting.png'></image></view>
+   </view>
+    
+   <view class='paizhao' wx:for="{{pushurl}}" wx:if='{{item.pic !== "" || item.video !== ""}}' wx:key='k' data-index="{{index}}">
+        <view class='gdel' data-index="{{index}}" bindtap='infodel'>×</view>
+        <image wx:if='{{item.pic !== ""}}' src="{{item.pic}}" data-index='{{index}}' mode='aspectFill' bindtap='tup'></image>
+        <video wx:if='{{item.video !== ""}}' src="{{item.video}}" id='sps' show-progress='false' direction='0' objectFit='cover' bindtap='ship' data-index='{{index}}'>
+          <cover-image></cover-image>
+        </video>
+      </view>
+    </view>
+  </view>
+ 
+     <!--参与按钮  -->
     <button wx:if="{{theme.status == 1}}" class='{{btn}}' bindtap='joinjl'>{{apply}}</button>
     <button wx:if="{{theme.status == 2 && !guanli}}" class='buwoyao' bindtap='edit'>未发布，返回修改</button>
     <button wx:if="{{theme.status == 2 && guanli}}" class='buwoyao'>未发布</button>

@@ -1,6 +1,9 @@
 // pages/huodong/huodong.js
 const app = getApp();
+const recorderManager = wx.getRecorderManager();
+const innerAudioContext = wx.createInnerAudioContext();
 var time = null,
+  yintime = null,
   Time, Stime, Etime, Daojitime = null;
 Page({
 
@@ -22,7 +25,7 @@ Page({
     baomingren: '',
     btn: 'woyao',
     apply: '我要接龙',
-    shangpin:true,
+    shangpin: true,
     maxtime: "",
     isHiddenLoading: true,
     isHiddenToast: true,
@@ -31,7 +34,17 @@ Page({
     countDownHour: 0,
     countDownMinute: 0,
     countDownSecond: 0,
-    guanli: true
+    guanli: true,
+    luyin: false,
+    luzhi: true,
+    pushurl: [],
+    hidtuyin: true,
+    lustart: true,
+    luzantin: false,
+    luzhiwan: true,
+    timekeeping: 0,
+    hibo: true,
+    hizan: true,
   },
 
   /**
@@ -100,8 +113,8 @@ Page({
         user_id: app.globalData.idda.uid,
         theme_id: options.id
       },
-      success: function () {
-        console.log(21321232132)
+      success: function() {
+
       }
     })
     app.globalData.socket.send({
@@ -157,7 +170,23 @@ Page({
   },
   joinjl: function() {
     var that = this
-    if (that.data.btn == 'woyao') {
+    var jl_type = that.data.jl_type
+    if (jl_type == 2) {
+      wx.request({
+        url: app.globalData.urlPrefix + 'Joinjl/qrjl',
+        data: {
+          user_id: app.globalData.idda.uid,
+          item: that.data.item_info, //项目
+          luyin:that.data.luysrc,
+          dakatup:that.data.pushurl
+         
+        },
+        success: function (res) {
+         console.log(res)
+        }
+        })
+    }
+    if (jl_type == 0 || jl_type == 1 || jl_type == 3 || jl_type == 4 || jl_type == 5) {
       wx.navigateTo({
         url: '../joinJlong/index?theme_id=' + that.data.theme_id + '&user_id=' + that.data.user_id
       })
@@ -198,7 +227,8 @@ Page({
         };
         if (res.data.theme_result.jl_type == 2) {
           that.setData({
-            apply: '我要打卡'
+            apply: '我要打卡',
+            hidtuyin: false
           })
         }
         if (res.data.theme_result.jl_type == 3) {
@@ -212,12 +242,12 @@ Page({
         } else if (res.data.theme_result.jl_type == 4) {
 
           that.setData({
-            shangpin:false,
+            shangpin: false,
             xiangmu: that.data.xiangmu,
             apply: '我要拼团'
           })
         }
-
+        //判断是否已参与接龙
         for (var y = 0; y < res.data.all_ord.length; y++) {
           if (res.data.all_ord[y].user_id == app.globalData.idda.uid) {
             if (res.data.all_ord[y].status > 0) {
@@ -233,8 +263,8 @@ Page({
         }
 
         for (var i = 0; i < res.data.item_result.length; i++) {
-          if (res.data.item_result[i].p_goods_img){
-          res.data.item_result[i].p_goods_img = JSON.parse(res.data.item_result[i].p_goods_img)
+          if (res.data.item_result[i].p_goods_img) {
+            res.data.item_result[i].p_goods_img = JSON.parse(res.data.item_result[i].p_goods_img)
           }
         }
         console.log(res.data.item_result)
@@ -243,6 +273,7 @@ Page({
           itimg: that.data.itimg,
           theme: res.data.theme_result,
           map: that.data.map,
+          jl_type: res.data.theme_result.jl_type
         })
         that.FabuTime()
         setTimeout(function() {
@@ -254,27 +285,27 @@ Page({
     })
   },
   //商品减号
-  spjian:function(e){
-    var i=e.currentTarget.dataset.id
-    if (this.data.xiangmu[i].may_amount>0){
+  spjian: function(e) {
+    var i = e.currentTarget.dataset.id
+    if (this.data.xiangmu[i].may_amount > 0) {
       this.data.xiangmu[i].may_amount--
-      this.setData({
-        xiangmu: this.data.xiangmu
-      })
+        this.setData({
+          xiangmu: this.data.xiangmu
+        })
     }
-   
+
   },
   //商品加号
-  spjia:function(e){
+  spjia: function(e) {
     var i = e.currentTarget.dataset.id
     if (this.data.xiangmu[i].may_amount < this.data.xiangmu[i].amount) {
-    this.data.xiangmu[i].may_amount++
-      this.setData({
-        xiangmu:this.data.xiangmu
-      })
+      this.data.xiangmu[i].may_amount++
+        this.setData({
+          xiangmu: this.data.xiangmu
+        })
     }
-      console.log(this.data.xiangmu)
-    
+    console.log(this.data.xiangmu)
+
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -291,10 +322,14 @@ Page({
   onShow: function() {
     var that = this
 
+<<<<<<< HEAD
     that.findDrag(function(res){
       var Y = new Date().getFullYear()
       var M = new Date().getMonth() + 1
       var D = new Date().getDate()
+=======
+    that.findDrag(function(res) {
+>>>>>>> b0aff6a004357a500391990b58607f363ebdf544
       if (res.data.theme_result.jl_type == 2) {
         Stime = new Date(Y + '-' + M + '-' + D + ' ' + that.data.xiangmu[0].start).getTime();
         Etime = new Date(Y + '-' + M + '-' + D + ' ' + that.data.xiangmu[0].end).getTime();
@@ -306,9 +341,9 @@ Page({
       }
     })
 
-   // that.FabuTime()
- 
-  
+    // that.FabuTime()
+
+
 
   },
   Daojis: function() {
@@ -376,6 +411,132 @@ Page({
     }, 1000)
 
 
+  },
+  //录音
+  luyin: function() {
+    this.setData({
+      luyin: true,
+      luzhi: false
+    })
+    recorderManager.start({
+      format: 'mp3' // 如果录制acc类型音频则改成aac
+    });
+    this.luyintime()
+  },
+  luyinstart: function() {
+    this.luyintime()
+    this.setData({
+      lustart: true,
+      luzantin: false
+    })
+    recorderManager.resume();
+  },
+  luyinzantin: function() {
+    clearInterval(yintime)
+    this.setData({
+      lustart: false,
+      luzantin: true
+    })
+    recorderManager.pause()
+  },
+  luyinend: function() {
+    var that = this
+    clearInterval(yintime)
+    recorderManager.stop()
+    recorderManager.onStop(function(res) {
+      wx.showLoading({
+        title: '上传中',
+      })
+
+      wx.uploadFile({
+        url: app.globalData.urlPrefix + 'signup/uploadImg',
+        filePath: res.tempFilePath,
+        name: 'image',
+        formData: {
+          'user': 'test'
+        },
+        success: function(res) {
+          //var data=res.data
+          console.log(1)
+
+          that.setData({
+            luysrc: JSON.parse(res.data).imgPath,
+            luzhiwan: false,
+            luzhi: true,
+            hibo: false,
+            hizan: true,
+            Daotimekeeping: that.data.timekeeping
+          })
+          setTimeout(function() {
+            wx.hideLoading()
+          }, 800)
+        }
+      })
+
+
+    });
+  },
+  luyinbofang: function() {
+
+    innerAudioContext.src = app.globalData.urlfix + this.data.luysrc;
+    console.log(innerAudioContext.src)
+    innerAudioContext.play()
+    this.luyindaotime()
+    this.setData({
+      hibo: true,
+      hizan: false,
+    })
+  },
+  //暂停播放
+  zanyin: function() {
+    innerAudioContext.src = this.data.luysrc;
+    innerAudioContext.pause()
+    this.setData({
+      hibo: false,
+      hizan: true,
+    })
+    clearInterval(yintime)
+  },
+  //录音删除
+  luyinDel: function() {
+    recorderManager.stop()
+    this.setData({
+      luyin: false,
+      luzhi: true,
+      luysrc: '',
+      timekeeping: 0,
+      luzhiwan: true
+    })
+  },
+  //计时
+  luyintime: function(e) {
+    var that = this
+    yintime = setInterval(function() {
+
+      that.setData({
+        timekeeping: ++that.data.timekeeping
+      })
+    }, 1000)
+  },
+  //倒计时
+  luyindaotime: function(e) {
+    var that = this
+    var huifu = that.data.Daotimekeeping
+    yintime = setInterval(function() {
+      if (that.data.Daotimekeeping >= 1) {
+        that.setData({
+          Daotimekeeping: --that.data.Daotimekeeping
+        })
+      } else {
+        clearInterval(yintime)
+        that.setData({
+          Daotimekeeping: that.data.timekeeping,
+          hibo: false,
+          hizan: true
+        })
+      }
+
+    }, 1000)
   },
   /**
    * 生命周期函数--监听页面隐藏
@@ -457,7 +618,248 @@ Page({
     })
     wx.stopPullDownRefresh()
   },
+  // 上传图片
+  box: function(e) {
+    var that = this;
+    var uppimg = [];
+    console.log(e)
+    wx.showActionSheet({
+      itemList: ['图片', '视频'],
+      success: function(res) {
+        if (res.tapIndex === 0) {
+          wx.chooseImage({
+            sourceType: ['album', 'camera'],
+            success: function(res) {
+              var tempFilePaths = res.tempFilePaths
+              console.log(that.data.pushurl)
 
+              /*for (var i in tempFilePaths) {
+                tempFilePaths.push(tempFilePaths[i])
+              }*/
+              for (var j in tempFilePaths) {
+                var index1 = tempFilePaths[j].lastIndexOf(".");
+                var index2 = tempFilePaths[j].length;
+                var postf = tempFilePaths[j].substring(index1, index2);
+                console.log(postf)
+                if (postf == ".jpg" || postf == '.png') {
+                  var gg = that.data.pushurl
+
+                  gg.push({
+                    pic: tempFilePaths[j],
+                    video: ''
+                  })
+                  that.setData({
+                    pushurl: gg
+                  })
+                }
+              }
+              wx.showLoading({
+                title: '上传中',
+              })
+
+              for (var i = 0; i < gg.length; i++) {
+                console.log(gg[i].pic)
+                wx.uploadFile({
+                  url: app.globalData.urlPrefix + 'signup/uploadImg',
+                  filePath: gg[i].pic,
+                  name: 'image',
+                  formData: {
+                    'user': 'test'
+                  },
+                  success: function(res) {
+                    //var data=res.data
+                    console.log(res)
+                    uppimg.push(JSON.parse(res.data).imgPath)
+
+                    that.setData({
+                      upimg: uppimg,
+
+                    })
+                    setTimeout(function() {
+                      wx.hideLoading()
+                    }, 800)
+                  }
+                })
+              }
+
+            },
+          })
+          console.log(that.data.pushurl)
+        } else if (res.tapIndex === 1) {
+          wx.chooseVideo({
+            sourceType: ['album', 'camera'],
+            maxDuration: 60,
+            camera: 'back',
+            success: function(res) {
+              console.log(res.tempFilePath)
+              var tempFilePaths = res.tempFilePath.split()
+              var ovsrc = that.data.pushurl
+
+              for (var j in tempFilePaths) {
+                var index1 = tempFilePaths[j].lastIndexOf(".");
+                var index2 = tempFilePaths[j].length;
+                var postf = tempFilePaths[j].substring(index1, index2);
+                console.log(postf)
+
+                if (postf == ".mp4") {
+
+                  var gg = that.data.pushurl
+                  gg.push({
+                    pic: '',
+                    video: tempFilePaths[j]
+                  })
+
+                  that.setData({
+                    pushurl: gg
+                  })
+
+                }
+
+
+              }
+              console.log(that.data.pushurl)
+              for (var i = 0; i < gg.length; i++) {
+                console.log(gg[i].video)
+                wx.uploadFile({
+                  url: app.globalData.urlPrefix + 'signup/uploadImg',
+                  filePath: gg[i].video,
+                  name: 'image',
+                  formData: {
+                    'user': 'test'
+                  },
+                  success: function(res) {
+                    //var data=res.data
+                    console.log(res)
+                  }
+                })
+              }
+            }
+          })
+        }
+      }
+    })
+
+  },
+  infodel: function(ev) {
+    let index = ev.currentTarget.dataset.index;
+    let Img = this.data.pushurl;
+    Img.splice(index, 1)
+
+    this.setData({
+      pushurl: Img
+    })
+  },
+  tup: function(e) {
+    let ind = e.currentTarget.dataset.index
+    var that = this
+    console.log(ind)
+    wx.showActionSheet({
+      itemList: ["替换图片", "替换成视频", "删除"],
+      success: function(res) {
+        if (res.tapIndex == 0) {
+          wx.chooseImage({
+            sourceType: ['album'],
+            count: '1',
+            success: function(res) {
+              console.log(ind)
+              var tempFilePaths = res.tempFilePaths
+              var aa = that.data.pushurl
+              aa.splice(ind, 1, {
+                pic: tempFilePaths,
+                video: ''
+              })
+              that.setData({
+                pushurl: aa
+              })
+            }
+          })
+        } else if (res.tapIndex == 1) {
+          wx.chooseVideo({
+            sourceType: ['album', 'camera'],
+            maxDuration: 60,
+            camera: 'back',
+            success: function(res) {
+              var tempFilePaths = res.tempFilePath
+              console.log(res)
+              var aa = that.data.pushurl
+              aa.splice(ind, 1, {
+                pic: '',
+                video: tempFilePaths
+              })
+              that.setData({
+                pushurl: aa
+              })
+            }
+          })
+        } else if (res.tapIndex == 2) {
+          let aa = that.data.pushurl
+          aa.splice(ind, 1)
+          that.setData({
+            pushurl: aa
+          })
+        }
+      }
+    })
+  },
+  ship: function(e) {
+    e.vioos = wx.createVideoContext('sps')
+    let ind = e.currentTarget.dataset.index
+    var that = this
+    console.log(ind)
+    wx.showActionSheet({
+      itemList: ['播放', '替换视频', '替换成图片', '删除'],
+      success: function(res) {
+        if (res.tapIndex == 0) {
+          e.vioos.play({})
+          e.vioos.requestFullScreen({})
+        } else if (res.tapIndex === 1) {
+          wx.chooseVideo({
+            sourceType: ['album', 'camera'],
+            maxDuration: 60,
+            camera: 'back',
+            success: function(res) {
+              console.log(res.tempFilePath)
+              var tempFilePaths = res.tempFilePath.split()
+              var vsrc = that.data.pushurl
+              vsrc.splice(ind, 1, {
+                pic: '',
+                video: tempFilePaths
+              })
+
+
+              that.setData({
+                pushurl: vsrc
+              })
+              console.log(that.data.src.length)
+            }
+          })
+        } else if (res.tapIndex == 2) {
+          wx.chooseImage({
+            sourceType: ['album', 'camera'],
+            count: '1',
+            success: function(res) {
+              console.log(ind)
+              var tempFilePaths = res.tempFilePaths
+              var aa = that.data.pushurl
+              aa.splice(ind, 1, {
+                pic: tempFilePaths,
+                video: ''
+              })
+              that.setData({
+                pushurl: aa
+              })
+            }
+          })
+        } else if (res.tapIndex == 3) {
+          let vos = that.data.pushurl;
+          vos.splice(ind, 1)
+          that.setData({
+            pushurl: vos
+          })
+        }
+      }
+    })
+  },
   /**
    * 页面上拉触底事件的处理函数
    */
