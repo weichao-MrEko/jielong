@@ -263,9 +263,6 @@ Page({
 
     }
     else {
-         // 2 是预览 ；1 是发布
-        let status = ev.detail.formId == undefined ? 2:1;
-
       wx.request({
         url: app.globalData.urlPrefix + 'signup/saveInfo',
         data: {
@@ -278,7 +275,6 @@ Page({
           user_name: app.globalData.userInfo.nickName,
           servPhone: this.data.shant,//电话
           address: app.globalData.map,
-          status,
           actor_info: thgt.data.heti,
           start_time: this.data.startime,
           end_time: this.data.endtime,
@@ -292,7 +288,7 @@ Page({
           })
           console.log(res.data)
           wx.navigateTo({
-            url: '../huodong/huodong?id=' + res.data.theme_id + '&uid=' + app.globalData.idda.uid  + '&theme_uid=' + app.globalData.idda.uid
+            url: '../huodong/huodong?id=' + res.data.theme_id + '&uid=' + app.globalData.idda.uid
           })
         }
 
