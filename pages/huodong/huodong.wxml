@@ -163,7 +163,7 @@
   </view>
   <view class='column'>
     <view class='font'>0</view>
-    <view class='kzi'>凭证管理</view>
+    <view class='kzi' bindtap='pzManagement'>凭证管理</view>
   </view>
   <view class='column' bindtap='renlaig'>
     <view class='font'>{{people}}</view>

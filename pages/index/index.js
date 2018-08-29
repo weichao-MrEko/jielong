@@ -164,7 +164,7 @@ Page({
   },
   getUserInfo: function(e) {
     console.log(44)
-    //this.jlcon()
+    // this.jlcon()
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
