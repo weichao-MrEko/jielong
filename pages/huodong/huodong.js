@@ -339,21 +339,11 @@ Page({
   onShow: function() {
     var that = this
 
-<<<<<<< HEAD
-    var Y = new Date().getFullYear()
-    var M = new Date().getMonth() + 1
-    var D = new Date().getDate()
-    var Time = new Date().getTime()
-=======
-<<<<<<< HEAD
     that.findDrag(function(res){
       var Y = new Date().getFullYear()
       var M = new Date().getMonth() + 1
       var D = new Date().getDate()
-=======
->>>>>>> 6f6ba1f5d5e84a8ed0a2cf69d6d84a2ebd359b1c
-    that.findDrag(function(res) {
->>>>>>> b0aff6a004357a500391990b58607f363ebdf544
+      var Time = new Date().getTime()
       if (res.data.theme_result.jl_type == 2) {
         Stime = new Date(Y + '-' + M + '-' + D + ' ' + that.data.xiangmu[0].start).getTime();
         Etime = new Date(Y + '-' + M + '-' + D + ' ' + that.data.xiangmu[0].end).getTime();
