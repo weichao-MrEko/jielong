@@ -258,6 +258,8 @@ Component({
 
       }
       else {
+        // 2 是预览 ；1 是发布
+        let status = ev.detail.formId == undefined ? 2:1;
       wx.request({
         url: app.globalData.urlPrefix + 'signup/saveInfo',
         data:{
@@ -272,7 +274,8 @@ Component({
           address: app.globalData.map,
           actor_info: thgt.data.heti,
           start_time: this.data.startime,
-          end_time:this.data.endtime
+          end_time:this.data.endtime,
+          status:status
         },
         
         success:(res)=>{
@@ -305,7 +308,7 @@ Component({
             data: app.globalData.idda.user_name + '发布了一个报名接龙'
           })
           wx.navigateTo({
-            url: '../huodong/huodong?id=' + res.data.theme_id + '&uid=' + app.globalData.idda.uid
+            url: '../huodong/huodong?id=' + res.data.theme_id + '&theme_uid=' + app.globalData.idda.uid+ '&uid=' + app.globalData.idda.uid
           })
         }
       
@@ -536,54 +539,7 @@ Component({
       }
     },
 
-    save(ev) {
- 
-      var thgt = this;
-      thgt.data.heti = { gong: thgt.data.Fill, bugong: thgt.data.kill, bugongs: thgt.data.gill }
-      console.log(thgt.data.heti)
-
-
-      var num = 10;
-      if (thgt.zhuti.data.setPlnr == "" || thgt.zhuti.data.setPlnr == undefined) {
-        thgt.setData({ dored: false })
-        timer = setTimeout(function () {
-          num--;
-          thgt.setData({ dored: true })
-        }, 2000)
-
-      }
-      else {
-        wx.request({
-          url: app.globalData.urlPrefix + 'signup/saveInfo',
-          data: {
-            user_id: app.globalData.idda.uid,
-            dragonTheme: this.zhuti.data.setPlnr,
-            item: this.data.jieitem,
-            img_path: this.zhuti.data.upimg,
-            descInfo: this.zhuti.data.descont,
-            user_img: app.globalData.userInfo.avatarUrl,
-            user_name: app.globalData.userInfo.nickName,
-            servPhone: this.data.shant,//电话
-            address: app.globalData.map,
-            actor_info: thgt.data.heti,
-            start_time: this.data.startime,
-            end_time: this.data.endtime,
-            status:2
-          },
-
-          success: (res) => {
-            console.log(res.data)
-
-            wx.navigateTo({
-              url: '../huodong/huodong?id=' + res.data.theme_id + '&uid=' + app.globalData.idda.uid + '&theme_uid=' + app.globalData.idda.uid
-            })
-          }
-
-
-        })
-      }
-
-    },
+   
     
   }
 })
