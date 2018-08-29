@@ -122,6 +122,11 @@ Page({
     })
 
   },
+  pzManagement:function(){
+    wx.navigateTo({
+      url: '../pzManagement/pzManagement?theme_id=' + this.data.theme_id + '&user_id=' + this.data.user_id
+    })
+  },
   FabuTime: function() {
     console.log(this.data.theme)
     var Time = new Date().getTime()

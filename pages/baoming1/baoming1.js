@@ -323,6 +323,8 @@ Component({
 
       }
       else {
+          // 2 是预览 ；1 是发布
+        let status = ev.detail.formId == undefined ? 2:1;
         wx.request({
           url: app.globalData.urlPrefix + 'signup/saveInfo',
           data: {
@@ -340,6 +342,7 @@ Component({
             end_time: thgt.data.endtime,
             shangpintu: app.globalData.img,
             wuliu: app.globalData.wuliufs,//物流方式
+            status,
             jl_type: 1
           },
 
@@ -348,7 +351,7 @@ Component({
               data: app.globalData.idda.user_name + '发布了一个团购接龙'
             })
             wx.navigateTo({
-              url: '../huodong/huodong?id=' + res.data.theme_id + '&uid=' + app.globalData.idda.uid
+              url: '../huodong/huodong?id=' + res.data.theme_id + '&uid=' + app.globalData.idda.uid + '&theme_uid=' + app.globalData.idda.uid
             })
           }
 

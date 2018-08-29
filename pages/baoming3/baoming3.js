@@ -321,6 +321,9 @@ Component({
 
       }
       else {
+           // 2 是预览 ；1 是发布
+        let status = ev.detail.formId == undefined ? 2:1;
+
       wx.request({
         url: app.globalData.urlPrefix + 'signup/saveInfo',
         data:{
@@ -332,6 +335,7 @@ Component({
           user_img: app.globalData.userInfo.avatarUrl,//
           user_name: app.globalData.userInfo.nickName,//
           servPhone: thgt.data.shant,//电话
+          status,
           address: app.globalData.map,//
          /* actor_info: thgt.data.heti,*/
           way:app.globalData.way,//拼团方式的类型
@@ -349,7 +353,7 @@ Component({
             data: app.globalData.idda.user_name + '发布了一个拼团接龙'
           })
             wx.navigateTo({
-              url: '../huodong/huodong?id=' + res.data.theme_id + '&uid=' + app.globalData.idda.uid
+              url: '../huodong/huodong?id=' + res.data.theme_id + '&uid=' + app.globalData.idda.uid+ '&theme_uid=' + app.globalData.idda.uid
             })
           }
        
