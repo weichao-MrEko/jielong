@@ -308,11 +308,9 @@ Component({
             data: app.globalData.idda.user_name + '发布了一个报名接龙'
           })
           wx.navigateTo({
-<<<<<<< HEAD
-            url: '../huodong/huodong?id=' + res.data.theme_id + '&uid=' + app.globalData.idda.uid+'&theme_uid='+app.globalData.idda.uid
-=======
+
             url: '../huodong/huodong?id=' + res.data.theme_id + '&theme_uid=' + app.globalData.idda.uid+ '&uid=' + app.globalData.idda.uid
->>>>>>> 1a103c775824031b09b452e3b26b4c81bc893721
+
           })
         }
       

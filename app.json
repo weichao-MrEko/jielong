@@ -1,6 +1,5 @@
 {
   "pages": [
-  
     "pages/index/index",
     "pages/joinJlong/index",
    
@@ -29,9 +28,7 @@
    
     "pages/adr/index",
     "pages/add_adr/index",
-    "pages/tihuodian/tihuodian",  
-    "pages/pzManagement/pzManagement"
-    
+    "pages/tihuodian/tihuodian"
   ],
   "window": {
     "backgroundTextStyle": "light",

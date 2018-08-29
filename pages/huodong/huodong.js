@@ -122,7 +122,7 @@ Page({
     })
 
   },
-  pzManagement:function(){
+  pzManagement: function() {
     wx.navigateTo({
       url: '../pzManagement/pzManagement?theme_id=' + this.data.theme_id + '&user_id=' + this.data.user_id
     })
@@ -172,19 +172,26 @@ Page({
     var that = this
     var jl_type = that.data.jl_type
     if (jl_type == 2) {
+      if (that.data.theme.has_daka==1){
+      
+        return}
       wx.request({
-        url: app.globalData.urlPrefix + 'Joinjl/qrjl',
+        url: app.globalData.urlPrefix + 'smith/daka',
         data: {
           user_id: app.globalData.idda.uid,
-          item: that.data.item_info, //项目
-          luyin:that.data.luysrc,
-          dakatup:that.data.pushurl
-         
+          theme_id: that.data.theme_id, 
+          audio_path: that.data.luysrc,
+          other_path: that.data.upimg
+
         },
-        success: function (res) {
-         console.log(res)
+        success: function(res) {
+          wx.navigateTo({
+            url: '/pages/huodong/huodong?id=' + that.data.theme_id + '&uid=' + app.globalData.idda.uid + '&theme_uid=' + that.data.user_id
+            
+          })
+
         }
-        })
+      })
     }
     if (jl_type == 0 || jl_type == 1 || jl_type == 3 || jl_type == 4 || jl_type == 5) {
       wx.navigateTo({
@@ -226,10 +233,20 @@ Page({
           that.data.itimg = res.data.theme_imag
         };
         if (res.data.theme_result.jl_type == 2) {
-          that.setData({
-            apply: '我要打卡',
-            hidtuyin: false
-          })
+          if (res.data.theme_result.has_daka==1){
+            that.setData({
+              apply:'已打卡',
+              hidtuyin: false,
+              btn:'buwoyao',
+              hidtuyin:true
+            })
+          }else{
+            that.setData({
+              apply: '我要打卡',
+              hidtuyin: false
+            })
+          }
+         
         }
         if (res.data.theme_result.jl_type == 3) {
           that.setData({
@@ -322,13 +339,22 @@ Page({
   onShow: function() {
     var that = this
 
+    var Y = new Date().getFullYear()
+    var M = new Date().getMonth() + 1
+    var D = new Date().getDate()
+    var Time = new Date().getTime()
     that.findDrag(function(res) {
       if (res.data.theme_result.jl_type == 2) {
         Stime = new Date(Y + '-' + M + '-' + D + ' ' + that.data.xiangmu[0].start).getTime();
         Etime = new Date(Y + '-' + M + '-' + D + ' ' + that.data.xiangmu[0].end).getTime();
-        if (Time > Stime) {
+        
+        if (Time > Stime && Time < Etime) {
+          console.log(11)
+          clearInterval(Daojitime) 
           that.Dakat()
         } else {
+          console.log(22)
+          clearInterval(time)
           that.Daojis()
         }
       }
@@ -343,7 +369,7 @@ Page({
     var that = this
 
     Daojitime = setInterval(function() {
-
+    
       var Y = new Date().getFullYear()
       var M = new Date().getMonth() + 1
       var D = new Date().getDate()
@@ -368,14 +394,18 @@ Page({
       var second = Math.round(leave3 / 1000)
       var seconds = second.toString()
       if (hours == 0 && minutes == 0 && seconds == 0) {
-        this.Dakat()
+        that.Dakat()
       }
       leave--;
       console.log(leave)
       that.setData({
         countDownHour: hours + ':',
         countDownMinute: minutes + ':',
-        countDownSecond: seconds
+        countDownSecond: seconds,
+        apply: '打卡未开始',
+        hidtuyin: false,
+        btn: 'buwoyao',
+        hidtuyin: true
       })
     }, 1000)
   },
@@ -395,6 +425,7 @@ Page({
       })
       console.log(Dakatime)
       if (Dakatime <= 0) {
+        console.log(333)
         clearInterval(time)
         that.Daojis()
         that.setData({
@@ -535,16 +566,16 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function() {
-    console.log(12)
-    clearInterval(time);
-    clearInterval(Daojitime);
+    
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function() {
-
+    clearInterval(time);
+    clearInterval(Daojitime);
+    clearInterval(yintime)
   },
 
   /**
