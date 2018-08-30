@@ -120,6 +120,7 @@
  
 </view>
    
+
 <view class='fabu'>
   <view  class='yulan' bindtap='fajielong'>保存预览</view>
 <form name='pushMsgFm' style='width:50%;margin:0 auto;' report-submit="true" bindsubmit='fajielong'>

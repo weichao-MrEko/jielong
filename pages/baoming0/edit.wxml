@@ -121,6 +121,11 @@
 </view>
 
 </view>
+   <view class='newxm '>
+  <view class='xiongmu'>
+      <view class='new-xm' bindtap='newitem' >+新项目</view>
+  </view>
+</view>
 <view class='box' hidden='{{dakaitem}}'>
 <view class="longlong 
  wx:for='{{jieitem}}'   style='top:{{move.y}}px;'>
@@ -152,6 +157,7 @@
     </view>
 </view>
 </view>
+
 
 <view class='fabu'>
   <view  class='yulan' bindtap='fajielong'>保存预览</view>

@@ -25,7 +25,7 @@ Page({
     baomingren: '',
     btn: 'woyao',
     apply: '我要接龙',
-    shangpin: true,
+    shangpin:true,
     maxtime: "",
     isHiddenLoading: true,
     isHiddenToast: true,
@@ -239,7 +239,8 @@ Page({
           that.data.itimg = res.data.theme_imag
         };
         if (res.data.theme_result.jl_type == 2) {
-          if (res.data.theme_result.has_daka == 1) {
+
+          if (res.data.theme_result.has_daka==1){
             that.setData({
               apply: '已打卡',
               hidtuyin: false,
@@ -252,7 +253,6 @@ Page({
               hidtuyin: false
             })
           }
-
         }
         if (res.data.theme_result.jl_type == 3) {
           that.setData({
@@ -265,12 +265,11 @@ Page({
         } else if (res.data.theme_result.jl_type == 4) {
 
           that.setData({
-            shangpin: false,
+            shangpin:false,
             xiangmu: that.data.xiangmu,
             apply: '我要拼团'
           })
         }
-        //判断是否已参与接龙
         for (var y = 0; y < res.data.all_ord.length; y++) {
           if (res.data.all_ord[y].user_id == app.globalData.idda.uid) {
             if (res.data.all_ord[y].status > 0) {
@@ -286,6 +285,7 @@ Page({
         }
 
         for (var i = 0; i < res.data.item_result.length; i++) {
+
           if (res.data.item_result[i].p_goods_img) {
             res.data.item_result[i].p_goods_img = JSON.parse(res.data.item_result[i].p_goods_img)
           }
@@ -310,12 +310,12 @@ Page({
         setTimeout(function() {
           wx.hideLoading()
         }, 500)
-
         return callback(res)
       }
     })
   },
   //商品减号
+
   spjian: function(e) {
     var i = e.currentTarget.dataset.id
     if (this.data.xiangmu[i].may_amount > 0) {
@@ -354,11 +354,12 @@ Page({
   onShow: function() {
     var that = this
 
-    that.findDrag(function(res) {
-      var Y = new Date().getFullYear()
-      var M = new Date().getMonth() + 1
-      var D = new Date().getDate()
-      var Time = new Date().getTime()
+
+    that.findDrag(function(res){
+    var Y = new Date().getFullYear()
+    var M = new Date().getMonth() + 1
+    var D = new Date().getDate()
+    var Time = new Date().getTime() 
       if (res.data.theme_result.jl_type == 2) {
         Stime = new Date(Y + '-' + M + '-' + D + ' ' + that.data.xiangmu[0].start).getTime();
         Etime = new Date(Y + '-' + M + '-' + D + ' ' + that.data.xiangmu[0].end).getTime();
@@ -409,7 +410,7 @@ Page({
       var second = Math.round(leave3 / 1000)
       var seconds = second.toString()
       if (hours == 0 && minutes == 0 && seconds == 0) {
-        that.Dakat()
+        this.Dakat()
       }
       leave--;
       console.log(leave)
@@ -440,7 +441,6 @@ Page({
       })
       //   console.log(Dakatime)
       if (Dakatime <= 0) {
-        console.log(333)
         clearInterval(time)
         that.Daojis()
         that.setData({
@@ -593,7 +593,9 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function() {
-
+    console.log(12)
+    clearInterval(time);
+    clearInterval(Daojitime);
   },
 
   /**
@@ -643,6 +645,13 @@ Page({
     })
     wx.stopPullDownRefresh()
   },
+  // 凭证管理
+  pzManagement:function(){
+    wx.navigateTo({
+      url: '../pzManagement/pzManagement' + '?user_id=' + app.globalData.idda.uid + '&theme_id=' + this.data.theme_id,
+    })
+  },
+
   // 上传图片
   box: function(e) {
     var that = this;

@@ -2,10 +2,11 @@
 
 <view class='head'>
   <view>
+
     <view class='head_4'>{{user_info.user_name}}</view>
     <view class='head_1'>总订单数 {{order_num}}</view>
     <view class='head_2' wx:for="{{specifications}}" wx:for-item="b">
-      <text>{{b.item_name}}({{b.size_or_color}}) + {{b.may_amount}}
+      <text>{{b.item_name}}{{(b.size_or_color)}} + {{b.may_amount}}
       <text></text>
       </text>
     </view>
@@ -14,7 +15,7 @@
 </view>
 <view class='sousou'>
   <view class='sousou_1'>
-    <input placeholder='搜索' style='padding-left:25px;'>
+    <input placeholder='搜索' style='padding-left:25px;' bindblur="chaxun" >
     <cover-image src='../img/sousuo.jpg' class='sousouimg'></cover-image>
     </input>
   </view>
@@ -23,7 +24,6 @@
 <view class='content' wx:for="{{shuju}}" wx:for-item="l">
   <view class='content2'>
     <view class='content3'>
-      <view>{{index+1}}.</view>
       <view class='content_tu'>
         <image src='{{l.actor_user_info.user_img}}'></image>
       </view>
@@ -31,7 +31,7 @@
       <view class='content5'> {{l.participate_time}}</view>
     </view>
     <view class='content6' wx:for="{{l.actor_id}}" wx:for-item="i">
-      <text>{{i.name}}({{i.size_or_color}}) </text> +{{i.may_amount}}
+      <text>{{i.name}}{{(i.size_or_color)}} </text> +{{i.may_amount}}
     </view>
   </view>
   <view class='content7'>

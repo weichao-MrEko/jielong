@@ -133,7 +133,6 @@
   
     <button form-type="submit" class='falong' >发布接龙</button>
 </form>
-
 </view>
 </view>
 <!--主题不能为空-->

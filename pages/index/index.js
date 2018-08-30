@@ -116,6 +116,7 @@ Page({
           userInfo: res.userInfo,
         })
           
+
      
         
        
@@ -172,7 +173,7 @@ Page({
   },
   getUserInfo: function(e) {
     console.log(44)
-    // this.jlcon()
+
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
@@ -229,9 +230,7 @@ Page({
           zhuti: res.data.theme,
           time: Time
         })
-        // setTimeout(function() {
-        //   wx.hideLoading()
-        // }, 1000)
+
 
 
        
@@ -252,6 +251,7 @@ Page({
         console.log(1)
       }
     })
+
   },
  
 

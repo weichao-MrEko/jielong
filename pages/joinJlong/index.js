@@ -1,6 +1,5 @@
 // pages/joinJlong/index
 const app = getApp();
-
 Component({
   /**
    * 组件的属性列表
@@ -95,6 +94,7 @@ Component({
       })
       console.log(this.data.self_info)
     },
+
     /**加号 */
     add: function(e) {
       this.data.summation.zongshu = 0
@@ -206,6 +206,7 @@ Component({
           mobile: that.data.mobile,
           area: that.data.area,
           address: that.data.address,
+
           code: that.data.code
         },
         success: function(res) {

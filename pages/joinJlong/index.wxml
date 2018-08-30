@@ -1,4 +1,5 @@
 <view class='contain'>
+
   <view hidden='{{hid}}'>
     <view class="onebox bg" bindtap='adr' wx:if='{{adr_panduan}}'>
       <image class='one_img' src='../img/bule_map.png'></image>

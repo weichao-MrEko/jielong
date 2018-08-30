@@ -143,7 +143,6 @@ Component({
       that.data.startime.dadate = Y + "-" + ("0" + (M + 1)).slice(-2) + "-" + D
       that.data.startime.datime = H + ":" + F
       that.data.endtime.houdate = s3
-  
       that.setData({
         startime: that.data.startime,
         hometime: ("0" + (M + 1)).slice(-2) + "/" + D,
@@ -310,8 +309,6 @@ Component({
       console.log(ev)
 
       var thgt = this;
-
-      console.log(this)
 
       var num = 10;
       if (thgt.zhuti.data.setPlnr == "" || thgt.zhuti.data.setPlnr == undefined) {

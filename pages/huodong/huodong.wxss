@@ -412,6 +412,7 @@ image {
   font-size: 30rpx;
   padding: 0;
 }
+
 /* 录音 */
   .yuyin{text-align: center;font-size: 30rpx;color: #525787;}
  .yuyin_logo{width: 100rpx;height: 100rpx;margin: 30rpx auto;line-height: 160rpx;}
@@ -447,6 +448,7 @@ image {
   }
  image{width: 100%;height: 100%}
  video{width: 100%;height: 100%;}
+
 /* 打卡信息 */
 .dakabox{width: 96%;margin: 20rpx auto;border: 2rpx solid #ccc;display: flex;}
 .dakabox_top{flex: 1}

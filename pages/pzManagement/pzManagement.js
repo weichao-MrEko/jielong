@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+
     theme_id: '',
     user_id: '',
     actor_user_info: '',
@@ -14,7 +15,6 @@ Page({
     participate_time: '',
     address_info:'',
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -26,8 +26,10 @@ Page({
         theme_id: options.theme_id,
         user_id: app.globalData.idda.uid,
       },
+
       success: function(res) {
         that.setData({
+          theme_id: options.theme_id,
           shuju:res.data.info,
           actor_user_info: res.data.info.actor_user_info,
           order_num: res.data.order_num,
@@ -44,6 +46,25 @@ Page({
     })
   },
 
+  // 搜索框失去焦点，进行查询
+  chaxun: function (a) {
+    var that = this
+    console.log(a.detail.value)
+    wx.request({
+      url: app.globalData.urlPrefix + 'Infoall/search',
+      data: {
+        theme_id: this.data.theme_id,
+        name: a.detail.value
+      },
+      success:function(res){
+        that.setData({
+          shuju: res.data.info,
+          actor_user_info: res.data.info.actor_user_info,
+        })
+        console.log(res.data.info)
+      }
+  })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

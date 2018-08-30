@@ -1,8 +1,11 @@
 {
   "pages": [
+
     "pages/index/index",
     "pages/joinJlong/index",
+
    "pages/pzManagement/pzManagement",
+
     "pages/baoming1/baoming1",
     "pages/comments/comments",
     "pages/huodong/huodong",
@@ -24,8 +27,7 @@
     "pages/liuyan/liuyan",
     "pages/shedidian/shedidian",
     "pages/kefu/kefu",
-    "pages/as/as",
-   
+    "pages/as/as", 
     "pages/adr/index",
     "pages/add_adr/index",
     "pages/tihuodian/tihuodian"
