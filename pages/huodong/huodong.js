@@ -45,6 +45,7 @@ Page({
     timekeeping: 0,
     hibo: true,
     hizan: true,
+    kaci: ''
   },
 
   /**
@@ -156,7 +157,8 @@ Page({
       this.data.theme.add_time = miao + '秒前'
     }
     this.setData({
-      theme: this.data.theme
+      theme: this.data.theme,
+
     })
   },
   zhuangfa: function() {
@@ -172,14 +174,15 @@ Page({
     var that = this
     var jl_type = that.data.jl_type
     if (jl_type == 2) {
-      if (that.data.theme.has_daka==1){
-      
-        return}
+      if (that.data.theme.has_daka == 1) {
+
+        return
+      }
       wx.request({
         url: app.globalData.urlPrefix + 'smith/daka',
         data: {
           user_id: app.globalData.idda.uid,
-          theme_id: that.data.theme_id, 
+          theme_id: that.data.theme_id,
           audio_path: that.data.luysrc,
           other_path: that.data.upimg
 
@@ -187,7 +190,7 @@ Page({
         success: function(res) {
           wx.navigateTo({
             url: '/pages/huodong/huodong?id=' + that.data.theme_id + '&uid=' + app.globalData.idda.uid + '&theme_uid=' + that.data.user_id
-            
+
           })
 
         }
@@ -199,6 +202,7 @@ Page({
       })
     }
   },
+  //参看地图
   chamap: function(e) {
     var id = e.currentTarget.dataset.id
     wx.openLocation({
@@ -209,6 +213,7 @@ Page({
       address: this.data.map[id].address
     })
   },
+  //留言
   liuyan: function() {
     wx.navigateTo({
       url: '../liuyan/liuyan?theme_id=' + this.data.theme_id,
@@ -226,27 +231,28 @@ Page({
         user_id: that.data.user_id,
       },
       success: function(res) {
+  
 
-
+        res.data.comment.reverse()
 
         if (res.data.theme_imag) {
           that.data.itimg = res.data.theme_imag
         };
         if (res.data.theme_result.jl_type == 2) {
-          if (res.data.theme_result.has_daka==1){
+          if (res.data.theme_result.has_daka == 1) {
             that.setData({
-              apply:'已打卡',
+              apply: '已打卡',
               hidtuyin: false,
-              btn:'buwoyao',
-              hidtuyin:true
+              btn: 'buwoyao',
+              hidtuyin: true
             })
-          }else{
+          } else {
             that.setData({
               apply: '我要打卡',
               hidtuyin: false
             })
           }
-         
+
         }
         if (res.data.theme_result.jl_type == 3) {
           that.setData({
@@ -284,14 +290,22 @@ Page({
             res.data.item_result[i].p_goods_img = JSON.parse(res.data.item_result[i].p_goods_img)
           }
         }
-        console.log(res.data.item_result)
+        if (res.data.theme_result.daka_list){
+        for (var p = 0; p < res.data.theme_result.daka_list.length; p++) {
+            res.data.theme_result.daka_list[p].other_path = JSON.parse(res.data.theme_result.daka_list[p].other_path)
+        }
+        }
+        console.log(res.data.theme_result)
         that.setData({
           xiangmu: res.data.item_result,
           itimg: that.data.itimg,
           theme: res.data.theme_result,
           map: that.data.map,
+          comment: res.data.comment,
+          kaci: res.data.theme_result.daka_list,
           jl_type: res.data.theme_result.jl_type
         })
+        console.log(that) 
         that.FabuTime()
         setTimeout(function() {
           wx.hideLoading()
@@ -324,12 +338,13 @@ Page({
     console.log(this.data.xiangmu)
 
   },
+ 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-    var that = this
-
+  
+    this.oime = this.selectComponent("#time")
     console.log(1)
   },
 
@@ -339,18 +354,18 @@ Page({
   onShow: function() {
     var that = this
 
-    that.findDrag(function(res){
-    var Y = new Date().getFullYear()
-    var M = new Date().getMonth() + 1
-    var D = new Date().getDate()
-    var Time = new Date().getTime() 
+    that.findDrag(function(res) {
+      var Y = new Date().getFullYear()
+      var M = new Date().getMonth() + 1
+      var D = new Date().getDate()
+      var Time = new Date().getTime()
       if (res.data.theme_result.jl_type == 2) {
         Stime = new Date(Y + '-' + M + '-' + D + ' ' + that.data.xiangmu[0].start).getTime();
         Etime = new Date(Y + '-' + M + '-' + D + ' ' + that.data.xiangmu[0].end).getTime();
-        
+
         if (Time > Stime && Time < Etime) {
           console.log(11)
-          clearInterval(Daojitime) 
+          clearInterval(Daojitime)
           that.Dakat()
         } else {
           console.log(22)
@@ -369,7 +384,7 @@ Page({
     var that = this
 
     Daojitime = setInterval(function() {
-    
+
       var Y = new Date().getFullYear()
       var M = new Date().getMonth() + 1
       var D = new Date().getDate()
@@ -423,7 +438,7 @@ Page({
         countDownMinute: '',
         countDownSecond: '卡'
       })
-      console.log(Dakatime)
+      //   console.log(Dakatime)
       if (Dakatime <= 0) {
         console.log(333)
         clearInterval(time)
@@ -562,11 +577,23 @@ Page({
 
     }, 1000)
   },
+  // 打卡信息
+  katiaobo: function(e) {
+
+    var i = e.currentTarget.dataset.id
+    innerAudioContext.src = app.globalData.urlfix + this.data.kaci[i].audio_path
+
+    innerAudioContext.play()
+    innerAudioContext.onPlay(() => {
+      console.log(innerAudioContext.duration)
+    })
+
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function() {
-    
+
   },
 
   /**
@@ -593,33 +620,7 @@ Page({
         user_id: that.data.user_id,
       },
       success: function(res) {
-        var Time = new Date().getTime();
-        for (var i = 0; i < res.data.comment.length; i++) {
-          var sjcha = (Time - res.data.comment[i].time * 1000);
-          //天
-          var tian = Math.floor(sjcha / (24 * 3600 * 1000));
-          //小时
-          var leave1 = sjcha % (24 * 3600 * 1000);
-          var xiaoshi = Math.floor(leave1 / (3600 * 1000));
-          //分钟
-          var leave2 = leave1 % (3600 * 1000);
-          var fenzhong = Math.floor(leave2 / (60 * 1000));
-          //秒
-          var leave3 = leave2 % (60 * 1000);
-          var miao = Math.floor(leave3 / 1000);
 
-          if (tian > 0) {
-            res.data.comment[i].time = tian + '天前'
-          } else if (xiaoshi > 0) {
-            res.data.comment[i].time = xiaoshi + '小时前'
-          } else if (fenzhong > 0) {
-            res.data.comment[i].time = fenzhong + '分钟前'
-          } else if (miao < 0) {
-            res.data.comment[i].time = 1 + '秒前'
-          } else {
-            res.data.comment[i].time = miao + '秒前'
-          }
-        }
         for (var y = 0; y < res.data.all_ord.length; y++) {
           if (res.data.all_ord[y].user_id == app.globalData.idda.uid) {
             if (res.data.all_ord[y].status > 0) {
@@ -630,9 +631,9 @@ Page({
             }
           }
         }
-        res.data.comment.reverse()
+
         that.setData({
-          comment: res.data.comment,
+
           baomingren: res.data.all_ord
         })
         setTimeout(function() {

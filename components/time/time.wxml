@@ -1,0 +1,2 @@
+<!--components/time/time.wxml-->
+<text>{{Time}}</text>
