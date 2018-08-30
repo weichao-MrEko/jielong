@@ -1,4 +1,5 @@
 /* pages/pzManagement/pzManagement.wxss */
+<<<<<<< HEAD
 page{
   background-color: #ccc;
 }
@@ -26,3 +27,108 @@ text-align: center;
 border-radius: 15rpx;
 line-height: 70rpx;
 }
+=======
+
+page {
+  background-color: #ccc;
+}
+image{
+  width: 100%;
+  height: 100%;
+}
+.head {
+  background-color: #fff;
+  width: 100%;
+  border-top: 1rpx solid #ccc;
+  padding-top: 15rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.head_1 {
+  font-size: 12px;
+}
+
+.head_2 {
+  font-size: 12px;
+  margin-top: 20rpx;
+}
+
+.head_3 {
+  width: 230rpx;
+  height: 70rpx;
+  background-color: #f34534;
+  color: #fff;
+  text-align: center;
+  border-radius: 15rpx;
+  line-height: 70rpx;
+}
+
+.head_4 {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.sousou {
+  padding-left: 20rpx;
+  padding-right: 10rpx;
+  margin-top: 30rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.sousou_1 {
+  position: relative;
+  background-color: #fff;
+  width: 520rpx;
+  height: 60rpx;
+  border-radius: 15rpx;
+}
+.sousouimg{
+ position:absolute;
+width:45rpx;
+height:55rpx;
+top:1rpx;
+left:10rpx;
+}
+
+.sousou_4 {
+  background-color: #fff;
+  font-size: 12px;
+  width: 150rpx;
+  height: 60rpx;
+  border-radius: 15rpx;
+  line-height: 60rpx;
+  text-align: center;
+  color: #f34534;
+}
+.content{
+  background-color: #fff;
+  padding: 25rpx;
+  margin: 30rpx auto;
+  width: 675rpx;
+  border-radius: 15rpx;
+}
+.content3{
+display: flex;
+}
+.content5{
+  font-size: 9px;
+  line-height:45rpx;
+  color:rgb(175, 166, 166);
+  margin-left:5rpx;
+}
+.content6{
+  text-align: right;
+  font-size: 13px;
+}
+.content_tu{
+  width: 50rpx;
+  height: 50rpx;
+  margin: 0 15rpx
+  }
+  .content7{
+    border-top:2rpx solid #ccc ;
+    font-size: 12px;
+  }
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f

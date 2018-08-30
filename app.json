@@ -1,7 +1,13 @@
 {
   "pages": [
+<<<<<<< HEAD
 
     "pages/index/index",
+=======
+    "pages/index/index",
+    "pages/joinJlong/index",
+   
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
     "pages/baoming1/baoming1",
     "pages/comments/comments",
     "pages/huodong/huodong",
@@ -24,12 +30,19 @@
     "pages/shedidian/shedidian",
     "pages/kefu/kefu",
     "pages/as/as",
+<<<<<<< HEAD
     "pages/joinJlong/index",
     "pages/adr/index",
     "pages/add_adr/index",
     "pages/tihuodian/tihuodian",
         "pages/pzManagement/pzManagement"
 
+=======
+    "pages/pzManagement/pzManagement",
+    "pages/adr/index",
+    "pages/add_adr/index",
+    "pages/tihuodian/tihuodian"
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
   ],
   "window": {
     "backgroundTextStyle": "light",

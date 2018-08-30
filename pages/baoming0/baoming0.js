@@ -258,6 +258,11 @@ Component({
 
       }
       else {
+<<<<<<< HEAD
+=======
+        // 2 是预览 ；1 是发布
+        let status = ev.detail.formId == undefined ? 2:1;
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
       wx.request({
         url: app.globalData.urlPrefix + 'signup/saveInfo',
         data:{
@@ -272,11 +277,40 @@ Component({
           address: app.globalData.map,
           actor_info: thgt.data.heti,
           start_time: this.data.startime,
+<<<<<<< HEAD
           end_time:this.data.endtime
         },
         
         success:function(res){
           console.log(res.data)   
+=======
+          end_time:this.data.endtime,
+          status:status
+        },
+        
+        success:(res)=>{
+          console.log(res.data)   
+
+        // 消息提醒
+          wx.request({
+            url: "https://www.shequnxz.com/wxapi/smith",
+            data: {
+              form_id: ev.detail.formId,
+              uname: app.globalData.idda.user_name,
+              start_time: JSON.stringify(this.data.startime),
+              address: JSON.stringify(app.globalData.map),
+              uid: app.globalData.idda.uid,
+              url: '/pages/huodong/huodong?id=' + res.data.theme_id + '&uid=' + app.globalData.idda.uid,
+              dragonTheme: this.zhuti.data.setPlnr,
+            },
+            method: "POST",
+            success: function (res) {
+              console.log(res)
+            },
+
+          })
+
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
           wx.connectSocket({
             url: 'wss://www.shequnxz.com/wss'
           })
@@ -285,7 +319,12 @@ Component({
             data: app.globalData.idda.user_name + '发布了一个报名接龙'
           })
           wx.navigateTo({
+<<<<<<< HEAD
             url: '../huodong/huodong?id=' + res.data.theme_id + '&uid=' + app.globalData.idda.uid
+=======
+
+            url: '../huodong/huodong?id=' + res.data.theme_id + '&theme_uid=' + app.globalData.idda.uid+ '&uid=' + app.globalData.idda.uid 
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
           })
         }
       
@@ -514,7 +553,13 @@ Component({
           opacity: 1
         })
       }
+<<<<<<< HEAD
     }
+=======
+    },
+
+   
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
     
   }
 })

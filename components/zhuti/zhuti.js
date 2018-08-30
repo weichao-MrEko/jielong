@@ -55,7 +55,11 @@ Component({
                   var index2 = tempFilePaths[j].length;
                   var postf = tempFilePaths[j].substring(index1, index2);
                   console.log(postf)
+<<<<<<< HEAD
                   if (postf == ".jpg") {
+=======
+                  if (postf == ".jpg" || postf=='.png') {
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
                     var gg = that.data.pushurl
                  
                     gg.push({ pic: tempFilePaths[j], video: '' })

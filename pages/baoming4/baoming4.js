@@ -262,6 +262,12 @@ Component({
 
       }
       else {
+<<<<<<< HEAD
+=======
+           // 2 是预览 ；1 是发布
+        let status = ev.detail.formId == undefined ? 2:1;
+
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
         wx.request({
           url: app.globalData.urlPrefix + 'signup/saveInfo',
           data: {
@@ -270,6 +276,10 @@ Component({
             item: this.data.jieitem,
             img_path: this.zhuti.data.upimg,
             descInfo: this.zhuti.data.descont,
+<<<<<<< HEAD
+=======
+            status,
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
             user_img: app.globalData.userInfo.avatarUrl,
             user_name: app.globalData.userInfo.nickName,
             servPhone: this.data.shant,//电话
@@ -287,7 +297,11 @@ Component({
               data: app.globalData.idda.user_name + '发布了一个聚会报名'
             })
             wx.navigateTo({
+<<<<<<< HEAD
               url: '../huodong/huodong?id=' + res.data.theme_id + '&uid=' + app.globalData.idda.uid
+=======
+              url: '../huodong/huodong?id=' + res.data.theme_id + '&uid=' + app.globalData.idda.uid + '&theme_uid=' + app.globalData.idda.uid
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
             })
           }
 

@@ -143,6 +143,10 @@ Component({
       that.data.startime.dadate = Y + "-" + ("0" + (M + 1)).slice(-2) + "-" + D
       that.data.startime.datime = H + ":" + F
       that.data.endtime.houdate = s3
+<<<<<<< HEAD
+=======
+  
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
       that.setData({
         startime: that.data.startime,
         hometime: ("0" + (M + 1)).slice(-2) + "/" + D,
@@ -310,8 +314,13 @@ Component({
 
       var thgt = this;
 
+<<<<<<< HEAD
       console.log(this.data)
       
+=======
+      console.log(this)
+
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
       var num = 10;
       if (thgt.zhuti.data.setPlnr == "" || thgt.zhuti.data.setPlnr == undefined) {
         thgt.setData({ dored: false })
@@ -322,6 +331,11 @@ Component({
 
       }
       else {
+<<<<<<< HEAD
+=======
+          // 2 是预览 ；1 是发布
+        let status = ev.detail.formId == undefined ? 2:1;
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
         wx.request({
           url: app.globalData.urlPrefix + 'signup/saveInfo',
           data: {
@@ -339,6 +353,10 @@ Component({
             end_time: thgt.data.endtime,
             shangpintu: app.globalData.img,
             wuliu: app.globalData.wuliufs,//物流方式
+<<<<<<< HEAD
+=======
+            status,
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
             jl_type: 1
           },
 
@@ -347,7 +365,11 @@ Component({
               data: app.globalData.idda.user_name + '发布了一个团购接龙'
             })
             wx.navigateTo({
+<<<<<<< HEAD
               url: '../huodong/huodong?id=' + res.data.theme_id + '&uid=' + app.globalData.idda.uid
+=======
+              url: '../huodong/huodong?id=' + res.data.theme_id + '&uid=' + app.globalData.idda.uid + '&theme_uid=' + app.globalData.idda.uid
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
             })
           }
 

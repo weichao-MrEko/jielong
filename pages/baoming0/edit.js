@@ -234,7 +234,12 @@ Component({
     size: function (e) {
       let index = e.currentTarget.dataset.index
       console.log(index)
+<<<<<<< HEAD
       this.data.jieitem[index].size = e.detail.value
+=======
+      console.log(this.data.jieitem)
+      this.data.jieitem[index].size_or_color = e.detail.value
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
       this.setData({
         jieitem: this.data.jieitem
       })
@@ -319,7 +324,12 @@ Component({
       var thgt = this;
       thgt.data.heti = { gong: thgt.data.Fill, bugong: thgt.data.kill,bugongs:thgt.data.gill}
      console.log(thgt.data.heti)
+<<<<<<< HEAD
       console.log()
+=======
+     
+
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
       var num = 10;
       if (thgt.zhuti.data.setPlnr == "" || thgt.zhuti.data.setPlnr == undefined) {
         thgt.setData({ dored: false })
@@ -330,6 +340,11 @@ Component({
 
       }
       else {
+<<<<<<< HEAD
+=======
+        let status = ev.detail.formId == undefined ? 2:1;
+        
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
       wx.request({
         url: app.globalData.urlPrefix + 'signup/updateInfo',
         data:{
@@ -346,11 +361,19 @@ Component({
           address: app.globalData.map,
           actor_info: thgt.data.heti,
           start_time: this.data.startime,
+<<<<<<< HEAD
+=======
+          status: status,
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
           end_time:this.data.endtime
         },
         
         success:function(res){
+<<<<<<< HEAD
           console.log(res.data) 
+=======
+          console.log(res.data)  
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
           wx.navigateBack({
             delta:1
           })  
@@ -365,6 +388,7 @@ Component({
      
     },
     //+新项目
+<<<<<<< HEAD
     newitem: function () {
       let jieitem = this.data.jieitem
       jieitem.push({ item_name: '', price: '', amount: '', id: this.data.jieitem.length })
@@ -373,6 +397,16 @@ Component({
         jieitem: jieitem,
         height: this.data.height + 139
       })
+=======
+    newitem:function(){
+      let jieitem = this.data.jieitem
+      jieitem.push({ item_name: '', price: '', amount: '', id: this.data.jieitem.length})
+      this.setData({ 
+        quantity: ++this.data.quantity,
+        jieitem: jieitem,
+        height: this.data.height+139
+        })
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
       console.log(this.data.jieitem)
     },
     delitem:function(e){    
@@ -584,8 +618,16 @@ Component({
           opacity: 1
         })
       }
+<<<<<<< HEAD
     }
     
   }
+=======
+    }, 
+    
+  },  
+  
+
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
 })
 

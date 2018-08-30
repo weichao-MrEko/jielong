@@ -212,6 +212,12 @@ Page({
 
     }
     else {
+<<<<<<< HEAD
+=======
+         // 2 是预览 ；1 是发布
+        let status = ev.detail.formId == undefined ? 2:1;
+
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
       wx.request({
         url: app.globalData.urlPrefix + 'signup/saveInfo',
         data: {
@@ -225,6 +231,10 @@ Page({
           servPhone: this.data.shant,//电话
           address: app.globalData.map,
           actor_info: thgt.data.heti,
+<<<<<<< HEAD
+=======
+          status,
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
           start_time: this.data.startime,
           end_time: this.data.endtime,
           jl_type:2
@@ -236,7 +246,11 @@ Page({
             data: app.globalData.idda.user_name + '发布了一个报个到'
           })
           wx.navigateTo({
+<<<<<<< HEAD
             url: '../huodong/huodong?id=' + res.data.theme_id + '&uid=' + app.globalData.idda.uid
+=======
+            url: '../huodong/huodong?id=' + res.data.theme_id + '&uid=' + app.globalData.idda.uid       + '&theme_uid=' + app.globalData.idda.uid
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
           })
         }
 

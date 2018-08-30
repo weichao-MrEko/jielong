@@ -1,6 +1,13 @@
 // pages/huodong/huodong.js
 const app = getApp();
+<<<<<<< HEAD
 var time = null,
+=======
+const recorderManager = wx.getRecorderManager();
+const innerAudioContext = wx.createInnerAudioContext();
+var time = null,
+  yintime = null,
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
   Time, Stime, Etime, Daojitime = null;
 Page({
 
@@ -22,7 +29,11 @@ Page({
     baomingren: '',
     btn: 'woyao',
     apply: '我要接龙',
+<<<<<<< HEAD
     shangpin:true,
+=======
+    shangpin: true,
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
     maxtime: "",
     isHiddenLoading: true,
     isHiddenToast: true,
@@ -31,7 +42,21 @@ Page({
     countDownHour: 0,
     countDownMinute: 0,
     countDownSecond: 0,
+<<<<<<< HEAD
     guanli: true
+=======
+    guanli: true,
+    luyin: false,
+    luzhi: true,
+    pushurl: [],
+    hidtuyin: true,
+    lustart: true,
+    luzantin: false,
+    luzhiwan: true,
+    timekeeping: 0,
+    hibo: true,
+    hizan: true,
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
   },
 
   /**
@@ -100,8 +125,13 @@ Page({
         user_id: app.globalData.idda.uid,
         theme_id: options.id
       },
+<<<<<<< HEAD
       success: function () {
         console.log(21321232132)
+=======
+      success: function() {
+
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
       }
     })
     app.globalData.socket.send({
@@ -109,6 +139,14 @@ Page({
     })
 
   },
+<<<<<<< HEAD
+=======
+  pzManagement: function() {
+    wx.navigateTo({
+      url: '../pzManagement/pzManagement?theme_id=' + this.data.theme_id + '&user_id=' + this.data.user_id
+    })
+  },
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
   FabuTime: function() {
     console.log(this.data.theme)
     var Time = new Date().getTime()
@@ -152,7 +190,34 @@ Page({
   },
   joinjl: function() {
     var that = this
+<<<<<<< HEAD
     if (that.data.btn == 'woyao') {
+=======
+    var jl_type = that.data.jl_type
+    if (jl_type == 2) {
+      if (that.data.theme.has_daka==1){
+      
+        return}
+      wx.request({
+        url: app.globalData.urlPrefix + 'smith/daka',
+        data: {
+          user_id: app.globalData.idda.uid,
+          theme_id: that.data.theme_id, 
+          audio_path: that.data.luysrc,
+          other_path: that.data.upimg
+
+        },
+        success: function(res) {
+          wx.navigateTo({
+            url: '/pages/huodong/huodong?id=' + that.data.theme_id + '&uid=' + app.globalData.idda.uid + '&theme_uid=' + that.data.user_id
+            
+          })
+
+        }
+      })
+    }
+    if (jl_type == 0 || jl_type == 1 || jl_type == 3 || jl_type == 4 || jl_type == 5) {
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
       wx.navigateTo({
         url: '../joinJlong/index?theme_id=' + that.data.theme_id + '&user_id=' + that.data.user_id
       })
@@ -173,7 +238,11 @@ Page({
       url: '../liuyan/liuyan?theme_id=' + this.data.theme_id,
     })
   },
+<<<<<<< HEAD
   findDrag: function() {
+=======
+  findDrag: function(callback) {
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
     var that = this
     wx.showLoading({
       title: '加载中',
@@ -192,9 +261,26 @@ Page({
           that.data.itimg = res.data.theme_imag
         };
         if (res.data.theme_result.jl_type == 2) {
+<<<<<<< HEAD
           that.setData({
             apply: '我要打卡'
           })
+=======
+          if (res.data.theme_result.has_daka==1){
+            that.setData({
+              apply:'已打卡',
+              hidtuyin: false,
+              btn:'buwoyao',
+              hidtuyin:true
+            })
+          }else{
+            that.setData({
+              apply: '我要打卡',
+              hidtuyin: false
+            })
+          }
+         
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
         }
         if (res.data.theme_result.jl_type == 3) {
           that.setData({
@@ -207,12 +293,20 @@ Page({
         } else if (res.data.theme_result.jl_type == 4) {
 
           that.setData({
+<<<<<<< HEAD
             shangpin:false,
+=======
+            shangpin: false,
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
             xiangmu: that.data.xiangmu,
             apply: '我要拼团'
           })
         }
+<<<<<<< HEAD
 
+=======
+        //判断是否已参与接龙
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
         for (var y = 0; y < res.data.all_ord.length; y++) {
           if (res.data.all_ord[y].user_id == app.globalData.idda.uid) {
             if (res.data.all_ord[y].status > 0) {
@@ -228,8 +322,13 @@ Page({
         }
 
         for (var i = 0; i < res.data.item_result.length; i++) {
+<<<<<<< HEAD
           if (res.data.item_result[i].p_goods_img){
           res.data.item_result[i].p_goods_img = JSON.parse(res.data.item_result[i].p_goods_img)
+=======
+          if (res.data.item_result[i].p_goods_img) {
+            res.data.item_result[i].p_goods_img = JSON.parse(res.data.item_result[i].p_goods_img)
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
           }
         }
         console.log(res.data.item_result)
@@ -238,15 +337,25 @@ Page({
           itimg: that.data.itimg,
           theme: res.data.theme_result,
           map: that.data.map,
+<<<<<<< HEAD
+=======
+          jl_type: res.data.theme_result.jl_type
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
         })
         that.FabuTime()
         setTimeout(function() {
           wx.hideLoading()
         }, 500)
+<<<<<<< HEAD
+=======
+
+        return callback(res)
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
       }
     })
   },
   //商品减号
+<<<<<<< HEAD
   spjian:function(e){
     var i=e.currentTarget.dataset.id
     if (this.data.xiangmu[i].may_amount>0){
@@ -268,6 +377,29 @@ Page({
     }
       console.log(this.data.xiangmu)
     
+=======
+  spjian: function(e) {
+    var i = e.currentTarget.dataset.id
+    if (this.data.xiangmu[i].may_amount > 0) {
+      this.data.xiangmu[i].may_amount--
+        this.setData({
+          xiangmu: this.data.xiangmu
+        })
+    }
+
+  },
+  //商品加号
+  spjia: function(e) {
+    var i = e.currentTarget.dataset.id
+    if (this.data.xiangmu[i].may_amount < this.data.xiangmu[i].amount) {
+      this.data.xiangmu[i].may_amount++
+        this.setData({
+          xiangmu: this.data.xiangmu
+        })
+    }
+    console.log(this.data.xiangmu)
+
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -284,6 +416,7 @@ Page({
   onShow: function() {
     var that = this
 
+<<<<<<< HEAD
     that.findDrag()
 
     that.FabuTime()
@@ -296,13 +429,43 @@ Page({
         that.Daojis()
       }
     }
+=======
+    that.findDrag(function(res){
+    var Y = new Date().getFullYear()
+    var M = new Date().getMonth() + 1
+    var D = new Date().getDate()
+    var Time = new Date().getTime() 
+      if (res.data.theme_result.jl_type == 2) {
+        Stime = new Date(Y + '-' + M + '-' + D + ' ' + that.data.xiangmu[0].start).getTime();
+        Etime = new Date(Y + '-' + M + '-' + D + ' ' + that.data.xiangmu[0].end).getTime();
+        
+        if (Time > Stime && Time < Etime) {
+          console.log(11)
+          clearInterval(Daojitime) 
+          that.Dakat()
+        } else {
+          console.log(22)
+          clearInterval(time)
+          that.Daojis()
+        }
+      }
+    })
+
+    // that.FabuTime()
+
+
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
 
   },
   Daojis: function() {
     var that = this
 
     Daojitime = setInterval(function() {
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
       var Y = new Date().getFullYear()
       var M = new Date().getMonth() + 1
       var D = new Date().getDate()
@@ -327,14 +490,26 @@ Page({
       var second = Math.round(leave3 / 1000)
       var seconds = second.toString()
       if (hours == 0 && minutes == 0 && seconds == 0) {
+<<<<<<< HEAD
         this.Dakat()
+=======
+        that.Dakat()
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
       }
       leave--;
       console.log(leave)
       that.setData({
         countDownHour: hours + ':',
         countDownMinute: minutes + ':',
+<<<<<<< HEAD
         countDownSecond: seconds
+=======
+        countDownSecond: seconds,
+        apply: '打卡未开始',
+        hidtuyin: false,
+        btn: 'buwoyao',
+        hidtuyin: true
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
       })
     }, 1000)
   },
@@ -354,6 +529,10 @@ Page({
       })
       console.log(Dakatime)
       if (Dakatime <= 0) {
+<<<<<<< HEAD
+=======
+        console.log(333)
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
         clearInterval(time)
         that.Daojis()
         that.setData({
@@ -364,20 +543,159 @@ Page({
 
 
   },
+<<<<<<< HEAD
+=======
+  //录音
+  luyin: function() {
+    this.setData({
+      luyin: true,
+      luzhi: false
+    })
+    recorderManager.start({
+      format: 'mp3' // 如果录制acc类型音频则改成aac
+    });
+    this.luyintime()
+  },
+  luyinstart: function() {
+    this.luyintime()
+    this.setData({
+      lustart: true,
+      luzantin: false
+    })
+    recorderManager.resume();
+  },
+  luyinzantin: function() {
+    clearInterval(yintime)
+    this.setData({
+      lustart: false,
+      luzantin: true
+    })
+    recorderManager.pause()
+  },
+  luyinend: function() {
+    var that = this
+    clearInterval(yintime)
+    recorderManager.stop()
+    recorderManager.onStop(function(res) {
+      wx.showLoading({
+        title: '上传中',
+      })
+
+      wx.uploadFile({
+        url: app.globalData.urlPrefix + 'signup/uploadImg',
+        filePath: res.tempFilePath,
+        name: 'image',
+        formData: {
+          'user': 'test'
+        },
+        success: function(res) {
+          //var data=res.data
+          console.log(1)
+
+          that.setData({
+            luysrc: JSON.parse(res.data).imgPath,
+            luzhiwan: false,
+            luzhi: true,
+            hibo: false,
+            hizan: true,
+            Daotimekeeping: that.data.timekeeping
+          })
+          setTimeout(function() {
+            wx.hideLoading()
+          }, 800)
+        }
+      })
+
+
+    });
+  },
+  luyinbofang: function() {
+
+    innerAudioContext.src = app.globalData.urlfix + this.data.luysrc;
+    console.log(innerAudioContext.src)
+    innerAudioContext.play()
+    this.luyindaotime()
+    this.setData({
+      hibo: true,
+      hizan: false,
+    })
+  },
+  //暂停播放
+  zanyin: function() {
+    innerAudioContext.src = this.data.luysrc;
+    innerAudioContext.pause()
+    this.setData({
+      hibo: false,
+      hizan: true,
+    })
+    clearInterval(yintime)
+  },
+  //录音删除
+  luyinDel: function() {
+    recorderManager.stop()
+    this.setData({
+      luyin: false,
+      luzhi: true,
+      luysrc: '',
+      timekeeping: 0,
+      luzhiwan: true
+    })
+  },
+  //计时
+  luyintime: function(e) {
+    var that = this
+    yintime = setInterval(function() {
+
+      that.setData({
+        timekeeping: ++that.data.timekeeping
+      })
+    }, 1000)
+  },
+  //倒计时
+  luyindaotime: function(e) {
+    var that = this
+    var huifu = that.data.Daotimekeeping
+    yintime = setInterval(function() {
+      if (that.data.Daotimekeeping >= 1) {
+        that.setData({
+          Daotimekeeping: --that.data.Daotimekeeping
+        })
+      } else {
+        clearInterval(yintime)
+        that.setData({
+          Daotimekeeping: that.data.timekeeping,
+          hibo: false,
+          hizan: true
+        })
+      }
+
+    }, 1000)
+  },
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function() {
+<<<<<<< HEAD
     console.log(12)
     clearInterval(time);
     clearInterval(Daojitime);
+=======
+    
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function() {
+<<<<<<< HEAD
 
+=======
+    clearInterval(time);
+    clearInterval(Daojitime);
+    clearInterval(yintime)
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
   },
 
   /**
@@ -444,6 +762,7 @@ Page({
     })
     wx.stopPullDownRefresh()
   },
+<<<<<<< HEAD
   // 凭证管理
   pzManagement:function(){
     wx.navigateTo({
@@ -451,6 +770,250 @@ Page({
     })
   },
 
+=======
+  // 上传图片
+  box: function(e) {
+    var that = this;
+    var uppimg = [];
+    console.log(e)
+    wx.showActionSheet({
+      itemList: ['图片', '视频'],
+      success: function(res) {
+        if (res.tapIndex === 0) {
+          wx.chooseImage({
+            sourceType: ['album', 'camera'],
+            success: function(res) {
+              var tempFilePaths = res.tempFilePaths
+              console.log(that.data.pushurl)
+
+              /*for (var i in tempFilePaths) {
+                tempFilePaths.push(tempFilePaths[i])
+              }*/
+              for (var j in tempFilePaths) {
+                var index1 = tempFilePaths[j].lastIndexOf(".");
+                var index2 = tempFilePaths[j].length;
+                var postf = tempFilePaths[j].substring(index1, index2);
+                console.log(postf)
+                if (postf == ".jpg" || postf == '.png') {
+                  var gg = that.data.pushurl
+
+                  gg.push({
+                    pic: tempFilePaths[j],
+                    video: ''
+                  })
+                  that.setData({
+                    pushurl: gg
+                  })
+                }
+              }
+              wx.showLoading({
+                title: '上传中',
+              })
+
+              for (var i = 0; i < gg.length; i++) {
+                console.log(gg[i].pic)
+                wx.uploadFile({
+                  url: app.globalData.urlPrefix + 'signup/uploadImg',
+                  filePath: gg[i].pic,
+                  name: 'image',
+                  formData: {
+                    'user': 'test'
+                  },
+                  success: function(res) {
+                    //var data=res.data
+                    console.log(res)
+                    uppimg.push(JSON.parse(res.data).imgPath)
+
+                    that.setData({
+                      upimg: uppimg,
+
+                    })
+                    setTimeout(function() {
+                      wx.hideLoading()
+                    }, 800)
+                  }
+                })
+              }
+
+            },
+          })
+          console.log(that.data.pushurl)
+        } else if (res.tapIndex === 1) {
+          wx.chooseVideo({
+            sourceType: ['album', 'camera'],
+            maxDuration: 60,
+            camera: 'back',
+            success: function(res) {
+              console.log(res.tempFilePath)
+              var tempFilePaths = res.tempFilePath.split()
+              var ovsrc = that.data.pushurl
+
+              for (var j in tempFilePaths) {
+                var index1 = tempFilePaths[j].lastIndexOf(".");
+                var index2 = tempFilePaths[j].length;
+                var postf = tempFilePaths[j].substring(index1, index2);
+                console.log(postf)
+
+                if (postf == ".mp4") {
+
+                  var gg = that.data.pushurl
+                  gg.push({
+                    pic: '',
+                    video: tempFilePaths[j]
+                  })
+
+                  that.setData({
+                    pushurl: gg
+                  })
+
+                }
+
+
+              }
+              console.log(that.data.pushurl)
+              for (var i = 0; i < gg.length; i++) {
+                console.log(gg[i].video)
+                wx.uploadFile({
+                  url: app.globalData.urlPrefix + 'signup/uploadImg',
+                  filePath: gg[i].video,
+                  name: 'image',
+                  formData: {
+                    'user': 'test'
+                  },
+                  success: function(res) {
+                    //var data=res.data
+                    console.log(res)
+                  }
+                })
+              }
+            }
+          })
+        }
+      }
+    })
+
+  },
+  infodel: function(ev) {
+    let index = ev.currentTarget.dataset.index;
+    let Img = this.data.pushurl;
+    Img.splice(index, 1)
+
+    this.setData({
+      pushurl: Img
+    })
+  },
+  tup: function(e) {
+    let ind = e.currentTarget.dataset.index
+    var that = this
+    console.log(ind)
+    wx.showActionSheet({
+      itemList: ["替换图片", "替换成视频", "删除"],
+      success: function(res) {
+        if (res.tapIndex == 0) {
+          wx.chooseImage({
+            sourceType: ['album'],
+            count: '1',
+            success: function(res) {
+              console.log(ind)
+              var tempFilePaths = res.tempFilePaths
+              var aa = that.data.pushurl
+              aa.splice(ind, 1, {
+                pic: tempFilePaths,
+                video: ''
+              })
+              that.setData({
+                pushurl: aa
+              })
+            }
+          })
+        } else if (res.tapIndex == 1) {
+          wx.chooseVideo({
+            sourceType: ['album', 'camera'],
+            maxDuration: 60,
+            camera: 'back',
+            success: function(res) {
+              var tempFilePaths = res.tempFilePath
+              console.log(res)
+              var aa = that.data.pushurl
+              aa.splice(ind, 1, {
+                pic: '',
+                video: tempFilePaths
+              })
+              that.setData({
+                pushurl: aa
+              })
+            }
+          })
+        } else if (res.tapIndex == 2) {
+          let aa = that.data.pushurl
+          aa.splice(ind, 1)
+          that.setData({
+            pushurl: aa
+          })
+        }
+      }
+    })
+  },
+  ship: function(e) {
+    e.vioos = wx.createVideoContext('sps')
+    let ind = e.currentTarget.dataset.index
+    var that = this
+    console.log(ind)
+    wx.showActionSheet({
+      itemList: ['播放', '替换视频', '替换成图片', '删除'],
+      success: function(res) {
+        if (res.tapIndex == 0) {
+          e.vioos.play({})
+          e.vioos.requestFullScreen({})
+        } else if (res.tapIndex === 1) {
+          wx.chooseVideo({
+            sourceType: ['album', 'camera'],
+            maxDuration: 60,
+            camera: 'back',
+            success: function(res) {
+              console.log(res.tempFilePath)
+              var tempFilePaths = res.tempFilePath.split()
+              var vsrc = that.data.pushurl
+              vsrc.splice(ind, 1, {
+                pic: '',
+                video: tempFilePaths
+              })
+
+
+              that.setData({
+                pushurl: vsrc
+              })
+              console.log(that.data.src.length)
+            }
+          })
+        } else if (res.tapIndex == 2) {
+          wx.chooseImage({
+            sourceType: ['album', 'camera'],
+            count: '1',
+            success: function(res) {
+              console.log(ind)
+              var tempFilePaths = res.tempFilePaths
+              var aa = that.data.pushurl
+              aa.splice(ind, 1, {
+                pic: tempFilePaths,
+                video: ''
+              })
+              that.setData({
+                pushurl: aa
+              })
+            }
+          })
+        } else if (res.tapIndex == 3) {
+          let vos = that.data.pushurl;
+          vos.splice(ind, 1)
+          that.setData({
+            pushurl: vos
+          })
+        }
+      }
+    })
+  },
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
   /**
    * 页面上拉触底事件的处理函数
    */

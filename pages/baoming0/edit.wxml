@@ -36,7 +36,11 @@
     </view>
      <view class='xiongmu'>
       <text class='xiongmu-jl'>规格</text>
+<<<<<<< HEAD
       <input data-index="{{index}}" placeholder='尺寸、颜色等' type='number' bindinput='size' value='{{item.size_or_color}}'></input>
+=======
+      <input data-index="{{index}}" placeholder='尺寸、颜色等' type='text' bindinput='size' value='{{item.size_or_color}}'></input>
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
     </view>
     
     <view class='xiongmu'>
@@ -121,11 +125,14 @@
 </view>
 
 </view>
+<<<<<<< HEAD
    <view class='newxm '>
   <view class='xiongmu'>
       <view class='new-xm' bindtap='newitem' >+新项目</view>
   </view>
 </view>
+=======
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
 <view class='box' hidden='{{dakaitem}}'>
 <view class="longlong 
  wx:for='{{jieitem}}'   style='top:{{move.y}}px;'>
@@ -157,10 +164,23 @@
     </view>
 </view>
 </view>
+<<<<<<< HEAD
 <view class='fabu'>
 
   <text class='falong' bindtap='fajielong' >发布接龙</text> 
   </view>
+=======
+
+<view class='fabu'>
+  <view  class='yulan' bindtap='fajielong'>保存预览</view>
+<form name='pushMsgFm' style='width:50%;margin:0 auto;' report-submit="true" bindsubmit='fajielong'>
+  
+    <button form-type="submit" class='falong' >发布接龙</button>
+</form>
+
+<!-- <text class='falong' bindtap='fajielong' >发布接龙</text>  -->
+</view>
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
   </view>
   <!--主题不能为空-->
   <view class='Donot' hidden='{{dored}}'>主题不能为空</view>

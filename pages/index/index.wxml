@@ -14,12 +14,23 @@
     <view>余额￥
       <span>0</span>
     </view>
+<<<<<<< HEAD
     <view bindtap='jielong'>
       <image class='jiapush' src='../img/tianjia.png'></image>
       <view class='pushs'>添加</view>
     </view>
   </view>
   <view class='nav'>
+=======
+    <view bindtap='jielong' hidden='{{show}}'>
+      <image class='jiapush' src='../img/tianjia.png'></image>
+      <view class='pushs'>创建
+      </view>
+    </view>
+  </view>
+
+  <view class='nav' hidden='{{show}}'>
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
     <view bindtap='suosou'>
       <image src='../img/sousuo.png'></image>
       <text>搜索</text> </view>
@@ -30,11 +41,19 @@
       <image src='../img/xiaoxi.png'></image>
       <text>消息</text>
     </view>
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
     <view>
       <image src='../img/quanzi.png'></image>
       <text>圈子</text> </view>
   </view>
+<<<<<<< HEAD
   <view class='touxiang' wx:for='{{zhuti}}' bindtap='jieneiyong' data-id='{{index}}'>
+=======
+  <view  class='touxiang' wx:for='{{zhuti}}' bindtap='jieneiyong' data-id='{{index}}'>
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
     <view class='tou'>
       <view class='tou-pian'>
         <image class="as-avatar" src="{{item.user_img}}" background-size="cover"></image>
@@ -51,8 +70,15 @@
       <view class='tou-jiaoy'>{{item.theme_name}}
         <text style='color:red' wx:if='{{item.btw_price != 0.00}}'>￥{{item.btw_price}}</text>
         <view class='tubox'>
+<<<<<<< HEAD
           <view wx:for='{{item.theme_img}}' class='tupian'>
             <image src="{{turl}}{{item.img_path}}" mode='aspectFill'></image>
+=======
+
+          <view wx:for='{{item.theme_img}}'  wx:if="{{item.img_path}}"  class='tupian'>
+          
+            <image  src="{{turl}}{{item.img_path}}" mode='aspectFill'></image>
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
           </view>
         </view>
         <view class='tubox'>
@@ -69,13 +95,25 @@
 
       <view class='tou-con-o'>
         <view class='tou-con-o-left'>{{item.kangou}}</view>
+<<<<<<< HEAD
         <view class='tou-con-o-right zhuangt'>{{item.zhuangtai}}</view>
+=======
+        <view class='tou-con-o-right zhuangt'>
+        
+        <text wx:if="{{item.status == 2}}">未发布</text>
+        {{item.zhuangtai}}</view>
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
       </view>
 
     </view>
   </view>
 
+<<<<<<< HEAD
 
+=======
+ 
+ 
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
 
 
   <view class='font'>有限传播，圈子工具</view>

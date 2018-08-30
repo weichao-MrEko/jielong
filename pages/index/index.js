@@ -14,7 +14,12 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     idda: {},
+<<<<<<< HEAD
     time: ''
+=======
+    time: '',
+    show: true
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
   },
   onPullDownRefresh: function() {
     this.jlcon();
@@ -87,10 +92,25 @@ Page({
   },
 
   onLoad: function() {
+<<<<<<< HEAD
     wx.showLoading({
       title: '加载中',
     })
 
+=======
+    // wx.showLoading({
+    //   title: '加载中',
+    // })
+    if (app.globalData.idda) {
+      this.setData({
+        idda: app.globalData.idda,
+        hasUserInfo: true
+      })
+
+      this.jlcon()
+
+    }
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
     app.userInfoReadyCallback = res => {
       console.log(res)
       
@@ -102,17 +122,36 @@ Page({
     
         this.jlcon()
 
+<<<<<<< HEAD
       }else{
+=======
+      } 
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
         this.setData({
           userInfo: res.userInfo,
         })
           
+<<<<<<< HEAD
       } 
+=======
+     
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
         
        
     }
  
+<<<<<<< HEAD
 
+=======
+    wx.request({
+      url: app.globalData.urlPrefix + 'Socketi/show',
+      success: (res) => {
+        this.setData({
+          show: res.data
+        })
+      }
+    })
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
     // if (app.globalData.userInfo) {
     //   console.log(11)
     
@@ -156,7 +195,11 @@ Page({
   },
   getUserInfo: function(e) {
     console.log(44)
+<<<<<<< HEAD
     //this.jlcon()
+=======
+    // this.jlcon()
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
@@ -202,7 +245,11 @@ Page({
           } else if (fenzhong > 0) {
             res.data.theme[i].add_time = fenzhong + '分钟前'
           } else if (miao < 0) {
+<<<<<<< HEAD
             res.data.comment[i].time = 1 + '秒前'
+=======
+            res.data.theme[i].time = 1 + '秒前'
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
 
           } else {
             res.data.theme[i].add_time = miao + '秒前'
@@ -213,9 +260,15 @@ Page({
           zhuti: res.data.theme,
           time: Time
         })
+<<<<<<< HEAD
         setTimeout(function() {
           wx.hideLoading()
         }, 1000)
+=======
+        // setTimeout(function() {
+        //   wx.hideLoading()
+        // }, 1000)
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
 
 
        
@@ -236,6 +289,11 @@ Page({
         console.log(1)
       }
     })
+<<<<<<< HEAD
   }
+=======
+  },
+ 
+>>>>>>> 54d48f04859407805c17cf9b893d738ea041de9f
 
 })
