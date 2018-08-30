@@ -1,0 +1,67 @@
+ <view class='renlaig'>
+  <view class='box'>
+      <view class='box_tou'>
+          <text>{{may_amount}}</text>
+          <view>接龙总数</view>
+      </view>
+      <view class='box_con'>
+          <view class='con_m'>
+              <text>{{come_people}}</text>
+              <view>接龙的人</view>
+          </view>
+          <view  class='con_m'>
+              <text>{{people}}</text>
+              <view>来过的人</view>
+          </view>
+          <view  class='con_m'>
+              <text>{{conversion}}%</text>
+              <view>转化率</view>
+          </view>
+          <view class='con_m'>
+              <text>0</text>
+              <view>分享的人</view>
+          </view>
+      </view>
+  </view>
+
+  <view class='box'>
+      <view class='box_tou'>
+          <text>￥{{price-price*0.01}}</text>
+          <view>实际收入</view>
+          <view class='huise'>实际收入，点击去提现</view>
+      </view>
+      <view class='box_con'>
+          <view class='con_m'>
+              <text>￥{{price}}</text>
+              <view>本次收入</view>
+          </view>
+          <view  class='con_m'>
+              <text>￥{{price*0.01}}</text>
+              <view>服务费</view>
+              <view class='huise'>1.0%</view>
+              <view class='huise'>启用支付参与</view>
+          </view>
+          <view  class='con_m'>
+              <text>￥0.0</text>
+              <view>退款</view>
+              <view class='huise'>手动￥0.0</view>
+              <view class='huise'>阶梯￥0.0</view>
+          </view>
+          <view class='con_m'>
+              <text>-￥0.0</text>
+              <view>奖励支出</view>
+          </view>
+      </view>
+  </view>
+</view>
+
+<view class='age'>
+        <text>用户画像</text>
+        <view><image src='../img/jiantou.png'></image></view>
+</view>
+
+<view class='box-two'>
+   <view class='box-two-x'><image src='{{user}}'></image></view>
+   <view class='x-name'>MrEko</view>
+   <view class='x-con'><text>{{login_time}}前 进入</text><text> ({{login_num}}次)</text></view>
+</view>

@@ -1,0 +1,41 @@
+{
+  "pages": [
+
+    "pages/index/index",
+    "pages/baoming1/baoming1",
+    "pages/comments/comments",
+    "pages/huodong/huodong",
+    "pages/baoming2/baoming2",
+    "pages/baoming5/baoming5",
+    "pages/baoming4/baoming4",
+    "pages/baoming3/baoming3",
+    "pages/wuliufs/wuliufs",
+    "pages/renlaig/renlaig",
+    "pages/participants/participants",
+    "pages/pintuanfs/pintuanfs",
+    "pages/shangchuantup/shangchuantup",
+    "pages/jielong/jielong",
+    "components/zhuti/zhuti",
+    "pages/baoming0/baoming0",
+    "pages/pingzheng/pingzheng",
+    "pages/tianjiaprivate/tianjiaprivate",
+    "pages/suosou/suosou",
+    "pages/liuyan/liuyan",
+    "pages/shedidian/shedidian",
+    "pages/kefu/kefu",
+    "pages/as/as",
+    "pages/joinJlong/index",
+    "pages/adr/index",
+    "pages/add_adr/index",
+    "pages/tihuodian/tihuodian",
+        "pages/pzManagement/pzManagement"
+
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
+  }
+}

@@ -1,0 +1,28 @@
+/* pages/pzManagement/pzManagement.wxss */
+page{
+  background-color: #ccc;
+}
+.head{
+  display: flex;
+  background-color: #fff;
+  width: 100%;
+  height: 220rpx;
+  border-top:1rpx solid #ccc;
+  padding-top: 10rpx;
+  justify-content:space-between;
+}
+.head_1{
+
+}
+.head_2{
+
+}
+.head_3{
+  width: 230rpx;
+  height: 70rpx;
+  background-color: #f34534;
+color: #fff;
+text-align: center;
+border-radius: 15rpx;
+line-height: 70rpx;
+}

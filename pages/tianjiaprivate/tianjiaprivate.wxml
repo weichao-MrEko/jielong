@@ -1,0 +1,4 @@
+<view>
+<input bindinput='item'></input>
+</view>
+<button type='primary' bindtap='tianjia'>添加</button>
