@@ -3,7 +3,7 @@ const app = getApp();
 const recorderManager = wx.getRecorderManager();
 const innerAudioContext = wx.createInnerAudioContext();
 var time = null,
-  yintime = null,
+  yintime = null,katime=null,
   Time, Stime, Etime, Daojitime = null;
 Page({
 
@@ -45,7 +45,8 @@ Page({
     timekeeping: 0,
     hibo: true,
     hizan: true,
-    kaci: ''
+    kaci: '',
+  
   },
 
   /**
@@ -185,7 +186,7 @@ Page({
           theme_id: that.data.theme_id,
           audio_path: that.data.luysrc,
           other_path: that.data.upimg,
-          luyint_time: that.data.timekeeping
+          luyin_time: that.data.timekeeping
         },
         success: function(res) {
           wx.navigateTo({
@@ -293,6 +294,10 @@ Page({
         if (res.data.theme_result.daka_list){
         for (var p = 0; p < res.data.theme_result.daka_list.length; p++) {
             res.data.theme_result.daka_list[p].other_path = JSON.parse(res.data.theme_result.daka_list[p].other_path)
+          res.data.theme_result.daka_list[p].kab=0
+          res.data.theme_result.daka_list[p].dutiao=0
+          res.data.theme_result.daka_list[p].tiaobo=false
+            res.data.theme_result.daka_list[p].tiaoting=true
         }
         }
         console.log(res.data.theme_result)
@@ -581,12 +586,42 @@ Page({
 
     var i = e.currentTarget.dataset.id
     innerAudioContext.src = app.globalData.urlfix + this.data.kaci[i].audio_path
-
+   this.katiaotime(i)
+    this.data.kaci[i].tiaobo= true
+    this.data.kaci[i].tiaoting = false
+    this.setData({ kaci: this.data.kaci})
     innerAudioContext.play()
     innerAudioContext.onPlay(() => {
       console.log(innerAudioContext.duration)
     })
 
+  },
+  katiaoting:function(e){
+    var i = e.currentTarget.dataset.id
+    innerAudioContext.src = app.globalData.urlfix + this.data.kaci[i].audio_path
+    innerAudioContext.pause()
+    clearInterval(katime)
+    this.data.kaci[i].tiaobo = false
+    this.data.kaci[i].tiaoting = true
+    this.setData({ kaci: this.data.kaci })
+    
+    
+  },
+  //打卡播放时间
+  katiaotime:function(i,dak){
+    var that=this
+    katime=setInterval(function(){
+      ++that.data.kaci[i].kab
+      that.data.kaci[i].dutiao = that.data.kaci[i].kab / that.data.kaci[i].luyin_time*100
+      if (that.data.kaci[i].kab > that.data.kaci[i].luyin_time){
+        that.data.kaci[i].kab=0;
+        that.data.kaci[i].dutiao=0;
+        clearInterval(katime)
+        that.data.kaci[i].tiaobo = false
+        that.data.kaci[i].tiaoting = true
+      } 
+      that.setData({ kaci: that.data.kaci})
+    },1000)
   },
   /**
    * 生命周期函数--监听页面隐藏
@@ -595,6 +630,8 @@ Page({
     console.log(12)
     clearInterval(time);
     clearInterval(Daojitime);
+    clearInterval(katime);
+    innerAudioContext.pause();
   },
 
   /**

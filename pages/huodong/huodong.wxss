@@ -459,6 +459,6 @@ image {
 border: 2rpx #525787 solid;justify-content: space-around;align-items: center;}
 .dakabox_muis_bo{width: 50rpx;height: 50rpx;}
 .dakabox_muis_du{width: 200rpx;height: 10rpx;background: #525787;}
-.dakabox_muis_tiao{width:0%;height: 100%;background: #f34534;}
+.dakabox_muis_tiao{height: 100%;background: #f34534;}
 .daka_box_pian{display: flex;}
 .daka_box_pian_tu{width: 140rpx;height: 140rpx;margin: 20rpx;border: 2rpx solid #ccc}
