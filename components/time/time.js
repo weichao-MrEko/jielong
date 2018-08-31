@@ -8,14 +8,19 @@ Component({
       type: String,
       value: '',
       observer(newVal, oldVal) {
-       
+        
+        if (oldVal != '' && !(oldVal > 0) ){
+         this.setData({
+           Time: oldVal
+         })
+         return 
+       }
+      
         // this.HeTime()
           
       }
     },
   },
-
-  
   ready() {
     console.log(777)
     this.HeTime()
