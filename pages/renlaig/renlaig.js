@@ -26,12 +26,14 @@ Page({
           that.setData({
             may_amount: res.data.may_amount,
             people:res.data.people,
+            people_list: res.data.people_list,
             login_num: options.login_num,
             price:res.data.price,
             login_time:res.data.login_time,
             come_people: res.data.come_people,
-            conversion: res.data.people / res.data.come_people
+            conversion: res.data.come_people / res.data.people
           })
+          console.log(that.data.conversion)
           that.setData({conversion  : (that.data.conversion * 100).toFixed(2)})
           
           if (that.data.login_time<60){
@@ -53,9 +55,9 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+    this.oime = this.selectComponent("#time")
+    console.log(1)
   },
-
   /**
    * 生命周期函数--监听页面显示
    */

@@ -25,7 +25,7 @@
     <view class='c-zhuti'>{{theme.theme_name}}</view>
     <view class='c-nei' wx:if='{{theme.desc_info!==null}}'>{{theme.desc_info}}</view>
     <view class='c-imm'>
-      <view class='c-img' wx:for="{{itimg}}" wx:if="{{itimg[0].img_path}}" bindtap='yulan' data-id='{{index}}'>
+      <view class='c-img' wx:for="{{itimg}}" wx:if="{{item}}" bindtap='yulan' data-id='{{index}}'>
 
         <image   src='{{turl}}{{item}}' mode='aspectFill'></image>
       </view>

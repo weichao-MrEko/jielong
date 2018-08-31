@@ -60,8 +60,9 @@
         <view><image src='../img/jiantou.png'></image></view>
 </view>
 
-<view class='box-two'>
-   <view class='box-two-x'><image src='{{user}}'></image></view>
-   <view class='x-name'>MrEko</view>
-   <view class='x-con'><text>{{login_time}}前 进入</text><text> ({{login_num}}次)</text></view>
+<view class='box-two' wx:for="{{people_list}}">
+   <view class='box-two-x'><image src='{{item.user_img}}'></image></view>
+   <view class='x-name'>{{item.user_name}}'</view>
+   <view class='x-con'>
+   <oime  id='time' Time='{{item.login_time}}'></oime> 进入<text> ({{item.login_num}}次)</text></view>
 </view>
