@@ -10,7 +10,7 @@
 
   <view class='shuju'>
     <view>
-      <span>0</span>人看过</view>
+      <span>{{see_num}}</span>人看过</view>
     <view>余额￥
       <span>0</span>
     </view>

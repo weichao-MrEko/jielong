@@ -10,6 +10,7 @@ Page({
     userInfo: {},
     zhuti: '',
     xmu: '',
+    see_num:0,
     turl: app.globalData.urlfix,
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
@@ -228,6 +229,7 @@ Page({
       
         that.setData({
           zhuti: res.data.theme,
+          see_num: res.data.see_num,
           time: Time
         })
 
