@@ -184,8 +184,8 @@ Page({
           user_id: app.globalData.idda.uid,
           theme_id: that.data.theme_id,
           audio_path: that.data.luysrc,
-          other_path: that.data.upimg
-
+          other_path: that.data.upimg,
+          luyint_time: that.data.timekeeping
         },
         success: function(res) {
           wx.navigateTo({
@@ -389,15 +389,15 @@ Page({
       var Y = new Date().getFullYear()
       var M = new Date().getMonth() + 1
       var D = new Date().getDate()
-      var ersi = 60 * 60 * 24
-      var tomorrow = Y + '/' + M + '-' + (D + 1)
-      if (tomorrow > ersi) {
-        tomorrow = Y + '/' + M + '-' + D
-      }
+   
+      var tomorrow = Y + '/' + M + '-' + D
+     
       var dangqian = new Date().getTime()
-      var tie = new Date(tomorrow + ' ' + that.data.xiangmu[0].start)
-      var mingt = tie.getTime()
-      var leave = mingt - dangqian
+      
+      var tie = new Date(tomorrow + ' ' + that.data.xiangmu[0].start) .getTime() + 24 * 60 * 60 * 1000
+
+     
+      var leave = tie - dangqian
       /**xi小时 */
       var leave1 = leave % (24 * 3600 * 1000)
       var hour = Math.floor(leave1 / (3600 * 1000))
@@ -413,7 +413,6 @@ Page({
         this.Dakat()
       }
       leave--;
-      console.log(leave)
       that.setData({
         countDownHour: hours + ':',
         countDownMinute: minutes + ':',
