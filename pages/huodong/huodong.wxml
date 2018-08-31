@@ -178,15 +178,18 @@
         <oime class='dakabox_top_xx_time' id='time' Time='{{item.daka_time}}'></oime>
       </view>
 
-      <view class='dakabox_muis'>
-        <view class='dakabox_muis_bo' data-id='{{index}}' bindtap='katiaobo'>
+      <view class='dakabox_muis' wx:if='{{item.audio_path!="undefined"}}'>
+        <view class='dakabox_muis_bo' data-id='{{index}}' bindtap='katiaobo' hidden='{{item.tiaobo}}'>
           <image src='../img/bofang.png'></image>
         </view>
-        <view>00:00</view>
-        <view class='dakabox_muis_du'>
-          <view class='dakabox_muis_tiao'></view>
+        <view class='dakabox_muis_bo' data-id='{{index}}' bindtap='katiaoting' hidden='{{item.tiaoting}}'>
+          <image src='../img/zanting.png'></image>
         </view>
-        <view>00:22</view>
+        <view>{{item.kab}}”</view>
+        <view class='dakabox_muis_du'>
+          <view class='dakabox_muis_tiao' style='width:{{item.dutiao}}%;'></view>
+        </view>
+        <view>{{item.luyin_time}}”</view>
       </view>
 
       <view class='daka_box_pian'>
