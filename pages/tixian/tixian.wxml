@@ -1,0 +1,50 @@
+<view class='Global'>
+  <view class='head'>
+    <view>余额(元)</view>
+    <view class='mingxi'>余额明细</view>
+  </view>
+  <view class='jine'>￥100000</view>
+  <view class='tixian'>
+     <view class='tixian_box'>
+       <view>提现金额</view>
+       <view class='tixian_bg'>（今天还可提现5次，剩余额度￥20000）</view>
+     </view>
+     <view class='tixian_box  boxh'>
+      <view>￥</view>
+      <input placeholder='0.00' class='edu'></input>
+     </view>
+     <view class='tixian_box'>
+      <view>收款人</view>
+      <input placeholder='请填写微信实名认证的姓名' class='sname'></input>
+     </view>
+  </view>
+  <button class='tix'>提现</button>
+  <button>取消</button>
+ <view class='wenxin'>温馨提示</view>
+  <view class='list'>
+   
+    <text>
+     ● 通过群小圈付款的费用，系统自动在付款时，按1%费率扣除费用（包含微信的0.6%手续费）；
+    </text>
+  </view>
+  <view class='list'>
+ 
+    <text>
+     ● 仅限接龙活动发起人，企业和社群管理员通过实名提现，单日5笔，单日限制2W；
+    </text>
+  </view>
+  <view class='list'>
+    
+    <text>
+     ● 提现通常实时到账；如有异常请联系
+    </text>
+    <text class='textcolor'>客服微信：13549568131</text>
+ 
+  </view>
+  <view class='list'>
+    <text>
+     ● 更多信息请阅读
+    </text>
+    <text class='textcolor'>《群小圈服务协议》</text>
+  </view>
+</view>

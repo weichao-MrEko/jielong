@@ -1,6 +1,10 @@
 {
   "pages": [
-    "pages/index/index",
+      "pages/index/index",
+    "pages/guanzhusp/guanzhusp",
+ 
+    "pages/tixian/tixian",
+    "pages/yue/yue",
     "pages/joinJlong/index",
     "pages/pzManagement/pzManagement",
     "pages/baoming1/baoming1",
@@ -28,7 +32,8 @@
     "pages/adr/index",
     "pages/add_adr/index",
     "pages/tihuodian/tihuodian",
-    "pages/people/people"
+    "pages/people/people",
+    "pages/tihuodian/tihuodian"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -12,7 +12,6 @@ Component({
    * 组件的初始数据
    */
   data: {
-    
     hid: false,
     hid2: true,
     ad: true,
@@ -50,7 +49,6 @@ Component({
         theme_id: options.theme_id,
         user_id: options.user_id
       })
-      console.log(that.data.act)
       wx.request({
         url: app.globalData.urlPrefix + 'joinJl/join_jl',
         data: {
@@ -71,18 +69,7 @@ Component({
     
     },
     onShow: function() {
-      var that = this;
-      wx.request({
-        url: app.globalData.urlPrefix + 'joinJl/xuanAdr',
-        data: {
-          user_id: that.data.user_id
-        },
-        success: function(res) {
-          that.setData({
-            address: res.data
-          })
-        },
-      })
+    
     },
     binddata: function(e) {
       console.log(e)
@@ -175,11 +162,11 @@ Component({
 
     adr: function() {
       var that = this
-      wx: wx.navigateTo({
-        url: '../adr/index?uid=' + that.data.user_id,
-        success: function(res) {},
-        fail: function(res) {},
-        complete: function(res) {},
+      wx.chooseAddress({
+        success: function (res) {
+          that.setData({ address:res})
+     
+        }
       })
     },
     changcolro1: function() {
@@ -197,29 +184,7 @@ Component({
         tesu: false
       })
     },
-    add_info: function() {
-      var that = this;
-      wx.request({
-        url: app.globalData.urlPrefix + 'joinJl/add_actor',
-        data: {
-          name: that.data.name,
-          mobile: that.data.mobile,
-          area: that.data.area,
-          address: that.data.address,
-
-          code: that.data.code
-        },
-        success: function(res) {
-          console.log(res.data.act)
-          that.setData({
-            address_info: res.data.address_info,
-            self_info: res.data.self_info,
-            item_info: res.data.item_info,
-            adr_panduan: res.data.adr_panduan
-          })
-        }
-      })
-    },
+   
     beizhu: function(e) {
       console.log(e.detail.value)
       this.setData({
@@ -240,7 +205,8 @@ Component({
           price: that.data.summation.zongjiage,
           amount: that.data.summation.zongshu,
           desc: that.data.beizhu,
-          act_id: that.data.act.id
+          act_id: that.data.act.id,
+          map:that.data.address
         },
         success: function(res) {
           var params = JSON.parse(res.data.params)
@@ -281,7 +247,7 @@ Component({
     },
     queren: function() {
       var that = this;
-      console.log(that.data.item_info)
+      console.log(that.data.act)
       wx.request({
         url: app.globalData.urlPrefix + 'Joinjl/qrjl',
         data: {
@@ -292,7 +258,8 @@ Component({
           price: that.data.summation.zongjiage,
           amount: that.data.summation.zongshu,
           desc: that.data.beizhu, //备注
-          act_id: that.data.act.id
+          act_id: that.data.act.id,
+          map:that.data.address
         },
         success: function(res) {
           app.globalData.socket.send({

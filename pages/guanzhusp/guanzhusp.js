@@ -1,11 +1,12 @@
-// pages/add_adr/index.js
+// pages/guanzhusp/guanzhusp.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    video: ['../img/11.mp4', '../img/11.mp4', '../img/11.mp4', '../img/11.mp4', '../img/11.mp4', '../img/11.mp4', '../img/11.mp4', '../img/11.mp4'],
+    oldi:0
   },
 
   /**
@@ -14,12 +15,26 @@ Page({
   onLoad: function (options) {
   
   },
-
+boss:function(e){
+  var i=e.detail.current
+  var lsati = this.data.oldi
+  
+     this.videoContext = wx.createVideoContext('myVideo' + i)
+     this.videoContext.play()
+     this.setData({
+       oldi:i
+     })
+  
+     this.videoContext = wx.createVideoContext('myVideo' + lsati)
+     this.videoContext.pause()
+   
+  
+},
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+    this.videoContext = wx.createVideoContext('myVideo')
   },
 
   /**

@@ -1,7 +1,2 @@
-          <view class='address'>
-              <view wx:for='{{adrs}}' bindtap='xuan_ad' data-id='{{index}}'>
-                <view>{{item.name}} {{item.mobile}}</view>
-                <view class='ad_v2'>{{item.area}}  {{item.address}}</view>
-              </view>
-              <button bindtap='ad2' type='primary'>添加新地址</button>
-          </view>
+<!--pages/adr/index.wxml-->
+<text>pages/adr/index.wxml</text>

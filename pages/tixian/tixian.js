@@ -1,4 +1,4 @@
-// pages/add_adr/index.js
+// pages/tixian/tixian.js
 Page({
 
   /**

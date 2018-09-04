@@ -14,7 +14,7 @@
     <view class='copy' ></view>
 </view>
 <!--接龙主题-->
-<zhuti id="zhuti" name='拼团' descont='{{descont}}' setPlnr='{{setPlnr}}'></zhuti>
+<zhuti id="zhuti" name='拼团' descont='{{descont}}' setPlnr='{{setPlnr}}' pushurl='{{pushurl}}'></zhuti>
 
 <!--接龙项目-->
 <view class='biaoti'>拼团商品</view>

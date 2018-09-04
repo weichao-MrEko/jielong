@@ -1,11 +1,11 @@
-// pages/add_adr/index.js
+// pages/yue/yue.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    hitix:true
   },
 
   /**
@@ -14,7 +14,10 @@ Page({
   onLoad: function (options) {
   
   },
-
+  tixian:function(){
+   
+   this.setData({hitix:false})
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

@@ -1,7 +1,6 @@
 <!--pages/suosou/suosou.wxml-->
-<view class='box'>
-  <input type='text' confirm-type='search' bindconfirm='search' placeholder='搜索接龙主题/发起人昵称' class=''></input>
-  <text>取消</text>
+<view class='box'>  
+<input type='text' confirm-type='search' bindconfirm='search' placeholder='搜索接龙主题/发起人昵称 '></input><text>取消</text>
 
 </view>
 <view class='container'>

@@ -1,81 +1,20 @@
 // pages/adr/index.js
-const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    user_id:'',
-    adrs:[{
-      ad_id:'',
-      name:'',
-      mobile:'',
-      area:'',
-      address:'',
-      code:''
-    }]
+  
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
-    this.setData({user_id : options.uid})
-    this.tianmap()
+  
   },
-  ad2:function () {
-    wx: wx.navigateTo({
-      url: '../add_adr/index?uid=' + this.data.user_id,
-      success: function (res) {
 
-      },
-      fail: function (res) { },
-      complete: function (res) { },
-    })
-  },
-  xuan_ad: function (e) {
-    let that = this
-    let eid = e.currentTarget.dataset.id  
-    //console.log(that.data.adrs[eid]);
-    wx.request({
-      url: app.globalData.urlPrefix + 'address/xuanAdr',
-      data: {
-        ad_id: that.data.adrs[eid].ad_id,
-        user_id:that.data.user_id
-      },
-      success: function (res) {
-         if(res.data==1){
-           wx.navigateBack({
-             delta:1
-           })
-         }
-        } 
-      
-    })
-  },
-  tianmap:function(){
-    var that = this;
-      wx.request({
-        url: app.globalData.urlPrefix + 'address/searchAdr',
-        data: {
-          user_id: that.data.user_id,
-        },
-        success: function (res) {
-          console.log(res.data)
-          for (var i = 0; i < res.data.length; i++) {
-            that.data.adrs.push({ ad_id: res.data[i].id, name: res.data[i].name, mobile: res.data[i].phone, area: res.data[i].area, address: res.data[i].address, code: res.data[i].code });
-            that.data.adrs.reverse()
-            that.setData({
-              adrs: that.data.adrs
-            })
-          }
-        }
-      })
-    
-
-  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -87,8 +26,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.tianmap()
-    console.log(1)
+  
   },
 
   /**

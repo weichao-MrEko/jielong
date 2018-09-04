@@ -87,6 +87,8 @@
   width: 70rpx;
   height: 70rpx;
   border-radius: 10rpx;
+  float: left;
+  margin-right: 20rpx;
 }
 
 .tou {

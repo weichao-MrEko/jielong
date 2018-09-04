@@ -1,0 +1,79 @@
+/* pages/yue/yue.wxss */
+
+.Global {
+  width: 90%;
+  margin: auto;
+}
+
+.head {
+  display: flex;
+  font-size: 35rex;
+  justify-content: space-between;
+  margin: 20rpx auto;
+}
+
+.mingxi {
+  color: #525787;
+}
+
+.jine {
+  font-size: 80rpx;
+  margin: 80rpx auto;
+  text-align: center;
+}
+
+.tix {
+  background: #f34534;
+  margin: 30rpx auto;
+  color: #fff;
+}
+.wenxin{
+  font-size: 28rpx;
+  color: #666;
+  text-align: center;
+  margin-top:80rpx;
+}
+.list {
+  margin: 10rpx auto;
+  font-size: 28rpx;
+  color: #666;
+  line-height: 32rpx;
+}
+
+
+
+.textcolor {
+
+  color: #4470b7;
+}
+.tixian {
+  background: #f4f4f4;
+  border-radius: 10rpx;
+  padding: 20rpx 0;
+}
+
+.tixian_box {
+  display: flex;
+  font-size: 35rpx;
+  
+  width: 94%;
+  margin: auto;
+}
+
+.tixian_bg {
+  line-height: 50rpx;
+  color: #666;
+  font-size: 28rpx;
+}
+.boxh{
+  height: 160rpx;
+  line-height: 180rpx;
+}
+.edu{
+  height: 160rpx;
+  font-size: 80rpx;
+  margin-left: 20rpx;
+}
+.sname{
+  margin-left: 20rpx;
+}
