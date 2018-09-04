@@ -11,7 +11,7 @@
   <view class='shuju'>
     <view>
       <span>{{see_num}}</span>人看过</view>
-    <view>余额￥
+    <view bindtap='yue'>余额￥
       <span>0</span>
     </view>
     <view bindtap='jielong' hidden='{{show}}'>

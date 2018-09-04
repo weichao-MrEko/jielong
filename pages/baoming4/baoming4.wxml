@@ -14,7 +14,7 @@
     <view class='copy' ></view>
 </view>
 <!--接龙主题-->
-<zhuti id="zhuti" name='聚会' descont='{{descont}}' setPlnr='{{setPlnr}}'></zhuti>
+<zhuti id="zhuti" name='聚会' descont='{{descont}}' setPlnr='{{setPlnr}}' pushurl='{{pushurl}}'></zhuti>
 
 <!--接龙项目-->
 <view class='biaoti'>聚会项目</view>

@@ -14,7 +14,7 @@
     <view class='copy' ></view>
 </view>
 <!--接龙主题-->
-<zhuti id="zhuti" name='报个到' descont='{{descont}}' setPlnr='{{setPlnr}}'></zhuti>
+<zhuti id="zhuti" name='报个到' descont='{{descont}}' setPlnr='{{setPlnr}}' pushurl='{{pushurl}}'></zhuti>
 
 <view class='asdfggg'  wx:for='{{group}}'>
 <!--填写项-->

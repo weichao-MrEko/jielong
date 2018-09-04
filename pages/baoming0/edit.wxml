@@ -14,7 +14,7 @@
    <view class='copy' ></view>
 </view>
 <!--接龙主题-->
-<zhuti id="zhuti" name='接龙' descont='{{edit_theme.desc_info}}' setPlnr='{{edit_theme.theme_name}}'></zhuti>
+<zhuti id="zhuti" name='接龙' descont='{{edit_theme.desc_info}}' setPlnr='{{edit_theme.theme_name}}' pushurl='{{pushurl}}'></zhuti>
 <!--商品-->
 <view hidden='{{hshangp}}'>
 <view class='biaoti'>{{spname}}商品</view>
@@ -49,7 +49,11 @@
     </view>
 </view>
 
- 
+ <view class='newxm ' hidden='{{newshang}}'>
+  <view class='xiongmu'>
+      <view class='new-xm' bindtap='newitem' >+新项目</view>
+  </view>
+</view>
 </view>
   </view>
 
@@ -121,7 +125,7 @@
 </view>
 
 </view>
-   <view class='newxm '>
+   <view class='newxm ' hidden='{{newxia}}'>
   <view class='xiongmu'>
       <view class='new-xm' bindtap='newitem' >+新项目</view>
   </view>

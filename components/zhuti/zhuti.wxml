@@ -13,7 +13,7 @@
       <view class='gdel' data-index="{{index}}" bindtap='infodel' >×</view>
       <image wx:if='{{item.pic !== ""}}'  src="{{item.pic}}"  data-index='{{index}}'  mode='aspectFill' bindtap='tup'></image>
           <video wx:if='{{item.video !== ""}}'  src="{{item.video}}" id='sps' show-progress='false' direction='0' objectFit='cover' bindtap='ship' data-index='{{index}}'>
-          <cover-image></cover-image>
+       
           </video>
       </view>
       <view class='paizhao' bindtap='box' data-id="{{index}}">

@@ -74,6 +74,8 @@
   width:70rpx;
   height: 70rpx;
   border-radius: 10rpx;
+  float: left;
+  margin-right: 20rpx;
 }
 .tou{
   display: flex;
@@ -82,7 +84,7 @@
   flex-grow: 29;
   
 }
-.as-avatar{float: left;margin-right: 20rpx;}
+
 .as-nickname{
   font-size: 28rpx;
 }

@@ -21,7 +21,7 @@ Page({
       { 
         item_name: '',
         start: '09:00',
-        end: '12:00',
+        end: '22:00',
         price: 0,
         amount: 0,
         checked: false

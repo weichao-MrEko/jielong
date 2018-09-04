@@ -1,0 +1,47 @@
+<view class='guanzhu'>
+  <view class='guan_header'>
+    <view class='header_nimg'>
+      <image src='../img/11.jpg' mode='aspectFill'></image>
+    </view>
+    <view class='header_xix'>
+      <view class='xix_name'>
+        <text class='xix_name_n'>胡一帆</text>
+        <text class='xix_name_g'>5条更新</text>
+      </view>
+      <view class='xix_zuop'>
+        <text>作品 5</text>
+        <text>粉丝 72万</text>
+      </view>
+    </view>
+  </view>
+  <view>
+    <swiper style='height:540rpx' display-multiple-items='2.3' bindchange='boss'>
+    <swiper-item  wx:for='{{video}}'>
+      <view class='scroll_sp'>
+      <video src='{{item}}' id='myVideo{{index}}' controls='{{false}}'></video>
+      </view> 
+      </swiper-item>
+      <swiper-item>11</swiper-item>
+    </swiper>
+  </view>
+
+<view class='guanzhu_scroll'>
+<view>
+  <view>你可能感兴趣的人</view>
+  <view>查看全部</view>
+</view>
+  <scroll-view scroll-x >
+  <view class='guanzhu_gan' style='display:flex'>
+    <view class='gan_box' wx:for='{{2}}'>
+     
+       <view class='gan_nimg'><image  src='../img/11.jpg' mode='aspectFill'></image></view>
+       <view class='gan_name'>胡一帆</view>
+       <view class='gan_fs'>粉丝72万</view>
+       <view class='gan_xiq'>你可能感兴趣</view>
+       <view class='gan_zhu'>关注</view>
+    </view>
+</view>
+  </scroll-view> 
+</view>
+</view>
+

@@ -57,7 +57,9 @@ Component({
     jlhong:true,
     spname:'',
     shangtu:[],
-    dakaitem:true
+    dakaitem:true,
+    newxia:true,
+    newshang:true
   },
   /**
    * 组件的方法列表
@@ -144,16 +146,27 @@ Component({
             
              }
           }
-          console.log(that.data.shangtu)
+          for (var j in res.data.theme_imag) {
+            var index1 = res.data.theme_imag[j].lastIndexOf(".");
+            var index2 = res.data.theme_imag[j].length;
+            var postf = res.data.theme_imag[j].substring(index1, index2);
+            if (postf == '.jpg' || postf=='.png'){
+              that.data.pushurl.push({ pic: app.globalData.urlfix+ res.data.theme_imag[j], video: '' })
+          }else if(postf=='.mp4'){
+              that.data.pushurl.push({ pic: '', video: app.globalData.urlfix + res.data.theme_imag[j] })
+          }
+          }
+          console.log(that.data.pushurl)
+          that.zhuti.data.upimg = res.data.theme_imag
           if (res.data.theme_result.jl_type == 0) { 
-            that.setData({ jlhong: false, canxx:false})
+            that.setData({ jlhong: false, canxx: false, newxia:false})
             }
           if (res.data.theme_result.jl_type == 1) {
             that.setData({ 
               hshangp: false,
                spname:'团购',
-               wufs: false
-             
+               wufs: false,
+             newshang:false
                })
              }
           if (res.data.theme_result.jl_type == 2) {
@@ -169,7 +182,11 @@ Component({
           if (res.data.theme_result.jl_type == 4) {
         
             that.setData({
-              hshangp: false, spname: '拼团', pinfs:false, wufs: false,
+              hshangp: false,
+               spname: '拼团', 
+               pinfs: false, 
+               wufs: false, 
+               newshang:false
             })
            }
           if (res.data.theme_result.jl_type == 5) { }
@@ -184,7 +201,8 @@ Component({
             jl_type: res.data.theme_result.jl_type, 
             endtime: that.data.endtime,
             startime: that.data.startime,
-            shangtu: that.data.shangtu
+            shangtu: that.data.shangtu,
+            pushurl:that.data.pushurl
          })
    
         }
