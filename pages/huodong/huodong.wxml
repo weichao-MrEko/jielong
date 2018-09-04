@@ -193,7 +193,7 @@
       </view>
 
       <view class='daka_box_pian'>
-        <view class='daka_box_pian_tu' wx:for='{{item.other_path}}' wx:for-item='i'>
+        <view class='daka_box_pian_tu' bindtap='luxtp' data-j='{{index}}' data-id='{{j}}' wx:for='{{item.other_path}}' wx:for-item='i' wx:for-index='j'>
           <image src='{{turl}}{{i}}'></image>
         </view>
       </view>

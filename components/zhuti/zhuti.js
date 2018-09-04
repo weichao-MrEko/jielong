@@ -17,6 +17,10 @@ Component({
       type: String,
       value: ''
     },
+    pushurl: {
+      type: Array,
+      value: ''
+    },
   },
 
   /**
@@ -26,7 +30,8 @@ Component({
     pushurl: [],
     setPlnr:'',
     descont:'',
-    upimg:''
+    upimg:'',
+    src: app.globalData.urlfix
   },
 
   /**
@@ -57,7 +62,6 @@ Component({
                   console.log(postf)
                   if (postf == ".jpg" || postf=='.png') {
                     var gg = that.data.pushurl
-                 
                     gg.push({ pic: tempFilePaths[j], video: '' })
                     that.setData({
                       pushurl: gg
@@ -81,10 +85,10 @@ Component({
                       //var data=res.data
                       console.log(res)
                       uppimg.push(JSON.parse(res.data).imgPath)
-
+                     console.log(uppimg)
                       that.setData({
                         upimg: uppimg,
-
+                        
                       })
                       setTimeout(function () {
                         wx.hideLoading()
@@ -95,7 +99,7 @@ Component({
 
               },
             })
-            console.log(that.data.pushurl)
+           
           }
           else if (res.tapIndex === 1) {
             wx.chooseVideo({
@@ -126,7 +130,6 @@ Component({
 
 
                 }
-                console.log(that.data.pushurl)
                 for (var i = 0; i < gg.length; i++) {
                   console.log(gg[i].video)
                   wx.uploadFile({
@@ -147,7 +150,7 @@ Component({
           }
         }
       })
-
+ 
     },
     infodel: function (ev) {
       let index = ev.currentTarget.dataset.index;

@@ -308,14 +308,15 @@ Page({
           map: that.data.map,
           comment: res.data.comment,
           kaci: res.data.theme_result.daka_list,
-          jl_type: res.data.theme_result.jl_type
+          jl_type: res.data.theme_result.jl_type,
+          baomingren: res.data.all_ord
         })
         console.log(that) 
         that.FabuTime()
         setTimeout(function() {
           wx.hideLoading()
         }, 500)
-        return callback(res)
+     return callback(res)
       }
     })
   },
@@ -361,30 +362,35 @@ Page({
 
 
     that.findDrag(function(res){
-    var Y = new Date().getFullYear()
-    var M = new Date().getMonth() + 1
-    var D = new Date().getDate()
-    var Time = new Date().getTime() 
-      if (res.data.theme_result.jl_type == 2) {
-        Stime = new Date(Y + '-' + M + '-' + D + ' ' + that.data.xiangmu[0].start).getTime();
-        Etime = new Date(Y + '-' + M + '-' + D + ' ' + that.data.xiangmu[0].end).getTime();
-
-        if (Time > Stime && Time < Etime) {
-          console.log(11)
-          clearInterval(Daojitime)
-          that.Dakat()
-        } else {
-          console.log(22)
-          clearInterval(time)
-          that.Daojis()
-        }
-      }
+      that.dakktime(res)
     })
 
     // that.FabuTime()
 
 
 
+  },
+  dakktime: function (res) {
+    var that = this
+    console.log(res)
+    var Y = new Date().getFullYear()
+    var M = new Date().getMonth() + 1
+    var D = new Date().getDate()
+    var Time = new Date().getTime()
+    if (res.data.theme_result.jl_type == 2) {
+      Stime = new Date(Y + '-' + M + '-' + D + ' ' + that.data.xiangmu[0].start).getTime();
+      Etime = new Date(Y + '-' + M + '-' + D + ' ' + that.data.xiangmu[0].end).getTime();
+
+      if (Time > Stime && Time < Etime) {
+        console.log(11)
+        clearInterval(Daojitime)
+        that.Dakat()
+      } else {
+        console.log(22)
+        clearInterval(time)
+        that.Daojis()
+      }
+    }
   },
   Daojis: function() {
     var that = this
@@ -581,6 +587,7 @@ Page({
 
     }, 1000)
   },
+ 
   // 打卡信息
   katiaobo: function(e) {
 
@@ -606,6 +613,18 @@ Page({
     this.setData({ kaci: this.data.kaci })
     
     
+  },
+  luxtp: function (e) {
+    var i = e.currentTarget.dataset.id
+    var j = e.currentTarget.dataset.j
+    var aa=[]
+    for (var o = 0; o < this.data.kaci[i].other_path.length;o++){
+      aa.push(app.globalData.urlfix + this.data.kaci[i].other_path[o])
+    }
+    wx.previewImage({
+      current: app.globalData.urlfix + this.data.kaci[i].other_path[j],
+      urls: aa
+    })
   },
   //打卡播放时间
   katiaotime:function(i,dak){
@@ -647,37 +666,9 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-    var that = this
-    wx.showLoading({
-      title: '加载中',
-    })
-    wx.request({
-      url: app.globalData.urlPrefix + 'signup/findDragonItem',
-      data: {
-        theme_id: that.data.theme_id,
-        user_id: that.data.user_id,
-      },
-      success: function(res) {
-
-        for (var y = 0; y < res.data.all_ord.length; y++) {
-          if (res.data.all_ord[y].user_id == app.globalData.idda.uid) {
-            if (res.data.all_ord[y].status > 0) {
-              that.setData({
-                btn: 'buwoyao',
-                apply: '已参与'
-              })
-            }
-          }
-        }
-
-        that.setData({
-
-          baomingren: res.data.all_ord
-        })
-        setTimeout(function() {
-          wx.hideLoading()
-        }, 500)
-      }
+    let that = this
+    that.findDrag(function (res) {
+      that.dakktime(res)
     })
     wx.stopPullDownRefresh()
   },
@@ -1091,15 +1082,17 @@ Page({
   yulan: function(e) {
     console.log(e.currentTarget.dataset.id)
     var id = e.currentTarget.dataset.id
-
-    for (var i = 0; i < this.data.itimg.length; i++) {
-      var bb = []
-      var aa = app.globalData.urlfix + this.data.itimg[i]
+    var aa=[]
+    for (var i = 0; i < this.data.itimg.length;i++){
+     aa.push(app.globalData.urlfix + this.data.itimg[i])
     }
-    wx.previewImage({
-      current: app.globalData.urlfix + this.data.itimg[id],
-      urls: [app.globalData.urlfix + this.data.itimg[id]]
-    })
+    console.log(aa)
+      wx.previewImage({
+        current: app.globalData.urlfix + this.data.itimg[id],
+        urls: aa
+      })
+    
+  
 
   },
   fenxinghidd: function() {
