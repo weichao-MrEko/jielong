@@ -146,16 +146,19 @@ Component({
             
              }
           }
-          for (var j in res.data.theme_imag) {
-            var index1 = res.data.theme_imag[j].lastIndexOf(".");
-            var index2 = res.data.theme_imag[j].length;
-            var postf = res.data.theme_imag[j].substring(index1, index2);
-            if (postf == '.jpg' || postf=='.png'){
-              that.data.pushurl.push({ pic: app.globalData.urlfix+ res.data.theme_imag[j], video: '' })
-          }else if(postf=='.mp4'){
-              that.data.pushurl.push({ pic: '', video: app.globalData.urlfix + res.data.theme_imag[j] })
+          if (res.data.theme_imag.lenght>0){
+            for (var j in res.data.theme_imag) {
+              var index1 = res.data.theme_imag[j].lastIndexOf(".");
+              var index2 = res.data.theme_imag[j].length;
+              var postf = res.data.theme_imag[j].substring(index1, index2);
+              if (postf == '.jpg' || postf == '.png') {
+                that.data.pushurl.push({ pic: app.globalData.urlfix + res.data.theme_imag[j], video: '' })
+              } else if (postf == '.mp4') {
+                that.data.pushurl.push({ pic: '', video: app.globalData.urlfix + res.data.theme_imag[j] })
+              }
+            }
           }
-          }
+          
           console.log(that.data.pushurl)
           that.zhuti.data.upimg = res.data.theme_imag
           if (res.data.theme_result.jl_type == 0) { 
