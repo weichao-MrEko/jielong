@@ -223,7 +223,7 @@
     <view class='liuyan_name'>
       <text>{{item.user_name}}</text>
 
-      <oime id='time' Time='{{item.time}}'></oime>
+      <oime  id='time' Time='{{item.time}}'></oime>
     </view>
     <view class='liuyan_zan'>
       <image src='../img/kongjian.jpg'></image>

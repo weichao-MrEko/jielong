@@ -69,6 +69,10 @@ Page({
   jieneiyong: function(e) {
     let that = this
     let eid = e.currentTarget.dataset.id
+    wx.showLoading({
+      title: '加载中',
+      
+    })
     wx:wx.request({
       url: app.globalData.urlPrefix + "Infoall/friend",
       data: {
@@ -77,6 +81,7 @@ Page({
       },
     
       success: function(res) {
+        wx.hideLoading()
         wx: wx.navigateTo({
           url: '../huodong/huodong?id=' + that.data.zhuti[eid].id + '&uid=' + app.globalData.idda.uid + '&theme_uid=' + that.data.zhuti[eid].user_id,
 

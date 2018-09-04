@@ -932,11 +932,12 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function() {
-    console.log(this.data.itimg[0])
+    
     return {
       title: this.data.theme.theme_name,
       imageUrl: this.data.turl + this.data.itimg[0],
-      path: 'pages/huodong/huodong?id=' + this.data.theme_id + '&uid=' + this.data.uid + '&theme_uid=' + this.data.theme_uid
+      path: 'pages/huodong/huodong?id=' + this.data.theme_id + '&uid=' + this.data.user_id + '&theme_uid=' + this.data.theme_uid
+      
     }
   },
   eventDraw() {
