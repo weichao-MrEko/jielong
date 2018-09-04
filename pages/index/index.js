@@ -10,6 +10,7 @@ Page({
     userInfo: {},
     zhuti: '',
     xmu: '',
+    see_num:0,
     turl: app.globalData.urlfix,
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
@@ -68,6 +69,10 @@ Page({
   jieneiyong: function(e) {
     let that = this
     let eid = e.currentTarget.dataset.id
+    wx.showLoading({
+      title: '加载中',
+      
+    })
     wx:wx.request({
       url: app.globalData.urlPrefix + "Infoall/friend",
       data: {
@@ -76,6 +81,7 @@ Page({
       },
     
       success: function(res) {
+        wx.hideLoading()
         wx: wx.navigateTo({
           url: '../huodong/huodong?id=' + that.data.zhuti[eid].id + '&uid=' + app.globalData.idda.uid + '&theme_uid=' + that.data.zhuti[eid].user_id,
 
@@ -116,6 +122,7 @@ Page({
           userInfo: res.userInfo,
         })
           
+
      
         
        
@@ -172,7 +179,7 @@ Page({
   },
   getUserInfo: function(e) {
     console.log(44)
-    // this.jlcon()
+
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
@@ -227,11 +234,10 @@ Page({
       
         that.setData({
           zhuti: res.data.theme,
+          see_num: res.data.see_num,
           time: Time
         })
-        // setTimeout(function() {
-        //   wx.hideLoading()
-        // }, 1000)
+
 
 
        
@@ -252,6 +258,7 @@ Page({
         console.log(1)
       }
     })
+
   },
  
 

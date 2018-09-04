@@ -412,6 +412,7 @@ image {
   font-size: 30rpx;
   padding: 0;
 }
+
 /* 录音 */
   .yuyin{text-align: center;font-size: 30rpx;color: #525787;}
  .yuyin_logo{width: 100rpx;height: 100rpx;margin: 30rpx auto;line-height: 160rpx;}
@@ -455,3 +456,16 @@ image {
   padding: 20rpx;
 
 }
+/* 打卡信息 */
+.dakabox{width: 96%;margin: 20rpx auto;border: 2rpx solid #ccc;display: flex;}
+.dakabox_top{flex: 1}
+.dakabox_top_tx{width: 60rpx;height: 60rpx;margin: 20rpx}
+.dakabox_top_xx_name{font-size: 28rpx;color: #525787;margin-top: 20rpx;}
+.dakabox_top_xx_time{font-size: 20rpx;color: #666}
+.dakabox_muis{height: 70rpx;display: flex;margin: 20rpx;font-size: 30rpx;
+border: 2rpx #525787 solid;justify-content: space-around;align-items: center;}
+.dakabox_muis_bo{width: 50rpx;height: 50rpx;}
+.dakabox_muis_du{width: 200rpx;height: 10rpx;background: #525787;}
+.dakabox_muis_tiao{height: 100%;background: #f34534;}
+.daka_box_pian{display: flex;}
+.daka_box_pian_tu{width: 140rpx;height: 140rpx;margin: 20rpx;border: 2rpx solid #ccc}

@@ -7,10 +7,10 @@
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
   </view>
-
+ 
   <view class='shuju'>
     <view>
-      <span>0</span>人看过</view>
+      <span>{{see_num}}</span>人看过</view>
     <view>余额￥
       <span>0</span>
     </view>
@@ -32,7 +32,6 @@
       <image src='../img/xiaoxi.png'></image>
       <text>消息</text>
     </view>
-    
     <view>
       <image src='../img/quanzi.png'></image>
       <text>圈子</text> </view>
@@ -58,6 +57,7 @@
           <view wx:for='{{item.theme_img}}'  wx:if="{{item.img_path}}"  class='tupian'>
           
             <image  src="{{turl}}{{item.img_path}}" mode='aspectFill'></image>
+
           </view>
         </view>
         <view class='tubox'>
@@ -74,6 +74,7 @@
 
       <view class='tou-con-o'>
         <view class='tou-con-o-left'>{{item.kangou}}</view>
+
         <view class='tou-con-o-right zhuangt'>
         
         <text wx:if="{{item.status == 2}}">未发布</text>
@@ -83,8 +84,6 @@
     </view>
   </view>
 
- 
- 
 
 
   <view class='font'>有限传播，圈子工具</view>

@@ -6,7 +6,8 @@ Component({
       type: Object,
       value: {view: []},
       observer (newVal, oldVal) {
-        if (!this.data.isPainting) {
+        console.log(newVal)
+        if (!this.data.isPainting && newVal != null) {
           if (newVal.width && newVal.height) {
             this.setData({
               isPainting: true

@@ -24,9 +24,10 @@
   <view class='content'>
     <view class='c-zhuti'>{{theme.theme_name}}</view>
     <view class='c-nei' wx:if='{{theme.desc_info!==null}}'>{{theme.desc_info}}</view>
-    <view class='c-imm'>
-      <view class='c-img' wx:for="{{itimg}}" wx:if="{{itimg[0].img_path}}" bindtap='yulan' data-id='{{index}}'>
-        <image src='{{turl}}{{item}}' mode='aspectFill'></image>
+    <view class='c-imm'> 
+      <view class='c-img' wx:for="{{itimg}}" wx:if="{{item}}" bindtap='yulan' data-id='{{index}}'>
+
+        <image   src='{{turl}}{{item}}' mode='aspectFill'></image>
       </view>
 
     </view>
@@ -119,7 +120,7 @@
           <view>2018.2.3</view>
         </view>
       </view>
-    </view>
+    </view> 
     <!--上传图片-->
     <view hidden='{{hidtuyin}}'>
       <view class='tupian-pai'>
@@ -175,6 +176,40 @@
     <button wx:if="{{theme.status == 1}}" class='{{btn}}' bindtap='joinjl'>{{apply}}</button>
     <button wx:if="{{theme.status == 2 && !guanli}}" class='buwoyao' bindtap='edit'>未发布，返回修改</button>
     <button wx:if="{{theme.status == 2 && guanli}}" class='buwoyao'>未发布</button>
+
+  </view>
+  <!-- 打卡人的信息 -->
+  <view wx:for='{{kaci}}' class='dakabox'>
+    <view class='dakabox_top_tx'>
+      <image src='{{item.user_img}}'></image>
+    </view>
+    <view class='dakabox_top'>
+
+      <view class='dakabox_top_xx'>
+        <view class='dakabox_top_xx_name'>{{item.user_name}}</view>
+        <oime class='dakabox_top_xx_time' id='time' Time='{{item.daka_time}}'></oime>
+      </view>
+
+      <view class='dakabox_muis' wx:if='{{item.audio_path!="undefined"}}'>
+        <view class='dakabox_muis_bo' data-id='{{index}}' bindtap='katiaobo' hidden='{{item.tiaobo}}'>
+          <image src='../img/bofang.png'></image>
+        </view>
+        <view class='dakabox_muis_bo' data-id='{{index}}' bindtap='katiaoting' hidden='{{item.tiaoting}}'>
+          <image src='../img/zanting.png'></image>
+        </view>
+        <view>{{item.kab}}”</view>
+        <view class='dakabox_muis_du'>
+          <view class='dakabox_muis_tiao' style='width:{{item.dutiao}}%;'></view>
+        </view>
+        <view>{{item.luyin_time}}”</view>
+      </view>
+
+      <view class='daka_box_pian'>
+        <view class='daka_box_pian_tu' wx:for='{{item.other_path}}' wx:for-item='i'>
+          <image src='{{turl}}{{i}}'></image>
+        </view>
+      </view>
+    </view>
   </view>
   <!--报名人的信息-->
   <view class='Sign_up' wx:for='{{baomingren}}'>
@@ -199,8 +234,8 @@
     </view>
     <view class='liuyan_name'>
       <text>{{item.user_name}}</text>
-      <text>{{item.time}}</text>
 
+      <oime  id='time' Time='{{item.time}}'></oime>
     </view>
     <view class='liuyan_zan'>
       <image src='../img/kongjian.jpg'></image>

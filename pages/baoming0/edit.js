@@ -234,8 +234,10 @@ Component({
     size: function (e) {
       let index = e.currentTarget.dataset.index
       console.log(index)
+
       console.log(this.data.jieitem)
       this.data.jieitem[index].size_or_color = e.detail.value
+
       this.setData({
         jieitem: this.data.jieitem
       })
@@ -320,8 +322,6 @@ Component({
       var thgt = this;
       thgt.data.heti = { gong: thgt.data.Fill, bugong: thgt.data.kill,bugongs:thgt.data.gill}
      console.log(thgt.data.heti)
-     
-
       var num = 10;
       if (thgt.zhuti.data.setPlnr == "" || thgt.zhuti.data.setPlnr == undefined) {
         thgt.setData({ dored: false })
@@ -355,7 +355,6 @@ Component({
         },
         
         success:function(res){
-          console.log(res.data)  
           wx.navigateBack({
             delta:1
           })  
@@ -370,6 +369,7 @@ Component({
      
     },
     //+新项目
+
     newitem:function(){
       let jieitem = this.data.jieitem
       jieitem.push({ item_name: '', price: '', amount: '', id: this.data.jieitem.length})
@@ -589,6 +589,7 @@ Component({
           opacity: 1
         })
       }
+
     }, 
     
   },  

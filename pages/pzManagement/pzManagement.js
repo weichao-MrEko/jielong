@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+
     theme_id: '',
     user_id: '',
     actor_user_info: '',
@@ -25,6 +26,7 @@ Page({
         theme_id: options.theme_id,
         user_id: app.globalData.idda.uid,
       },
+
       success: function(res) {
         that.setData({
           theme_id: options.theme_id,
@@ -43,6 +45,7 @@ Page({
 
     })
   },
+
   // 搜索框失去焦点，进行查询
   chaxun: function (a) {
     var that = this

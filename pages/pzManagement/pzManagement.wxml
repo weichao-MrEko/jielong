@@ -2,6 +2,7 @@
 
 <view class='head'>
   <view>
+
     <view class='head_4'>{{user_info.user_name}}</view>
     <view class='head_1'>总订单数 {{order_num}}</view>
     <view class='head_2' wx:for="{{specifications}}" wx:for-item="b">

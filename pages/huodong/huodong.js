@@ -3,7 +3,7 @@ const app = getApp();
 const recorderManager = wx.getRecorderManager();
 const innerAudioContext = wx.createInnerAudioContext();
 var time = null,
-  yintime = null,
+  yintime = null,katime=null,
   Time, Stime, Etime, Daojitime = null;
 Page({
 
@@ -25,7 +25,7 @@ Page({
     baomingren: '',
     btn: 'woyao',
     apply: '我要接龙',
-    shangpin: true,
+    shangpin:true,
     maxtime: "",
     isHiddenLoading: true,
     isHiddenToast: true,
@@ -45,7 +45,9 @@ Page({
     timekeeping: 0,
     hibo: true,
     hizan: true,
-    qie:true
+    qie: true,
+    kaci: '',
+  
   },
 
   /**
@@ -164,7 +166,8 @@ Page({
       this.data.theme.add_time = miao + '秒前'
     }
     this.setData({
-      theme: this.data.theme
+      theme: this.data.theme,
+
     })
   },
   zhuangfa: function() {
@@ -180,22 +183,23 @@ Page({
     var that = this
     var jl_type = that.data.jl_type
     if (jl_type == 2) {
-      if (that.data.theme.has_daka==1){
-      
-        return}
+      if (that.data.theme.has_daka == 1) {
+
+        return
+      }
       wx.request({
         url: app.globalData.urlPrefix + 'smith/daka',
         data: {
           user_id: app.globalData.idda.uid,
-          theme_id: that.data.theme_id, 
+          theme_id: that.data.theme_id,
           audio_path: that.data.luysrc,
-          other_path: that.data.upimg
-
+          other_path: that.data.upimg,
+          luyin_time: that.data.timekeeping
         },
         success: function(res) {
           wx.navigateTo({
             url: '/pages/huodong/huodong?id=' + that.data.theme_id + '&uid=' + app.globalData.idda.uid + '&theme_uid=' + that.data.user_id
-            
+
           })
 
         }
@@ -207,6 +211,7 @@ Page({
       })
     }
   },
+  //参看地图
   chamap: function(e) {
     var id = e.currentTarget.dataset.id
     wx.openLocation({
@@ -217,6 +222,7 @@ Page({
       address: this.data.map[id].address
     })
   },
+  //留言
   liuyan: function() {
     wx.navigateTo({
       url: '../liuyan/liuyan?theme_id=' + this.data.theme_id,
@@ -234,27 +240,28 @@ Page({
         user_id: that.data.user_id,
       },
       success: function(res) {
+  
 
-
+        res.data.comment.reverse()
 
         if (res.data.theme_imag) {
           that.data.itimg = res.data.theme_imag
         };
         if (res.data.theme_result.jl_type == 2) {
+
           if (res.data.theme_result.has_daka==1){
             that.setData({
-              apply:'已打卡',
+              apply: '已打卡',
               hidtuyin: false,
-              btn:'buwoyao',
-              hidtuyin:true
+              btn: 'buwoyao',
+              hidtuyin: true
             })
-          }else{
+          } else {
             that.setData({
               apply: '我要打卡',
               hidtuyin: false
             })
           }
-         
         }
         if (res.data.theme_result.jl_type == 3) {
           that.setData({
@@ -267,12 +274,11 @@ Page({
         } else if (res.data.theme_result.jl_type == 4) {
 
           that.setData({
-            shangpin: false,
+            shangpin:false,
             xiangmu: that.data.xiangmu,
             apply: '我要拼团'
           })
         }
-        //判断是否已参与接龙
         for (var y = 0; y < res.data.all_ord.length; y++) {
           if (res.data.all_ord[y].user_id == app.globalData.idda.uid) {
             if (res.data.all_ord[y].status > 0) {
@@ -288,28 +294,41 @@ Page({
         }
 
         for (var i = 0; i < res.data.item_result.length; i++) {
+
           if (res.data.item_result[i].p_goods_img) {
             res.data.item_result[i].p_goods_img = JSON.parse(res.data.item_result[i].p_goods_img)
           }
         }
-        console.log(res.data.item_result)
+        if (res.data.theme_result.daka_list){
+        for (var p = 0; p < res.data.theme_result.daka_list.length; p++) {
+            res.data.theme_result.daka_list[p].other_path = JSON.parse(res.data.theme_result.daka_list[p].other_path)
+          res.data.theme_result.daka_list[p].kab=0
+          res.data.theme_result.daka_list[p].dutiao=0
+          res.data.theme_result.daka_list[p].tiaobo=false
+            res.data.theme_result.daka_list[p].tiaoting=true
+        }
+        }
+        console.log(res.data.theme_result)
         that.setData({
           xiangmu: res.data.item_result,
           itimg: that.data.itimg,
           theme: res.data.theme_result,
           map: that.data.map,
+          comment: res.data.comment,
+          kaci: res.data.theme_result.daka_list,
           jl_type: res.data.theme_result.jl_type
         })
+        console.log(that) 
         that.FabuTime()
         setTimeout(function() {
           wx.hideLoading()
         }, 500)
-
         return callback(res)
       }
     })
   },
   //商品减号
+
   spjian: function(e) {
     var i = e.currentTarget.dataset.id
     if (this.data.xiangmu[i].may_amount > 0) {
@@ -332,12 +351,13 @@ Page({
     console.log(this.data.xiangmu)
 
   },
+ 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-    var that = this
-
+  
+    this.oime = this.selectComponent("#time")
     console.log(1)
   },
 
@@ -347,6 +367,7 @@ Page({
   onShow: function() {
     var that = this
 
+
     that.findDrag(function(res){
     var Y = new Date().getFullYear()
     var M = new Date().getMonth() + 1
@@ -355,10 +376,10 @@ Page({
       if (res.data.theme_result.jl_type == 2) {
         Stime = new Date(Y + '-' + M + '-' + D + ' ' + that.data.xiangmu[0].start).getTime();
         Etime = new Date(Y + '-' + M + '-' + D + ' ' + that.data.xiangmu[0].end).getTime();
-        
+
         if (Time > Stime && Time < Etime) {
           console.log(11)
-          clearInterval(Daojitime) 
+          clearInterval(Daojitime)
           that.Dakat()
         } else {
           console.log(22)
@@ -377,19 +398,19 @@ Page({
     var that = this
 
     Daojitime = setInterval(function() {
-    
+
       var Y = new Date().getFullYear()
       var M = new Date().getMonth() + 1
       var D = new Date().getDate()
-      var ersi = 60 * 60 * 24
-      var tomorrow = Y + '/' + M + '-' + (D + 1)
-      if (tomorrow > ersi) {
-        tomorrow = Y + '/' + M + '-' + D
-      }
+   
+      var tomorrow = Y + '/' + M + '-' + D
+     
       var dangqian = new Date().getTime()
-      var tie = new Date(tomorrow + ' ' + that.data.xiangmu[0].start)
-      var mingt = tie.getTime()
-      var leave = mingt - dangqian
+      
+      var tie = new Date(tomorrow + ' ' + that.data.xiangmu[0].start) .getTime() + 24 * 60 * 60 * 1000
+
+     
+      var leave = tie - dangqian
       /**xi小时 */
       var leave1 = leave % (24 * 3600 * 1000)
       var hour = Math.floor(leave1 / (3600 * 1000))
@@ -402,10 +423,9 @@ Page({
       var second = Math.round(leave3 / 1000)
       var seconds = second.toString()
       if (hours == 0 && minutes == 0 && seconds == 0) {
-        that.Dakat()
+        this.Dakat()
       }
       leave--;
-      console.log(leave)
       that.setData({
         countDownHour: hours + ':',
         countDownMinute: minutes + ':',
@@ -431,9 +451,8 @@ Page({
         countDownMinute: '',
         countDownSecond: '卡'
       })
-      console.log(Dakatime)
+      //   console.log(Dakatime)
       if (Dakatime <= 0) {
-        console.log(333)
         clearInterval(time)
         that.Daojis()
         that.setData({
@@ -570,11 +589,57 @@ Page({
 
     }, 1000)
   },
+  // 打卡信息
+  katiaobo: function(e) {
+
+    var i = e.currentTarget.dataset.id
+    innerAudioContext.src = app.globalData.urlfix + this.data.kaci[i].audio_path
+   this.katiaotime(i)
+    this.data.kaci[i].tiaobo= true
+    this.data.kaci[i].tiaoting = false
+    this.setData({ kaci: this.data.kaci})
+    innerAudioContext.play()
+    innerAudioContext.onPlay(() => {
+      console.log(innerAudioContext.duration)
+    })
+
+  },
+  katiaoting:function(e){
+    var i = e.currentTarget.dataset.id
+    innerAudioContext.src = app.globalData.urlfix + this.data.kaci[i].audio_path
+    innerAudioContext.pause()
+    clearInterval(katime)
+    this.data.kaci[i].tiaobo = false
+    this.data.kaci[i].tiaoting = true
+    this.setData({ kaci: this.data.kaci })
+    
+    
+  },
+  //打卡播放时间
+  katiaotime:function(i,dak){
+    var that=this
+    katime=setInterval(function(){
+      ++that.data.kaci[i].kab
+      that.data.kaci[i].dutiao = that.data.kaci[i].kab / that.data.kaci[i].luyin_time*100
+      if (that.data.kaci[i].kab > that.data.kaci[i].luyin_time){
+        that.data.kaci[i].kab=0;
+        that.data.kaci[i].dutiao=0;
+        clearInterval(katime)
+        that.data.kaci[i].tiaobo = false
+        that.data.kaci[i].tiaoting = true
+      } 
+      that.setData({ kaci: that.data.kaci})
+    },1000)
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function() {
-    
+    console.log(12)
+    clearInterval(time);
+    clearInterval(Daojitime);
+    clearInterval(katime);
+    innerAudioContext.pause();
   },
 
   /**
@@ -601,33 +666,7 @@ Page({
         user_id: that.data.user_id,
       },
       success: function(res) {
-        var Time = new Date().getTime();
-        for (var i = 0; i < res.data.comment.length; i++) {
-          var sjcha = (Time - res.data.comment[i].time * 1000);
-          //天
-          var tian = Math.floor(sjcha / (24 * 3600 * 1000));
-          //小时
-          var leave1 = sjcha % (24 * 3600 * 1000);
-          var xiaoshi = Math.floor(leave1 / (3600 * 1000));
-          //分钟
-          var leave2 = leave1 % (3600 * 1000);
-          var fenzhong = Math.floor(leave2 / (60 * 1000));
-          //秒
-          var leave3 = leave2 % (60 * 1000);
-          var miao = Math.floor(leave3 / 1000);
 
-          if (tian > 0) {
-            res.data.comment[i].time = tian + '天前'
-          } else if (xiaoshi > 0) {
-            res.data.comment[i].time = xiaoshi + '小时前'
-          } else if (fenzhong > 0) {
-            res.data.comment[i].time = fenzhong + '分钟前'
-          } else if (miao < 0) {
-            res.data.comment[i].time = 1 + '秒前'
-          } else {
-            res.data.comment[i].time = miao + '秒前'
-          }
-        }
         for (var y = 0; y < res.data.all_ord.length; y++) {
           if (res.data.all_ord[y].user_id == app.globalData.idda.uid) {
             if (res.data.all_ord[y].status > 0) {
@@ -638,9 +677,9 @@ Page({
             }
           }
         }
-        res.data.comment.reverse()
+
         that.setData({
-          comment: res.data.comment,
+
           baomingren: res.data.all_ord
         })
         setTimeout(function() {
@@ -650,6 +689,13 @@ Page({
     })
     wx.stopPullDownRefresh()
   },
+  // 凭证管理
+  pzManagement:function(){
+    wx.navigateTo({
+      url: '../pzManagement/pzManagement' + '?user_id=' + app.globalData.idda.uid + '&theme_id=' + this.data.theme_id,
+    })
+  },
+
   // 上传图片
   box: function(e) {
     var that = this;
@@ -903,11 +949,12 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function() {
-    console.log(this.data.itimg[0])
+    
     return {
       title: this.data.theme.theme_name,
       imageUrl: this.data.turl + this.data.itimg[0],
-      path: 'pages/huodong/huodong?id=' + this.data.theme_id + '&uid=' + this.data.uid + '&theme_uid=' + this.data.theme_uid
+      path: 'pages/huodong/huodong?id=' + this.data.theme_id + '&uid=' + this.data.user_id + '&theme_uid=' + this.data.theme_uid
+      
     }
   },
   eventDraw() {
