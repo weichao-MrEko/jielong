@@ -192,11 +192,6 @@ Page({
       url: '../comments/comments'
     })
   },
-  yue:function(){
-    wx.navigateTo({
-      url: '../yue/yue',
-    })
-  },
   jlcon: function() {
     var Time = new Date().getTime()
   
