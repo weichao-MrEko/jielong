@@ -35,7 +35,7 @@ App({
               success: ev => {
                 console.log(ev)
                 this.globalData.idda=ev.data;
-              
+                // this.globalData.idda.uid = 5; //此uid只为测试用
                 if(this.userInfoReadyCallback){
                   this.userInfoReadyCallback(ev.data)
                 }
