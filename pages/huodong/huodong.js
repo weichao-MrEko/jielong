@@ -126,6 +126,12 @@ Page({
     })
 
   },
+  people: function () {
+    console.log(this.data.map)
+    wx.navigateTo({
+      url: '../people/people',
+    })
+  },
   qie:function(){
     if(this.data.qie==true){
       this.setData({ qie: false })
