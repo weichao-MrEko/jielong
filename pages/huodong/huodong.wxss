@@ -447,3 +447,11 @@ image {
   }
  image{width: 100%;height: 100%}
  video{width: 100%;height: 100%;}
+
+.pz{
+  background-color: #f34534;
+  width: 638rpx;
+  margin-bottom: 40rpx;
+  padding: 20rpx;
+
+}

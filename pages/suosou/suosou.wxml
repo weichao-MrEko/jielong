@@ -1,4 +1,52 @@
 <!--pages/suosou/suosou.wxml-->
-<view class='box'>  
-<input type='text' confirm-type='search' bindconfirm='search'></input><text>取消</text>
+<view class='box'>
+  <input type='text' confirm-type='search' bindconfirm='search' placeholder='搜索接龙主题/发起人昵称' class=''></input>
+  <text>取消</text>
+
 </view>
+<view class='container'>
+ <view  class='touxiang' wx:for='{{zhuti}}' bindtap='jieneiyong' data-id='{{index}}'>
+    <view class='tou'>
+      <view class='tou-pian'>
+        <image class="as-avatar" src="{{item.user_img}}" background-size="cover"></image>
+        <view class="as-nickname">{{item.user_name}}</view>
+        <view class='as-time'>{{item.add_time}}</view>
+      </view>
+      <view class='tou-jian'>
+        <image src='../img/jiantou.png'></image>
+      </view>
+
+    </view>
+
+    <view class='tou-con'>
+      <view class='tou-jiaoy'>{{item.theme_name}}
+        <text style='color:red' wx:if='{{item.btw_price != 0.00}}'>￥{{item.btw_price}}</text>
+        <view class='tubox'>
+
+          <view wx:for='{{item.theme_img}}'  wx:if="{{item.img_path}}"  class='tupian'>
+          
+            <image  src="{{turl}}{{item.img_path}}" mode='aspectFill'></image>
+          </view>
+        </view>
+        <view class='tubox'>
+          <view wx:for='{{item.theme_img}}' class='tupian' wx:if="{{}}">
+            <video src="{{turl}}{{item.img_path}}" mode='aspectFill'></video>
+          </view>
+        </view>
+      </view>
+
+      <view class='tou-con-o'>
+        <view class='tou-con-o-left'>{{item.xmu[index].item_name}}</view>
+        <view class='tou-con-o-right'>{{item.xmu[index].amounta}}</view>
+      </view>
+
+      <view class='tou-con-o'>
+        <view class='tou-con-o-left'>{{item.kangou}}</view>
+        <view class='tou-con-o-right zhuangt'>
+        
+        <text wx:if="{{item.status == 2}}">未发布</text>
+        {{item.zhuangtai}}</view>
+      </view>
+
+    </view>
+    </view></view>

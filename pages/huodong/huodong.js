@@ -45,6 +45,7 @@ Page({
     timekeeping: 0,
     hibo: true,
     hizan: true,
+    qie:true
   },
 
   /**
@@ -85,7 +86,8 @@ Page({
 
           that.setData({
             login_num: res.data.login_num,
-            people: res.data.people
+            people: res.data.people,
+            pz_num:res.data.pz_num
 
           })
         }
@@ -121,6 +123,12 @@ Page({
       data: 'home'
     })
 
+  },
+  qie:function(){
+    if(this.data.qie==true){
+      this.setData({ qie: false })
+    }
+    else { this.setData({ qie: true })}
   },
   pzManagement: function() {
     wx.navigateTo({
