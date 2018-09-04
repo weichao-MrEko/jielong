@@ -175,7 +175,7 @@ Page({
     var that = this
     var jl_type = that.data.jl_type
     if (jl_type == 2) {
-      if (that.data.theme.has_daka == 1) {
+      if (that.data.theme.has_daka == 1 || this.data.hidtuyin) {
 
         return
       }
@@ -190,7 +190,7 @@ Page({
         },
         success: function(res) {
           wx.navigateTo({
-            url: '/pages/huodong/huodong?id=' + that.data.theme_id + '&uid=' + app.globalData.idda.uid + '&theme_uid=' + that.data.user_id
+            url: '/pages/huodong/huodong?id=' + that.data.theme_id + '&uid=' + app.globalData.idda.uid + '&theme_uid=' + that.data.theme_uid
 
           })
 
@@ -199,7 +199,7 @@ Page({
     }
     if (jl_type == 0 || jl_type == 1 || jl_type == 3 || jl_type == 4 || jl_type == 5) {
       wx.navigateTo({
-        url: '../joinJlong/index?theme_id=' + that.data.theme_id + '&user_id=' + that.data.user_id
+        url: '../joinJlong/index?theme_id=' + that.data.theme_id + '&user_id=' + that.data.user_id + '&theme_uid=' + that.data.theme_uid
       })
     }
   },
@@ -244,7 +244,6 @@ Page({
           if (res.data.theme_result.has_daka==1){
             that.setData({
               apply: '已打卡',
-              hidtuyin: false,
               btn: 'buwoyao',
               hidtuyin: true
             })
@@ -378,9 +377,10 @@ Page({
     var D = new Date().getDate()
     var Time = new Date().getTime()
     if (res.data.theme_result.jl_type == 2) {
-      Stime = new Date(Y + '-' + M + '-' + D + ' ' + that.data.xiangmu[0].start).getTime();
-      Etime = new Date(Y + '-' + M + '-' + D + ' ' + that.data.xiangmu[0].end).getTime();
-
+      Stime = new Date(Y + '/' + M + '/' + D + ' ' + that.data.xiangmu[0].start).getTime();
+      Etime = new Date(Y + '/' + M + '/' + D + ' ' + that.data.xiangmu[0].end).getTime();
+      console.log(Stime)
+      console.log(Etime)
       if (Time > Stime && Time < Etime) {
         console.log(11)
         clearInterval(Daojitime)
@@ -401,7 +401,7 @@ Page({
       var M = new Date().getMonth() + 1
       var D = new Date().getDate()
    
-      var tomorrow = Y + '/' + M + '-' + D
+      var tomorrow = Y + '/' + M + '/' + D
      
       var dangqian = new Date().getTime()
       
@@ -429,7 +429,6 @@ Page({
         countDownMinute: minutes + ':',
         countDownSecond: seconds,
         apply: '打卡未开始',
-        hidtuyin: false,
         btn: 'buwoyao',
         hidtuyin: true
       })
