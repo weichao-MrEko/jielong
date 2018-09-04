@@ -98,7 +98,7 @@
       </view>
       <view bindtap='fabujiel'>
         <image src='../img/faqun.jpg'></image>
-        <view>发个群接龙</view>
+        <view>发个接龙</view>
       </view>
       <view>
         <view class='renshu'>0</view>

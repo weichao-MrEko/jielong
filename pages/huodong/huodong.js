@@ -941,10 +941,8 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function() {
-    
     return {
       title: this.data.theme.theme_name,
-      imageUrl: this.data.turl + this.data.itimg[0],
       path: 'pages/huodong/huodong?id=' + this.data.theme_id + '&uid=' + this.data.user_id + '&theme_uid=' + this.data.theme_uid
       
     }
