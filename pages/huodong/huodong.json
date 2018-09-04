@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "接龙主页",
+  "navigationBarTitleText": "小圈主页",
   "usingComponents":{
     "canvasdrawer":"/components/canvasdrawer/canvasdrawer",
       "oime": "/components/time/time"

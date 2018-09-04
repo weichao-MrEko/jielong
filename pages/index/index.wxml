@@ -7,7 +7,7 @@
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
   </view>
-
+ 
   <view class='shuju'>
     <view>
       <span>{{see_num}}</span>人看过</view>
