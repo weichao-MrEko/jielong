@@ -147,6 +147,7 @@ Component({
             
              }
           }
+
           
             for (var j in res.data.theme_img) {
               if (res.data.theme_img[j].img_path) {
