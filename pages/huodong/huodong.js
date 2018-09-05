@@ -91,13 +91,11 @@ Page({
           console.log(res.data)
           that.setData({
             login_num: res.data.login_num,
-<<<<<<< HEAD
-            people: res.data.people
-=======
+
             people: res.data.people,
             pz_num:res.data.pz_num
 
->>>>>>> 2ff529cfc3f573c47224fe8850b92f8805322d97
+
           })
         }
       }),
@@ -978,13 +976,9 @@ Page({
   onShareAppMessage: function() {
     return {
       title: this.data.theme.theme_name,
-<<<<<<< HEAD
-      path: 'pages/huodong/huodong?id=' + this.data.theme_id + '&uid=' + this.data.user_id + '&theme_uid=' + this.data.theme_uid
 
-=======
       path: 'pages/huodong/huodong?id=' + this.data.theme_id + '&uid=' + this.data.user_id  +'&fen_user_id='+ app.globalData.idda.uid  + '&theme_uid=' + this.data.theme_uid
       
->>>>>>> 2ff529cfc3f573c47224fe8850b92f8805322d97
     }
   },
   eventDraw() {
