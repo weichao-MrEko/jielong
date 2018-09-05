@@ -146,7 +146,7 @@ Component({
             
              }
           }
-          if (res.data.theme_imag.lenght>0){
+          if (res.data.theme_imag.length>0){
             for (var j in res.data.theme_imag) {
               var index1 = res.data.theme_imag[j].lastIndexOf(".");
               var index2 = res.data.theme_imag[j].length;
