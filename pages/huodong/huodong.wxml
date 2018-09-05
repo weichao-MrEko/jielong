@@ -101,7 +101,7 @@
         <view>发个接龙</view>
       </view>
       <view>
-        <view class='renshu' bindtap='people'>0</view>
+        <view class='renshu' bindtap='people'>{{peo}}</view>
         <view>我带来的人</view>
       </view>
       <view bindtap='qie'>

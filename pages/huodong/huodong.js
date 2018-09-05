@@ -11,6 +11,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    people:'',
     xiangmu: "",
     itimg: "",
     theme: '',
@@ -325,7 +326,8 @@ Page({
           comment: res.data.comment,
           kaci: res.data.theme_result.daka_list,
           jl_type: res.data.theme_result.jl_type,
-          baomingren: res.data.all_ord
+          baomingren: res.data.all_ord,
+          peo:res.data.people
         })
         console.log(that) 
         that.FabuTime()
