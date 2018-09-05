@@ -24,10 +24,10 @@
   <view class='content'>
     <view class='c-zhuti'>{{theme.theme_name}}</view>
     <view class='c-nei' wx:if='{{theme.desc_info!==null}}'>{{theme.desc_info}}</view>
-    <view class='c-imm'> 
+    <view class='c-imm'>
       <view class='c-img' wx:for="{{itimg}}" wx:if="{{item}}" bindtap='yulan' data-id='{{index}}'>
 
-        <image   src='{{turl}}{{item}}' mode='aspectFill'></image>
+        <image src='{{turl}}{{item}}' mode='aspectFill'></image>
       </view>
 
     </view>
@@ -102,7 +102,7 @@
         <view>发个接龙</view>
       </view>
       <view>
-        <view class='renshu' bindtap='people'>0</view>
+        <view class='renshu' bindtap='people'>{{peo}}</view>
         <view>我带来的人</view>
       </view>
       <view bindtap='qie'>
@@ -113,15 +113,23 @@
     </view>
     <view hidden='{{qie}}'>
       <view class="pz">
-        <view>1
-          <view>
-            <image></image>
+        <view class='pz_1'>
+          <view class='pz_num'></view>
+          <view class='pz_img'>
+            <image src="{{info.user_img}}"></image>
           </view>
-          <view>七号当铺</view>
-          <view>2018.2.3</view>
+          <view class='pz_name'>{{info.user_name}}</view>
+          <view class='pz_time'> 
+         
+          <oime   id='time' Time='{{ord_time}}'></oime>
+          <view hidden='{{true}}'>{{ord_time}}</view>
+          </view>
         </view>
+         
+        <view class='add' wx:for="{{act}}">+{{item.may_amount}}</view>
+        
       </view>
-    </view> 
+    </view>
     <!--上传图片-->
     <view hidden='{{hidtuyin}}'>
       <view class='tupian-pai'>
@@ -236,7 +244,7 @@
     <view class='liuyan_name'>
       <text>{{item.user_name}}</text>
 
-      <oime  id='time' Time='{{item.time}}'></oime>
+      <oime id='time' Time='{{item.time}}'></oime>
     </view>
     <view class='liuyan_zan'>
       <image src='../img/kongjian.jpg'></image>
