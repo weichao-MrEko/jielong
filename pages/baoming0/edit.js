@@ -67,6 +67,7 @@ Component({
   methods: {
     onReady:function(){
       this.zhuti = this.selectComponent("#zhuti")
+      this.zhuti.data.upimg = this.data.upimg
        console.log(this.zhuti)
     },
     onLoad: function (options) {
@@ -146,21 +147,27 @@ Component({
             
              }
           }
-          if (res.data.theme_imag.lenght>0){
-            for (var j in res.data.theme_imag) {
-              var index1 = res.data.theme_imag[j].lastIndexOf(".");
-              var index2 = res.data.theme_imag[j].length;
-              var postf = res.data.theme_imag[j].substring(index1, index2);
+          
+            for (var j in res.data.theme_img) {
+              if (res.data.theme_img[j].img_path) {
+              var index1 = res.data.theme_img[j].img_path.lastIndexOf(".");
+              var index2 = res.data.theme_img[j].img_path.length;
+              var postf = res.data.theme_img[j].img_path.substring(index1, index2);
               if (postf == '.jpg' || postf == '.png') {
-                that.data.pushurl.push({ pic: app.globalData.urlfix + res.data.theme_imag[j], video: '' })
+                that.data.pushurl.push({ pic: app.globalData.urlfix + res.data.theme_img[j].img_path, video: '' })
               } else if (postf == '.mp4') {
-                that.data.pushurl.push({ pic: '', video: app.globalData.urlfix + res.data.theme_imag[j] })
+                that.data.pushurl.push({ pic: '', video: app.globalData.urlfix + res.data.theme_img[j].img_path })
               }
+              
+                that.data.upimg.push(res.data.theme_img[j].img_path)  
+              }
+          
             }
-          }
+            
+          console.log(that.zhuti)
           
           console.log(that.data.pushurl)
-          that.zhuti.data.upimg = res.data.theme_imag
+          
           if (res.data.theme_result.jl_type == 0) { 
             that.setData({ jlhong: false, canxx: false, newxia:false})
             }
@@ -193,7 +200,13 @@ Component({
             })
            }
           if (res.data.theme_result.jl_type == 5) { }
+          if (res.data.item_result[0].checked==''){
+            that.data.checked=false;
+          } else if(res.data.item_result[0].checked == '1'){
+            that.data.checked = true;
+          }
           that.setData({
+            checked: that.data.checked,
             theme_id:options.id,
             jieitem: res.data.item_result,
             edit_theme: res.data.theme_result,
@@ -222,6 +235,7 @@ Component({
         way: app.globalData.way,
         wuliu: app.globalData.wuliufs
       })
+
       console.log(app.globalData.tianjiaprivate)
       console.log(app.globalData.ongks)
     },
@@ -339,8 +353,10 @@ Component({
     fajielong(ev){
 
       console.log(ev)
-      console.log(this.data.jieitem)
+      console.log(this.data.upimg)
       var thgt = this;
+      
+      
       thgt.data.heti = { gong: thgt.data.Fill, bugong: thgt.data.kill,bugongs:thgt.data.gill}
      console.log(thgt.data.heti)
       var num = 10;

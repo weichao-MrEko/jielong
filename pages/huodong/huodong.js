@@ -3,7 +3,8 @@ const app = getApp();
 const recorderManager = wx.getRecorderManager();
 const innerAudioContext = wx.createInnerAudioContext();
 var time = null,
-  yintime = null,katime=null,
+  yintime = null,
+  katime = null,
   Time, Stime, Etime, Daojitime = null;
 Page({
 
@@ -25,7 +26,7 @@ Page({
     baomingren: '',
     btn: 'woyao',
     apply: '我要接龙',
-    shangpin:true,
+    shangpin: true,
     maxtime: "",
     isHiddenLoading: true,
     isHiddenToast: true,
@@ -46,7 +47,8 @@ Page({
     hibo: true,
     hizan: true,
     kaci: '',
-  
+    hikatime: false,
+    nhkatime: true
   },
 
   /**
@@ -84,14 +86,11 @@ Page({
         },
         success: function(res) {
           console.log(res.data)
-
           that.setData({
             login_num: res.data.login_num,
             people: res.data.people
-
           })
         }
-
       }),
       wx.request({
         url: app.globalData.urlPrefix + "Carryuser/Carryuser",
@@ -232,7 +231,7 @@ Page({
         user_id: that.data.user_id,
       },
       success: function(res) {
-  
+
 
         res.data.comment.reverse()
 
@@ -241,7 +240,7 @@ Page({
         };
         if (res.data.theme_result.jl_type == 2) {
 
-          if (res.data.theme_result.has_daka==1){
+          if (res.data.theme_result.has_daka == 1) {
             that.setData({
               apply: '已打卡',
               btn: 'buwoyao',
@@ -265,7 +264,7 @@ Page({
         } else if (res.data.theme_result.jl_type == 4) {
 
           that.setData({
-            shangpin:false,
+            shangpin: false,
             xiangmu: that.data.xiangmu,
             apply: '我要拼团'
           })
@@ -290,14 +289,14 @@ Page({
             res.data.item_result[i].p_goods_img = JSON.parse(res.data.item_result[i].p_goods_img)
           }
         }
-        if (res.data.theme_result.daka_list){
-        for (var p = 0; p < res.data.theme_result.daka_list.length; p++) {
+        if (res.data.theme_result.daka_list) {
+          for (var p = 0; p < res.data.theme_result.daka_list.length; p++) {
             res.data.theme_result.daka_list[p].other_path = JSON.parse(res.data.theme_result.daka_list[p].other_path)
-          res.data.theme_result.daka_list[p].kab=0
-          res.data.theme_result.daka_list[p].dutiao=0
-          res.data.theme_result.daka_list[p].tiaobo=false
-            res.data.theme_result.daka_list[p].tiaoting=true
-        }
+            res.data.theme_result.daka_list[p].kab = 0
+            res.data.theme_result.daka_list[p].dutiao = 0
+            res.data.theme_result.daka_list[p].tiaobo = false
+            res.data.theme_result.daka_list[p].tiaoting = true
+          }
         }
         console.log(res.data.theme_result)
         that.setData({
@@ -310,12 +309,14 @@ Page({
           jl_type: res.data.theme_result.jl_type,
           baomingren: res.data.all_ord
         })
-        console.log(that) 
+        if (res.data.item_result[0].checked == "0") {
+
+        }
         that.FabuTime()
         setTimeout(function() {
           wx.hideLoading()
         }, 500)
-     return callback(res)
+        return callback(res)
       }
     })
   },
@@ -343,12 +344,12 @@ Page({
     console.log(this.data.xiangmu)
 
   },
- 
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-  
+
     this.oime = this.selectComponent("#time")
     console.log(1)
   },
@@ -360,16 +361,30 @@ Page({
     var that = this
 
 
-    that.findDrag(function(res){
-      that.dakktime(res)
+    that.findDrag(function(res) {
+      if (res.data.item_result[0].checked == "") {
+        that.dakktime(res)
+        that.setData({
+          hikatime: false,
+          nhkatime: true
+        })
+      } else {
+        that.setData({
+          hikatime: true,
+          nhkatime: false,
+          countDownHour: '打',
+          countDownMinute: '',
+          countDownSecond: '卡'
+        })
+      }
+
     })
 
     // that.FabuTime()
 
 
-
   },
-  dakktime: function (res) {
+  dakktime: function(res) {
     var that = this
     console.log(res)
     var Y = new Date().getFullYear()
@@ -381,6 +396,7 @@ Page({
       Etime = new Date(Y + '/' + M + '/' + D + ' ' + that.data.xiangmu[0].end).getTime();
       console.log(Stime)
       console.log(Etime)
+
       if (Time > Stime && Time < Etime) {
         console.log(11)
         clearInterval(Daojitime)
@@ -390,6 +406,7 @@ Page({
         clearInterval(time)
         that.Daojis()
       }
+
     }
   },
   Daojis: function() {
@@ -400,14 +417,14 @@ Page({
       var Y = new Date().getFullYear()
       var M = new Date().getMonth() + 1
       var D = new Date().getDate()
-   
-      var tomorrow = Y + '/' + M + '/' + D
-     
-      var dangqian = new Date().getTime()
-      
-      var tie = new Date(tomorrow + ' ' + that.data.xiangmu[0].start) .getTime() + 24 * 60 * 60 * 1000
 
-     
+      var tomorrow = Y + '/' + M + '/' + D
+
+      var dangqian = new Date().getTime()
+
+      var tie = new Date(tomorrow + ' ' + that.data.xiangmu[0].start).getTime() + 24 * 60 * 60 * 1000
+
+
       var leave = tie - dangqian
       /**xi小时 */
       var leave1 = leave % (24 * 3600 * 1000)
@@ -586,38 +603,42 @@ Page({
 
     }, 1000)
   },
- 
+
   // 打卡信息
   katiaobo: function(e) {
 
     var i = e.currentTarget.dataset.id
     innerAudioContext.src = app.globalData.urlfix + this.data.kaci[i].audio_path
-   this.katiaotime(i)
-    this.data.kaci[i].tiaobo= true
+    this.katiaotime(i)
+    this.data.kaci[i].tiaobo = true
     this.data.kaci[i].tiaoting = false
-    this.setData({ kaci: this.data.kaci})
+    this.setData({
+      kaci: this.data.kaci
+    })
     innerAudioContext.play()
     innerAudioContext.onPlay(() => {
       console.log(innerAudioContext.duration)
     })
 
   },
-  katiaoting:function(e){
+  katiaoting: function(e) {
     var i = e.currentTarget.dataset.id
     innerAudioContext.src = app.globalData.urlfix + this.data.kaci[i].audio_path
     innerAudioContext.pause()
     clearInterval(katime)
     this.data.kaci[i].tiaobo = false
     this.data.kaci[i].tiaoting = true
-    this.setData({ kaci: this.data.kaci })
-    
-    
+    this.setData({
+      kaci: this.data.kaci
+    })
+
+
   },
-  luxtp: function (e) {
+  luxtp: function(e) {
     var i = e.currentTarget.dataset.id
     var j = e.currentTarget.dataset.j
-    var aa=[]
-    for (var o = 0; o < this.data.kaci[i].other_path.length;o++){
+    var aa = []
+    for (var o = 0; o < this.data.kaci[i].other_path.length; o++) {
       aa.push(app.globalData.urlfix + this.data.kaci[i].other_path[o])
     }
     wx.previewImage({
@@ -626,20 +647,22 @@ Page({
     })
   },
   //打卡播放时间
-  katiaotime:function(i,dak){
-    var that=this
-    katime=setInterval(function(){
+  katiaotime: function(i, dak) {
+    var that = this
+    katime = setInterval(function() {
       ++that.data.kaci[i].kab
-      that.data.kaci[i].dutiao = that.data.kaci[i].kab / that.data.kaci[i].luyin_time*100
-      if (that.data.kaci[i].kab > that.data.kaci[i].luyin_time){
-        that.data.kaci[i].kab=0;
-        that.data.kaci[i].dutiao=0;
+      that.data.kaci[i].dutiao = that.data.kaci[i].kab / that.data.kaci[i].luyin_time * 100
+      if (that.data.kaci[i].kab > that.data.kaci[i].luyin_time) {
+        that.data.kaci[i].kab = 0;
+        that.data.kaci[i].dutiao = 0;
         clearInterval(katime)
         that.data.kaci[i].tiaobo = false
         that.data.kaci[i].tiaoting = true
-      } 
-      that.setData({ kaci: that.data.kaci})
-    },1000)
+      }
+      that.setData({
+        kaci: that.data.kaci
+      })
+    }, 1000)
   },
   /**
    * 生命周期函数--监听页面隐藏
@@ -666,13 +689,13 @@ Page({
    */
   onPullDownRefresh: function() {
     let that = this
-    that.findDrag(function (res) {
+    that.findDrag(function(res) {
       that.dakktime(res)
     })
     wx.stopPullDownRefresh()
   },
   // 凭证管理
-  pzManagement:function(){
+  pzManagement: function() {
     wx.navigateTo({
       url: '../pzManagement/pzManagement' + '?user_id=' + app.globalData.idda.uid + '&theme_id=' + this.data.theme_id,
     })
@@ -934,7 +957,7 @@ Page({
     return {
       title: this.data.theme.theme_name,
       path: 'pages/huodong/huodong?id=' + this.data.theme_id + '&uid=' + this.data.user_id + '&theme_uid=' + this.data.theme_uid
-      
+
     }
   },
   eventDraw() {
@@ -1080,17 +1103,17 @@ Page({
   yulan: function(e) {
     console.log(e.currentTarget.dataset.id)
     var id = e.currentTarget.dataset.id
-    var aa=[]
-    for (var i = 0; i < this.data.itimg.length;i++){
-     aa.push(app.globalData.urlfix + this.data.itimg[i])
+    var aa = []
+    for (var i = 0; i < this.data.itimg.length; i++) {
+      aa.push(app.globalData.urlfix + this.data.itimg[i])
     }
     console.log(aa)
-      wx.previewImage({
-        current: app.globalData.urlfix + this.data.itimg[id],
-        urls: aa
-      })
-    
-  
+    wx.previewImage({
+      current: app.globalData.urlfix + this.data.itimg[id],
+      urls: aa
+    })
+
+
 
   },
   fenxinghidd: function() {

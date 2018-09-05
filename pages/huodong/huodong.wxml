@@ -38,8 +38,9 @@
       <view class='flex' wx:if='{{theme.jl_type==2}}'>
         <view class='daka_box'>
           <button class='down' style='{{dakacolor}}'>{{countDownHour}}{{countDownMinute}}{{countDownSecond}}</button>
-          <view>今日打卡即将开始</view>
-          <view>打卡时间：{{item.start}}~{{item.end}}</view>
+          <view hidden='{{hikatime}}'>今日打卡即将开始</view>
+          <view hidden='{{hikatime}}'>打卡时间：{{item.start}}~{{item.end}}</view>
+          <view hidden='{{nhkatime}}'>每天只能打卡一次</view>
         </view>
       </view>
       <!--<text>+1</text>-->
