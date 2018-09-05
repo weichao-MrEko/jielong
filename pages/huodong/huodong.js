@@ -327,6 +327,11 @@ Page({
           comment: res.data.comment,
           kaci: res.data.theme_result.daka_list,
           jl_type: res.data.theme_result.jl_type,
+          baomingren: res.data.all_ord,
+          peo: res.data.people,
+          ord_time: res.data.pz.ord_time,
+          info: res.data.pz.info,
+          act: res.data.pz.act,
           baomingren: res.data.all_ord
         })
         if (res.data.item_result[0].checked == "0") {
