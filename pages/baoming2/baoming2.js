@@ -24,7 +24,7 @@ Page({
         end: '22:00',
         price: 0,
         amount: 0,
-        checked: false
+        checked: true
       }
         ],
     dakatime:['上午','下午'],
@@ -48,7 +48,7 @@ Page({
     hometime: '',
     startime: { dadate: '', datime: '16:10' },
     endtime: { houdate: '2018-7-5', houtime: '00:00' },
-   
+    checked:true,
 
 
     mofanzhut: '',

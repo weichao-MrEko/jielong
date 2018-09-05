@@ -415,7 +415,7 @@ image {
 
 /* 录音 */
   .yuyin{text-align: center;font-size: 30rpx;color: #525787;}
- .yuyin_logo{width: 100rpx;height: 100rpx;margin: 30rpx auto;line-height: 160rpx;}
+ .yuyin_logo{width: 70rpx;height: 70rpx;margin: 15rpx auto;}
  .luyin_zhong{width: 96%;height: 100rpx;display: flex;margin:30rpx auto; align-items: center;justify-content: space-between;  border-radius:15rpx;
   border:10rpx dashed #f34534; }
  .luyin_zhong view{ width: 80rpx;height: 80rpx;margin:10rpx auto;line-height: 80rpx;}
@@ -427,10 +427,10 @@ image {
 }
 .paizhao{
   margin:0 0 40rpx 40rpx;
-  width: 160rpx;
-  height: 160rpx;
+  width: 100rpx;
+  height: 100rpx;
   border-radius:15rpx;
-  border:10rpx dashed #f34534; 
+  border:8rpx dashed #f34534; 
  
 }
 .gdel{
@@ -469,3 +469,7 @@ border: 2rpx #525787 solid;justify-content: space-around;align-items: center;}
 .dakabox_muis_tiao{height: 100%;background: #f34534;}
 .daka_box_pian{display: flex;}
 .daka_box_pian_tu{width: 140rpx;height: 140rpx;margin: 20rpx;border: 2rpx solid #ccc}
+.textcss{background: #f4f4f4; border-radius: 60rpx;width:260px;font-size: 35rpx;padding: 30rpx;}
+.textbox{position: relative;width: 100%;}
+.deltext{position: absolute;right: 0;top:0;z-index: 999;border-radius: 100%;background: #f34534;width:40rpx;height: 40rpx;text-align: center;font-size: 32rpx;color: #fff}
+.wenzi{font-size: 30rpx;margin: 10rpx;}
