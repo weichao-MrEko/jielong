@@ -37,7 +37,7 @@ Component({
     beizhu: '',
     hzhifu: true,
     hqueren: true,
- 
+
   },
   /**
    * 组件的方法列表
@@ -66,10 +66,10 @@ Component({
           })
         }
       })
-    
+
     },
     onShow: function() {
-    
+
     },
     binddata: function(e) {
       console.log(e)
@@ -92,7 +92,7 @@ Component({
       if (aa >= this.data.item_info[id].amount) {
         wx.showToast({
           title: '库存不足！',
-          icon:'none'
+          icon: 'none'
         })
       } else {
         this.data.item_info[id].may_amount = aa + 1
@@ -106,8 +106,10 @@ Component({
         }
         if (this.data.summation.zongjiage > 0) {
           this.data.hzhifu = false
+          this.data.hqueren = true
         } else if (this.data.summation.zongshu > 0) {
           this.data.hqueren = false
+          this.data.hzhifu = true
         }
         this.setData({
           item_info: this.data.item_info,
@@ -163,9 +165,12 @@ Component({
     adr: function() {
       var that = this
       wx.chooseAddress({
-        success: function (res) {
-          that.setData({ address:res})
-     
+        success: function(res) {
+          console.log(res)
+          that.setData({
+            address: res
+          })
+
         }
       })
     },
@@ -184,7 +189,7 @@ Component({
         tesu: false
       })
     },
-   
+
     beizhu: function(e) {
       console.log(e.detail.value)
       this.setData({
@@ -206,7 +211,7 @@ Component({
           amount: that.data.summation.zongshu,
           desc: that.data.beizhu,
           act_id: that.data.act.id,
-          map:that.data.address
+          map: that.data.address
         },
         success: function(res) {
           var params = JSON.parse(res.data.params)
@@ -259,7 +264,7 @@ Component({
           amount: that.data.summation.zongshu,
           desc: that.data.beizhu, //备注
           act_id: that.data.act.id,
-          map:that.data.address
+          map: that.data.address
         },
         success: function(res) {
           app.globalData.socket.send({
@@ -273,7 +278,7 @@ Component({
       })
 
     },
-   
+
 
   }
 })

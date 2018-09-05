@@ -474,7 +474,7 @@ Component({
         app.globalData.pintuanfs[i]=({
           'name': this.data.jieitem[i].item_name,
           'original': this.data.jieitem[i].price, pintjia: '',
-          num:''
+          
         })
       }
      wx.navigateTo({
