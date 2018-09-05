@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    
+    "oime": "/components/time/time"
+  }
+
+}

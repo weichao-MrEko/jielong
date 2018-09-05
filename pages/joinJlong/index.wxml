@@ -35,7 +35,7 @@
 
     </view>
  
-    <view  class='foot' bindtap='zhifu' hidden='{{!hzhifu}}'>
+    <view  class='foot' hidden='{{!hzhifu}}'>
     <span>请先选择数量</span>
     </view>
     <view  class='foot' bindtap='zhifu' hidden='{{hzhifu}}'>

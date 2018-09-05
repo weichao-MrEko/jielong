@@ -46,6 +46,7 @@ Page({
     timekeeping: 0,
     hibo: true,
     hizan: true,
+    qie: true,
     kaci: '',
     hikatime: false,
     nhkatime: true
@@ -77,18 +78,26 @@ Page({
           })
         }
       }),
+      // 活动数据统计
       wx.request({
         url: app.globalData.urlPrefix + 'Infoall/lo',
         data: {
           theme_id: options.id,
           user_id: app.globalData.idda.uid,
-          theme_uid: options.theme_uid
+          theme_uid: options.theme_uid,
+          fen_user_id:options.fen_user_id
         },
         success: function(res) {
           console.log(res.data)
           that.setData({
             login_num: res.data.login_num,
+<<<<<<< HEAD
             people: res.data.people
+=======
+            people: res.data.people,
+            pz_num:res.data.pz_num
+
+>>>>>>> 2ff529cfc3f573c47224fe8850b92f8805322d97
           })
         }
       }),
@@ -122,6 +131,18 @@ Page({
       data: 'home'
     })
 
+  },
+  people: function () {
+    console.log(this.data.map)
+    wx.navigateTo({
+      url: '../people/people?theme_id=' + this.data.theme_id + '&user_id=' + app.globalData.idda.uid,
+    })
+  },
+  qie:function(){
+    if(this.data.qie==true){
+      this.setData({ qie: false })
+    }
+    else { this.setData({ qie: true })}
   },
   pzManagement: function() {
     wx.navigateTo({
@@ -221,6 +242,7 @@ Page({
   },
   findDrag: function(callback) {
     var that = this
+    console.log(that.data.theme_id)
     wx.showLoading({
       title: '加载中',
     })
@@ -956,8 +978,13 @@ Page({
   onShareAppMessage: function() {
     return {
       title: this.data.theme.theme_name,
+<<<<<<< HEAD
       path: 'pages/huodong/huodong?id=' + this.data.theme_id + '&uid=' + this.data.user_id + '&theme_uid=' + this.data.theme_uid
 
+=======
+      path: 'pages/huodong/huodong?id=' + this.data.theme_id + '&uid=' + this.data.user_id  +'&fen_user_id='+ app.globalData.idda.uid  + '&theme_uid=' + this.data.theme_uid
+      
+>>>>>>> 2ff529cfc3f573c47224fe8850b92f8805322d97
     }
   },
   eventDraw() {
