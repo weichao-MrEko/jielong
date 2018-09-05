@@ -1,21 +1,130 @@
 /* pages/suosou/suosou.wxss */
-page{
+
+page {
   background: #f4f4f4;
 }
-.box{
+
+.box {
   display: flex;
   justify-content: center;
   margin: 20rpx auto;
 }
-.box input{
+
+.box input {
   flex: 0.9;
   height: 60rpx;
   border-radius: 20rpx;
   background: #fff;
 }
-.box text{
-  color: #1AAD19;
+
+.box text {
+  color: #1aad19;
   margin-left: 20rpx;
   line-height: 60rpx;
   font-size: 35rpx;
+}
+
+.touxiang {
+  width: 92%;
+  margin: 20rpx auto;
+  border-bottom: 1px solid #eee;
+}
+
+.as-avatar {
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 10rpx;
+}
+
+.tou {
+  display: flex;
+}
+
+.tou-pian {
+  flex-grow: 29;
+}
+
+.as-avatar {
+  float: left;
+  margin-right: 20rpx;
+}
+
+.as-nickname {
+  font-size: 28rpx;
+}
+
+.as-time {
+  font-size: 20rpx;
+}
+
+.tou-jian {
+  flex: 1.5;
+  transform: rotate(90deg);
+  height: 30rpx;
+}
+
+.tou-jian image {
+  width: 100%;
+  height: 100%;
+}
+
+.tou-con {
+  width: 88%;
+  float: right;
+}
+
+.tou-jiaoy {
+  font-size: 28rpx;
+}
+
+.tou-con-o {
+  font-size: 25rpx;
+  display: flex;
+  margin: 20rpx 0;
+}
+
+.tou-con-o-left {
+  flex-grow: 3;
+}
+
+.tou-con-o-right {
+  flex: 1;
+}
+
+.font {
+  margin: 20rpx 0;
+  font-size: 20rpx;
+}
+
+.zhuangt {
+  color: green;
+}
+
+.jiapush {
+  position: absolute;
+  top: -101rpx;
+  left: 79rpx;
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.tubox {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tupian {
+  width: 160rpx;
+  height: 160rpx;
+  margin: 10rpx;
+}
+
+.tupian image {
+  width: 100%;
+  height: 100%;
+}
+
+.tupian video {
+  width: 100%;
+  height: 100%;
 }

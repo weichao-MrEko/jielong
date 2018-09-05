@@ -6,7 +6,7 @@
     <view class='head_4'>{{user_info.user_name}}</view>
     <view class='head_1'>总订单数 {{order_num}}</view>
     <view class='head_2' wx:for="{{specifications}}" wx:for-item="b">
-      <text>{{b.item_name}}{{(b.size_or_color)}} + {{b.may_amount}}
+      <text wx:if='{{b.may_amount !==0}}'>{{b.item_name}}{{(b.size_or_color)}} + {{b.may_amount}}
       <text></text>
       </text>
     </view>
@@ -19,7 +19,7 @@
     <cover-image src='../img/sousuo.jpg' class='sousouimg'></cover-image>
     </input>
   </view>
-  <view class='sousou_4'>导出数据</view>
+  <view class='sousou_4' hidden='ture'>导出数据</view>
 </view>
 <view class='content' wx:for="{{shuju}}" wx:for-item="l">
   <view class='content2'>
@@ -31,10 +31,10 @@
       <view class='content5'> {{l.participate_time}}</view>
     </view>
     <view class='content6' wx:for="{{l.actor_id}}" wx:for-item="i">
-      <text>{{i.name}}{{(i.size_or_color)}} </text> +{{i.may_amount}}
+      <text >{{i.name}}{{(i.size_or_color)}} </text> +{{i.may_amount}}
     </view>
   </view>
-  <view class='content7'>
+  <view class='content7' wx:if='{{l.address_info !== ""}}'>
     <view>联系人: {{l.address_info.name}}</view>
     <view>联系电话: {{l.address_info.phone}}</view>
     <view>联系地址: {{l.address_info.area}}{{l.address_info.address}}</view>

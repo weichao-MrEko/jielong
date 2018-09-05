@@ -1,0 +1,17 @@
+<!--pages/people/people.wxml-->
+<view>
+  <view class='head'>
+    <view class='content' wx:for="{{fen_user_info}}">
+      <view class='img'>
+        <image src='{{item.user_img}}'></image>
+      </view>
+      <view class='name'>{{item.user_name}}
+      </view>
+      <oime  id='time' Time='{{item.login_time}}' class='time'></oime>
+      <view class='canyu'>参与
+      </view>
+      <view class='cishu'>({{item.login_num}}次)
+      </view>
+    </view>
+  </view>
+</view>

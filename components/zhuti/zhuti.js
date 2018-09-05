@@ -21,6 +21,10 @@ Component({
       type: Array,
       value: ''
     },
+    upimg: {
+      type: Array,
+      value: ''
+    },
   },
 
   /**

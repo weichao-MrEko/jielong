@@ -1,8 +1,8 @@
 {
   "pages": [
+
       "pages/index/index",
     "pages/guanzhusp/guanzhusp",
- 
     "pages/tixian/tixian",
     "pages/yue/yue",
     "pages/joinJlong/index",
@@ -29,8 +29,11 @@
     "pages/shedidian/shedidian",
     "pages/kefu/kefu",
     "pages/as/as",
-    "pages/tihuodian/tihuodian"
-    
+    "pages/adr/index",
+    "pages/add_adr/index",
+    "pages/tihuodian/tihuodian",        
+    "pages/people/people"
+
   ],
   "window": {
     "backgroundTextStyle": "light",

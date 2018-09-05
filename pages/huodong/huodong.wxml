@@ -24,7 +24,7 @@
   <view class='content'>
     <view class='c-zhuti'>{{theme.theme_name}}</view>
     <view class='c-nei' wx:if='{{theme.desc_info!==null}}'>{{theme.desc_info}}</view>
-    <view class='c-imm'>
+    <view class='c-imm'> 
       <view class='c-img' wx:for="{{itimg}}" wx:if="{{item}}" bindtap='yulan' data-id='{{index}}'>
 
         <image   src='{{turl}}{{item}}' mode='aspectFill'></image>
@@ -38,8 +38,9 @@
       <view class='flex' wx:if='{{theme.jl_type==2}}'>
         <view class='daka_box'>
           <button class='down' style='{{dakacolor}}'>{{countDownHour}}{{countDownMinute}}{{countDownSecond}}</button>
-          <view>今日打卡即将开始</view>
-          <view>打卡时间：{{item.start}}~{{item.end}}</view>
+          <view hidden='{{hikatime}}'>今日打卡即将开始</view>
+          <view hidden='{{hikatime}}'>打卡时间：{{item.start}}~{{item.end}}</view>
+          <view hidden='{{nhkatime}}'>每天只能打卡一次</view>
         </view>
       </view>
       <!--<text>+1</text>-->
@@ -101,14 +102,26 @@
         <view>发个接龙</view>
       </view>
       <view>
-        <view class='renshu'>0</view>
+        <view class='renshu' bindtap='people'>0</view>
         <view>我带来的人</view>
       </view>
-      <view>
+      <view bindtap='qie'>
         <image src='../img/pingzheng.jpg'></image>
         <view>我的凭证</view>
       </view>
+
     </view>
+    <view hidden='{{qie}}'>
+      <view class="pz">
+        <view>1
+          <view>
+            <image></image>
+          </view>
+          <view>七号当铺</view>
+          <view>2018.2.3</view>
+        </view>
+      </view>
+    </view> 
     <!--上传图片-->
     <view hidden='{{hidtuyin}}'>
       <view class='tupian-pai'>
@@ -251,12 +264,11 @@
     <view class='kzi'>修改接龙</view>
   </view>
   <view class='column'>
-    <view class='font'>0</view>
+    <view class='font'>{{pz_num}}</view>
     <view class='kzi' bindtap='pzManagement'>凭证管理</view>
   </view>
   <view class='column' bindtap='renlaig'>
     <view class='font'>{{people}}</view>
     <view class='kzi'>人来过</view>
   </view>
-
-  </view>
+</view>
