@@ -76,12 +76,14 @@ Page({
           })
         }
       }),
+      // 活动数据统计
       wx.request({
         url: app.globalData.urlPrefix + 'Infoall/lo',
         data: {
           theme_id: options.id,
           user_id: app.globalData.idda.uid,
-          theme_uid: options.theme_uid
+          theme_uid: options.theme_uid,
+          fen_user_id:options.fen_user_id
         },
         success: function(res) {
           console.log(res.data)
@@ -129,7 +131,7 @@ Page({
   people: function () {
     console.log(this.data.map)
     wx.navigateTo({
-      url: '../people/people',
+      url: '../people/people?theme_id=' + this.data.theme_id + '&user_id=' + app.globalData.idda.uid,
     })
   },
   qie:function(){
@@ -236,6 +238,7 @@ Page({
   },
   findDrag: function(callback) {
     var that = this
+    console.log(that.data.theme_id)
     wx.showLoading({
       title: '加载中',
     })
@@ -947,7 +950,7 @@ Page({
   onShareAppMessage: function() {
     return {
       title: this.data.theme.theme_name,
-      path: 'pages/huodong/huodong?id=' + this.data.theme_id + '&uid=' + this.data.user_id + '&theme_uid=' + this.data.theme_uid
+      path: 'pages/huodong/huodong?id=' + this.data.theme_id + '&uid=' + this.data.user_id  +'&fen_user_id='+ app.globalData.idda.uid  + '&theme_uid=' + this.data.theme_uid
       
     }
   },

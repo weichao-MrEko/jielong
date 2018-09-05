@@ -57,24 +57,24 @@
 <view class='biaoti'>报个到设置</view>
 <view class='zhuti'>
   <view class='rantianxie'>
-    <text class='ran'>让参与的人填写信息</text>
+    <text class='ran'>让参与人填写信息</text>
     <text class='tian' bindtap='Tosetup' wx:if="{{Fill==''&&kill==''&& gill==''}}">去设置</text>
     <text class='tian' bindtap='Tosetup' wx:else>{{Fill}} {{kill}}{{gill}}</text>
     
     
   </view>
 
-<view class='rantianxie'>
+<view class='rantianxie'  style='display:none'>
     <text class='ran'>项目时间</text>
     <text class='tian' bindtap='xianshitime' hidden='{{xiantime}}'>设置时间</text>
   </view>
- <view class='setime' hidden='{{setime}}'>
+ <view class='setime' hidden='{{setime}}' style='display:none'>
     <picker mode='date' value='{{startime.dadate}}' bindchange="bindDateChange"><text>{{startime.dadate}}</text></picker>|
     <picker mode='time' value='{{startime.datime}}'bindchange="bindTimeChange"><text>{{startime.datime}}</text></picker><view>到</view>
    <picker mode='date' value='{{endtime.houdate}}'bindchange="DateChange"><text>{{endtime.houdate}}</text></picker>|
    <picker mode='time' value='{{endtime.houtime}}'bindchange="TimeChange"><text>{{endtime.houtime}}</text></picker>
  </view>
-  <view class='rantianxie'>
+  <view class='rantianxie'  style='display:none'>
   <text class='ran'>报个到地点</text>
   <text class='tian' bindtap='Addplace' wx:if="{{ytianmap==''||ytianmap==null}}">添加报个到地点</text>
   <text class='tian' wx:else bindtap='Addplace'>已添加{{ytianmap.length}}个报个到地点</text>

@@ -1,6 +1,6 @@
 <view class='box'>
    <picker mode='multiSelector' 
-   range='{{content}}' class='picker' 
+   range='{{content}}' class='picker' value='{{[index,id]}}'
    bindchange='bindchange'>
       <view class='box_pintuan'>{{content[0][index]}}{{content[1][id]}}</view>
       <view class='box_tu'><image src='../img/jiantou.png'></image></view>
@@ -8,13 +8,14 @@
    <view class='text'>设定{{text[0][index]}}成团的{{text[1][id]}}最低标准；并划分不同的价格阶梯。活动结束后，对未成团的所有{{text[2][index]}}参与人，由发起人触发退款</view>
 </view>
 
-<view class='jieti' style='margin-top:40rpx' wx:for='{{array}}' wx:for-index='idx'>
+<view class='jieti' style='margin-top:40rpx' wx:for='{{array}}' wx:for-index='idx' >
 <view class='deljieti' bindtap='deljieti' data-id='{{index}}'>x</view>
+
   <view class='jieti_ku' style='border-bottom: 2rpx solid {{color[index]}}'>
         <text class='name'>成团总数（阶梯{{index+1}}）</text>
-        <input type='number' placeholder='0' bindfocus='juji' bindblur='shiqu' data-id='{{idx}}' bindinput='clustersnum'></input>
+        <input type='number' placeholder='0' bindfocus='juji' bindblur='shiqu' data-id='{{idx}}' bindinput='clustersnum' value='{{item.num}}'></input>
   </view>
-  <view class='jieti_ku' style='border-bottom:2rpx solid  {{colors[index]}}'           wx:for='{{item}}'>
+  <view class='jieti_ku' style='border-bottom:2rpx solid  {{colors[index]}}'           wx:for='{{item.data}}'>
       <view class='names' >
           <view>{{item.name}}</view>
           <view style='color:#999'>原价{{item.original}}</view>

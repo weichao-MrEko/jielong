@@ -30,8 +30,25 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var id=this.data.index,idd=this.data.id
-    this.data.way = [this.data.content[0][id], this.data.content[1][idd]]
+    if (app.globalData.clustersnum.id){
+      var id = app.globalData.clustersnum.id, idd = app.globalData.clustersnum.idd
+      this.data.way = [this.data.content[0][id], this.data.content[1][idd]]
+    }else{
+      var id = this.data.index, idd = this.data.id
+      this.data.way = [this.data.content[0][id], this.data.content[1][idd]]
+    }
+    if (app.globalData.pinfs){
+    this.data.array=app.globalData.pinfs
+    }
+    console.log(this.data.array)
+    this.setData({
+      array: this.data.array ,
+      index : app.globalData.clustersnum.id,
+      id : app.globalData.clustersnum.idd,
+      way:this.data.way
+      })
+
+    console.log()
   },
   bindchange:function(e){
     var id = e.detail.value[0]
@@ -83,22 +100,22 @@ Page({
   pintjia:function(e){
     var id = e.target.dataset.id
     var idx = e.target.dataset.idx
-    this.data.array[idx][id].pintjia=e.detail.value
+    this.data.array[idx].data[id].pintjia=e.detail.value
     this.setData({
       array:this.data.array
     })
   
   },
   newjieti:function(){
-    this.data.array.push(app.globalData.pintuanfs)
+    this.data.array.push({'data':app.globalData.pintuanfs})
+    console.log(this.data.array)
     this.data.color.push('#999')
     this.data.colors.push('#999')
-    this.data.clustersnum.push({num:''})
+ 
     this.setData({
       array: this.data.array,
       color: this.data.color,
-      colors: this.data.colors,
-      clustersnum: this.data.clustersnum
+      colors: this.data.colors
     })
   },
   deljieti:function(e){
@@ -114,14 +131,16 @@ Page({
   },
   clustersnum:function(e){
     var id = e.target.dataset.id
-    this.data.clustersnum[id].num = e.detail.value
-    this.setData({ clustersnum: this.data.clustersnum})
+   
+    this.data.array[id].num = e.detail.value
+    console.log(this.data.array)
+    this.setData({ array: this.data.array})
   },
   queding:function(){
     app.globalData.way= this.data.way//拼团方式的类型
     app.globalData.pinfs= this.data.array//拼团方式的商品价格
-    app.globalData.clustersnum = this.data.clustersnum//拼团方式的总数
- 
+   app.globalData.clustersnum = {id : this.data.index, idd :this.data.id}
+
      wx.navigateBack({
          delta:1
        })

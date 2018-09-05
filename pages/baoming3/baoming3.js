@@ -104,8 +104,6 @@ Component({
      hometime:'',
      startime: {dadate:'', datime:'16:10'},
      endtime: { houdate: '2018-7-5', houtime: '00:00'},
-     
-     
      mofanzhut:'',
      mofanjieshao:'',
      ytianmap:'',
@@ -475,7 +473,8 @@ Component({
       for (var i = 0; i < this.data.jieitem.length; i++) {
         app.globalData.pintuanfs[i]=({
           'name': this.data.jieitem[i].item_name,
-          'original': this.data.jieitem[i].price, pintjia: ''
+          'original': this.data.jieitem[i].price, pintjia: '',
+          num:''
         })
       }
      wx.navigateTo({

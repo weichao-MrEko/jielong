@@ -1,1 +1,37 @@
 /* pages/people/people.wxss */
+page{
+  background-color: #ccc;
+}
+.content{
+  border-top: 1rpx solid #ccc;
+  height: 100rpx;
+  background-color: #fff;
+  display: flex;
+  align-items:center ;
+  justify-content:flex-start;
+}
+.img{
+  margin-left:10rpx;
+  margin-right: 25rpx;
+  width: 70rpx;
+  height: 70rpx;
+}
+.img image{
+  width: 100%;
+  height: 100%;
+}
+.name{
+  font-size: 30rpx;
+}
+.time{
+font-size: 25rpx;
+margin-left: 35rpx;
+}
+.canyu{
+font-size: 25rpx;
+margin-left: 20rpx;
+}
+.cishu{
+font-size: 25rpx;
+margin-left: 30rpx;
+}
