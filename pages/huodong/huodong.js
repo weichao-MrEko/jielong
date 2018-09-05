@@ -12,6 +12,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    people:'',
     xiangmu: "",
     itimg: "",
     theme: '',
@@ -139,10 +140,11 @@ Page({
     })
   },
   qie:function(){
-    if(this.data.qie==true){
-      this.setData({ qie: false })
+
+    if(this.data.ord_time){
+    (this.data.qie == true) ? this.setData({ qie: false }) :this.setData({ qie: true })
+     
     }
-    else { this.setData({ qie: true })}
   },
   pzManagement: function() {
     wx.navigateTo({
@@ -349,7 +351,11 @@ Page({
           comment: res.data.comment,
           kaci: res.data.theme_result.daka_list,
           jl_type: res.data.theme_result.jl_type,
-          baomingren: res.data.all_ord
+          baomingren: res.data.all_ord,
+          peo:res.data.people,
+          ord_time:res.data.pz.ord_time,
+          info:res.data.pz.info,
+          act:res.data.pz.act
         })
         if (res.data.item_result[0].checked == "0") {
 
