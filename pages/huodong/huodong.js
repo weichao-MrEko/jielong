@@ -49,7 +49,9 @@ Page({
     qie: true,
     kaci: '',
     hikatime: false,
-    nhkatime: true
+    nhkatime: true,
+    textkui:false,
+    hitext:true
   },
 
   /**
@@ -189,6 +191,25 @@ Page({
       url: '../index/index',
     })
   },
+  // 文本框
+  textbox:function(e){
+    this.setData({
+      textoc: e.detail.value
+    })
+  },
+  textu:function(){
+    this.setData({
+      textkui:true,
+      hitext:false,
+    })
+  },
+  deltext:function(){
+    this.setData({
+      textoc:'',
+      textkui: false,
+      hitext: true,
+    })
+  },
   joinjl: function() {
     var that = this
     var jl_type = that.data.jl_type
@@ -204,7 +225,8 @@ Page({
           theme_id: that.data.theme_id,
           audio_path: that.data.luysrc,
           other_path: that.data.upimg,
-          luyin_time: that.data.timekeeping
+          luyin_time: that.data.timekeeping,
+          textoc: that.data.textoc
         },
         success: function(res) {
           wx.navigateTo({
