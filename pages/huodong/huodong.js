@@ -253,11 +253,7 @@ Page({
         user_id: that.data.user_id,
       },
       success: function(res) {
-<<<<<<< HEAD
-        
-=======
 
->>>>>>> 5bcbfdad88488e91659cbc92a16dd4845f169171
 
         res.data.comment.reverse()
 
