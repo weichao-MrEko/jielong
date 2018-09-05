@@ -51,6 +51,7 @@ Component({
         success: function (res) {
           if (res.tapIndex === 0) {
             wx.chooseImage({
+              sizeType: ['compressed'], 
               sourceType: ['album', 'camera'],
               success: function (res) {
                 var tempFilePaths = res.tempFilePaths

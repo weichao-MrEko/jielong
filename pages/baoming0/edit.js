@@ -146,13 +146,14 @@ Component({
               that.data.shangtu.splice(i,i,JSON.parse(res.data.item_result[i].p_goods_img)) 
             
              }
-          } 
-          if (res.data.theme_imag.length>0){
-            for (var j in res.data.theme_imag) {
-              var index1 = res.data.theme_imag[j].lastIndexOf(".");
-              var index2 = res.data.theme_imag[j].length;
-              var postf = res.data.theme_imag[j].substring(index1, index2);
- 
+          }
+
+          
+            for (var j in res.data.theme_img) {
+              if (res.data.theme_img[j].img_path) {
+              var index1 = res.data.theme_img[j].img_path.lastIndexOf(".");
+              var index2 = res.data.theme_img[j].img_path.length;
+              var postf = res.data.theme_img[j].img_path.substring(index1, index2);
               if (postf == '.jpg' || postf == '.png') {
                 that.data.pushurl.push({ pic: app.globalData.urlfix + res.data.theme_img[j].img_path, video: '' })
               } else if (postf == '.mp4') {

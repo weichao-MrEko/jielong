@@ -13,8 +13,8 @@
     </view>
    <view class='copy' ></view>
 </view>
-<!--接龙主题-->
-<zhuti id="zhuti" name='接龙' descont='{{descont}}' setPlnr='{{setPlnr}}' pushurl='{{pushurl}}'></zhuti>
+<!--报名主题-->
+<zhuti id="zhuti" name='' descont='{{descont}}' setPlnr='{{setPlnr}}' pushurl='{{pushurl}}'></zhuti>
 
 
 
@@ -52,7 +52,7 @@
  </view>
 <view class='other'>
     <image src='../img/icon_jt.png' class='other-img'></image>
-    <text bindtap='qitmu'>+其他类型接龙项目</text>
+    <text bindtap='qitmu'>+其他类型报名项目</text>
 </view>
 
 
@@ -84,8 +84,8 @@
   </view>
 
 </view>
-<!--接龙项目-->
-<view class='biaoti'>接龙项目</view>
+<!--报名项目-->
+<view class='biaoti'>报名项目</view>
 <view class='box' >
 <view class="longlong 
  wx:for='{{jieitem}}'   style='top:{{move.y}}px;'>
@@ -95,7 +95,7 @@
     </view>
     <view class='btndel' bindtap='delitem' wx:if='{{quantity>1}}' data-id='{{index}}'>×</view>
     <view class='xiongmu onbian' >
-      <text class='xiongmu-jl'>接龙项目<text wx:if='{{quantity>1}}'>{{index+1}}</text></text>
+      <text class='xiongmu-jl'>报名项目<text wx:if='{{quantity>1}}'>{{index+1}}</text></text>
       <input data-index="{{index}}" placeholder='项目名称' bindinput='xiangname' value='{{item.item_name}}'></input>
     </view>
    
@@ -122,7 +122,7 @@
   <view  class='yulan' bindtap='save'>保存预览</view>
 <form name='pushMsgFm' style='width:50%;margin:0 auto;' report-submit="true" bindsubmit='fajielong'>
   
-    <button form-type="submit" class='falong' >发布接龙</button>
+    <button form-type="submit" class='falong' >发布报名</button>
 </form>
 </view>
 </view>
