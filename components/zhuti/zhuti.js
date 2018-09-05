@@ -83,9 +83,6 @@ Component({
                     url: app.globalData.urlPrefix + 'signup/uploadImg',
                     filePath: gg[i].pic,
                     name: 'image',
-                    formData: {
-                      'user': 'test'
-                    },
                     success: function (res) {
                       //var data=res.data
                       console.log(res)
