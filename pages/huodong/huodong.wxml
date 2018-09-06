@@ -27,7 +27,7 @@
     <view class='c-imm'>
       <view class='c-img' wx:for="{{itimg}}" wx:if="{{item}}" bindtap='yulan' data-id='{{index}}'>
 
-        <image src='{{turl}}{{item}}' mode='aspectFill'></image>
+        <image src='{{turl}}{{item}}' mode='widthFix'></image>
       </view>
 
     </view>
@@ -98,8 +98,12 @@
         <view>我带来的人</view>
       </view>
       <view bindtap='qie'>
-        <image src='../img/pingzheng.jpg'></image>
-        <view>我的凭证</view>
+        <image src='../img/pingzheng{{pingz}}.jpg'></image>
+        <view>我的凭证
+          <view class='jiantou' style='transform:rotate({{jiaodu}}deg)' hidden='{{hijt}}'>
+            <image src='../img/jiantou.png'></image>
+          </view>
+        </view>
       </view>
 
     </view>
@@ -112,14 +116,18 @@
           </view>
           <view class='pz_name'>{{info.user_name}}</view>
           <view class='pz_time'> 
-         
+  
           <oime   id='time' Time='{{ord_time}}'></oime>
-          <view hidden='{{true}}'>{{ord_time}}</view>
+          
           </view>
         </view>
          
-        <view class='add' wx:for="{{act}}">+{{item.may_amount}}</view>
-        
+        <view class='add' wx:for="{{act}}">{{item.name}} +{{item.may_amount}}</view>
+        <view class='lxmap' wx:if='{{info.name}}'>
+        <view><text>联系人：</text><text>{{info.name}}</text></view>
+        <view><text>联系电话：</text><text>{{info.phone}}</text></view>
+        <view><text>联系地址：</text><text>{{info.address}}</text></view>
+        </view>
       </view>
     </view>
     <!--上传图片-->

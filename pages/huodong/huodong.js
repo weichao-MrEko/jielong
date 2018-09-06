@@ -23,6 +23,7 @@ Page({
     theme_id: '',
     user_id: '',
     comment: '',
+    ord_time:'',
     baomingren: '',
     btn: 'woyao',
     apply: '我要接龙',
@@ -51,7 +52,9 @@ Page({
     hikatime: false,
     nhkatime: true,
     textkui:false,
-    hitext:true
+    hitext:true,
+    pingz:1,
+    jiaodu:90
   },
 
   /**
@@ -139,10 +142,12 @@ Page({
     })
   },
   qie:function(){
+    if (this.data.pingz==2){
     if(this.data.qie==true){
-      this.setData({ qie: false })
+      this.setData({ qie: false, jiaodu:270})
     }
-    else { this.setData({ qie: true })}
+    else { this.setData({ qie: true, jiaodu:90 })}
+    }
   },
   pzManagement: function() {
     wx.navigateTo({
@@ -238,8 +243,9 @@ Page({
       })
     }
     if (jl_type == 0 || jl_type == 1 || jl_type == 3 || jl_type == 4 || jl_type == 5) {
+      that.data.xiangmu = JSON.stringify(that.data.xiangmu)
       wx.navigateTo({
-        url: '../joinJlong/index?theme_id=' + that.data.theme_id + '&user_id=' + that.data.user_id + '&theme_uid=' + that.data.theme_uid
+        url: '../joinJlong/index?theme_id=' + that.data.theme_id + '&user_id=' + that.data.user_id + '&theme_uid=' + that.data.theme_uid + '&xiangmu=' + that.data.xiangmu + '&jl_type=' + jl_type
       })
     }
   },
@@ -260,6 +266,7 @@ Page({
       url: '../liuyan/liuyan?theme_id=' + this.data.theme_id,
     })
   },
+  // 数据
   findDrag: function(callback) {
     var that = this
     console.log(that.data.theme_id)
@@ -280,6 +287,13 @@ Page({
         if (res.data.theme_imag) {
           that.data.itimg = res.data.theme_imag
         };
+        if (res.data.theme_result.jl_type == 1) {
+          that.setData({
+            shangpin: false,
+            xiangmu: that.data.xiangmu,
+            apply: '我要团购'
+          })
+        }
         if (res.data.theme_result.jl_type == 2) {
 
           if (res.data.theme_result.has_daka == 1) {
@@ -321,12 +335,11 @@ Page({
             }
           }
         }
-        if (!res.data.theme_result.address) {
+        if (res.data.theme_result.address) {
           that.data.map = JSON.parse(res.data.theme_result.address)
         }
 
         for (var i = 0; i < res.data.item_result.length; i++) {
-
           if (res.data.item_result[i].p_goods_img) {
             res.data.item_result[i].p_goods_img = JSON.parse(res.data.item_result[i].p_goods_img)
           }
@@ -339,6 +352,19 @@ Page({
             res.data.theme_result.daka_list[p].tiaobo = false
             res.data.theme_result.daka_list[p].tiaoting = true
           }
+        }
+        if (res.data.pz.info==''){
+          that.setData({
+            pingz:1,
+            hijt:true
+          })
+        }else{
+          that.setData({
+            pingz:2,
+            qie:false,
+            hijt:false,
+            jiaodu:270
+          })
         }
         console.log(res.data.theme_result)
         that.setData({
