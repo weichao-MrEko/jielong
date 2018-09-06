@@ -24,7 +24,7 @@
       <text class='xiongmu-jl'>
        {{index+1}}.{{item.title}}:
       </text>
-      <input placeholder='{{item.place}}' bindinput=''></input>
+      <input placeholder='{{item.place}}' bindinput='groupinp' data-id='{{index}}'></input>
     </view>
     <view class='xiongmu' >
       <picker class='moshi' mode='selector'
@@ -36,22 +36,22 @@
        /{{bitian[item.ieb]}}</picker>
     </view>
     </view>
-<view class='newxm'>
+<!-- <view class='newxm'>
     <view class='xiongmu' wx:if='{{tianxuetj >0}}'>
         <view class='new-xm' bindtap='newtx' >+新填写项目</view>
     </view>
-</view>
+</view> -->
 
 </view>    
-    <!--选择项目--><!--
- <view class='qitxiang' hidden='{{qitxiang}}' >
+    <!-- 选择项目 -->
+ <view class='qitxiang'  >
     <view class='qitxz' bindtap='newtx' wx:for='{{qitaxiangmuneiy}}' data-id='{{index}}' style='{{item.color}}'>{{item.xiangmu}}</view>
  </view>
-<view class='other'>
+<!-- <view class='other'>
     <image src='../img/icon_jt.png' class='other-img'></image>
-    <text bindtap='qitmu'>+其他类型接龙项目</text>
-</view>
--->
+    <text bindtap='qitmu'>+其他类型接龙项目</text>hidden='{{qitxiang}}'
+</view> -->
+
 
 
 

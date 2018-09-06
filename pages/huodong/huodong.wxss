@@ -112,22 +112,13 @@ page {
 }
 
 .c-imm {
-  overflow: hidden;
-  margin: 20rpx 0 10rpx 20rpx;
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
 }
 
 .c-img {
-  width: 187rpx;
-  height: 187rpx;
-  float: left;
-  background: #fff;
-  margin: 20rpx 30rpx 0 0;
-  border: 2rpx solid #999;
-}
-
-.c-img image {
   width: 100%;
-  height: 100%;
 }
 
 .renshu {
@@ -355,7 +346,7 @@ button {
 
 .shangpin {
   width: 98%;
-  margin:10rpx auto;
+  margin: 10rpx auto;
   display: flex;
   border: 2rpx solid #666;
 }
@@ -386,11 +377,6 @@ button {
   margin: 0 40rpx;
 }
 
-image {
-  width: 100%;
-  height: 100%;
-}
-
 /*打卡*/
 
 .daka_box {
@@ -414,26 +400,62 @@ image {
 }
 
 /* 录音 */
-  .yuyin{text-align: center;font-size: 30rpx;color: #525787;}
- .yuyin_logo{width: 70rpx;height: 70rpx;margin: 15rpx auto;}
- .luyin_zhong{width: 96%;height: 100rpx;display: flex;margin:30rpx auto; align-items: center;justify-content: space-between;  border-radius:15rpx;
-  border:10rpx dashed #f34534; }
- .luyin_zhong view{ width: 80rpx;height: 80rpx;margin:10rpx auto;line-height: 80rpx;}
- .luyinend{width: 120rpx!important;height: 60rpx!important;background: #f34534;color: #fff;text-align: center;line-height: 60rpx!important;}
- /* 上传图片 */
- .tupian-pai{
+
+.yuyin {
+  text-align: center;
+  font-size: 30rpx;
+  color: #525787;
+}
+
+.yuyin_logo {
+  width: 70rpx;
+  height: 70rpx;
+  margin: 15rpx auto;
+}
+
+.luyin_zhong {
+  width: 96%;
+  height: 100rpx;
+  display: flex;
+  margin: 30rpx auto;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 15rpx;
+  border: 10rpx dashed #f34534;
+}
+
+.luyin_zhong view {
+  width: 80rpx;
+  height: 80rpx;
+  margin: 10rpx auto;
+  line-height: 80rpx;
+}
+
+.luyinend {
+  width: 120rpx !important;
+  height: 60rpx !important;
+  background: #f34534;
+  color: #fff;
+  text-align: center;
+  line-height: 60rpx !important;
+}
+
+/* 上传图片 */
+
+.tupian-pai {
   display: flex;
   flex-wrap: wrap;
 }
-.paizhao{
-  margin:0 0 40rpx 40rpx;
+
+.paizhao {
+  margin: 0 0 40rpx 40rpx;
   width: 100rpx;
   height: 100rpx;
-  border-radius:15rpx;
-  border:8rpx dashed #f34534; 
- 
+  border-radius: 15rpx;
+  border: 8rpx dashed #f34534;
 }
-.gdel{
+
+.gdel {
   width: 30rpx;
   height: 30rpx;
   background: #000;
@@ -441,65 +463,181 @@ image {
   color: #f0f0f0;
   position: absolute;
   line-height: 28rpx;
-  top:0;
+  top: 0;
   right: 0;
   padding: 5rpx 5rpx 0rpx 0rpx;
-  z-index: 999
-  }
- image{width: 100%;height: 100%}
- video{width: 100%;height: 100%;}
+  z-index: 999;
+}
 
-.pz{
-  background-color: #f34534;
+image {
+  width: 100%;
+  height: 100%;
+}
+
+video {
+  width: 100%;
+  height: 100%;
+}
+
+.pz {
+  /* background-color: #f34534; */
+  border: 6rpx #f34534 dashed;
   width: 638rpx;
   margin-bottom: 40rpx;
   padding: 20rpx;
   display: flex;
-  flex-direction: column ;
+  flex-direction: column;
 }
-.pz_1{
+
+.pz_1 {
   display: flex;
-  justify-content: flex-start; 
+  justify-content: flex-start;
 }
-.pz_num{
-font-weight: bold;
-font-size: 35rpx;
+
+.pz_num {
+  font-weight: bold;
+  font-size: 35rpx;
 }
-.pz_img{
-width: 60rpx;
-height: 60rpx;
-margin-left: 10rpx;
-margin-right: 15rpx;
+
+.pz_img {
+  width: 60rpx;
+  height: 60rpx;
+  margin-left: 10rpx;
+  margin-right: 15rpx;
 }
-.pz_img image{
+
+.pz_img image {
   width: 100%;
   height: 100%;
 }
-.pz_name{
-font-weight: bold;
-margin-right: 10rpx;
+
+.pz_name {
+  font-weight: bold;
+  margin-right: 10rpx;
+  font-size: 30rpx;
 }
-.pz_time{
-  color:#ccc;
+
+.pz_time {
+  color: #ccc;
   font-size: 25rpx;
 }
-.add{
+
+.add {
   font-weight: bold;
+  font-size: 30rpx;
+  margin: 10rpx;
 }
+
 /* 打卡信息 */
-.dakabox{width: 96%;margin: 20rpx auto;border: 2rpx solid #ccc;display: flex;}
-.dakabox_top{flex: 1}
-.dakabox_top_tx{width: 60rpx;height: 60rpx;margin: 20rpx}
-.dakabox_top_xx_name{font-size: 28rpx;color: #525787;margin-top: 20rpx;}
-.dakabox_top_xx_time{font-size: 20rpx;color: #666}
-.dakabox_muis{height: 70rpx;display: flex;margin: 20rpx;font-size: 30rpx;
-border: 2rpx #525787 solid;justify-content: space-around;align-items: center;}
-.dakabox_muis_bo{width: 50rpx;height: 50rpx;}
-.dakabox_muis_du{width: 200rpx;height: 10rpx;background: #525787;}
-.dakabox_muis_tiao{height: 100%;background: #f34534;}
-.daka_box_pian{display: flex;}
-.daka_box_pian_tu{width: 140rpx;height: 140rpx;margin: 20rpx;border: 2rpx solid #ccc}
-.textcss{background: #f4f4f4; border-radius: 60rpx;width:260px;font-size: 35rpx;padding: 30rpx;}
-.textbox{position: relative;width: 100%;}
-.deltext{position: absolute;right: 0;top:0;z-index: 999;border-radius: 100%;background: #f34534;width:40rpx;height: 40rpx;text-align: center;font-size: 32rpx;color: #fff}
-.wenzi{font-size: 30rpx;margin: 10rpx;}
+
+.dakabox {
+  width: 96%;
+  margin: 20rpx auto;
+  border: 2rpx solid #ccc;
+  display: flex;
+}
+
+.dakabox_top {
+  flex: 1;
+}
+
+.dakabox_top_tx {
+  width: 60rpx;
+  height: 60rpx;
+  margin: 20rpx;
+}
+
+.dakabox_top_xx_name {
+  font-size: 28rpx;
+  color: #525787;
+  margin-top: 20rpx;
+}
+
+.dakabox_top_xx_time {
+  font-size: 20rpx;
+  color: #666;
+}
+
+.dakabox_muis {
+  height: 70rpx;
+  display: flex;
+  margin: 20rpx;
+  font-size: 30rpx;
+  border: 2rpx #525787 solid;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.dakabox_muis_bo {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.dakabox_muis_du {
+  width: 200rpx;
+  height: 10rpx;
+  background: #525787;
+}
+
+.dakabox_muis_tiao {
+  height: 100%;
+  background: #f34534;
+}
+
+.daka_box_pian {
+  display: flex;
+}
+
+.daka_box_pian_tu {
+  width: 140rpx;
+  height: 140rpx;
+  margin: 20rpx;
+  border: 2rpx solid #ccc;
+}
+
+.textcss {
+  background: #f4f4f4;
+  border-radius: 60rpx;
+  width: 260px;
+  font-size: 35rpx;
+  padding: 30rpx;
+}
+
+.textbox {
+  position: relative;
+  width: 100%;
+}
+
+.deltext {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 999;
+  border-radius: 100%;
+  background: #f34534;
+  width: 40rpx;
+  height: 40rpx;
+  text-align: center;
+  font-size: 32rpx;
+  color: #fff;
+}
+
+.wenzi {
+  font-size: 30rpx;
+  margin: 10rpx;
+}
+
+.lxmap {
+  font-size: 30rpx;
+  color: #999;
+  margin: 10rpx;
+}
+
+.jiantou {
+  float: right;
+}
+
+.jiantou image {
+  width: 20rpx;
+  height: 20rpx;
+}

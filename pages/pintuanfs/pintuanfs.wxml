@@ -20,7 +20,7 @@
           <view>{{item.name}}</view>
           <view style='color:#999'>原价{{item.original}}</view>
       </view>
-      <input type='number' placeholder='拼团价格0.00' bindfocus='jujis'                     bindblur='shiqus' bindinput='pintjia'
+      <input type='digit' placeholder='拼团价格0.00' bindfocus='jujis'                     bindblur='shiqus' bindinput='pintjia'
       data-idx='{{idx}}'  data-id='{{index}}'
         value='{{item.pintjia}}'></input>
     </view>

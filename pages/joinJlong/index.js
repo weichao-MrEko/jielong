@@ -45,6 +45,7 @@ Component({
   methods: {
     onLoad: function(options) {
       var that = this;
+      console.log(options)
       that.setData({
         theme_id: options.theme_id,
         user_id: options.user_id
