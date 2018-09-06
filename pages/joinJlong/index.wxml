@@ -19,9 +19,9 @@
       <input wx:for='{{self_info}}' wx:key="unique" class='twosty bg' type='text' placeholder='{{item.name}}' value='{{item.value}}' bindinput='binddata' data-id='{{index}}'></input>
     </view>
 
-    <view class='two_v1' style="">
+    <view class='two_v1' style="" hidden='{{hiitem}}'>
       <view class='two_v1_v1'>请选择您的接龙</view>
-      <view class='two_v1_v2' wx:for='{{item_info}}'>
+      <view class='two_v1_v2' wx:for='{{item_info}}' >
         <view class='two_v1_v2_v1'>{{item.item_name}}</view>
         <view class='twobox'>
           <view class='tb_v1'>￥{{item.price}}</view>

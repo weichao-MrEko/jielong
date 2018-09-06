@@ -45,7 +45,6 @@ Component({
   methods: {
     onLoad: function(options) {
       var that = this;
-      console.log(options)
       that.setData({
         theme_id: options.theme_id,
         user_id: options.user_id
@@ -57,11 +56,39 @@ Component({
           theme_id: that.data.theme_id
         },
         success: function(res) {
-          console.log(res)
+          if (options.jl_type == 1 || options.jl_type == 4) {
+            that.data.item_info = JSON.parse(options.xiangmu)
+            for (var i = 0; i < that.data.item_info.length; i++) {
+              that.data.summation.zongshu += that.data.item_info[i].may_amount
+              that.data.summation.jiage[i] = that.data.item_info[i].price * that.data.item_info[i].may_amount
+              that.data.summation.zongjiage += that.data.summation.jiage[i]
+              that.data.summation.zongjiage = Math.round(that.data.summation.zongjiage * 100) / 100
+              that.setData({
+                item_info: that.data.item_info,
+                summation: that.data.summation,
+                hiitem: true,
+                hzhifu: that.data.hzhifu,
+                hqueren: that.data.hqueren
+              })
+            }
+            if (that.data.summation.zongjiage > 0) {
+              that.setData({
+                hzhifu: false
+              })
+            } else {
+              that.setData({
+                hqueren: false
+              })
+            }
+          } else {
+            that.setData({
+              item_info: res.data.item_info,
+              hiitem: false
+            })
+          }
           that.setData({
             address_info: res.data.address_info,
             self_info: res.data.self_info,
-            item_info: res.data.item_info,
             adr_panduan: res.data.adr_panduan,
             act: res.data.act
           })
