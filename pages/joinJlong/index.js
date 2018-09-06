@@ -264,7 +264,8 @@ Component({
           amount: that.data.summation.zongshu,
           desc: that.data.beizhu, //备注
           act_id: that.data.act.id,
-          map: that.data.address
+          map: that.data.address,
+          theme_id:that.data.theme_id
         },
         success: function(res) {
           app.globalData.socket.send({
