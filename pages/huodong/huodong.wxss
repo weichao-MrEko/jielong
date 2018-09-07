@@ -527,7 +527,10 @@ video {
   font-size: 30rpx;
   margin: 10rpx;
 }
-
+.kabox{
+  display: flex;
+  flex-wrap: wrap;
+}
 /* 打卡信息 */
 
 .dakabox {
@@ -540,6 +543,7 @@ video {
 .dakabox_top {
   flex: 1;
 }
+.tongji{display: flex;justify-content: flex-end;font-size: 30rpx;margin-right: 30rpx;}
 
 .dakabox_top_tx {
   width: 60rpx;

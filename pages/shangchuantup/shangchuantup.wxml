@@ -3,9 +3,9 @@
 
     <view class='tupian-pai'>
    <view class='paizhao' 
-       wx:for="{{pushurl[id]}}"  wx:if='{{item.pic !== "" || item.video !== ""}}' wx:key='k' data-index="{{index}}">
+       wx:for="{{upimg[id]}}"  wx:if='{{item.pic !== "" || item.video !== ""}}' wx:key='k' data-index="{{index}}">
       <view class='gdel' data-index="{{index}}" bindtap='infodel' >×</view>
-      <image wx:if='{{item !== ""}}'  src="{{item}}"  data-index='{{index}}'  mode='aspectFill' bindtap='tup'></image>    
+      <image wx:if='{{item !== ""}}'  src="{{img}}{{item}}"  data-index='{{index}}'  mode='aspectFill' bindtap='tup'></image>    
       </view>
       <view class='paizhao' bindtap='box' data-id="{{index}}">
        <image src='../img/paizhao.png'></image>

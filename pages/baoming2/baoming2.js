@@ -185,10 +185,7 @@ Page({
 
     })
   },
-  groupinp: function(e) {
-    var i = e.currentTarget.dataset.id
-    this.data.group[i].place = e.detail.value
-  },
+
 
   stime: function(e) {
     var i = e.currentTarget.dataset.id
@@ -367,7 +364,11 @@ Page({
       group: this.data.group,
     })
   },
-  newtx: function(e) {
+  groupinp: function (e) {
+    var i = e.currentTarget.dataset.id
+    this.data.group[i].place = e.detail.value
+  },
+  newtx: function (e) {
     let id = e.currentTarget.dataset.id
     let that = this
 

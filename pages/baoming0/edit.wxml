@@ -15,6 +15,37 @@
 </view>
 <!--接龙主题-->
 <zhuti id="zhuti" name='接龙' descont='{{edit_theme.desc_info}}' setPlnr='{{edit_theme.theme_name}}' pushurl='{{pushurl}}'></zhuti>
+<view class='asdfggg'  wx:for='{{group}}'>
+<!--填写项-->
+<view class='zhuti' >
+    <view class='btndel' bindtap='deltx'  data-index='{{index}}' data-id='{{item.id}}'>×</view>
+    <view class='xiongmu onbian' >
+      <text class='xiongmu-jl'>
+       {{index+1}}.{{item.title}}:
+      </text>
+      <input placeholder='{{item.place}}' bindinput='groupinp' data-id='{{index}}'></input>
+    </view>
+    <view class='xiongmu' >
+      <picker class='moshi' mode='selector'
+       value='{{iex}}' range='{{gongk}}' data-id='{{index}}' bindchange='bindchangegk'>
+       /{{gongk[item.iex]}}
+       </picker>
+      <picker class='moshi' mode='selector'
+       value='{{item.ieb}}' range='{{bitian}}' data-id='{{index}}' bindchange='bindchangebt'>
+       /{{bitian[item.ieb]}}</picker>
+    </view>
+    </view>
+<!-- <view class='newxm'>
+    <view class='xiongmu' wx:if='{{tianxuetj >0}}'>
+        <view class='new-xm' bindtap='newtx' >+新填写项目</view>
+    </view>
+</view> -->
+
+</view>    
+    <!-- 选择项目 -->
+ <view class='qitxiang' hidden='{{qitxiang}}' >
+    <view class='qitxz' bindtap='newtx' wx:for='{{qitaxiangmuneiy}}' data-id='{{index}}' style='{{item.color}}'>{{item.xiangmu}}</view>
+ </view>
 <!--商品-->
 <view hidden='{{hshangp}}'>
 <view class='biaoti'>{{spname}}商品</view>
@@ -61,6 +92,7 @@
  
 
 <!--报名设置-->
+<view hidden='{{baomingshe}}'>
 <view class='biaoti'>报名设置</view>
 <view class='zhuti'>
   <view class='rantianxie' hidden='{{canxx}}'>
@@ -93,7 +125,7 @@
   <text class='tian' wx:else bindtap='Addplace'>已添加{{ytianmap.length}}个活动地点</text>
   <image src='../img/icon_map.png'></image>
   </view>
-
+</view>
 </view>
 <!--接龙项目-->
 <view hidden='{{jlhong}}'>
