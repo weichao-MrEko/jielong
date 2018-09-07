@@ -1,0 +1,3 @@
+<view class='sousuo'>
+  <input placeholder='搜索'></input>
+</view>

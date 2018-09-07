@@ -32,9 +32,9 @@
       <image src='../img/xiaoxi.png'></image>
       <text>消息</text>
     </view>
-    <view>
+    <view bindtap='dingyue'>
       <image src='../img/quanzi.png'></image>
-      <text>圈子</text> </view>
+      <text>订阅</text> </view>
   </view>
   <view  class='touxiang' wx:for='{{zhuti}}' bindtap='jieneiyong' data-id='{{index}}'>
     <view class='tou'>
