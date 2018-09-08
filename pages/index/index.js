@@ -177,6 +177,13 @@ Page({
 
 
   },
+  // 进入订阅
+  dingyue: function () {
+    wx.navigateTo({
+      url: '../friend/friend?user_id=' + app.globalData.idda.uid
+
+    })
+  },
   getUserInfo: function(e) {
     console.log(44)
 

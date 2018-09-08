@@ -1,7 +1,6 @@
 {
   "pages": [
-
-      "pages/index/index",
+    "pages/index/index",
     "pages/guanzhusp/guanzhusp",
     "pages/tixian/tixian",
     "pages/yue/yue",
@@ -31,9 +30,9 @@
     "pages/as/as",
     "pages/adr/index",
     "pages/add_adr/index",
-    "pages/tihuodian/tihuodian",        
-    "pages/people/people"
-
+    "pages/tihuodian/tihuodian",
+    "pages/people/people",
+    "pages/friend/friend"
   ],
   "window": {
     "backgroundTextStyle": "light",

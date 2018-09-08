@@ -23,6 +23,7 @@ Page({
     theme_id: '',
     user_id: '',
     comment: '',
+    ord_time: '',
     baomingren: '',
     btn: 'woyao',
     apply: '我要接龙',
@@ -50,8 +51,12 @@ Page({
     kaci: '',
     hikatime: false,
     nhkatime: true,
-    textkui:false,
-    hitext:true
+    textkui: false,
+    hitext: true,
+    pingz: 1,
+    jiaodu: 90,
+    heji:0,
+    zonjia:0
   },
 
   /**
@@ -87,7 +92,7 @@ Page({
           theme_id: options.id,
           user_id: app.globalData.idda.uid,
           theme_uid: options.theme_uid,
-          fen_user_id:options.fen_user_id
+          fen_user_id: options.fen_user_id
         },
         success: function(res) {
           console.log(res.data)
@@ -95,7 +100,7 @@ Page({
             login_num: res.data.login_num,
 
             people: res.data.people,
-            pz_num:res.data.pz_num
+            pz_num: res.data.pz_num
 
 
           })
@@ -132,17 +137,26 @@ Page({
     })
 
   },
-  people: function () {
+  people: function() {
     console.log(this.data.map)
     wx.navigateTo({
       url: '../people/people?theme_id=' + this.data.theme_id + '&user_id=' + app.globalData.idda.uid,
     })
   },
-  qie:function(){
-    if(this.data.qie==true){
-      this.setData({ qie: false })
+  qie: function() {
+    if (this.data.pingz == 2) {
+      if (this.data.qie == true) {
+        this.setData({
+          qie: false,
+          jiaodu: 270
+        })
+      } else {
+        this.setData({
+          qie: true,
+          jiaodu: 90
+        })
+      }
     }
-    else { this.setData({ qie: true })}
   },
   pzManagement: function() {
     wx.navigateTo({
@@ -192,20 +206,20 @@ Page({
     })
   },
   // 文本框
-  textbox:function(e){
+  textbox: function(e) {
     this.setData({
       textoc: e.detail.value
     })
   },
-  textu:function(){
+  textu: function() {
     this.setData({
-      textkui:true,
-      hitext:false,
+      textkui: true,
+      hitext: false,
     })
   },
-  deltext:function(){
+  deltext: function() {
     this.setData({
-      textoc:'',
+      textoc: '',
       textkui: false,
       hitext: true,
     })
@@ -237,11 +251,26 @@ Page({
         }
       })
     }
-    if (jl_type == 0 || jl_type == 1 || jl_type == 3 || jl_type == 4 || jl_type == 5) {
+    var xiangmu = 0
+    if (jl_type == 0 || jl_type == 3 || jl_type == 5) {
+
+      console.log(xiangmu)
+      that.data.xiangmu = JSON.stringify(that.data.xiangmu)
       wx.navigateTo({
-        url: '../joinJlong/index?theme_id=' + that.data.theme_id + '&user_id=' + that.data.user_id + '&theme_uid=' + that.data.theme_uid
+        url: '../joinJlong/index?theme_id=' + that.data.theme_id + '&user_id=' + that.data.user_id + '&theme_uid=' + that.data.theme_uid + '&xiangmu=' + that.data.xiangmu + '&jl_type=' + jl_type
       })
+    } else if (jl_type == 1 || jl_type == 4) {
+      for (var i = 0; i < that.data.xiangmu.length; i++) {
+        xiangmu += that.data.xiangmu[i].may_amount
+      }
+      if (xiangmu > 0) {
+        that.data.xiangmu = JSON.stringify(that.data.xiangmu)
+        wx.navigateTo({
+          url: '../joinJlong/index?theme_id=' + that.data.theme_id + '&user_id=' + that.data.user_id + '&theme_uid=' + that.data.theme_uid + '&xiangmu=' + that.data.xiangmu + '&jl_type=' + jl_type
+        })
+      }
     }
+
   },
   //参看地图
   chamap: function(e) {
@@ -260,6 +289,7 @@ Page({
       url: '../liuyan/liuyan?theme_id=' + this.data.theme_id,
     })
   },
+  // 数据
   findDrag: function(callback) {
     var that = this
     console.log(that.data.theme_id)
@@ -280,8 +310,15 @@ Page({
         if (res.data.theme_imag) {
           that.data.itimg = res.data.theme_imag
         };
+        if (res.data.theme_result.jl_type == 1) {
+          that.setData({
+            shangpin: false,
+            xiangmu: that.data.xiangmu,
+            apply: '请先选择商品'
+          })
+        }
         if (res.data.theme_result.jl_type == 2) {
-
+            that.setData({ daka_info: JSON.parse(res.data.daka_info)})
           if (res.data.theme_result.has_daka == 1) {
             that.setData({
               apply: '已打卡',
@@ -308,7 +345,7 @@ Page({
           that.setData({
             shangpin: false,
             xiangmu: that.data.xiangmu,
-            apply: '我要拼团'
+            apply: '请先选择商品'
           })
         }
         for (var y = 0; y < res.data.all_ord.length; y++) {
@@ -321,12 +358,11 @@ Page({
             }
           }
         }
-        if (!res.data.theme_result.address) {
+        if (res.data.theme_result.address) {
           that.data.map = JSON.parse(res.data.theme_result.address)
         }
 
         for (var i = 0; i < res.data.item_result.length; i++) {
-
           if (res.data.item_result[i].p_goods_img) {
             res.data.item_result[i].p_goods_img = JSON.parse(res.data.item_result[i].p_goods_img)
           }
@@ -339,6 +375,19 @@ Page({
             res.data.theme_result.daka_list[p].tiaobo = false
             res.data.theme_result.daka_list[p].tiaoting = true
           }
+        }
+        if (res.data.pz.info == '') {
+          that.setData({
+            pingz: 1,
+            hijt: true
+          })
+        } else {
+          that.setData({
+            pingz: 2,
+            qie: false,
+            hijt: false,
+            jiaodu: 270
+          })
         }
         console.log(res.data.theme_result)
         that.setData({
@@ -371,20 +420,49 @@ Page({
 
   spjian: function(e) {
     var i = e.currentTarget.dataset.id
+    var xiangmu = 0, jiage = [], zonjia = 0
+  
     if (this.data.xiangmu[i].may_amount > 0) {
       this.data.xiangmu[i].may_amount--
+      for (var j = 0; j < this.data.xiangmu.length; j++) {
+        xiangmu += this.data.xiangmu[j].may_amount
+        jiage[j] = this.data.xiangmu[j].price * this.data.xiangmu[j].may_amount
+        zonjia += jiage[j]
+        zonjia = Math.round(zonjia * 100) / 100
+      }
         this.setData({
-          xiangmu: this.data.xiangmu
+          zonjia: zonjia,
+          heji: xiangmu,
+          xiangmu: this.data.xiangmu,
         })
     }
-
+    
+    if (xiangmu == 0) {
+      this.setData({
+      
+        apply: '请先选择商品'
+      })
+    }
   },
   //商品加号
   spjia: function(e) {
     var i = e.currentTarget.dataset.id
+    var xiangmu = 0,jiage=[],zonjia=0
+  
     if (this.data.xiangmu[i].may_amount < this.data.xiangmu[i].amount) {
       this.data.xiangmu[i].may_amount++
+      for (var j = 0; j < this.data.xiangmu.length; j++) {
+        xiangmu += this.data.xiangmu[j].may_amount
+        jiage[j] = this.data.xiangmu[j].price * this.data.xiangmu[j].may_amount
+        zonjia += jiage[j]
+        zonjia = Math.round(zonjia * 100) / 100
+      }
+      if (this.data.jl_type == 1) { this.data.apply='我要团购'}
+      if (this.data.jl_type == 4) { this.data.apply = '我要拼团' }
         this.setData({
+          zonjia: zonjia,
+          heji: xiangmu,
+          apply: this.data.apply,
           xiangmu: this.data.xiangmu
         })
     }
@@ -1003,9 +1081,7 @@ Page({
   onShareAppMessage: function() {
     return {
       title: this.data.theme.theme_name,
-
-      path: 'pages/huodong/huodong?id=' + this.data.theme_id + '&uid=' + this.data.user_id  +'&fen_user_id='+ app.globalData.idda.uid  + '&theme_uid=' + this.data.theme_uid
-      
+      path: 'pages/huodong/huodong?id=' + this.data.theme_id + '&uid=' + this.data.user_id + '&fen_user_id=' + app.globalData.idda.uid + '&theme_uid=' + this.data.theme_uid
     }
   },
   eventDraw() {

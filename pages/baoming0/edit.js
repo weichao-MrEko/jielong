@@ -59,7 +59,55 @@ Component({
     shangtu:[],
     dakaitem:true,
     newxia:true,
-    newshang:true
+    newshang:true,
+    qitxiang:true,
+    baomingshe:false,
+    group: [],
+    groups: [
+
+      {
+        id: 0,
+        title: '填写项',
+        place: '输入填写项主题名称',
+        iex: 0,
+        ieb: 0,
+
+      },
+      {
+        id: 1,
+        title: '图片/视频',
+        place: '输入图片/视频主题名称',
+        iex: 0,
+        ieb: 0,
+
+      },
+      {
+        id: 2,
+        title: '语音',
+        place: '输入语音主题名称',
+        iex: 0,
+        ieb: 0,
+
+      },
+
+    ],
+    qitaxiangmuneiy: [{
+      xiangmu: '填写项',
+      color: ''
+    },
+    {
+      xiangmu: '图片/视频',
+      color: ''
+    },
+    {
+      xiangmu: '语音',
+      color: ''
+    },
+
+    ],
+    gongk: ['公开', '不公开'],
+    bitian: ['必填', '非必填'],
+
   },
   /**
    * 组件的方法列表
@@ -144,10 +192,11 @@ Component({
           for (var i = 0; i < res.data.item_result.length;i++){
             if (res.data.item_result[i].p_goods_img!=='') {
               that.data.shangtu.splice(i,i,JSON.parse(res.data.item_result[i].p_goods_img)) 
-            
+              app.globalData.img.splice(i, i, JSON.parse(res.data.item_result[i].p_goods_img)) 
              }
           }
-
+          console.log(that.data.shangtu)
+          console.log(app.globalData.img)
           
             for (var j in res.data.theme_img) {
               if (res.data.theme_img[j].img_path) {
@@ -182,8 +231,10 @@ Component({
              }
           if (res.data.theme_result.jl_type == 2) {
             that.setData({
+              qitxiang:false,
               dakaitem:false,
               spname:'打卡',
+              baomingshe:true,
               canxx: false
             })
            }
@@ -226,8 +277,11 @@ Component({
       })
     },
     onShow: function () {
+      for (var i = 0; i < this.data.jieitem.length; i++) {
+        this.data.jieitem[i].p_goods_img = app.globalData.img[i]
+      }
       this.setData({
-        shangtu: app.globalData.upimgs,
+        shangtu: app.globalData.img,
         shant: app.globalData.tel,
         ytianmap: app.globalData.map,
         Fill: app.globalData.gongkai,
@@ -259,11 +313,7 @@ Component({
     shangchuantup: function (e) {
       console.log(e.target.dataset.id)
       wx: wx.navigateTo({
-        url: '../shangchuantup/shangchuantup?id=' + e.target.dataset.id,
-        success: function (res) {
-          console.log(res)
-        },
-
+        url: '../shangchuantup/shangchuantup?id=' + e.target.dataset.id+'&Qk=true',
       })
     },
     //规格
@@ -371,7 +421,7 @@ Component({
       }
       else {
         let status = ev.detail.formId == undefined ? 2:1;
-        
+        console.log(this.data.jieitem)
       wx.request({
         url: app.globalData.urlPrefix + 'signup/updateInfo',
         data:{
@@ -411,12 +461,14 @@ Component({
     newitem:function(){
       let jieitem = this.data.jieitem
       jieitem.push({ item_name: '', price: '', amount: '', id: this.data.jieitem.length})
+      this.data.shangtu.push([])
       this.setData({ 
         quantity: ++this.data.quantity,
         jieitem: jieitem,
+        shangtu: this.data.shangtu,
         height: this.data.height+139
         })
-      console.log(this.data.jieitem)
+      console.log(this.data.shangtu)
     },
     delitem:function(e){    
       let id = e.currentTarget.dataset.id
@@ -454,6 +506,10 @@ Component({
       this.setData({
         group: this.data.group,
       })
+    },
+    groupinp: function (e) {
+      var i = e.currentTarget.dataset.id
+      this.data.group[i].place = e.detail.value
     },
     newtx:function(e){
       let id=e.currentTarget.dataset.id

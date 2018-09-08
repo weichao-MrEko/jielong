@@ -307,7 +307,7 @@ Component({
 
       var thgt = this;
       
-     console.log(this.data)
+      console.log(this.data.jieitem)
 
       var num = 10;
       if (thgt.zhuti.data.setPlnr == "" || thgt.zhuti.data.setPlnr == undefined) {
@@ -366,7 +366,7 @@ Component({
       app.globalData.upimgs.push([])
       this.data.shangtu.push([])
       jieitem.push({ item_name: '',size:'', price: '', amount: '', id: this.data.jieitem.length})
-     
+      console.log(this.data.shangtu)
       this.setData({ 
         quantity: ++this.data.quantity,
         jieitem: jieitem,
@@ -599,10 +599,8 @@ Component({
     shangchuantup:function(e){
       console.log(e.target.dataset.id)
       wx:wx.navigateTo({
-        url: '../shangchuantup/shangchuantup?id=' + e.target.dataset.id,
-        success: function(res) {
-          console.log(res)
-        },
+        url: '../shangchuantup/shangchuantup?id=' + e.target.dataset.id + '&Qk=false',
+       
         
       })
     }

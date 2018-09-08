@@ -22,7 +22,7 @@ Component({
     },
   },
   ready() {
-    console.log(777)
+  
     this.HeTime()
   },
   /**
@@ -38,15 +38,19 @@ Component({
       var sjcha = (Time - that.data.Time* 1000);
         //天
         var tian = Math.floor(sjcha / (24 * 3600 * 1000));
+      console.log(tian)
         //小时
         var leave1 = sjcha % (24 * 3600 * 1000);
         var xiaoshi = Math.floor(leave1 / (3600 * 1000));
+      console.log(xiaoshi)
         //分钟
         var leave2 = leave1 % (3600 * 1000);
         var fenzhong = Math.floor(leave2 / (60 * 1000));
+      console.log(fenzhong)
         //秒
         var leave3 = leave2 % (60 * 1000);
         var miao = Math.floor(leave3 / 1000);
+      console.log(tian)
 
         if (tian > 0) {
           that.data.Time = tian + '天前'

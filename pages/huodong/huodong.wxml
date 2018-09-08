@@ -27,14 +27,14 @@
     <view class='c-imm'>
       <view class='c-img' wx:for="{{itimg}}" wx:if="{{item}}" bindtap='yulan' data-id='{{index}}'>
 
-        <image src='{{turl}}{{item}}' mode='aspectFill'></image>
+        <image src='{{turl}}{{item}}' mode='widthFix'></image>
       </view>
 
     </view>
     <view class='c-item' wx:for='{{xiangmu}}'>
       <text>{{item.item_name}}</text>
       <text wx:if='{{item.price!=0}}'>￥{{item.price}}</text>
-   
+
       <!--<text>+1</text>-->
     </view>
 
@@ -82,7 +82,10 @@
         </view>
       </view>
     </view>
-
+    <view class='tongji' hidden='{{shangpin}}'>
+      <text>合计（{{heji}}件）：</text>
+      <text style='color:red;'>￥{{zonjia}}</text>
+    </view>
     <!--导航-->
     <view class='c-list'>
       <view bindtap='myhome'>
@@ -98,8 +101,12 @@
         <view>我带来的人</view>
       </view>
       <view bindtap='qie'>
-        <image src='../img/pingzheng.jpg'></image>
-        <view>我的凭证</view>
+        <image src='../img/pingzheng{{pingz}}.jpg'></image>
+        <view>我的凭证
+          <view class='jiantou' style='transform:rotate({{jiaodu}}deg)' hidden='{{hijt}}'>
+            <image src='../img/jiantou.png'></image>
+          </view>
+        </view>
       </view>
 
     </view>
@@ -111,35 +118,54 @@
             <image src="{{info.user_img}}"></image>
           </view>
           <view class='pz_name'>{{info.user_name}}</view>
-          <view class='pz_time'> 
-         
-          <oime   id='time' Time='{{ord_time}}'></oime>
-          <view hidden='{{true}}'>{{ord_time}}</view>
+          <view class='pz_time'>
+
+            <oime id='time' Time='{{ord_time}}'></oime>
+
           </view>
         </view>
-         
-        <view class='add' wx:for="{{act}}">+{{item.may_amount}}</view>
-        
+
+        <view class='add' wx:for="{{act}}">{{item.name}} +{{item.may_amount}}</view>
+        <view class='lxmap' wx:if='{{info.name}}'>
+          <view>
+            <text>联系人：</text>
+            <text>{{info.name}}</text>
+          </view>
+          <view>
+            <text>联系电话：</text>
+            <text>{{info.phone}}</text>
+          </view>
+          <view>
+            <text>联系地址：</text>
+            <text>{{info.address}}</text>
+          </view>
+        </view>
       </view>
     </view>
-    <!--上传图片-->
-    <view hidden='{{hidtuyin}}'>
+   <view class='kabox'>
+    <view hidden='{{hidtuyin}}' wx:for='{{daka_info}}'  >
+     <!--上传图片-->
       <view class='tupian-pai'>
-        <view class='paizhao' bindtap='box' data-id="{{index}}">
+        <view class='paizhao' bindtap='box'  wx:if='{{item.id==1}}'>
           <image src='../../pages/img/xpaizhao.png'></image>
         </view>
+        </view>
         <!--语音-->
-        <view class='paizhao' bindtap='luyin' hidden='{{luyin}}'>
+        <view class='paizhao' bindtap='luyin' hidden='{{luyin}}' wx:if='{{item.id==2}}'>
           <view class='yuyin_logo'>
             <image src='../img/yuyin.png'></image>
           </view>
         </view>
         <!-- 文本框 -->
-        <view class='paizhao' bindtap='textu' hidden='{{textkui}}'>
+        <view class='paizhao' bindtap='textu' hidden='{{textkui}}' wx:if='{{item.id==0}}'>
           <view class='yuyin_logo'>
             <image src='../img/tianxie.png'></image>
           </view>
         </view>
+        
+      </view>
+    </view>
+    <!-- 录音中 -->
         <view class='luyin_zhong' hidden='{{luzhi}}'>
           <view bindtap='luyinDel'>x</view>
           <view>{{timekeeping}}”</view>
@@ -167,7 +193,8 @@
             <image src='../img/zanting.png'></image>
           </view>
         </view>
-       
+      <!-- 图片 -->
+      <view class='kabox'>
         <view class='paizhao' wx:for="{{pushurl}}" wx:if='{{item.pic !== "" || item.video !== ""}}' wx:key='k' data-index="{{index}}">
           <view class='gdel' data-index="{{index}}" bindtap='infodel'>×</view>
           <image wx:if='{{item.pic !== ""}}' src="{{item.pic}}" data-index='{{index}}' mode='aspectFill' bindtap='tup'></image>
@@ -175,24 +202,24 @@
             <cover-image></cover-image>
           </video>
         </view>
-        <view class='textbox' hidden='{{hitext}}'>
-        <view class='deltext' bindtap='deltext'>X</view>
-          <textarea  class='textcss' bindinput='textbox' auto-height></textarea>
         </view>
-       
-      </view>
-    </view>
-   <!--打卡-->
-   <view class='c-item' wx:for='{{xiangmu}}'>
+        <!-- 文本框 -->
+        <view class='textbox' hidden='{{hitext}}'>
+          <view class='deltext' bindtap='deltext'>X</view>
+          <textarea class='textcss' bindinput='textbox' auto-height></textarea>
+        </view>
+
+    <!--打卡-->
+    <view class='c-item' wx:for='{{xiangmu}}'>
       <view class='flex' wx:if='{{theme.jl_type==2}}'>
         <view class='daka_box'>
-          <view>{{countDownHour}}{{countDownMinute}}{{countDownSecond}}</view> 
+          <view>{{countDownHour}}{{countDownMinute}}{{countDownSecond}}</view>
           <view hidden='{{hikatime}}'>今日打卡即将开始</view>
           <view hidden='{{hikatime}}'>打卡时间：{{item.start}}~{{item.end}}</view>
           <view hidden='{{nhkatime}}'>每天只能打卡一次</view>
         </view>
       </view>
-      </view>
+    </view>
     <!--参与按钮  -->
     <button wx:if="{{theme.status == 1}}" class='{{btn}}' bindtap='joinjl'>{{apply}}</button>
     <button wx:if="{{theme.status == 2 && !guanli}}" class='buwoyao' bindtap='edit'>未发布，返回修改</button>
@@ -210,7 +237,7 @@
         <view class='dakabox_top_xx_name'>{{item.user_name}}</view>
         <oime class='dakabox_top_xx_time' id='time' Time='{{item.daka_time}}'></oime>
       </view>
-       <view  class='wenzi'>{{item.textoc}}</view>
+      <view class='wenzi'>{{item.textoc}}</view>
       <view class='dakabox_muis' wx:if='{{item.audio_path!="undefined"}}'>
         <view class='dakabox_muis_bo' data-id='{{index}}' bindtap='katiaobo' hidden='{{item.tiaobo}}'>
           <image src='../img/bofang.png'></image>

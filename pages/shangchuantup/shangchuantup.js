@@ -23,10 +23,11 @@ Page({
      this.setData({
        pushurl: app.globalData.upimgs,
        upimg: app.globalData.img,
-       id: options.id
+       id: options.id,
+       Qk:options.Qk
      })
     
-  
+    
   },
   
 
@@ -94,8 +95,9 @@ Page({
           var postf = tempFilePaths[j].substring(index1, index2);
           console.log(postf)
           var gg = that.data.pushurl
-    
+          console.log(id)
           if (postf == ".jpg"||postf==".png") {
+            gg[id]=[]
             gg[id].push(tempFilePaths[j])
             console.log(gg)
           }
@@ -103,7 +105,11 @@ Page({
         wx.showLoading({
           title: '上传中',
         })
-        that.data.upimg[id] = []
+        if (that.data.Qk == false) { 
+          that.data.upimg[id] = []
+          that.data.Qk=false
+          }
+    
         for (var i = 0; i < gg[id].length; i++) {
           wx.uploadFile({
             url: app.globalData.urlPrefix + 'signup/uploadImg',
@@ -115,7 +121,7 @@ Page({
             success: function (res) {
               console.log(JSON.parse(res.data).imgPath)  
              that.data.upimg[id].push(JSON.parse(res.data).imgPath)
-              console.log(uppimg)
+              console.log(id)
               console.log(that.data.upimg)
               that.setData({
                 upimg: that.data.upimg,

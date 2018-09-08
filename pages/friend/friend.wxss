@@ -1,0 +1,4 @@
+/* pages/friend/friend.wxss */
+.sousuo{
+  background-color: #ccc;
+}
