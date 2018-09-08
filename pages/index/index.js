@@ -260,6 +260,10 @@ Page({
     })
 
   },
- 
+  yue(){
+    wx.navigateTo({
+      url: '../tixian/tixian',
+    })
+  }
 
 })
