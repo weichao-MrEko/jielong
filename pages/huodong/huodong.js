@@ -55,8 +55,8 @@ Page({
     hitext: true,
     pingz: 1,
     jiaodu: 90,
-    heji:0,
-    zonjia:0
+    heji: 0,
+    zonjia: 0
   },
 
   /**
@@ -219,37 +219,73 @@ Page({
   },
   deltext: function() {
     this.setData({
-      textoc: '',
+      textoc: null,
       textkui: false,
       hitext: true,
     })
   },
+  //打卡请求
+  woydaka: function() {
+  //  var that = this;
+    wx.request({
+      url: app.globalData.urlPrefix + 'smith/daka',
+      data: {
+        user_id: app.globalData.idda.uid,
+        theme_id: that.data.theme_id,
+        audio_path: that.data.luysrc,
+        other_path: that.data.upimg,
+        luyin_time: that.data.timekeeping,
+        textoc: that.data.textoc
+      },
+      success: function(res) {
+        wx.navigateTo({
+          url: '/pages/huodong/huodong?id=' + that.data.theme_id + '&uid=' + app.globalData.idda.uid + '&theme_uid=' + that.data.theme_uid
+
+        })
+
+      }
+    })
+  },
   joinjl: function() {
-    var that = this
+     var that = this
     var jl_type = that.data.jl_type
+    console.log(that.data.pushurl)
     if (jl_type == 2) {
       if (that.data.theme.has_daka == 1 || this.data.hidtuyin) {
 
         return
       }
-      wx.request({
-        url: app.globalData.urlPrefix + 'smith/daka',
-        data: {
-          user_id: app.globalData.idda.uid,
-          theme_id: that.data.theme_id,
-          audio_path: that.data.luysrc,
-          other_path: that.data.upimg,
-          luyin_time: that.data.timekeeping,
-          textoc: that.data.textoc
-        },
-        success: function(res) {
-          wx.navigateTo({
-            url: '/pages/huodong/huodong?id=' + that.data.theme_id + '&uid=' + app.globalData.idda.uid + '&theme_uid=' + that.data.theme_uid
 
-          })
+      for (var i = 0; i < that.data.daka_info.length; i++) {
 
-        }
-      })
+        if (that.data.daka_info[i].ieb == 0) {
+          if (that.data.textoc == null && that.data.daka_info[i].id==0) {
+            wx.showToast({
+              title: '文本必须填写！',
+              icon: 'none',
+              duration: 2000
+            })
+            return
+          } 
+          else if (that.data.pushurl == [] && that.data.daka_info[i].id == 1) {
+            wx.showToast({
+              title: '图片/视频必须填写！',
+              icon: 'none',
+              duration: 2000
+            })
+            return
+          } 
+          else if (that.data.luysrc == null && that.data.daka_info[i].id == 2) {
+            wx.showToast({
+              title: '语音必须填写！',
+              icon: 'none',
+              duration: 2000
+            })
+            return
+          } 
+        }  
+      }
+      that.woydaka()
     }
     var xiangmu = 0
     if (jl_type == 0 || jl_type == 3 || jl_type == 5) {
@@ -318,7 +354,9 @@ Page({
           })
         }
         if (res.data.theme_result.jl_type == 2) {
-            that.setData({ daka_info: JSON.parse(res.data.daka_info)})
+          that.setData({
+            daka_info: JSON.parse(res.data.daka_info)
+          })
           if (res.data.theme_result.has_daka == 1) {
             that.setData({
               apply: '已打卡',
@@ -420,26 +458,28 @@ Page({
 
   spjian: function(e) {
     var i = e.currentTarget.dataset.id
-    var xiangmu = 0, jiage = [], zonjia = 0
-  
+    var xiangmu = 0,
+      jiage = [],
+      zonjia = 0
+
     if (this.data.xiangmu[i].may_amount > 0) {
       this.data.xiangmu[i].may_amount--
-      for (var j = 0; j < this.data.xiangmu.length; j++) {
-        xiangmu += this.data.xiangmu[j].may_amount
-        jiage[j] = this.data.xiangmu[j].price * this.data.xiangmu[j].may_amount
-        zonjia += jiage[j]
-        zonjia = Math.round(zonjia * 100) / 100
-      }
-        this.setData({
-          zonjia: zonjia,
-          heji: xiangmu,
-          xiangmu: this.data.xiangmu,
-        })
+        for (var j = 0; j < this.data.xiangmu.length; j++) {
+          xiangmu += this.data.xiangmu[j].may_amount
+          jiage[j] = this.data.xiangmu[j].price * this.data.xiangmu[j].may_amount
+          zonjia += jiage[j]
+          zonjia = Math.round(zonjia * 100) / 100
+        }
+      this.setData({
+        zonjia: zonjia,
+        heji: xiangmu,
+        xiangmu: this.data.xiangmu,
+      })
     }
-    
+
     if (xiangmu == 0) {
       this.setData({
-      
+
         apply: '请先选择商品'
       })
     }
@@ -447,24 +487,30 @@ Page({
   //商品加号
   spjia: function(e) {
     var i = e.currentTarget.dataset.id
-    var xiangmu = 0,jiage=[],zonjia=0
-  
+    var xiangmu = 0,
+      jiage = [],
+      zonjia = 0
+
     if (this.data.xiangmu[i].may_amount < this.data.xiangmu[i].amount) {
       this.data.xiangmu[i].may_amount++
-      for (var j = 0; j < this.data.xiangmu.length; j++) {
-        xiangmu += this.data.xiangmu[j].may_amount
-        jiage[j] = this.data.xiangmu[j].price * this.data.xiangmu[j].may_amount
-        zonjia += jiage[j]
-        zonjia = Math.round(zonjia * 100) / 100
+        for (var j = 0; j < this.data.xiangmu.length; j++) {
+          xiangmu += this.data.xiangmu[j].may_amount
+          jiage[j] = this.data.xiangmu[j].price * this.data.xiangmu[j].may_amount
+          zonjia += jiage[j]
+          zonjia = Math.round(zonjia * 100) / 100
+        }
+      if (this.data.jl_type == 1) {
+        this.data.apply = '我要团购'
       }
-      if (this.data.jl_type == 1) { this.data.apply='我要团购'}
-      if (this.data.jl_type == 4) { this.data.apply = '我要拼团' }
-        this.setData({
-          zonjia: zonjia,
-          heji: xiangmu,
-          apply: this.data.apply,
-          xiangmu: this.data.xiangmu
-        })
+      if (this.data.jl_type == 4) {
+        this.data.apply = '我要拼团'
+      }
+      this.setData({
+        zonjia: zonjia,
+        heji: xiangmu,
+        apply: this.data.apply,
+        xiangmu: this.data.xiangmu
+      })
     }
     console.log(this.data.xiangmu)
 
