@@ -288,7 +288,7 @@ Page({
           })
           console.log(res.data)
           wx.navigateTo({
-            url: '../huodong/huodong?id=' + res.data.theme_id + '&uid=' + app.globalData.idda.uid
+            url: '../huodong/huodong?id=' + res.data.theme_id + '&uid=' + app.globalData.idda.uid + '&theme_uid=' + app.globalData.idda.uid
           })
         }
 

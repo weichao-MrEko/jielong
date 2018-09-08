@@ -263,7 +263,7 @@ Component({
                 },
                 success: function(res) {
                   wx.redirectTo({
-                    url: '../huodong/huodong'
+                    url: '/pages/huodong/huodong?id=' + that.data.theme_id + '&uid=' + app.globalData.idda.uid + '&theme_uid=' + res.data
                   })
                 },
               })

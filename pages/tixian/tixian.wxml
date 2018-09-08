@@ -3,7 +3,7 @@
     <view>余额(元)</view>
     <view class='mingxi'>余额明细</view>
   </view>
-  <view class='jine'>￥100000</view>
+  <view class='jine'>￥0</view>
   <view class='tixian'>
      <view class='tixian_box'>
        <view>提现金额</view>
@@ -38,7 +38,7 @@
     <text>
      ● 提现通常实时到账；如有异常请联系
     </text>
-    <text class='textcolor'>客服微信：13549568131</text>
+    <text class='textcolor'>客服微信：135********</text>
  
   </view>
   <view class='list'>
