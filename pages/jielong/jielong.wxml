@@ -8,7 +8,7 @@
 </view>
 </view>
 
-<view class='contian' hidden='{{show}}'>
+<view class='contian'>
     <view class='box' wx:for='{{xiangmu}}' bindtap='baoming' data-index='{{index}}'>
         <view class='page01' >
               <text class='page01-bao'>{{item.bao}}</text>
