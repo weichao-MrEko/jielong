@@ -422,9 +422,8 @@ Page({
         } else {
           that.setData({
             pingz: 2,
-            qie: false,
+            qie: true,
             hijt: false,
-            jiaodu: 270
           })
         }
         console.log(res.data.theme_result)

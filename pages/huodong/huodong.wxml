@@ -125,7 +125,10 @@
           </view>
         </view>
 
-        <view class='add' wx:for="{{act}}">{{item.name}} +{{item.may_amount}}</view>
+        <view class='add' wx:for="{{act}}">{{item.name}} +
+         <text wx:if="{{item.may_amount>0}}">{{item.may_amount}}</text>
+            <text wx:if="{{item.amount>0}}">{{item.amount}}</text>
+        </view>
         <view class='lxmap' wx:if='{{info.name}}'>
           <view>
             <text>联系人：</text>
