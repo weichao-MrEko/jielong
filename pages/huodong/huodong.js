@@ -227,7 +227,7 @@ Page({
   },
   //打卡请求
   woydaka: function() {
-    var that = this;
+  var that = this;
     wx.request({
       url: app.globalData.urlPrefix + 'smith/daka',
       data: {

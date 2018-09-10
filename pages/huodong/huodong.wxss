@@ -452,7 +452,7 @@ button {
   width: 100rpx;
   height: 100rpx;
   border-radius: 15rpx;
-  border: 8rpx dashed #f34534;
+  /* border: 8rpx dashed #f34534; */
 }
 
 .gdel {
@@ -644,4 +644,11 @@ video {
 .jiantou image {
   width: 20rpx;
   height: 20rpx;
+}
+.daka_zi{
+  font-size: 26rpx;
+  width:130rpx;
+text-align:center;
+margin-left:-13px;
+
 }

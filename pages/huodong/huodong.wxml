@@ -148,21 +148,25 @@
    <view class='kabox'>
     <view hidden='{{hidtuyin}}' wx:for='{{daka_info}}'  >
      <!--上传图片-->
-      <view class='tupian-pai'>
-        <view class='paizhao' bindtap='box'  wx:if='{{item.id==1}}'>
+      <view class='paizhao' wx:if='{{item.id==1}}'>
+        <view class='yuyin_logo' bindtap='box'  >
           <image src='../../pages/img/xpaizhao.png'></image>
+           <view class='daka_zi' wx:if='{{item.place!=="输入填写项主题名称"}}'>{{item.place}}</view>
         </view>
+       
         </view>
         <!--语音-->
         <view class='paizhao' bindtap='luyin' hidden='{{luyin}}' wx:if='{{item.id==2}}'>
           <view class='yuyin_logo'>
             <image src='../img/yuyin.png'></image>
+             <view class='daka_zi'  wx:if='{{item.place !=="输入填写项主题名称"}}'>{{item.place}}</view>
           </view>
         </view>
         <!-- 文本框 -->
         <view class='paizhao' bindtap='textu' hidden='{{textkui}}' wx:if='{{item.id==0}}'>
           <view class='yuyin_logo'>
             <image src='../img/tianxie.png'></image>
+             <view class='daka_zi'  wx:if='{{item.place!=="输入填写项主题名称"}}'>{{item.place}}</view>
           </view>
         </view>
         

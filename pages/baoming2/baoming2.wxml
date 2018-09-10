@@ -74,19 +74,16 @@
       </checkbox-group>
     </view>
    <view class='xiongmu'>
-      <text class='xiongmu-jl'>开始时间</text>
+      <text class='xiongmu-jl'>报个到时间段</text>
      
-      <picker  mode='time' class='katime' data-id='{{index}}' bindchange='stime'>
+      <picker  mode='time' class='katime' data-id='{{index}}' bindchange='stime' value='{{item.start}}'>
           {{item.start}}
       </picker>
-    </view>
-    <view class='xiongmu' >
-      <text class='xiongmu-jl'>结束时间</text>
-   
-    <picker  mode='time' class='katime' data-id='{{index}}' bindchange='etime' >
+       <picker  mode='time' class='katime' data-id='{{index}}' bindchange='etime' value='{{item.end}}'>
         {{item.end}}
     </picker>
     </view>
+
    
 </view>
 

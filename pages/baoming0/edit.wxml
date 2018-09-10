@@ -61,7 +61,7 @@
       <text class='shangpinname'>商品名字<text wx:if='{{quantity>1}}'>{{index+1}}</text></text>
       <input class='shangpins' data-index="{{index}}" placeholder='商品名称（必填）' bindinput='xiangname' value='{{item.item_name}}'></input>
       <text class='shangtu' bindtap='shangchuantup' data-id='{{index}}'>
-      <text wx:if='{{shangtu[index]==""}}'>上传图片</text>
+      <text wx:if='{{shangtu[index].length==0}}'>上传图片</text>
       <text wx:else>{{shangtu[index].length}}张图片</text>
       </text>
     </view>
@@ -168,8 +168,14 @@
   
     <view class='btndel' bindtap='delitem' wx:if='{{quantity>1}}' data-id='{{index}}'>×</view>
     <view class='xiongmu onbian' >
-      <text class='xiongmu-jl'>打卡项目<text wx:if='{{quantity>1}}'>{{index+1}}</text></text>
-      <input data-index="{{index}}" placeholder='打卡名称' bindinput='xiangname' value='{{item.item_name}}'></input>
+      <text class='xiongmu-jl'>报个到项目<text wx:if='{{quantity>1}}'>{{index+1}}</text></text>
+      <input data-index="{{index}}" placeholder='报个到名称' bindinput='xiangname' value='{{item.item_name}}'></input>
+    </view>
+       <view class='xiongmu'>
+    <text>不设置打卡时间</text>
+      <checkbox-group bindchange='notime' data-id='{{index}}'>
+        <checkbox color='#f34534' checked='{{checked}}'></checkbox>
+      </checkbox-group>
     </view>
    <view class='xiongmu'>
       <text class='xiongmu-jl'>开始时间</text>
@@ -177,20 +183,12 @@
       <picker  mode='time' class='katime' data-id='{{index}}' bindchange='stime' value='{{item.start}}'>
           {{item.start}}
       </picker>
-    </view>
-    <view class='xiongmu' >
-      <text class='xiongmu-jl'>结束时间</text>
-   
-    <picker  mode='time' class='katime' data-id='{{index}}' bindchange='etime'  value='{{item.end}}'>
+      <picker  mode='time' class='katime' data-id='{{index}}' bindchange='etime'  value='{{item.end}}'>
         {{item.end}}
     </picker>
     </view>
-    <view class='xiongmu'>
-    <text>不设置打卡时间</text>
-      <checkbox-group bindchange='notime' data-id='{{index}}'>
-        <checkbox color='#f34534' checked='{{checked}}'></checkbox>
-      </checkbox-group>
-    </view>
+    
+ 
 </view>
 </view>
 
