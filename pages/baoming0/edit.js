@@ -190,11 +190,11 @@ Component({
             }
           that.data.shangtu=[]
           for (var i = 0; i < res.data.item_result.length;i++){
-            res.data.item_result[i].p_goods_img= JSON.parse(res.data.item_result[i].p_goods_img)
-            if (res.data.item_result[i].p_goods_img=='[]') {
-              that.data.shangtu.splice(i,i,res.data.item_result[i].p_goods_img) 
-              app.globalData.img.splice(i, i, res.data.item_result[i].p_goods_img) 
-             }
+         
+            if (res.data.item_result[i].p_goods_img !== '[]' && res.data.item_result[i].p_goods_img !== "") {
+              that.data.shangtu.splice(i, i, JSON.parse(res.data.item_result[i].p_goods_img)) 
+              app.globalData.img.splice(i, i, JSON.parse(res.data.item_result[i].p_goods_img)) 
+            } else if (res.data.item_result[i].p_goods_img == ""){}
           }
           console.log(that.data.shangtu)
           console.log(app.globalData.img)
@@ -231,7 +231,8 @@ Component({
                })
              }
           if (res.data.theme_result.jl_type == 2) {
-            that.setData({
+              that.setData({
+              group: JSON.parse(res.data.daka_info),
               qitxiang:false,
               dakaitem:false,
               spname:'打卡',
@@ -443,7 +444,8 @@ Component({
           start_time: this.data.startime,
           status: status,
           end_time:this.data.endtime,
-          actor_info: thgt.data.wuliu
+          actor_info: thgt.data.wuliu,
+          daka_info: thgt.data.group
         },
         
         success:function(res){
