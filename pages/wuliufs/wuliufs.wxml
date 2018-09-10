@@ -16,7 +16,7 @@
    <view  class='lianxi_xin' wx:for='{{lianxi}}'>
     <view>{{item.name}}</view>
    
-    <checkbox value='{{item.name}}' color='#f34534' ></checkbox>
+    <checkbox value='{{item.name}}' checked='{{item.checked}}' color='#f34534' ></checkbox>
    
    </view>
   

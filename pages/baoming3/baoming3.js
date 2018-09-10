@@ -167,7 +167,7 @@ Component({
       for(var i=0;i<this.data.jieitem.length;i++){
       this.data.jieitem[i].pic=app.globalData.img[i]
       }
-      console.log(this.data.jieitem)
+      console.log(app.globalData.wuliufs)
       this.setData({
         shangtu: app.globalData.upimgs,
         shant: app.globalData.tel,
