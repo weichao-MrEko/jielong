@@ -167,7 +167,7 @@ Component({
       for(var i=0;i<this.data.jieitem.length;i++){
       this.data.jieitem[i].pic=app.globalData.img[i]
       }
-      console.log(this.data.jieitem)
+      console.log(app.globalData.wuliufs)
       this.setData({
         shangtu: app.globalData.upimgs,
         shant: app.globalData.tel,
@@ -338,7 +338,7 @@ Component({
           start_time: thgt.data.startime,
           end_time: thgt.data.endtime,
           shangpintu:app.globalData.img,
-          wuliu: app.globalData.wuliufs,//物流方式
+          actor_info: app.globalData.wuliufs,//物流方式
           jl_type:4
         },
         

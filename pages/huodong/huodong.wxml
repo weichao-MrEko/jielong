@@ -62,7 +62,7 @@
     </view>
     <!--商品-->
     <view class='shangpin' wx:for='{{xiangmu}}' hidden='{{shangpin}}'>
-      <view class='pintu'>
+      <view class='pintu' wx:if='{{item.p_goods_img[0]}}'>
         <image src='{{turl}}{{item.p_goods_img[0]}}' mode='aspectFill'></image>
       </view>
       <view class='pin_right'>

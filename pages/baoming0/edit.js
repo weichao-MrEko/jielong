@@ -190,9 +190,10 @@ Component({
             }
           that.data.shangtu=[]
           for (var i = 0; i < res.data.item_result.length;i++){
-            if (res.data.item_result[i].p_goods_img!=='') {
-              that.data.shangtu.splice(i,i,JSON.parse(res.data.item_result[i].p_goods_img)) 
-              app.globalData.img.splice(i, i, JSON.parse(res.data.item_result[i].p_goods_img)) 
+            res.data.item_result[i].p_goods_img= JSON.parse(res.data.item_result[i].p_goods_img)
+            if (res.data.item_result[i].p_goods_img=='[]') {
+              that.data.shangtu.splice(i,i,res.data.item_result[i].p_goods_img) 
+              app.globalData.img.splice(i, i, res.data.item_result[i].p_goods_img) 
              }
           }
           console.log(that.data.shangtu)
@@ -213,7 +214,7 @@ Component({
               }
           
             }
-            
+          app.globalData.wuliufs = JSON.parse(res.data.theme_result.actor_info) 
           console.log(that.zhuti)
           
           console.log(that.data.pushurl)
@@ -270,7 +271,8 @@ Component({
             endtime: that.data.endtime,
             startime: that.data.startime,
             shangtu: that.data.shangtu,
-            pushurl:that.data.pushurl
+            pushurl:that.data.pushurl,
+            wuliu:JSON.parse(res.data.theme_result.actor_info) 
          })
    
         }
@@ -278,6 +280,7 @@ Component({
     },
     onShow: function () {
       for (var i = 0; i < this.data.jieitem.length; i++) {
+
         this.data.jieitem[i].p_goods_img = app.globalData.img[i]
       }
       this.setData({
@@ -439,7 +442,8 @@ Component({
           actor_info: thgt.data.heti,
           start_time: this.data.startime,
           status: status,
-          end_time:this.data.endtime
+          end_time:this.data.endtime,
+          actor_info: thgt.data.wuliu
         },
         
         success:function(res){
