@@ -67,7 +67,7 @@ Page({
           info: rtnD.info,
           send: rtnD.send,
         })
-
+ 
         if (rtnD.send != 'home') {
           setTimeout(() => {
             this.setData({

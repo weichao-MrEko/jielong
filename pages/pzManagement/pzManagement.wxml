@@ -28,7 +28,9 @@
         <image src='{{l.actor_user_info.user_img}}'></image>
       </view>
       <view class='content4'>{{l.actor_user_info.user_name}}</view>
-      <view class='content5'> {{l.participate_time}}</view>
+      <view class='content5'> 
+         <oime id='time' Time='{{l.participate_time}}'></oime>
+      </view>
     </view>
     <view class='content6' wx:for="{{l.actor_id}}" wx:for-item="i">
       <text >{{i.name}}{{(i.size_or_color)}} </text> +

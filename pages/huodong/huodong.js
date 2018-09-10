@@ -63,6 +63,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+     
     wx.request({
       url: app.globalData.urlPrefix + "Infoall/statistics",
     })
@@ -110,7 +111,7 @@ Page({
         url: app.globalData.urlPrefix + "Carryuser/Carryuser",
         data: {
           theme_id: options.id,
-          user_id: options.uid,
+          user_id: app.globalData.idda.uid,
           theme_uid: options.theme_uid
         },
         success: function(res) {}
@@ -118,7 +119,7 @@ Page({
       }),
       that.setData({
         theme_id: options.id,
-        user_id: options.uid,
+      user_id: app.globalData.idda.uid,
         theme_uid: options.theme_uid,
 
       })
@@ -226,7 +227,7 @@ Page({
   },
   //打卡请求
   woydaka: function() {
-  //  var that = this;
+    var that = this;
     wx.request({
       url: app.globalData.urlPrefix + 'smith/daka',
       data: {

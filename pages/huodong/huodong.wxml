@@ -110,7 +110,7 @@
       </view>
 
     </view>
-    <view hidden='{{qie}}'>
+    <view wx:if='{{!qie}}'>
       <view class="pz">
         <view class='pz_1'>
           <view class='pz_num'></view>
