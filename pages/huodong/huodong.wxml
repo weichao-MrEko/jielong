@@ -148,7 +148,7 @@
       <view class='paizhao' wx:if='{{item.id==1}}'>
         <view class='yuyin_logo' bindtap='box'  >
           <image src='../../pages/img/xpaizhao.png'></image>
-           <view class='daka_zi' wx:if='{{item.place!=="输入填写项主题名称"}}'>{{item.place}}</view>
+           <view class='daka_zi' wx:if='{{item.place!=="输入图片/视频主题名称"}}'>{{item.place}}</view>
         </view>
        
         </view>
@@ -156,7 +156,7 @@
         <view class='paizhao' bindtap='luyin' hidden='{{luyin}}' wx:if='{{item.id==2}}'>
           <view class='yuyin_logo'>
             <image src='../img/yuyin.png'></image>
-             <view class='daka_zi'  wx:if='{{item.place !=="输入填写项主题名称"}}'>{{item.place}}</view>
+             <view class='daka_zi'  wx:if='{{item.place !=="输入语音主题名称"}}'>{{item.place}}</view>
           </view>
         </view>
         <!-- 文本框 -->

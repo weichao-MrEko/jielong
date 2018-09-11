@@ -226,7 +226,7 @@ Page({
   },
   //打卡请求
   woydaka: function() {
-  var that = this;
+    var that = this;
     wx.request({
       url: app.globalData.urlPrefix + 'smith/daka',
       data: {
@@ -247,7 +247,7 @@ Page({
     })
   },
   joinjl: function() {
-     var that = this
+    var that = this
     var jl_type = that.data.jl_type
     console.log(that.data.pushurl)
     if (jl_type == 2) {
@@ -259,31 +259,29 @@ Page({
       for (var i = 0; i < that.data.daka_info.length; i++) {
 
         if (that.data.daka_info[i].ieb == 0) {
-          if (that.data.textoc == null && that.data.daka_info[i].id==0) {
+          if (that.data.textoc == null && that.data.daka_info[i].id == 0) {
             wx.showToast({
               title: '文本必须填写！',
               icon: 'none',
               duration: 2000
             })
             return
-          } 
-          else if (that.data.pushurl == [] && that.data.daka_info[i].id == 1) {
+          } else if (that.data.pushurl == [] && that.data.daka_info[i].id == 1) {
             wx.showToast({
               title: '图片/视频必须填写！',
               icon: 'none',
               duration: 2000
             })
             return
-          } 
-          else if (that.data.luysrc == null && that.data.daka_info[i].id == 2) {
+          } else if (that.data.luysrc == null && that.data.daka_info[i].id == 2) {
             wx.showToast({
               title: '语音必须填写！',
               icon: 'none',
               duration: 2000
             })
             return
-          } 
-        }  
+          }
+        }
       }
       that.woydaka()
     }
