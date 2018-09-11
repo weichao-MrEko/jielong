@@ -31,14 +31,14 @@ Page({
         that.setData({
           theme_id: options.theme_id,
           shuju:res.data.info,
-          actor_user_info: res.data.info.actor_user_info,
+          // actor_user_info: res.data.info.actor_user_info,
           order_num: res.data.order_num,
           user_info:res.data.user_info,
-          participate_time: res.data.participate_time,
-          address_info: res.data.info.address_info,
+          // participate_time: res.data.participate_time,
+          // address_info: res.data.info.address_info,
           specifications: res.data.specifications,
-          actor_id:that.data.actor_id,
-          list_num:res.data.list_num
+          // actor_id:that.data.actor_id,
+          // list_num:res.data.list_num
         })
 
       }

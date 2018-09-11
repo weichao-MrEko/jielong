@@ -228,6 +228,13 @@ Component({
     zhifu: function() {
       var that = this;
       console.log(that.data.item_info)
+      if (!this.data.address){
+        wx.showToast({
+          title: '请填写收货人',
+          icon:"none"
+        })
+        return 
+      }
       wx.request({
         url: app.globalData.urlPrefix + 'Joinjl/add_actor',
         data: {
@@ -239,7 +246,8 @@ Component({
           amount: that.data.summation.zongshu,
           desc: that.data.beizhu,
           act_id: that.data.act.id,
-          map: that.data.address
+          map: that.data.address,
+          theme_id: that.data.theme_id
         },
         success: function(res) {
           var params = JSON.parse(res.data.params)

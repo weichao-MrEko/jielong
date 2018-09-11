@@ -11,7 +11,7 @@
       </text>
     </view>
   </view>
-  <view class='head_3'>发送通知</view>
+  <!-- <view class='head_3'>发送通知</view> -->
 </view>
 <view class='sousou'>
   <view class='sousou_1'>
@@ -28,10 +28,14 @@
         <image src='{{l.actor_user_info.user_img}}'></image>
       </view>
       <view class='content4'>{{l.actor_user_info.user_name}}</view>
-      <view class='content5'> {{l.participate_time}}</view>
+      <view class='content5'> 
+         <oime id='time' Time='{{l.participate_time}}'></oime>
+      </view>
     </view>
     <view class='content6' wx:for="{{l.actor_id}}" wx:for-item="i">
-      <text >{{i.name}}{{(i.size_or_color)}} </text> +{{i.may_amount}}
+      <text >{{i.name}}{{(i.size_or_color)}} </text> +
+      <text wx:if="{{i.may_amount>0}}">{{i.may_amount}}</text>
+            <text wx:if="{{i.amount>0}}">{{i.amount}}</text>
     </view>
   </view>
   <view class='content7' wx:if='{{l.address_info !== ""}}'>

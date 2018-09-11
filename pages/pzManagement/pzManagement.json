@@ -1,3 +1,6 @@
 {
-"navigationBarTitleText": "凭证管理"
+  "navigationBarTitleText": "凭证管理",
+  "usingComponents": {
+    "oime": "/components/time/time"
+  }
 }

@@ -338,7 +338,7 @@ Component({
             start_time: thgt.data.startime,
             end_time: thgt.data.endtime,
             shangpintu: app.globalData.img,
-            wuliu: app.globalData.wuliufs,//物流方式
+            actor_info: app.globalData.wuliufs,//物流方式
             status,
             jl_type: 1
           },
