@@ -62,7 +62,7 @@
       <input class='shangpins' data-index="{{index}}" placeholder='商品名称（必填）' bindinput='xiangname' value='{{item.item_name}}'></input>
       <text class='shangtu' bindtap='shangchuantup' data-id='{{index}}'>
       <text wx:if='{{shangtu[index].length==0}}'>上传图片</text>
-      <text wx:else>{{shangtu[index].length}}张图片</text>
+      <text wx:else>{{shangtu[index].length || 0}}张图片</text>
       </text>
     </view>
      <view class='xiongmu'>

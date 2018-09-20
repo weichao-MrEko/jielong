@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "@我的信息"
+  "navigationBarTitleText": "@我的信息",
+  "usingComponents": {
+    "oime": "/components/time/time"
+  }
 }

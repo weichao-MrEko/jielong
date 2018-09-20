@@ -117,11 +117,12 @@ Page({
         success: function(res) {}
 
       }),
+      console.log(app.globalData.idda)
       that.setData({
         theme_id: options.id,
       user_id: app.globalData.idda.uid,
         theme_uid: options.theme_uid,
-
+      uinfo: app.globalData.idda
       })
     wx.request({
       url: app.globalData.urlPrefix + 'Infoall/friend',
@@ -228,6 +229,10 @@ Page({
   //打卡请求
   woydaka: function() {
     var that = this;
+    wx.showLoading({
+      title: '提交中',
+      mask: true
+    })
     wx.request({
       url: app.globalData.urlPrefix + 'smith/daka',
       data: {
@@ -239,6 +244,7 @@ Page({
         textoc: that.data.textoc
       },
       success: function(res) {
+        wx.hideLoading()
         wx.navigateTo({
           url: '/pages/huodong/huodong?id=' + that.data.theme_id + '&uid=' + app.globalData.idda.uid + '&theme_uid=' + that.data.theme_uid
 
@@ -250,9 +256,10 @@ Page({
   joinjl: function() {
     var that = this
     var jl_type = that.data.jl_type
-    console.log(that.data.pushurl)
+   
+
     if (jl_type == 2) {
-      if (that.data.theme.has_daka == 1 || this.data.hidtuyin) {
+      if (that.data.theme.has_daka == 1) {
 
         return
       }
@@ -288,7 +295,7 @@ Page({
     }
     var xiangmu = 0
     if (jl_type == 0 || jl_type == 3 || jl_type == 5) {
-
+      if (this.data.apply == '已参与'){return}
       console.log(xiangmu)
       that.data.xiangmu = JSON.stringify(that.data.xiangmu)
       wx.navigateTo({
@@ -321,7 +328,7 @@ Page({
   //留言
   liuyan: function() {
     wx.navigateTo({
-      url: '../liuyan/liuyan?theme_id=' + this.data.theme_id,
+      url: '../liuyan/liuyan?theme_id=' + this.data.theme_id+'&to_id='+this.data.theme_uid,
     })
   },
   // 数据
@@ -339,8 +346,7 @@ Page({
       },
       success: function(res) {
 
-
-        res.data.comment.reverse()
+ 
 
         if (res.data.theme_imag) {
           that.data.itimg = res.data.theme_imag
@@ -385,9 +391,9 @@ Page({
             apply: '请先选择商品'
           })
         }
-        for (var y = 0; y < res.data.all_ord.length; y++) {
-          if (res.data.all_ord[y].user_id == app.globalData.idda.uid) {
-            if (res.data.all_ord[y].status > 0) {
+        for (var y = 0; y < res.data.one_ord.length; y++) {
+          if (res.data.one_ord[y].user_id == app.globalData.idda.uid) {
+            if (res.data.one_ord[y].status > 0) {
               that.setData({
                 btn: 'buwoyao',
                 apply: '已参与'
@@ -434,16 +440,13 @@ Page({
           comment: res.data.comment,
           kaci: res.data.theme_result.daka_list,
           jl_type: res.data.theme_result.jl_type,
-          baomingren: res.data.all_ord,
+          baomingren: res.data.one_ord,
           peo: res.data.people,
           ord_time: res.data.pz.ord_time,
           info: res.data.pz.info,
           act: res.data.pz.act,
-          baomingren: res.data.all_ord
+          self_info: res.data.pz.self_info,
         })
-        if (res.data.item_result[0].checked == "0") {
-
-        }
         that.FabuTime()
         setTimeout(function() {
           wx.hideLoading()
@@ -508,6 +511,11 @@ Page({
         heji: xiangmu,
         apply: this.data.apply,
         xiangmu: this.data.xiangmu
+      })
+    }else{
+      wx.showToast({
+        title: '只有' + this.data.xiangmu[i].may_amount+"件",
+        icon:'none'
       })
     }
     console.log(this.data.xiangmu)
@@ -1308,4 +1316,39 @@ Page({
       url: '/pages/baoming0/edit?id=' + this.data.theme_id + '&uid=' + this.data.user_id + '&theme_uid=' + this.data.theme_uid,
     })
   },
+  pz_do(){
+    let that = this
+    wx.showActionSheet({
+      itemList: ['取消接龙'],
+      success(res){
+        console.log(res.tapIndex)
+        if(res.tapIndex == 0) {
+          wx.request({
+            url: app.globalData.urlPrefix +"/Pingzheng/quxiao",
+            data:{
+              user_id: that.data.user_id,
+              theme_id: that.data.theme_id,
+              act_id: that.data.act[0].actor_id
+            },
+            success(){
+              wx.navigateTo({
+                url: '/pages/huodong/huodong?id=' + that.data.theme_id + '&uid=' + that.data.user_id + '&theme_uid=' + that.data.theme_uid,
+              })
+            }
+          })
+        }
+        else if(res.tapIndex == 1){
+          wx.navigateTo({
+            url: '/pages/joinJlong/index?theme_id=' + that.data.theme_id + '&user_id=' + that.data.user_id + '&theme_uid=' + that.data.theme_uid+'&xiangmu=' + JSON.stringify(that.data.xiangmu)+'&jl_type=edit',
+          })
+          
+        }
+      }
+    })
+  },
+  edit_jl(){
+    wx.navigateTo({
+      url: '/pages/joinJlong/index?theme_id=' + this.data.theme_id + '&user_id=' + this.data.user_id + '&theme_uid=' + this.data.theme_uid + '&xiangmu=' + JSON.stringify(this.data.xiangmu) + '&jl_type=edit',
+    })
+  }
 })

@@ -6,8 +6,8 @@
   <view class='jine'>￥0</view>
   <view class='tixian'>
      <view class='tixian_box'>
-       <view>提现金额</view>
-       <view class='tixian_bg'>（今天还可提现5次，剩余额度￥20000）</view>
+       <view style='width: 175rpx;'>提现金额</view>
+       <view class='tixian_bg'>（今天还可提现5次，剩余额度￥0）</view>
      </view>
      <view class='tixian_box  boxh'>
       <view>￥</view>

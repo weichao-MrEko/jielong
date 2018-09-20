@@ -18,7 +18,8 @@ Page({
   onLoad: function (options) {
 //    console.log(app.globalData.idda)  
     this.setData({
-      theme_id: options.theme_id
+      theme_id: options.theme_id,
+      to_id: options.to_id
   })
   },
   qux:function(){
@@ -41,6 +42,7 @@ Page({
       url: app.globalData.urlPrefix +'Signup/add_comment',
       data: {
         theme_id: this.data.theme_id,
+        to_id: this.data.to_id,
         user_id: app.globalData.idda.uid,
         user_name: app.globalData.idda.user_name,
         user_image: app.globalData.idda.uimg,

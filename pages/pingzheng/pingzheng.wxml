@@ -3,10 +3,11 @@
 </view>
 <!--已参与界面-->
 <view class='canyu_box' hidden='{{curindex!==0}}' wx:for="{{pzAllInfo}}" wx:for-index='oi'>
-  <view class='cnayu_name' bindtap='jump' data-id='{{index}}'>{{item.theme_name}}</view>
-  <view>活动类型:{{jl_type[item.jl_type]}}</view>
+<navigator url='/pages/huodong/huodong?uid={{uid}}&theme_uid={{item.user_id}}&id={{item.theme_id}}'>
+  <view class='cnayu_name' >{{item.theme_name}}</view>
+  <view>活动时间: <oime Time="{{item.add_time}}" zc="{{true}}" zc="{{true}}"> </oime> </view>
   <view class='pz_head'>接龙序号:
-    <view class='pz_xh'>{{item.may_amount}}</view>
+    <view class='pz_xh'>{{item.theme_id}}</view>
   </view>
   <view class='pz_content-1'>
     <view class='pz_content-2'>活动内容:</view>
@@ -21,34 +22,53 @@
         {{item.address}}
       </view>
   </view>
-  
+  </navigator>
 </view>
 
 <!-- 待支付页面 -->
 <view hidden='{{curindex!==1}}' class='canyu_box' wx:for="{{pzNotPay}}">
-  <view class='cnayu_name' bindtap='jump' data-id='{{index}}'>{{item.theme_name}}</view>
-  <view class='pz_hdtype'>活动类型:<view class='pz_hdtype_1'>{{jl_type[item.jl_type]}}</view></view>
+<navigator url='/pages/huodong/huodong?uid={{uid}}&theme_uid={{item.user_id}}&id={{item.theme_id}}'>
+  <view class='cnayu_name'  data-id='{{index}}'>{{item.theme_name}}</view>
+  
+  <view>活动时间: <oime Time="{{item.add_time}}" zc="{{true}}"> </oime> </view>
   <view class='pz_head'>接龙序号:
-    <view class='pz_xh'>{{item.amount}}</view>
-  </view>
-  <view wx:for="{{item.address}}" class='pz_content-1'>
-    <view class='pz_content-2'>活动地点:</view>
-    <view class='pz_content-3'>{{item.address}}
-    </view>
-  </view>
+    <view class='pz_xh'>{{item.theme_id}}</view>
+  </view> 
   <view>待支付金额:{{item.price}}</view>
   <view class='pz_p'>
     <view class='pz_pay'>去支付</view>
   </view>
+    </navigator>
 </view>
 
 <!-- 已完成界面 -->
-<view hidden='{{curindex!==2}}' class='canyu_box'>
-  <view class='cnayu_name'></view>
+<view hidden='{{curindex!==2}}' class='canyu_box' wx:for="{{completed}}">
+<navigator url='/pages/huodong/huodong?uid={{uid}}&theme_uid={{item.user_id}}&id={{item.theme_id}}'>
+  <view class='cnayu_name'  data-id='{{index}}'>{{item.theme_name}}</view>
+  
+  <view>活动时间: <oime Time="{{item.add_time}}" zc="{{true}}"> </oime> </view>
   <view class='pz_head'>接龙序号:
-    <view class='pz_xh'></view>
+    <view class='pz_xh'>{{item.theme_id}}</view>
+  </view> 
+  <view wx:if="{{item.status == 1 && item.price>0}}">
+    <view>支付金额:{{item.price}}</view> 
+    <view>支付时间:<oime Time="{{item.pay_time}}"> </oime></view> 
   </view>
-  <view>项目</view>
-  <view>活动地点</view>
-
+  <view wx:if="{{item.status == 2}}">
+    <view>报名时间:<oime Time="{{item.order_time}}"> </oime></view> 
+  </view>
+  <view class='pz_content-1'>
+    <view class='pz_content-2'>活动内容:</view>
+    <view class='pz_content-3'>{{item.desc_info}}</view>
+  </view>
+  <view wx:for="{{item.address}}"  bindtap='map' data-id='{{oi}}'>
+      <view wx:if='{{item.address}}'>
+        位置:
+        <view class='pz_img'>
+          <image src='../img/icon_map.png'></image>
+        </view>
+        {{item.address}}
+      </view>
+  </view>
+    </navigator>
 </view>

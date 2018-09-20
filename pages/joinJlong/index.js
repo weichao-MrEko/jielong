@@ -53,7 +53,8 @@ Component({
         url: app.globalData.urlPrefix + 'joinJl/join_jl',
         data: {
           user_id: that.data.user_id,
-          theme_id: that.data.theme_id
+          theme_id: that.data.theme_id,
+          jl_type: options.jl_type
         },
         success: function(res) {
           if (options.jl_type == 1 || options.jl_type == 4) {
@@ -80,7 +81,31 @@ Component({
                 hqueren: false
               })
             }
-          } else {
+          } 
+          else if(options.jl_type == 'edit'){
+            // 编辑
+            that.data.item_info = JSON.parse(options.xiangmu)
+            for (var i = 0; i < that.data.item_info.length; i++) {
+              let jg = res.data.actor_item_info[that.data.item_info[i].id].may_amount
+              that.data.item_info[i].may_amount = jg
+              that.data.summation.zongshu += jg
+              that.data.summation.jiage[i] = that.data.item_info[i].price * jg
+              that.data.summation.zongjiage += that.data.summation.jiage[i]
+              that.data.summation.zongjiage = Math.round(that.data.summation.zongjiage * 100) / 100
+              that.setData({
+                item_info: that.data.item_info,
+                summation: that.data.summation,
+                hiitem: false,
+                hzhifu: false,
+                hzhifu: that.data.hzhifu,
+                hqueren: that.data.hqueren
+              })
+            }
+            wx.setNavigationBarTitle({
+              title: '修改接龙',
+            })
+          }
+          else {
             that.setData({
               item_info: res.data.item_info,
               hiitem: false
@@ -228,7 +253,7 @@ Component({
     zhifu: function() {
       var that = this;
       console.log(that.data.item_info)
-      if (!this.data.address){
+      if (!this.data.address && this.data.adr_panduan){
         wx.showToast({
           title: '请填写收货人',
           icon:"none"

@@ -49,7 +49,7 @@ Page({
   onShow: function() {
     // this.jlcon()
 
-
+ 
 
   },
 
@@ -71,7 +71,7 @@ Page({
     let eid = e.currentTarget.dataset.id
     wx.showLoading({
       title: '加载中',
-      
+      mask:true
     })
     wx:wx.request({
       url: app.globalData.urlPrefix + "Infoall/friend",

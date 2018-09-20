@@ -33,7 +33,7 @@
 }
 
 .nav view {
-  flex: 4;
+  flex: 3;
   text-align: center;
   height: 60rpx;
   line-height: 70rpx;

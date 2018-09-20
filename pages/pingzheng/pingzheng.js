@@ -21,7 +21,7 @@ Page({
     wx.request({
       url: app.globalData.urlPrefix+'Infoall/findInfo',
       data:{
-        uid: 4,
+        uid: app.globalData.idda.uid,
       },
       success:function(res){  
         that.timer()
@@ -35,7 +35,9 @@ Page({
         console.log(res.data.all_ord)
         that.setData({
           pzAllInfo: res.data.all_ord,
-          pzNotPay:res.data.not_pay
+          pzNotPay: res.data.not_pay,
+          completed: res.data.completed,
+          uid: app.globalData.idda.uid,
         })
       }
     })

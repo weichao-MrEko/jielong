@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "我的接龙凭证"
+  "navigationBarTitleText": "我的小圈凭证",
+  "usingComponents": {
+    "oime": "/components/time/time"
+  }
 }

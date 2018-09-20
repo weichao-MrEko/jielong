@@ -72,6 +72,7 @@ Component({
     },
     downLoadImages (index) {
       const { imageList, tempFileList } = this.data
+
       if (index < imageList.length) {
         // console.log(imageList[index])
         this.getImageInfo(imageList[index]).then(file => {
@@ -204,6 +205,7 @@ Component({
       this.ctx.fillRect(left, top, width, height)
     },
     getImageInfo (url) {
+      if( !url ){return }
       return new Promise((resolve, reject) => {
         /* 获得要在画布上绘制的图片 */
         if (this.cache[url]) {

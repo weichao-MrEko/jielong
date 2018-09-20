@@ -20,6 +20,10 @@ Page({
   onLoad: function (options) {
      console.log(app.globalData.upimgs)
      console.log(app.globalData.img)
+    console.log(JSON.parse(options.edit_img))
+    if (options.edit_img){
+      app.globalData.img[options.id] = JSON.parse(options.edit_img)
+    }
      this.setData({
        pushurl: app.globalData.upimgs,
        upimg: app.globalData.img,

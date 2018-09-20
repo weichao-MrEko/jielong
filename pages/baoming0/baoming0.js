@@ -23,7 +23,7 @@ Component({
      tianxuetj:0,
      upimg:[],
      pushurl: [],
-     jieitem: [{ item_name: '', price: '', amount: '',id:0}],
+     jieitem: [{ item_name: '', price: '', amount: '100',id:0}],
      group:[],
      groups: [
        
@@ -321,7 +321,7 @@ Component({
     //+新项目
     newitem:function(){
       let jieitem = this.data.jieitem
-      jieitem.push({ item_name: '', price: '', amount: '', id: this.data.jieitem.length})
+      jieitem.push({ item_name: '', price: '', amount: '100', id: this.data.jieitem.length})
       this.setData({ 
         quantity: ++this.data.quantity,
         jieitem: jieitem,

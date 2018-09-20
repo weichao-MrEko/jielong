@@ -133,6 +133,9 @@ Page({
           app.globalData.wuliufs.tihuo.push(this.data.tihuo[i])
         }
       }
+    }else{
+      app.globalData.wuliufs.fangshi = this.data.wuliu[this.data.index]
+      app.globalData.wuliufs.contacts = ""
     }
     wx: wx.navigateBack({
       delta: 1,

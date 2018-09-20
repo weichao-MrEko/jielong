@@ -6,7 +6,7 @@ page {
 }
 
 /*头部样式*/
-
+.bianhao{text-align: center;font-size: 32rpx}
 .head {
   display: flex;
   width: 94%;
@@ -86,9 +86,13 @@ page {
 }
 
 .c-nei {
-  font-size: 32rpx;
-  margin: 5rpx 0 15rpx 0;
-  width: 100%;
+ font-size:24rpx;
+margin:5rpx 0 15rpx 0;
+width:100%;
+white-space:pre-wrap;
+line-height:25px;
+
+
 }
 
 .c-map {
@@ -534,10 +538,12 @@ video {
 /* 打卡信息 */
 
 .dakabox {
-  width: 96%;
-  margin: 20rpx auto;
-  border: 2rpx solid #ccc;
-  display: flex;
+  width:96%;
+margin:20rpx auto;
+border-bottom:1px solid #ccc;
+display:flex;
+padding-bottom:10px;
+
 }
 
 .dakabox_top {

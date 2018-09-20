@@ -183,7 +183,7 @@ Component({
           that.data.startime.datime = SS+':'+SF
           app.globalData.map = JSON.parse(res.data.theme_result.address);
 
-          if (res.data.theme_result.actor_info !== null){
+          if (res.data.theme_result.actor_info !== "null" && res.data.theme_result.actor_info !== null){
            that.data.Fill   = JSON.parse(res.data.theme_result.actor_info).gong;
             that.data.kill  = JSON.parse(res.data.theme_result.actor_info).bugong;
             that.data.gill  = JSON.parse(res.data.theme_result.actor_info).bugongs
@@ -214,7 +214,7 @@ Component({
               }
           
             }
-          app.globalData.wuliufs = JSON.parse(res.data.theme_result.actor_info) 
+          app.globalData.wuliufs = JSON.parse(res.data.theme_result.actor_info) || { fangshi:null,contacts:''}
           console.log(that.zhuti)
           
           console.log(that.data.pushurl)
@@ -317,7 +317,7 @@ Component({
     shangchuantup: function (e) {
       console.log(e.target.dataset.id)
       wx: wx.navigateTo({
-        url: '../shangchuantup/shangchuantup?id=' + e.target.dataset.id+'&Qk=true',
+        url: '../shangchuantup/shangchuantup?id=' + e.target.dataset.id + '&Qk=true&edit_img=' + this.data.jieitem[e.target.dataset.id].p_goods_img,
       })
     },
     //规格

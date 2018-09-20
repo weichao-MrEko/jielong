@@ -11,7 +11,7 @@ image{
   background-color: #fff;
   width: 100%;
   border-top: 1rpx solid #ccc;
-  padding-top: 15rpx;
+  padding: 20rpx;
   display: flex;
   justify-content: space-between;
 }
@@ -76,7 +76,8 @@ left:10rpx;
 .content{
   background-color: #fff;
   padding: 25rpx;
-  margin: 30rpx auto;
+  margin: 30rpx auto;line-height:58rpx;
+
   width: 675rpx;
   border-radius: 15rpx;
 }

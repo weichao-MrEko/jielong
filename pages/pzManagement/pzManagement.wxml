@@ -14,12 +14,7 @@
   <!-- <view class='head_3'>发送通知</view> -->
 </view>
 <view class='sousou'>
-  <view class='sousou_1'>
-    <input placeholder='搜索' style='padding-left:25px;' bindblur="chaxun" >
-    <cover-image src='../img/sousuo.jpg' class='sousouimg'></cover-image>
-    </input>
-  </view>
-  <view class='sousou_4' hidden='ture'>导出数据</view>
+  <view bindtap='exportXls' class='sousou_4'>导出数据</view>
 </view>
 <view class='content' wx:for="{{shuju}}" wx:for-item="l">
   <view class='content2'>
@@ -38,9 +33,16 @@
             <text wx:if="{{i.amount>0}}">{{i.amount}}</text>
     </view>
   </view>
-  <view class='content7' wx:if='{{l.address_info !== ""}}'>
+  <view class='content7' wx:if='{{l.address_info.name != "" && l.address_info != null}}'>
     <view>联系人: {{l.address_info.name}}</view>
     <view>联系电话: {{l.address_info.phone}}</view>
-    <view>联系地址: {{l.address_info.area}}{{l.address_info.address}}</view>
+    <view>联系地址: {{l.address_info.area}}{{l.address_info.address}}</view> 
+  </view>
+
+  <view class='content7' wx:if='{{l.actor_self_info.list}}'>
+      <view>特殊要求: {{l.actor_self_info.special_desc}}</view>
+      <view wx:for="{{l.actor_self_info.list}}" >
+        {{item.name}} : {{item.value}}
+      </view>
   </view>
 </view>

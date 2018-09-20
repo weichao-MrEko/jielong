@@ -61,8 +61,9 @@
       <text wx:if='{{theme.jl_type==3}}'> {{xiangmu[0].jucantime}}</text>
     </view>
     <!--商品-->
-    <view class='shangpin' wx:for='{{xiangmu}}' hidden='{{shangpin}}'>
-      <view class='pintu' wx:if='{{item.p_goods_img[0]}}'>
+     
+    <view class='shangpin' wx:for='{{xiangmu}}' wx:if='{{!shangpin}}' >
+      <view class='pintu' wx:if="{{item.p_goods_img.length>0}}" >
         <image src='{{turl}}{{item.p_goods_img[0]}}' mode='aspectFill'></image>
       </view>
       <view class='pin_right'>
@@ -70,7 +71,7 @@
         <view style='color:#666;;font-size:28rpx'>{{item.size_or_color}}</view>
         <view class='flex'>
           <view style='color:red;font-size:30rpx'>${{item.price}}</view>
-          <view class='flex'>
+          <view class='flex' wx:if="{{apply!='已参与'}}">
             <view class='jiajian' bindtap='spjian' data-id='{{index}}'>
               <image src='../img/hjian.png'></image>
             </view>
@@ -110,14 +111,15 @@
       </view>
 
     </view>
-    <view wx:if='{{!qie}}'>
+    
+    <view wx:if='{{!qie && act.length>0}}' bindtap='pz_do'>
       <view class="pz">
         <view class='pz_1'>
           <view class='pz_num'></view>
           <view class='pz_img'>
-            <image src="{{info.user_img}}"></image>
+            <image src="{{uinfo.uimg}}"></image>
           </view>
-          <view class='pz_name'>{{info.user_name}}</view>
+          <view class='pz_name'>{{uinfo.user_name}}</view>
           <view class='pz_time'>
 
             <oime id='time' Time='{{ord_time}}'></oime>
@@ -142,6 +144,12 @@
             <text>联系地址：</text>
             <text>{{info.address}}</text>
           </view>
+        </view>
+         <view class='lxmap' wx:if='{{self_info}}'>
+          <view wx:for="{{self_info}}">
+            <text>{{item.name}}：</text>
+            <text>{{item.value}}</text>
+          </view> 
         </view>
       </view>
     </view>
@@ -228,15 +236,18 @@
       </view>
     </view>
     <!--参与按钮  -->
-    <button wx:if="{{theme.status == 1}}" class='{{btn}}' bindtap='joinjl'>{{apply}}</button>
+    <button wx:if="{{theme.status == 1}}" hidden="{{apply =='已参与'}}" class='{{btn}}' bindtap='joinjl'>{{apply}}</button>
+    <button wx:if="{{theme.status == 1}}" hidden="{{apply !='已参与'}}" class='buwoyao button-hover' bindtap='edit_jl'>修改接龙</button>
     <button wx:if="{{theme.status == 2 && !guanli}}" class='buwoyao' bindtap='edit'>未发布，返回修改</button>
     <button wx:if="{{theme.status == 2 && guanli}}" class='buwoyao'>未发布</button>
 
   </view>
   <!-- 打卡人的信息 -->
   <view wx:for='{{kaci}}' class='dakabox'>
+
     <view class='dakabox_top_tx'>
       <image src='{{item.user_img}}'></image>
+         <view class='bianhao'>{{kaci.length - index}}</view>
     </view>
     <view class='dakabox_top'>
 
@@ -269,13 +280,13 @@
   <!--报名人的信息-->
   <view class='Sign_up' wx:for='{{baomingren}}'>
     <view class='Sign_up_user'>
-      <view>{{index+1}}.</view>
+      <view>{{baomingren.length - index}}.</view>
       <view>
         <image src='{{item.user_img}}'></image>
       </view>
       <text>{{item.user_name}}</text>
     </view>
-    <view class='Sign_up_item '>{{item.name}}+{{item.may_amount}}</view>
+    <view class='Sign_up_item '>{{item.info}}</view>
   </view>
 </view>
 <!--评论-->
@@ -305,21 +316,21 @@
 </view>
 <!--下面导航条-->
 <view class='nav' hidden='{{guanli}}'>
-  <view class='column'>
+  <!-- <view class='column'>
     <view class='ktu'>
       <image src='../img/qiandao.png'></image>
     </view>
     <view class='kzi'>活动/签到</view>
-  </view>
+  </view> -->
   <view class='column' bindtap='edit'>
     <view class='ktu'>
       <image src='../img/xiugai.png'></image>
     </view>
     <view class='kzi'>修改接龙</view>
   </view>
-  <view class='column'>
+  <view class='column'  bindtap='pzManagement'>
     <view class='font'>{{pz_num}}</view>
-    <view class='kzi' bindtap='pzManagement'>凭证管理</view>
+    <view class='kzi'>凭证管理</view>
   </view>
   <view class='column' bindtap='renlaig'>
     <view class='font'>{{people}}</view>

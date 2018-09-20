@@ -112,5 +112,20 @@ Page({
    */
   onShareAppMessage: function() {
 
+  },
+  exportXls(){
+    console.log(2)
+    wx.downloadFile({
+      url: 'https://www.shequnxz.com/1.xls',
+      success: function (res) {
+        var filePath = res.tempFilePath
+        wx.openDocument({
+          filePath: filePath,
+          success: function (res) {
+            console.log('打开文档成功')
+          }
+        })
+      }
+    }) 
   }
 })

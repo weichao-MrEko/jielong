@@ -20,26 +20,7 @@ Page({
         uid:app.globalData.idda.uid
       },
       success:function(res){
-        for (var i = 0; i < res.data.comments.length; i++) {
-          var a = res.data.comments[i].time
-          var time = new Date(a * 1000)
-          var mon = time.getMonth() + 1;
-          var day = time.getDate();
-          var hour = time.getHours();
-          var min = time.getMinutes();
-          if (mon < 10) {
-            mon = '0' + mon
-          }
-          if (day < 10) {
-            day = '0' + day
-          }
-          if (hour < 10) {
-            hour = '0' + hour
-          } if (min < 10) {
-            min = '0' + min
-          }
-          res.data.comments[i].time = mon + '-' + day + ' ' + hour + ':' + min
-        }
+     
         that.setData({
           comments:res.data.comments
         })

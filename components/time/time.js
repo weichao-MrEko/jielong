@@ -20,6 +20,10 @@ Component({
           
       }
     },
+    zc:{
+      type: Boolean,
+      value:false
+    }
   },
   ready() {
   
@@ -31,26 +35,45 @@ Component({
   methods: {
     
     HeTime: function () {
-      
       var that = this
-      var Time = new Date().getTime();
-      console.log(that.data.Time)
-      var sjcha = (Time - that.data.Time* 1000);
+      if(this.data.zc){
+        var time = new Date(that.data.Time * 1000) 
+        var mon = time.getMonth() + 1;
+        var day = time.getDate();
+        var hour = time.getHours();
+        var min = time.getMinutes();
+        if (mon < 10) {
+          mon = '0' + mon
+        }
+        if (day < 10) {
+          day = '0' + day
+        }
+        if (hour < 10) {
+          hour = '0' + hour
+        } if (min < 10) {
+          min = '0' + min
+        }
+        that.data.Time = time.getFullYear() + '-'+ mon + '-' + day + ' ' + hour + ':' + min
+      }else{
+        
+        var Time = new Date().getTime();
+        console.log(that.data.Time)
+        var sjcha = (Time - that.data.Time * 1000);
         //天
         var tian = Math.floor(sjcha / (24 * 3600 * 1000));
-      console.log(tian)
+        console.log(tian)
         //小时
         var leave1 = sjcha % (24 * 3600 * 1000);
         var xiaoshi = Math.floor(leave1 / (3600 * 1000));
-      console.log(xiaoshi)
+        console.log(xiaoshi)
         //分钟
         var leave2 = leave1 % (3600 * 1000);
         var fenzhong = Math.floor(leave2 / (60 * 1000));
-      console.log(fenzhong)
+        console.log(fenzhong)
         //秒
         var leave3 = leave2 % (60 * 1000);
         var miao = Math.floor(leave3 / 1000);
-      console.log(tian)
+        console.log(tian)
 
         if (tian > 0) {
           that.data.Time = tian + '天前'
@@ -63,10 +86,12 @@ Component({
         } else {
           that.data.Time = miao + '秒前'
         }
+      }
+     
       
       
 
-  that.setData({ Time: that.data.Time })
+       that.setData({ Time: that.data.Time })
     },
   }
 })

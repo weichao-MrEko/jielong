@@ -57,7 +57,7 @@
 
 <view class='age'>
         <text>用户画像</text>
-        <view><image src='../img/jiantou.png'></image></view>
+        <!-- <view><image src='../img/jiantou.png'></image></view> -->
 </view>
 
 <view class='box-two' wx:for="{{people_list}}">
