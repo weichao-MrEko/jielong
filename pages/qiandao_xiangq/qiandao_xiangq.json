@@ -1,0 +1,9 @@
+{
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "接龙详情操作",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
+  }
+}

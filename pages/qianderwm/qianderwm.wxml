@@ -1,0 +1,6 @@
+<!--pages/qianderwm/qianderwm.wxml-->
+<view>保存签到小程序码图片，参与者扫码后即可签到</view>
+<view class='erweima'>
+ <image src='{{erweima}}'></image>
+</view>
+<view>专用于扫码进入活动或签到</view>
