@@ -63,7 +63,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-     
+    console.log(options.qiandao)
     wx.request({
       url: app.globalData.urlPrefix + "Infoall/statistics",
     })
@@ -73,7 +73,23 @@ Page({
       })
     }
     var that = this
-    console.log(options)
+    //判断是否要去签到
+    if (options.qiandao=='true'){
+      wx.navigateTo({
+        url: '../qiandaoqueren/qiandaoqueren',
+        success: function(res) {},
+        fail: function(res) {},
+        complete: function(res) {},
+      })
+      wx.request({
+        url: '',
+        data:{
+          uid: app.globalData.idda.uid
+        },
+        success:function(res){
+        }
+      })
+    }
     wx.request({
         url: app.globalData.urlPrefix + "qrcode/code",
         data: {
@@ -120,9 +136,9 @@ Page({
       console.log(app.globalData.idda)
       that.setData({
         theme_id: options.id,
-      user_id: app.globalData.idda.uid,
+        user_id: app.globalData.idda.uid,
         theme_uid: options.theme_uid,
-      uinfo: app.globalData.idda
+        uinfo: app.globalData.idda
       })
     wx.request({
       url: app.globalData.urlPrefix + 'Infoall/friend',
@@ -313,6 +329,12 @@ Page({
       }
     }
 
+  },
+  qiandao:function(){
+    wx.navigateTo({
+      url: '../qiandao/qiandao?theme_id=' + this.data.theme_id + '&user_id=' + app.globalData.idda.uid + '&theme_uid=' + this.data.theme_uid + '&uinfo=' + app.globalData.idda,
+    })
+   
   },
   //参看地图
   chamap: function(e) {

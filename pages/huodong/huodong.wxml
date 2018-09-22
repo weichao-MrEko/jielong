@@ -316,12 +316,12 @@
 </view>
 <!--下面导航条-->
 <view class='nav' hidden='{{guanli}}'>
-  <!-- <view class='column'>
+  <view class='column' bindtap='qiandao'>
     <view class='ktu'>
       <image src='../img/qiandao.png'></image>
     </view>
     <view class='kzi'>活动/签到</view>
-  </view> -->
+  </view>
   <view class='column' bindtap='edit'>
     <view class='ktu'>
       <image src='../img/xiugai.png'></image>

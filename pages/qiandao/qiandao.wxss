@@ -1,0 +1,121 @@
+.qiandao_head{
+  width: 94%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+}
+.head_box{
+  width: 100%;
+  display: flex;
+}
+.head_xingx{
+  display: flex;
+  font-size: 32rpx;
+  margin: 10rpx 0;
+}
+.flex{
+  flex: 1;
+}
+.head_con{
+  flex: 3;
+  margin: 10rpx 0;
+}
+.erweima_box{
+ flex: 0.4;
+ color: #f34534;
+ text-align: center;
+ font-size: 25rpx;
+}
+.erweima{
+
+  margin:10rpx auto;
+  width: 60rpx;
+  height: 60rpx;
+}
+image{
+  width: 100%;
+  height: 100%;
+}
+.head_item{
+  display: flex;
+  margin: 5rpx 0;
+}
+.head_title{
+  font-size: 35rpx;
+  font-weight: bold;
+}
+.head_item view+view{
+  margin-left: 30rpx;
+  color: red;
+}
+.head_qiand{
+  display: flex;
+  font-size: 30rpx;
+}
+.sousuo{
+  width: 94%;
+  border-radius: 5rpx;
+  margin:20rpx auto;
+  background: #f4f4f4;
+}
+.content_box{
+  border-bottom: #eee solid 1rpx;
+  overflow: hidden;
+  margin-left: 20rpx;
+}
+.items{
+  font-size: 35rpx;
+  font-weight: bold;
+}
+.content{
+  display: flex;
+  width: 96%;
+  margin: auto;
+}
+.content_nei view{
+ margin: 10rpx 0;
+}
+.nei_user{
+  display: flex;
+  margin: 10rpx 0;
+}
+.time{
+  font-size: 32rpx;
+  line-height: 55rpx;
+  color: #999;
+}
+.nei_user view{
+  margin:0 5rpx; 
+  font-size: 35rpx;
+}
+.nei_user_img{
+  width: 60rpx;
+  height: 60rpx;
+}
+.nei_qiandao{
+  display: flex;
+}
+.nei_qiandao view+view{
+  margin-left: 20rpx;
+}
+.fon_qian{
+  width: 100rpx;
+  height: 40rpx;
+  font-size: 30rpx;
+  text-align: center;
+  float: right;
+  margin: 15rpx;
+  border-radius: 10rpx;
+  border: #666 1rpx solid;
+}
+.map_box{
+  display: flex;
+}
+.map_img{
+  width: 60rpx;
+  height: 60rpx;
+}
+.map_text{
+  font-size: 30rpx;
+  color: #666;
+}

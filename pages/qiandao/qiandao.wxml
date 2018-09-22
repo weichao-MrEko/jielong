@@ -1,0 +1,63 @@
+<view class='qiandao_head'>
+ <view class='flex'>
+  <view class='head_box'>
+    <view class='head_con'>
+      <view class='head_xingx'>
+        <view>MrEko：</view>
+        <view>总接龙数4，</view>
+        <view>总额￥0</view>
+      </view>
+      <view class='head_title'>法国进口来访记录会计分录卡减肥了的减</view>
+    </view>
+    
+  </view>
+  <view class='head_item'>
+    <view class='items'>花木狼+3</view>
+    <view>签到3</view>
+  </view>
+  <view class='head_qiand'>
+    <view>已签到3，</view>
+    <view>未签到1，</view>
+    <view>部分签到0</view>
+  </view>
+  </view>
+  <view class='erweima_box' bindtap='erweima'>
+      <view class='erweima'>
+        <image src='../img/erweima.png'></image>
+      </view>
+      <view>活动/签到专用</view>
+    </view>
+</view>
+<view class='sousuo'>
+  <input type='text' placeholder='搜索'></input>
+</view>
+<view class='content_box' wx:for="{{1}}">
+  <view class='content'>
+    <view>2.</view>
+    <view class='content_nei' bindtap='qiandaoxq'>
+      <view class='nei_user'>
+        <view class='nei_user_img'>
+          <image src='{{img}}'></image>
+        </view>
+        <view>MrEko</view>
+        <view class='time'>09-03 10:11:14</view>
+      </view>
+      <view>
+        <view style='font-size:35rpx'>选择了梅</view>
+        <view class='map_box'>
+          <view class='map_img'>
+            <image src='../img/icon_map.png'></image>
+          </view>
+          <view class='map_text'>到了发进来的房间辣世纪东方了房间爱来访记录</view>
+        </view>
+      </view>
+      <view class='items'>花木兰+1</view>
+      <view class='nei_qiandao'>
+        <view>已签到</view>
+        <view class='time'>09-21 09：47：58</view>
+      </view>
+    </view>
+
+  </view>
+  <view class='fon_qian' bindtap='qiandao'>未签到</view>
+</view>

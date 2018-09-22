@@ -1,0 +1,22 @@
+.box{
+  width: 90%;
+  margin: auto;
+}
+.title{
+  text-align: center;
+  font-size: 28rpx;
+  color: #333;
+}
+.item_name{
+  font-weight: bold;
+  font-size: 30rpx;
+  margin-left: 40rpx;
+}
+.slider{
+  width: 110%;
+}
+button{
+  margin-top: 60rpx;
+  background: #f34534;
+  color: #fff;
+}

@@ -1,0 +1,8 @@
+<view class='box'>
+  <view class='title'>滑动确认签到数量</view>
+  <view>
+    <view class='item_name'>项目名+22</view>
+    <slider block-size='15' activeColor='#f34534' show-value></slider>
+  </view>
+  <button>确认签到</button>
+</view>
