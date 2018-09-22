@@ -236,8 +236,8 @@
       </view>
     </view>
     <!--参与按钮  -->
-    <button wx:if="{{theme.status == 1}}" hidden="{{apply =='已参与'}}" class='{{btn}}' bindtap='joinjl'>{{apply}}</button>
-    <button wx:if="{{theme.status == 1}}" hidden="{{apply !='已参与'}}" class='buwoyao button-hover' bindtap='edit_jl'>修改接龙</button>
+    <button wx:if="{{theme.status == 1}}"  class='{{btn}}' bindtap='joinjl'>{{apply}}</button>
+    <!-- <button wx:if="{{theme.status == 1}}" hidden="{{apply !='已参与'}}" class='buwoyao button-hover' bindtap='edit_jl'>修改接龙</button> -->
     <button wx:if="{{theme.status == 2 && !guanli}}" class='buwoyao' bindtap='edit'>未发布，返回修改</button>
     <button wx:if="{{theme.status == 2 && guanli}}" class='buwoyao'>未发布</button>
 
