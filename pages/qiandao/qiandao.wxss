@@ -99,9 +99,10 @@ image{
   margin-left: 20rpx;
 }
 .fon_qian{
-  width: 100rpx;
+  width: auto;
   height: 40rpx;
   font-size: 30rpx;
+  padding:10rpx;
   text-align: center;
   float: right;
   margin: 15rpx;

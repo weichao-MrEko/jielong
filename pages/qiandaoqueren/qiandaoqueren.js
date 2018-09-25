@@ -1,4 +1,6 @@
 // pages/qiandaoqueren/qiandaoqueren.js
+const app = new getApp()
+
 Page({
 
   /**
@@ -12,9 +14,43 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-   
+    this.setData({
+      id: options.id,
+      uid: options.uid,
+      theme_uid: options.theme_uid,
+    })
+    wx.request({
+      url: app.globalData.urlPrefix + "qiandao/findself",
+      data: {
+        theme_id: options.id,
+        uid: options.uid,
+      },
+      success: (res) => {
+        this.setData({
+          info: res.data,
+        })
+      }
+    })
   },
-
+  confirm(e){
+    let id = e.target.dataset.index
+    
+    wx.request({
+      url: app.globalData.urlPrefix + "qiandao/dodo",
+      data: {
+        id: id,
+        qiandao_type:2,
+      },
+      success: (res) => {
+        wx.showToast({
+          title: '确认成功',
+        })
+        wx.navigateBack({
+          delta:1
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

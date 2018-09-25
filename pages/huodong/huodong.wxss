@@ -86,7 +86,7 @@ page {
 }
 
 .c-nei {
- font-size:24rpx;
+ font-size:26rpx;
 margin:5rpx 0 15rpx 0;
 width:100%;
 white-space:pre-wrap;

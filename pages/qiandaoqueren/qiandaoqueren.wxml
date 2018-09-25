@@ -1,8 +1,13 @@
 <view class='box'>
   <view class='title'>滑动确认签到数量</view>
-  <view>
-    <view class='item_name'>项目名+22</view>
-    <slider block-size='15' activeColor='#f34534' show-value></slider>
+  <view wx:for="{{info}}">
+    <view>
+      <view class='item_name'>
+        <text>
+        {{item.name}}+{{item.amount + item.may_amount}} 
+      </text>
+      </view>
+    </view>
+    <button bindtap='confirm' data-index="{{item.id}}">确认签到</button>
   </view>
-  <button>确认签到</button>
 </view>

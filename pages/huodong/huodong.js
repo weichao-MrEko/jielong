@@ -63,7 +63,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log(options.qiandao)
+    
+    
     wx.request({
       url: app.globalData.urlPrefix + "Infoall/statistics",
     })
@@ -74,9 +75,10 @@ Page({
     }
     var that = this
     //判断是否要去签到
-    if (options.qiandao=='true'){
+    if (options.qiandao=='66'){
+    
       wx.navigateTo({
-        url: '../qiandaoqueren/qiandaoqueren',
+        url: '/pages/qiandaoqueren/qiandaoqueren?id=' + options.theme_id + '&uid=' + app.globalData.idda.uid + '&theme_uid=' + options.theme_uid,
         success: function(res) {},
         fail: function(res) {},
         complete: function(res) {},
@@ -89,7 +91,7 @@ Page({
           path: 'pages/huodong/huodong?id=' + options.id + '&uid=' + options.uid + '&theme_uid=' + options.theme_uid
         },
         success: function(res) {
-          console.log(res.data)
+          
           that.setData({
             erweima: app.globalData.urlfix + res.data.code_img
           })
@@ -105,7 +107,7 @@ Page({
           fen_user_id: options.fen_user_id
         },
         success: function(res) {
-          console.log(res.data)
+          
           that.setData({
             login_num: res.data.login_num,
 
@@ -126,7 +128,7 @@ Page({
         success: function(res) {}
 
       }),
-      console.log(app.globalData.idda)
+      
       that.setData({
         theme_id: options.id,
         user_id: app.globalData.idda.uid,
@@ -149,7 +151,7 @@ Page({
 
   },
   people: function() {
-    console.log(this.data.map)
+    
     wx.navigateTo({
       url: '../people/people?theme_id=' + this.data.theme_id + '&user_id=' + app.globalData.idda.uid,
     })
@@ -175,7 +177,7 @@ Page({
     })
   },
   FabuTime: function() {
-    console.log(this.data.theme)
+    
     var Time = new Date().getTime()
     var sjcha = (Time - this.data.theme.add_time * 1000);
     //天
@@ -196,10 +198,10 @@ Page({
     } else if (fenzhong > 0) {
       this.data.theme.add_time = fenzhong + '分钟前'
     } else if (miao < 0) {
-      console.log(20)
+      
       this.data.theme.add_time = 1 + '秒前'
     } else {
-      console.log(30)
+      
       this.data.theme.add_time = miao + '秒前'
     }
     this.setData({
@@ -211,7 +213,7 @@ Page({
     this.onShareAppMessage()
   },
   myhome: function() {
-    console.log(this.data.map)
+    
     wx.navigateTo({
       url: '../index/index',
     })
@@ -305,7 +307,7 @@ Page({
     var xiangmu = 0
     if (jl_type == 0 || jl_type == 3 || jl_type == 5) {
       if (this.data.apply == '已参与'){return}
-      console.log(xiangmu)
+      
       that.data.xiangmu = JSON.stringify(that.data.xiangmu)
       wx.navigateTo({
         url: '../joinJlong/index?theme_id=' + that.data.theme_id + '&user_id=' + that.data.user_id + '&theme_uid=' + that.data.theme_uid + '&xiangmu=' + that.data.xiangmu + '&jl_type=' + jl_type
@@ -349,7 +351,7 @@ Page({
   // 数据
   findDrag: function(callback) {
     var that = this
-    console.log(that.data.theme_id)
+    
     wx.showLoading({
       title: '加载中',
     })
@@ -446,7 +448,7 @@ Page({
             hijt: false,
           })
         }
-        console.log(res.data.theme_result)
+        
         that.setData({
           xiangmu: res.data.item_result,
           itimg: that.data.itimg,
@@ -533,7 +535,7 @@ Page({
         icon:'none'
       })
     }
-    console.log(this.data.xiangmu)
+    
 
   },
 
@@ -543,7 +545,7 @@ Page({
   onReady: function() {
 
     this.oime = this.selectComponent("#time")
-    console.log(1)
+    
   },
 
   /**
@@ -578,7 +580,7 @@ Page({
   },
   dakktime: function(res) {
     var that = this
-    console.log(res)
+    
     var Y = new Date().getFullYear()
     var M = new Date().getMonth() + 1
     var D = new Date().getDate()
@@ -586,15 +588,15 @@ Page({
     if (res.data.theme_result.jl_type == 2) {
       Stime = new Date(Y + '/' + M + '/' + D + ' ' + that.data.xiangmu[0].start).getTime();
       Etime = new Date(Y + '/' + M + '/' + D + ' ' + that.data.xiangmu[0].end).getTime();
-      console.log(Stime)
-      console.log(Etime)
+      
+      
 
       if (Time > Stime && Time < Etime) {
-        console.log(11)
+        
         clearInterval(Daojitime)
         that.Dakat()
       } else {
-        console.log(22)
+        
         clearInterval(time)
         that.Daojis()
       }
@@ -657,7 +659,7 @@ Page({
         countDownMinute: '',
         countDownSecond: '卡'
       })
-      //   console.log(Dakatime)
+      //   
       if (Dakatime <= 0) {
         clearInterval(time)
         that.Daojis()
@@ -714,7 +716,7 @@ Page({
         },
         success: function(res) {
           //var data=res.data
-          console.log(1)
+          
 
           that.setData({
             luysrc: JSON.parse(res.data).imgPath,
@@ -736,7 +738,7 @@ Page({
   luyinbofang: function() {
 
     innerAudioContext.src = app.globalData.urlfix + this.data.luysrc;
-    console.log(innerAudioContext.src)
+    
     innerAudioContext.play()
     this.luyindaotime()
     this.setData({
@@ -809,7 +811,7 @@ Page({
     })
     innerAudioContext.play()
     innerAudioContext.onPlay(() => {
-      console.log(innerAudioContext.duration)
+      
     })
 
   },
@@ -860,7 +862,7 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function() {
-    console.log(12)
+    
     clearInterval(time);
     clearInterval(Daojitime);
     clearInterval(katime);
@@ -897,7 +899,7 @@ Page({
   box: function(e) {
     var that = this;
     var uppimg = [];
-    console.log(e)
+    
     wx.showActionSheet({
       itemList: ['图片', '视频'],
       success: function(res) {
@@ -906,7 +908,7 @@ Page({
             sourceType: ['album', 'camera'],
             success: function(res) {
               var tempFilePaths = res.tempFilePaths
-              console.log(that.data.pushurl)
+              
 
               /*for (var i in tempFilePaths) {
                 tempFilePaths.push(tempFilePaths[i])
@@ -915,7 +917,7 @@ Page({
                 var index1 = tempFilePaths[j].lastIndexOf(".");
                 var index2 = tempFilePaths[j].length;
                 var postf = tempFilePaths[j].substring(index1, index2);
-                console.log(postf)
+                
                 if (postf == ".jpg" || postf == '.png') {
                   var gg = that.data.pushurl
 
@@ -933,7 +935,7 @@ Page({
               })
 
               for (var i = 0; i < gg.length; i++) {
-                console.log(gg[i].pic)
+                
                 wx.uploadFile({
                   url: app.globalData.urlPrefix + 'signup/uploadImg',
                   filePath: gg[i].pic,
@@ -943,7 +945,7 @@ Page({
                   },
                   success: function(res) {
                     //var data=res.data
-                    console.log(res)
+                    
                     uppimg.push(JSON.parse(res.data).imgPath)
 
                     that.setData({
@@ -959,14 +961,14 @@ Page({
 
             },
           })
-          console.log(that.data.pushurl)
+          
         } else if (res.tapIndex === 1) {
           wx.chooseVideo({
             sourceType: ['album', 'camera'],
             maxDuration: 60,
             camera: 'back',
             success: function(res) {
-              console.log(res.tempFilePath)
+              
               var tempFilePaths = res.tempFilePath.split()
               var ovsrc = that.data.pushurl
 
@@ -974,7 +976,7 @@ Page({
                 var index1 = tempFilePaths[j].lastIndexOf(".");
                 var index2 = tempFilePaths[j].length;
                 var postf = tempFilePaths[j].substring(index1, index2);
-                console.log(postf)
+                
 
                 if (postf == ".mp4") {
 
@@ -992,9 +994,9 @@ Page({
 
 
               }
-              console.log(that.data.pushurl)
+              
               for (var i = 0; i < gg.length; i++) {
-                console.log(gg[i].video)
+                
                 wx.uploadFile({
                   url: app.globalData.urlPrefix + 'signup/uploadImg',
                   filePath: gg[i].video,
@@ -1004,7 +1006,7 @@ Page({
                   },
                   success: function(res) {
                     //var data=res.data
-                    console.log(res)
+                    
                   }
                 })
               }
@@ -1027,7 +1029,7 @@ Page({
   tup: function(e) {
     let ind = e.currentTarget.dataset.index
     var that = this
-    console.log(ind)
+    
     wx.showActionSheet({
       itemList: ["替换图片", "替换成视频", "删除"],
       success: function(res) {
@@ -1036,7 +1038,7 @@ Page({
             sourceType: ['album'],
             count: '1',
             success: function(res) {
-              console.log(ind)
+              
               var tempFilePaths = res.tempFilePaths
               var aa = that.data.pushurl
               aa.splice(ind, 1, {
@@ -1055,7 +1057,7 @@ Page({
             camera: 'back',
             success: function(res) {
               var tempFilePaths = res.tempFilePath
-              console.log(res)
+              
               var aa = that.data.pushurl
               aa.splice(ind, 1, {
                 pic: '',
@@ -1080,7 +1082,7 @@ Page({
     e.vioos = wx.createVideoContext('sps')
     let ind = e.currentTarget.dataset.index
     var that = this
-    console.log(ind)
+    
     wx.showActionSheet({
       itemList: ['播放', '替换视频', '替换成图片', '删除'],
       success: function(res) {
@@ -1093,7 +1095,7 @@ Page({
             maxDuration: 60,
             camera: 'back',
             success: function(res) {
-              console.log(res.tempFilePath)
+              
               var tempFilePaths = res.tempFilePath.split()
               var vsrc = that.data.pushurl
               vsrc.splice(ind, 1, {
@@ -1105,7 +1107,7 @@ Page({
               that.setData({
                 pushurl: vsrc
               })
-              console.log(that.data.src.length)
+              
             }
           })
         } else if (res.tapIndex == 2) {
@@ -1113,7 +1115,7 @@ Page({
             sourceType: ['album', 'camera'],
             count: '1',
             success: function(res) {
-              console.log(ind)
+              
               var tempFilePaths = res.tempFilePaths
               var aa = that.data.pushurl
               aa.splice(ind, 1, {
@@ -1139,7 +1141,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-    console.log(2)
+    
   },
 
   /**
@@ -1292,13 +1294,13 @@ Page({
     })
   },
   yulan: function(e) {
-    console.log(e.currentTarget.dataset.id)
+    
     var id = e.currentTarget.dataset.id
     var aa = []
     for (var i = 0; i < this.data.itimg.length; i++) {
       aa.push(app.globalData.urlfix + this.data.itimg[i])
     }
-    console.log(aa)
+    
     wx.previewImage({
       current: app.globalData.urlfix + this.data.itimg[id],
       urls: aa
@@ -1336,7 +1338,7 @@ Page({
     wx.showActionSheet({
       itemList: ['取消接龙'],
       success(res){
-        console.log(res.tapIndex)
+        
         if(res.tapIndex == 0) {
           wx.request({
             url: app.globalData.urlPrefix +"/Pingzheng/quxiao",

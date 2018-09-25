@@ -19,7 +19,7 @@ Page({
     wx.request({
       url: app.globalData.urlPrefix + "qrcode/code",
       data: {
-        path: 'pages/huodong/huodong?id=' + xingx.theme_id + '&uid=' + xingx.uid + '&theme_uid=' + xingx.theme_uid + '&qiandao=' + true
+        path: 'pages/huodong/huodong?id=' + xingx.theme_id + '&uid=' + xingx.uid + '&theme_uid=' + xingx.theme_uid + '&qiandao=' + 66
       },
       success: function (res) {
         console.log(res.data)

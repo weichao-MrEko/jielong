@@ -46,8 +46,8 @@
         <view>{{item.other_info.user_name}}</view>
         <view class='time'>{{item.other_info.order_time}}</view>
       </view>
-      <view>
-        <view style='font-size:35rpx'>选择了梅</view>
+      <view> 
+        <!-- <view style='font-size:35rpx'>选择了梅</view> -->
         <!-- <view class='map_box'>
           <view class='map_img'>
             <image src='../img/icon_map.png'></image>
@@ -62,6 +62,6 @@
       </view>
     </view>
 
-  </view>
-  <view class='fon_qian' bindtap='qiandao' data-type="{{item.qiandao_type}}">{{item.qiandao_type==1?'未签到':(item.qiandao_type==2?'已签到':'部分签到')}}</view>
+  </view> 
+  <view class='fon_qian' bindtap='qiandao' data-index="{{index}}" data-type="{{item.qiandao_type}}">{{item.qiandao_type==1?'未签到':(item.qiandao_type==2?'已签到':'部分签到')}}</view>
 </view>
