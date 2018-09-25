@@ -36,7 +36,7 @@
 </view>
 <view class='content_box' wx:for="{{act_id_a}}">
   <view class='content'>
-    <view>{{index-index+1}}.</view>
+    <view>{{index+1}}.</view>
     <!-- <view class='content_nei' bindtap='qiandaoxq'> -->
     <view class='content_nei' >
       <view class='nei_user'>
