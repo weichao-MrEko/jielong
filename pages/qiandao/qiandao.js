@@ -14,9 +14,26 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(app.globalData.userInfo)
     this.data.options = JSON.stringify(options) 
     this.setData({
-      img:app.globalData.userInfo.avatarUrl
+      img: app.globalData.userInfo.avatarUrl,
+      uinfo:app.globalData.userInfo,
+      theme_name: options.theme_name,
+      pz_num: options.pz_num,
+      })
+  
+      wx.request({
+        url: app.globalData.urlPrefix + "qiandao/index",
+        data:{
+          theme_id: options.theme_id
+        },
+        success:(res)=>{
+          this.setData({
+            rtnD: res.data.rtnD,
+            act_id_a:res.data.act_id_a
+          })
+        }
       })
   },
   qiandaoxq:function(){

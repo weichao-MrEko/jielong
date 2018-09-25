@@ -114,18 +114,30 @@ Page({
 
   },
   exportXls(){
-    console.log(2)
-    wx.downloadFile({
-      url: 'https://www.shequnxz.com/1.xls',
-      success: function (res) {
-        var filePath = res.tempFilePath
-        wx.openDocument({
-          filePath: filePath,
+    // theme_id: options.theme_id,
+    // user_id
+    wx.request({
+      url: app.globalData.urlPrefix + "excel/dao",
+      data:{
+        theme_id: this.data.theme_id,
+      },
+      success:(res)=>{
+
+        wx.downloadFile({
+          url: 'https://www.shequnxz.com//public/uploads/excel/qunxiaoque_' + this.data.theme_id+'.xlsx',
           success: function (res) {
-            console.log('打开文档成功')
+            var filePath = res.tempFilePath
+            wx.openDocument({
+              filePath: filePath,
+              success: function (res) {
+                console.log('打开文档成功')
+              }
+            })
           }
-        })
+        }) 
+
       }
-    }) 
+    })
+   
   }
 })

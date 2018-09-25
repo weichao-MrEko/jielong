@@ -81,14 +81,7 @@ Page({
         fail: function(res) {},
         complete: function(res) {},
       })
-      wx.request({
-        url: '',
-        data:{
-          uid: app.globalData.idda.uid
-        },
-        success:function(res){
-        }
-      })
+      
     }
     wx.request({
         url: app.globalData.urlPrefix + "qrcode/code",
@@ -332,7 +325,7 @@ Page({
   },
   qiandao:function(){
     wx.navigateTo({
-      url: '../qiandao/qiandao?theme_id=' + this.data.theme_id + '&user_id=' + app.globalData.idda.uid + '&theme_uid=' + this.data.theme_uid + '&uinfo=' + app.globalData.idda,
+      url: '../qiandao/qiandao?theme_id=' + this.data.theme_id + '&user_id=' + app.globalData.idda.uid + '&theme_uid=' + this.data.theme_uid + '&theme_name=' + this.data.theme.theme_name + '&pz_num=' + this.data.pz_num
     })
    
   },
