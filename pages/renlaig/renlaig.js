@@ -6,7 +6,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    user: "https://wx.qlogo.cn/mmopen/vi_32/vN2SCNibibXxJTzfzToECK7ZysZGEAJYeGZvPp8D6ZUztwSr9uwGWKQdo3v3HiciboKjtIIAZvebhMKgxrmvVW2BUg/132",
 
   },
 
