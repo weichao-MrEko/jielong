@@ -184,6 +184,12 @@ Page({
 
     })
   },
+  //进入粉丝
+  fensi:function(){
+    wx.navigateTo({
+      url: '../fensi/fensi',
+    })
+  },
   getUserInfo: function(e) {
     
 

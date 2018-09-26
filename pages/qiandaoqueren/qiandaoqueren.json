@@ -1,9 +1,5 @@
 {
-  "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "部分签到确认",
-    "navigationBarTextStyle": "black",
-    "enablePullDownRefresh": true
-  }
+ 
+    "navigationBarTitleText": "部分签到确认"
+
 }

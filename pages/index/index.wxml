@@ -9,8 +9,8 @@
   </view>
  
   <view class='shuju'>
-    <view>
-      <span>{{see_num}}</span>人看过</view>
+    <view bindtap='fensi'>
+      <span>{{see_num}}</span>个粉丝</view>
     <view bindtap='yue'>余额￥
       <span>0</span>
     </view>

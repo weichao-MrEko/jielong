@@ -1,8 +1,9 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/qiandaoqueren/qiandaoqueren",
+    "pages/fensi/fensi",
     
+    "pages/qiandaoqueren/qiandaoqueren",
     "pages/qiandao/qiandao",
     "pages/qianderwm/qianderwm",
     "pages/qiandao_xiangq/qiandao_xiangq",
@@ -37,6 +38,7 @@
     "pages/add_adr/index",
     "pages/tihuodian/tihuodian",
     "pages/people/people"
+   
   ],
   "window": {
     "backgroundTextStyle": "light",

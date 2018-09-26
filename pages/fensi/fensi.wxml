@@ -1,0 +1,53 @@
+<view class='fensi_box'>
+  <view class='fensi_input'>
+    <input type='text' placeholder='搜索微信昵称'></input>
+  </view>
+  <!-- 粉丝管理者 -->
+  <view class='glzhe_box'>
+    <view>
+      <view class='glzhe_img'>
+        <image src='{{img}}'></image>
+      </view>
+    </view>
+    <view class='glzhe_user'>
+      <view class='user_name'>MrEko的团</view>
+      <view class='glzhe_tihuo'>8个提货点 ></view>
+    </view>
+    <view bindtap='qiandaoma'>
+      <view class='erweima_img'>
+        <image src='../img/qiandaoma.png'></image>
+      </view>
+      <view>签到码</view>
+    </view>
+    <view bindtap='tongzhima'>
+      <view class='erweima_img'>
+        <image src='../img/tongzhima.png'></image>
+      </view>
+      <view>活动通知码</view>
+    </view>
+  </view>
+  <!-- 粉丝类型 -->
+  <view class='fensi_type'>
+    <view wx:for='{{fensiType}}' class='{{index==curIndex?"cur":""}}' bindtap='fensi_type' data-id='{{index}}'>
+       <view class='fensi_type_num'>{{item.num}}</view>
+       <view>{{item.Type}}</view>
+    </view>
+  </view>
+  <!-- 提示 -->
+  <view class='tishi'>访问您发布的接龙，且授权用户信息后即可成为您的粉丝</view>
+  <!-- 粉丝 -->
+  <view class='fensi_user' bindtap='fensi'>
+     <view>
+       <view class='glzhe_img'><image src='{{img}}'></image></view>
+     </view>
+     <view class='fensi_name'>
+       <view>用户名</view>
+       <view class='fensi_textcur'>15天前 进入了主题</view>
+     </view>
+     <view class='fensi_zhuangtai'>
+        <view class='fensi_zhuangtai'><view class='zhuangtai_img'><image src='../img/yanjing.png'></image></view><text>4</text></view>
+        <view class='fensi_zhuangtai'><view class='zhuangtai_img'><image src='../img/goutong.png'></image></view><text>4</text></view>
+        <view class='fensi_zhuangtai'><view class='zhuangtai_img'><image src='../img/qian.png'></image></view><text>4</text></view>
+     </view>
+  </view>
+</view>
