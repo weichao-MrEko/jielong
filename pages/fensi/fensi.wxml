@@ -11,7 +11,7 @@
     </view>
     <view class='glzhe_user'>
       <view class='user_name'>MrEko的团</view>
-      <view class='glzhe_tihuo'>8个提货点 ></view>
+      <!-- <view class='glzhe_tihuo'>8个提货点 ></view> -->
     </view>
     <view bindtap='qiandaoma'>
       <view class='erweima_img'>
