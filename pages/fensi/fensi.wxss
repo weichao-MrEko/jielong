@@ -78,6 +78,7 @@ image{
 .fensi_user{
   display: flex;
   font-size: 35rpx;
+  padding: 10px 0 ;
   border-bottom: 1rpx solid #eee;
 }
 .fensi_name{

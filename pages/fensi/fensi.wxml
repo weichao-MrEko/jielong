@@ -1,19 +1,19 @@
 <view class='fensi_box'>
-  <view class='fensi_input'>
+  <!-- <view class='fensi_input'>
     <input type='text' placeholder='搜索微信昵称'></input>
-  </view>
+  </view> -->
   <!-- 粉丝管理者 -->
   <view class='glzhe_box'>
     <view>
       <view class='glzhe_img'>
-        <image src='{{img}}'></image>
+        <image src='{{user.uimg}}'></image>
       </view>
     </view>
     <view class='glzhe_user'>
-      <view class='user_name'>MrEko的团</view>
+      <view class='user_name'>{{user.user_name}}的粉丝</view>
       <!-- <view class='glzhe_tihuo'>8个提货点 ></view> -->
     </view>
-    <view bindtap='qiandaoma'>
+    <!-- <view bindtap='qiandaoma'>
       <view class='erweima_img'>
         <image src='../img/qiandaoma.png'></image>
       </view>
@@ -24,7 +24,7 @@
         <image src='../img/tongzhima.png'></image>
       </view>
       <view>活动通知码</view>
-    </view>
+    </view> -->
   </view>
   <!-- 粉丝类型 -->
   <view class='fensi_type'>
@@ -36,18 +36,57 @@
   <!-- 提示 -->
   <view class='tishi'>访问您发布的接龙，且授权用户信息后即可成为您的粉丝</view>
   <!-- 粉丝 -->
-  <view class='fensi_user' bindtap='fensi'>
+  <view class='fensi_user'  wx:for="{{fensi_list}}"  wx:if="{{curIndex == 0}}">
+
      <view>
-       <view class='glzhe_img'><image src='{{img}}'></image></view>
+       <view class='glzhe_img'><image src='{{item.user_img}}'></image></view>
      </view>
      <view class='fensi_name'>
-       <view>用户名</view>
-       <view class='fensi_textcur'>15天前 进入了主题</view>
+       <view>{{item.user_name}}</view>
+         
+       <view class='fensi_textcur'>
+       <navigator url='/pages/huodong/huodong?id={{item.theme_id}}&uid={{item.a_user_id}}&theme_uid={{item.uesr_id}}'>    <oime id='time' Time='{{item.login_time}}'></oime> 查看了{{item.theme_name}}
+        </navigator>
+       </view>
+           
      </view>
-     <view class='fensi_zhuangtai'>
-        <view class='fensi_zhuangtai'><view class='zhuangtai_img'><image src='../img/yanjing.png'></image></view><text>4</text></view>
-        <view class='fensi_zhuangtai'><view class='zhuangtai_img'><image src='../img/goutong.png'></image></view><text>4</text></view>
-        <view class='fensi_zhuangtai'><view class='zhuangtai_img'><image src='../img/qian.png'></image></view><text>4</text></view>
+   
+  </view>
+  <!-- 已参与 -->
+  <view class='fensi_user'  wx:for="{{fensi_list}}"  wx:if="{{curIndex == 1 && item.is_join}}">
+
+     <view>
+       <view class='glzhe_img'><image src='{{item.user_img}}'></image></view>
      </view>
+     <view class='fensi_name'>
+       <view>{{item.user_name}}</view>
+         
+       <view class='fensi_textcur'>
+       <navigator url='/pages/huodong/huodong?id={{item.theme_id}}&uid={{item.a_user_id}}&theme_uid={{item.uesr_id}}'>
+       在{{item.join_time}} 参与了{{item.login_num}}次{{item.theme_name}}
+        </navigator>
+       </view>
+           
+     </view>
+  
+     
+  </view>
+  <!-- 最活跃 -->
+  <view class='fensi_user'  wx:for="{{fensi_list}}"  wx:if="{{curIndex == 2 && item.is_hot}}">
+
+     <view>
+       <view class='glzhe_img'><image src='{{item.user_img}}'></image></view>
+     </view>
+     <view class='fensi_name'>
+       <view>{{item.user_name}}</view>
+         
+       <view class='fensi_textcur'>
+       <navigator url='/pages/huodong/huodong?id={{item.theme_id}}&uid={{item.a_user_id}}&theme_uid={{item.uesr_id}}'><oime id='time' Time='{{item.login_time}}'></oime> 查看了{{item.theme_name}}{{item.login_num}}次
+        </navigator>
+       </view>
+           
+     </view>
+  
+     
   </view>
 </view>

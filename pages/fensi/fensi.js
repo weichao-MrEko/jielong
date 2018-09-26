@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    fensiType: [{ num: 2, Type: '所有粉丝' }, { num: 2, Type: '关注公众号的粉丝'}, { num: 2, Type: '高级管理者'}],
+    fensiType: [{ num: 2, Type: '所有粉丝' }, { num: 2, Type: '已参与的粉丝'}, { num: 2, Type: '最活跃的粉丝'}],
     curIndex: 0
   },
 
@@ -15,9 +15,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      img: app.globalData.idda.uimg
+    wx.request({
+      url: app.globalData.urlPrefix + "smith/fensi",
+      success:(res)=>{
+        this.data.fensiType[0].num = res.data.fensi_num
+        this.data.fensiType[1].num = res.data.join_num
+        this.data.fensiType[2].num = res.data.hot_num
+        this.setData({
+          fensiType: this.data.fensiType,
+          user: app.globalData.idda,
+          fensi_list: res.data.fensi_list
+        })
+      }
     })
+   
+    
   },
   fensi:function(){
     wx.showActionSheet({
@@ -88,5 +100,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  }, 
 })

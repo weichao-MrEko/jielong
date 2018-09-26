@@ -1,5 +1,6 @@
 {
-   
-      "navigationBarTitleText": "粉丝管理"
-  
+  "navigationBarTitleText": "粉丝管理",
+  "usingComponents": {
+    "oime": "/components/time/time"
+  }
 }
